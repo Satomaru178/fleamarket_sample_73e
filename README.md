@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# Test of connection to Remote Repository
+大澤です。
+
+
