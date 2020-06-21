@@ -34,3 +34,6 @@ Things you may want to cover:
 
 # Test of connection to Remote Repository
 吉村でございます。
+
+# Test of connection to Remote Repository
+山田です。
