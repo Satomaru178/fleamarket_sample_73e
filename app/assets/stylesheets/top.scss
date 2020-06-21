@@ -8,8 +8,9 @@
 .first-contents {
   height: 560px;
   width: 100vw;
-  background-color: #0f0;
   color: #fff;
+  background-image: image-url('material/pict/bg-mainVisual-pict_pc.jpg');
+  background-size: 100% auto;
 }
 
 .second-contents {
@@ -22,8 +23,9 @@
 .third-contents {
   height: 400px;
   width: 100vw;
-  background-color: #a00;
   color: #fff;
+  background-image: image-url('material/pict/bg-topMiddleDl-pict.jpg');
+  background-size: 100% auto;
 }
 
 .fourth-contents {
@@ -50,8 +52,9 @@
 .seventh-contents {
   height: 360px;
   width: 100vw;
-  background-color: #030;
   color: #fff;
+  background-image: image-url('material/pict/bg-appBanner-pict.jpg');
+  background-size: 100% auto;
 }
 
 .footer {
