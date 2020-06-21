@@ -29,3 +29,6 @@ Things you may want to cover:
 # Test of connection to Remote Repository
 高橋です。
 
+# Test of connection to Remote Repository
+寺本です。
+
