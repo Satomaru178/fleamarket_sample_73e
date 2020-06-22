@@ -1,0 +1,53 @@
+.feature-lower {
+  height: 711.7px;
+  width: 100vw;
+  background-color: #fff;
+  color: #000;
+
+  &__title {
+    font-size: 25px;
+    position: relative;
+    display: inline-block;
+    margin-top: 60px;
+    margin-left: 620px;
+  }
+
+  &__title::after {
+    content: "";
+    position: absolute;
+    left: 56px;
+    right: 56px;
+    bottom: -15px;
+    border-bottom: 4px solid #20b2aa;
+  }
+
+  &__card-lists {
+    height: 540px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+
+    &__card {
+      height: 480px;
+      width: 400px;
+      margin: 50px auto;
+
+      &__image {
+        padding-left: 100px;
+      }
+
+      &__text {
+        font-size: 20px;
+        margin: 35px;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      &__caption {
+        font-size: 16px;
+        padding-left: 60px;
+      }
+    }
+  }
+}

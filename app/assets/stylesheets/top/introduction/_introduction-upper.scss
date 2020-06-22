@@ -1,0 +1,55 @@
+.introduction-upper {
+  height: 560px;
+  width: 100vw;
+  color: #fff;
+  background-image: image-url('material/pict/bg-mainVisual-pict_pc.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: 140px;
+
+  &__slogan {
+    height: 144px;
+    width: 1079px;
+    font-size: 56px;
+    font-family: "YuGothic";
+    text-shadow: 0.25px 0.25px 0 #000,
+               -0.25px 0.25px 0 #000,
+               0.25px -0.25px 0 #000,
+               -0.25px -0.25px 0 #000;
+    margin-left: 80px;
+  }
+
+  &__explain {
+    height: 64px;
+    width: 1079px;
+    font-size: 20px;
+    font-family: "YuGothic";
+    text-shadow: 0.25px 0.25px 0 #000,
+               -0.25px 0.25px 0 #000,
+               0.25px -0.25px 0 #000,
+               -0.25px -0.25px 0 #000;
+    margin-left: 80px;
+    margin-bottom: 20px;
+    line-height: 120%;
+  }
+
+  &__download-btns {
+    display: flex;
+    position: relative;
+
+    &__apple-btn {
+      height: 53.33px;
+      width: auto;
+      margin-left: 80px;
+    }
+
+    &__google-btn {
+      height: 53.33px;
+      width: auto;
+      position: absolute;
+      top: -14px;
+      left: 240px;
+    }
+  }
+}

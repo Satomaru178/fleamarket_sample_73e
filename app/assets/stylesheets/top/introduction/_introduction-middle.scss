@@ -1,0 +1,46 @@
+.introduction-middle {
+  height: 400px;
+  width: 100vw;
+  color: #fff;
+  background-image: image-url('material/pict/bg-topMiddleDl-pict.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: 100px;
+
+  &__sales-point {
+    margin-left: 180px;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-family: "YuGothic";
+    text-shadow : 0.25px 0.25px 0.25px #000;
+  }
+
+  &__explain {
+    margin-left: 180px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-family: "YuGothic";
+    text-shadow : 0.25px 0.25px 0.25px #000;
+    line-height: 120%;
+  }
+
+  &__download-btns {
+    display: flex;
+    position: relative;
+
+    &__apple-btn {
+      height: 53.33px;
+      width: auto;
+      margin-left: 180px;
+    }
+
+    &__google-btn {
+      height: 53.33px;
+      width: auto;
+      position: absolute;
+      top: -14px;
+      left: 340px;
+    }
+  }
+}
