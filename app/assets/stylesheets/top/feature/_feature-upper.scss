@@ -1,19 +1,27 @@
+#left.feature-upper__card-lists__card__image {
+  background-image: image-url('material/pict/pict-reason-01.jpg');
+}
+
+#center.feature-upper__card-lists__card__image {
+  background-image: image-url('material/pict/pict-reason-02.jpg');
+}
+
+#right.feature-upper__card-lists__card__image {
+  background-image: image-url('material/pict/pict-reason-03.jpg');
+}
+
 .feature-upper {
   height: 658px;
   width: 100vw;
   background-color: #fff;
   color: #000;
-
-  ul {
-    list-style: none;
-  }
+  text-align: center;
 
   &__title {
     font-size: 25px;
     position: relative;
     display: inline-block;
     margin-top: 60px;
-    margin-left: 535px;
   }
 
   &__title::after {
@@ -21,28 +29,29 @@
     position: absolute;
     left: 140px;
     right: 140px;
-    bottom: -15px;
+    bottom: -20px;
     border-bottom: 4px solid #20b2aa;
   }
 
   &__card-lists {
     height: 540px;
-    width: 100%;
+    width: 1100px;
     display: flex;
     justify-content: space-between;
+    list-style: none;
+    margin: 0 auto;
 
     &__card {
       height: 460px;
       margin: 50px auto;
 
-      &__image-left {
-        position: relative;
+      &__image {
         height: 306px;
         width: 306px;
-        background-image: image-url('material/pict/pict-reason-01.jpg');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
+        position: relative;
 
         &__number-square {
           height: 55px;
@@ -53,76 +62,26 @@
           position: absolute;
           top: 0;
           left: 0;
-          text-align: center;
-          line-height: 55px;
-        }
-      }
-
-      &__image-center {
-        position: relative;
-        height: 306px;
-        width: 306px;
-        background-image: image-url('material/pict/pict-reason-02.jpg');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-
-        &__number-square {
-          height: 55px;
-          width: 56.69px;
-          background-color: #20b2aa;
-          color: #fff;
-          font-size: 24px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          text-align: center;
-          line-height: 55px;
-        }
-      }
-
-      &__image-right {
-        position: relative;
-        height: 306px;
-        width: 306px;
-        background-image: image-url('material/pict/pict-reason-03.jpg');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-
-        &__number-square {
-          height: 55px;
-          width: 56.69px;
-          background-color: #20b2aa;
-          color: #fff;
-          font-size: 24px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          text-align: center;
           line-height: 55px;
         }
       }
 
       &__text {
-        font-size: 20px;
-        text-align: center;
+        font-size: 22px;
         margin: 35px;
+        font-weight: bold;
 
         span {
           color: #20b2aa;
-          font-weight: bold;
         }
       }
 
       &__caption {
-        font-size: 16px;
-        padding-left: 16px;
-      }
-
-      &__caption-right {
-        font-size: 16px;
-        padding-left: 40px;
+        display: inline-block;
+        font-size: 17px;
+        margin: 0 auto;
+        text-align: left;
+        line-height: 150%;
       }
     }
   }

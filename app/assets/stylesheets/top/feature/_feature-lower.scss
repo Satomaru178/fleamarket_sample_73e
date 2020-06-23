@@ -1,15 +1,27 @@
+#left.feature-lower__card-lists__card__image {
+  background-image: image-url('material/icon/icon-01.png');
+}
+
+#center.feature-lower__card-lists__card__image {
+  background-image: image-url('material/icon/icon-03.png');
+}
+
+#right.feature-lower__card-lists__card__image {
+  background-image: image-url('material/icon/icon-04.png');
+}
+
 .feature-lower {
   height: 711.7px;
   width: 100vw;
   background-color: #fff;
   color: #000;
+  text-align: center;
 
   &__title {
     font-size: 25px;
     position: relative;
     display: inline-block;
     margin-top: 60px;
-    margin-left: 620px;
   }
 
   &__title::after {
@@ -17,65 +29,44 @@
     position: absolute;
     left: 56px;
     right: 56px;
-    bottom: -15px;
+    bottom: -20px;
     border-bottom: 4px solid #20b2aa;
   }
 
   &__card-lists {
-    height: 540px;
-    width: 100%;
+    height: 560px;
+    width: 1050px;
     display: flex;
     justify-content: space-between;
     list-style: none;
-
+    margin: 0 auto;
+    
     &__card {
-      height: 480px;
-      width: 400px;
+      height: 500px;
+      width: 350px;
       margin: 50px auto;
 
-      &__image-left {
+      &__image {
         height: 315.7px;
         width: 205.09px;
-        padding-left: 100px;
-        margin: 0 auto;
-        background-image: image-url('material/icon/icon-01.png');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
-      }
-
-      &__image-center {
-        height: 315.7px;
-        width: 205.09px;
-        padding-left: 100px;
         margin: 0 auto;
-        background-image: image-url('material/icon/icon-03.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-      }
-
-      &__image-right {
-        height: 315.7px;
-        width: 205.09px;
-        padding-left: 100px;
-        margin: 0 auto;
-        background-image: image-url('material/icon/icon-04.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
       }
 
       &__text {
-        font-size: 20px;
-        margin: 35px;
+        font-size: 18px;
+        margin: 60px auto 15px;
         font-weight: bold;
-        text-align: center;
       }
 
       &__caption {
-        font-size: 16px;
-        padding-left: 60px;
+        display: inline-block;
+        font-size: 17px;
+        margin: 0 auto;
+        text-align: left;
+        line-height: 150%;
       }
     }
   }
