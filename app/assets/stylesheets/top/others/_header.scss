@@ -1,83 +1,102 @@
 .header {
-  height: 110px;
-  width: 100vw;
+  // 外枠サイズ指定
+  @include box(100vw, 110px);
+  // 文字色指定
   color: #fff;
 
   &__contents {
+    // 中身の幅指定
     width: 1040px;
+    // 中身は中央揃え
     margin: 0 auto;
+    // 上の空間指定
     padding-top: 15px;
 
     &__upper {
+      // 横並べ
+      @include between();
+      // 上部のコンテンツ高さ指定
       height: 50.55px;
 
-      &__icon {
-        height: 41px;
-        width: 140px;
-        float: left;
-        background-image: image-url('material/logo/logo.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
+      &__logo {
+        // ロゴの外枠指定
+        @include box(140px, 41px);
+        // 外枠にロゴを埋め込む
+        @include backimg('material/logo/logo.png', contain);
       }
 
-      &__input-box {
-        height: 41px;
-        width: 870px;
-        float: right;
-        font-size: 16px;
+      &__form {
+        // 入力フォームの外枠サイズ指定
+        @include box(870px, 41px);
+        background-color: #00f;
+        // 入力フォームの中に検索ボタンを埋め込むための設定
         position: relative;
-      }
 
-      &__submit-btn {
-        height: 41px;
-        width: 41px;
-        position: absolute;
-        right: 200px;
-        top: 15px;
-        background-color: #20b2aa;
-        border: none;
+        #keyword {
+          // 入力フォームを外枠に埋め込む
+          @include box(100%, 41px);
+          // 文字サイズ指定
+          font-size: 16px;
+        }
 
-        &__icon {
-          height: 20px;
-          width: 20px;
-          margin: 0 auto;
-          background-image: image-url('material/icon/icon-search01.png');
-          background-repeat: no-repeat;
-          background-size: contain;
-          background-position: center;
+        &__submit-btn {
+          // 検索ボタンの外枠サイズ指定
+          @include box(41px, 41px);
+          // 検索ボタンの位置を調整
+          @include absolute(0px, 0px, auto, auto);
+          // 検索ボタンの背景色指定
+          background-color: #20b2aa;
+          
+          &__icon {
+            // 虫眼鏡マークの外枠作成
+            @include box(20px, 20px);
+            // 外枠に虫眼鏡マークを埋め込む
+            @include backimg('material/icon/icon-search01.png', contain);
+            // 中央に配置
+            margin: 10px;
+          }
         }
       }
     }
 
     &__lower {
+      // 横並べ
+      @include between();
+      // 下部のコンテンツ高さ指定
       height: 32px;
-      display: flex;
-      justify-content: space-between;
+      // フォント指定
       font-family: "YuGothic";
 
       li {
+        // 文字サイズ指定
         font-size: 14px;
       }
 
       a {
+        // リンクのデコレーションを無効
         text-decoration: none;
         color: #000;
       }
 
       &__left-items {
+        // 横並べ
+        @include between();
+        // 左側コンテンツ外枠幅指定
         width: 170px;
+        // 点を消す
         list-style: none;
-        display: flex;
-        justify-content: space-between;
+        // 上下中央揃え
         line-height: 32px;
       }
 
       &__right-items {
+        // 横並べ
+        @include between();
+        // 右側コンテンツ外枠幅指定
         width: 150px;
+        // 点を消す
         list-style: none;
-        display: flex;
-        justify-content: space-between;
+        // 上下中央揃え
         line-height: 32px;
       }
     }
