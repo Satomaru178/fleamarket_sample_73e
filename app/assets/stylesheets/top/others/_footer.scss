@@ -1,54 +1,67 @@
 .footer {
-  height: 354.34px;
-  width: 100vw;
-  background-color: #222;
-  color: #fff;
+  // 外枠サイズ指定
+  @include box(100vw, 354.34px);
+  // 背景色、文字色指定
+  @include colors(#222,#fff);
+  // 上の空間作成
   padding-top: 70px;
 
   &__contents {
+    // 3つのコンテンツを囲む見えない箱の外枠の高さ指定
     height: 172px;
+    // 点を消す
     list-style: none;
+    // 横並べかつ中央寄せ
     display: flex;
     justify-content: center;
 
     &__content {
+      // コンテンツの幅指定
       width: 250px;
-      margin-left: 30px;
-      margin-right: 30px;
+      // 左右30pxずつ間を開ける
+      margin: 0 30px;
+      // 文字は中央揃え
       text-align: center;
 
       &__title {
+        // 下の空間作成
         margin-bottom: 20px;
+        // 文字サイズ指定
         font-size: 16px;
       }
 
       a {
+        // リンクのデコレーションを無効にする
         text-decoration: none;
         color: #fff;
       }
 
       ul {
+        // 点を消す
         list-style: none;
+        // 行間指定
         line-height: 250%;
+        // 文字サイズ指定
         font-size: 12px;
       }
     }
   }
 
   &__logo {
-    height: 46.34px;
-    width: 160px;
+    // ロゴの外枠指定
+    @include box(160px, 46.34px);
+    // 外枠にロゴを埋め込む
+    @include backimg('material/logo/logo-white.png', cover);
+    // 画面の真ん中に配置
     margin: 0 auto;
-    background-image: image-url('material/logo/logo-white.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
   }
 
   &__copyright {
-    height: 16px;
-    width: 100%;
+    // 文字の外枠指定
+    @include box(100%, 16px);
+    // 文字サイズ指定
     font-size: 12px;
+    // 文字は中央揃え
     text-align: center;
   }
 }

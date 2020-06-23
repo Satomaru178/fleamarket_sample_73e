@@ -1,71 +1,84 @@
+// 3枚の絵、左
 #left.feature-lower__card-lists__card__image {
-  background-image: image-url('material/icon/icon-01.png');
+  @include backimg('material/icon/icon-01.png', contain);
 }
 
+// 3枚の絵、真ん中
 #center.feature-lower__card-lists__card__image {
-  background-image: image-url('material/icon/icon-03.png');
+  @include backimg('material/icon/icon-03.png', contain);
 }
 
+// 3枚の絵、右
 #right.feature-lower__card-lists__card__image {
-  background-image: image-url('material/icon/icon-04.png');
+  @include backimg('material/icon/icon-04.png', contain);
 }
 
 .feature-lower {
-  height: 711.7px;
-  width: 100vw;
-  background-color: #fff;
-  color: #000;
+  // 外枠の大きさ指定
+  @include box(100vw, 711.7px);
+  // 背景色、文字色指定
+  @include colors();
+  // 文字は中央揃え
   text-align: center;
 
   &__title {
+    // 上の空間作成
+    margin-top: 60px;
+    // 文字サイズ指定
     font-size: 25px;
+    // タイトルの下に線を入れるための設定
     position: relative;
     display: inline-block;
-    margin-top: 60px;
   }
 
+  // タイトルの下に線を入れるための設定
   &__title::after {
+    @include absolute(auto, 56px, -20px, 56px);
     content: "";
-    position: absolute;
-    left: 56px;
-    right: 56px;
-    bottom: -20px;
     border-bottom: 4px solid #20b2aa;
   }
 
   &__card-lists {
-    height: 560px;
-    width: 1050px;
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
+    // 外枠の大きさ指定
+    @include box(1050px, 560px);
+    // 横並べ
+    @include between();
+    // 左右中央揃え
     margin: 0 auto;
+    // 点を消す
+    list-style: none;
     
+    // 3つの箱
     &__card {
-      height: 500px;
-      width: 350px;
+      // 外枠の大きさ指定
+      @include box(350px, 500px);
+      // 上の空間作成、左右中央揃え
       margin: 50px auto;
 
       &__image {
-        height: 315.7px;
-        width: 205.09px;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
+        // 画像の大きさ指定
+        @include box(205.09px, 315.7px);
+        // 左右中央揃え
         margin: 0 auto;
       }
 
       &__text {
-        font-size: 18px;
+        // 上下の空間作成、左右中央揃え
         margin: 60px auto 15px;
+        // 文字サイズ指定
+        font-size: 18px;
+        // 太字
         font-weight: bold;
       }
 
       &__caption {
+        // 左詰めかつ左右中央揃え
         display: inline-block;
-        font-size: 17px;
-        margin: 0 auto;
         text-align: left;
+        margin: 0 auto;
+        // 文字サイズ指定
+        font-size: 17px;
+        // 行間作成
         line-height: 150%;
       }
     }

@@ -1,53 +1,48 @@
 .introduction-lower {
-  height: 359.33px;
-  width: 100vw;
+  // 外枠の大きさ指定
+  @include box(100vw, 359.33px);
+  // 箱の背景を画像にする
+  @include backimg('material/pict/bg-appBanner-pict.jpg', cover);
+  // 文字色指定
   color: #fff;
-  background-image: image-url('material/pict/bg-appBanner-pict.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  // 上の空間作成
   padding-top: 110px;
+  // 文字は中央揃え
+  text-align: center;
 
   &__slogan {
-    text-align: center;
-    margin-bottom: 14px;
-    font-size: 24px;
-    font-family: "YuGothic";
-    text-shadow : 0.25px 0.25px 0.25px #000;
+    // 文字をデコレーション
+    @include font(24px, "YuGothic", 1.5px);
   }
 
   &__recomend {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 34px;
-    font-family: "YuGothic";
-    text-shadow : 0.25px 0.25px 0.25px #000;
-    line-height: 120%;
+    // 文字をデコレーション
+    @include font(34px, "YuGothic", 1.5px);
+    // 上下に空間作成
+    margin: 14px 0 30px;
   }
 
   &__download-btns {
+    // 2つのボタンを囲む見えない箱の外枠サイズ指定
+    @include box(370px, 53.33px);
+    // ボタンは画面中央で横並べ
     display: flex;
-    height: 53.33px;
-    width: 370px;
     margin: 0 auto;
 
     &__apple-btn {
-      height: 53.33px;
-      width: 180px;
-      background-image: image-url('Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
+      // ボタンの外枠サイズ指定
+      @include box(180px, 53.33px);
+      // 外枠にボタンを埋め込む
+      @include backimg('Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg', cover);
+      // ボタンとボタンの間の空間作成
       margin-right: 10px;
     }
 
     &__google-btn {
-      height: 53.33px;
-      width: 180px;
-      background-image: image-url('google-play-badge.png');
-      background-repeat: no-repeat;
-      background-size: 115%;
-      background-position: center;
+      // ボタンの外枠サイズ指定
+      @include box(180px, 53.33px);
+      // 外枠にボタンを埋め込む
+      @include backimg('google-play-badge.png', 115%);
     }
   }
 }
