@@ -2,17 +2,19 @@
   .header__contents
     .header__contents__upper
       = link_to '/' do
-        = image_tag('material/logo/logo.png', class: 'header__contents__upper__icon')
-        = form_with url: '#' do |form|
-          = form.text_field :text, class: 'header__contents__upper__input-box', placeholder: 'キーワードから探す'
-          %button{type: "submit", class:'header__contents__upper__submit-btn'}
-            = icon('fas', 'search')
+        .header__contents__upper__icon
+      = form_with url: '#' do |form|
+        = form.text_field :text, class: 'header__contents__upper__input-box', placeholder: 'キーワードから探す'
+        %button{type: "submit", class:'header__contents__upper__submit-btn'}
+          .header__contents__upper__submit-btn__icon
     .header__contents__lower
       %ul.header__contents__lower__left-items
         %li.header__contents__lower__left-items__categories
-          カテゴリー
+          = link_to '#' do
+            カテゴリー
         %li.header__contents__lower__left-items__brands
-          ブランド
+          = link_to '#' do
+            ブランド
       %ul.header__contents__lower__right-items
         %li.header__contents__lower__right-items__login
           = link_to '#' do

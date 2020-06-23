@@ -15,6 +15,10 @@
         height: 41px;
         width: 140px;
         float: left;
+        background-image: image-url('material/logo/logo.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
       }
 
       &__input-box {
@@ -28,13 +32,21 @@
       &__submit-btn {
         height: 41px;
         width: 41px;
-        font-size: 20px;
         position: absolute;
         right: 200px;
         top: 15px;
         background-color: #20b2aa;
-        color: #fff;
         border: none;
+
+        &__icon {
+          height: 20px;
+          width: 20px;
+          margin: 0 auto;
+          background-image: image-url('material/icon/icon-search01.png');
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+        }
       }
     }
 
@@ -44,17 +56,21 @@
       justify-content: space-between;
       font-family: "YuGothic";
 
+      li {
+        font-size: 14px;
+      }
+
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+
       &__left-items {
         width: 170px;
         list-style: none;
-        color: #000;
         display: flex;
         justify-content: space-between;
         line-height: 32px;
-        
-        li {
-          font-size: 14px;
-        }
       }
 
       &__right-items {
@@ -63,15 +79,6 @@
         display: flex;
         justify-content: space-between;
         line-height: 32px;
-
-        li {
-          font-size: 14px;
-        }
-
-        a {
-          text-decoration: none;
-          color: #000;
-        }
       }
     }
   }
