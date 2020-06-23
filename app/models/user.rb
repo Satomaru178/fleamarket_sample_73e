@@ -12,4 +12,5 @@ class User < ApplicationRecord
   format: {
   with:/\A[ぁ-んー－]+\z/,
   }
+  has_one :address
 end
