@@ -33,8 +33,37 @@
       width: 400px;
       margin: 50px auto;
 
-      &__image {
+      &__image-left {
+        height: 315.7px;
+        width: 205.09px;
         padding-left: 100px;
+        margin: 0 auto;
+        background-image: image-url('material/icon/icon-01.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+
+      &__image-center {
+        height: 315.7px;
+        width: 205.09px;
+        padding-left: 100px;
+        margin: 0 auto;
+        background-image: image-url('material/icon/icon-03.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+
+      &__image-right {
+        height: 315.7px;
+        width: 205.09px;
+        padding-left: 100px;
+        margin: 0 auto;
+        background-image: image-url('material/icon/icon-04.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
       }
 
       &__text {

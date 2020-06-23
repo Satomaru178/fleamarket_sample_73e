@@ -35,8 +35,60 @@
       height: 460px;
       margin: 50px auto;
 
-      &__image {
+      &__image-left {
         position: relative;
+        height: 306px;
+        width: 306px;
+        background-image: image-url('material/pict/pict-reason-01.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+
+        &__number-square {
+          height: 55px;
+          width: 56.69px;
+          background-color: #20b2aa;
+          color: #fff;
+          font-size: 24px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          text-align: center;
+          line-height: 55px;
+        }
+      }
+
+      &__image-center {
+        position: relative;
+        height: 306px;
+        width: 306px;
+        background-image: image-url('material/pict/pict-reason-02.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+
+        &__number-square {
+          height: 55px;
+          width: 56.69px;
+          background-color: #20b2aa;
+          color: #fff;
+          font-size: 24px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          text-align: center;
+          line-height: 55px;
+        }
+      }
+
+      &__image-right {
+        position: relative;
+        height: 306px;
+        width: 306px;
+        background-image: image-url('material/pict/pict-reason-03.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
 
         &__number-square {
           height: 55px;
