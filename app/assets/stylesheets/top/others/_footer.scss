@@ -37,11 +37,12 @@
 
   &__logo {
     height: 46.34px;
-
-    a img {
-      width: 160px;
-      margin-left: 630px;
-    }
+    width: 160px;
+    margin: 0 auto;
+    background-image: image-url('material/logo/logo-white.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
   }
 
   &__copyright {
