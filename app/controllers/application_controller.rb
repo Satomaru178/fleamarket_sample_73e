@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  bbefore_action :basic_auth, if: :production?
+  before_action :basic_auth, if: :production?
 
   private
 
