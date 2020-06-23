@@ -1,15 +1,59 @@
+// リセットCSS呼び出し
 @import "reset";
 
+// 箱を作成
+@mixin box($width: auto, $height: auto) {
+  width: $width;
+  height: $height;
+}
+
+// 箱の背景を画像にする
+@mixin backimg($url, $size) {
+  background-image: image-url($url);
+  background-repeat: no-repeat;
+  background-size: $size;
+  background-position: center;
+}
+
+// 文字のデコレーション
+@mixin font($size,$family,$shadow) {
+  font-size: $size;
+  font-family: $family;
+  text-shadow: 0 0 $shadow #000;
+}
+
+// 背景画像、文字色指定
+@mixin colors($bgclr: #fff, $clr: #000) {
+  background-color: $bgclr;
+  color: $clr;
+}
+
+// 横並べ
+@mixin between() {
+  display: flex;
+  justify-content: space-between;
+}
+
+// 絶対位置指定
+@mixin absolute($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+// トップページ用
 @import "top/others/header";
 @import "top/introduction/introduction-upper";
 @import "top/feature/feature-upper";
 @import "top/introduction/introduction-middle";
 @import "top/feature/feature-lower";
-@import "top/pickup/pickup-upper";
-@import "top/pickup/pickup-lower";
+@import "top/pickup";
 @import "top/introduction/introduction-lower";
 @import "top/others/footer";
 @import "top/others/exhibition-btn";
 
+// icon用
 @import "font-awesome-sprockets";
 @import "font-awesome";
