@@ -27,20 +27,27 @@
 
   &__download-btns {
     display: flex;
-    position: relative;
+    height: 53.33px;
+    width: 370px;
+    margin-left: 180px;
 
     &__apple-btn {
       height: 53.33px;
-      width: auto;
-      margin-left: 180px;
+      width: 180px;
+      background-image: image-url('Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      margin-right: 10px;
     }
 
     &__google-btn {
       height: 53.33px;
-      width: auto;
-      position: absolute;
-      top: -14px;
-      left: 340px;
+      width: 180px;
+      background-image: image-url('google-play-badge.png');
+      background-repeat: no-repeat;
+      background-size: 115%;
+      background-position: center;
     }
   }
 }
