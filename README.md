@@ -29,3 +29,11 @@ Things you may want to cover:
 # Test of connection to Remote Repository
 高橋です。
 
+# Test of connection to Remote Repository
+寺本です。
+
+# Test of connection to Remote Repository
+吉村でございます。
+
+# Test of connection to Remote Repository
+山田です。
