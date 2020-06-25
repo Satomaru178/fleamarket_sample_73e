@@ -1,0 +1,26 @@
+.header
+  .header__contents
+    .header__contents__upper
+      = link_to '/' do
+        .header__contents__upper__logo
+      .header__contents__upper__form
+        = form_with url: '#' do |f|
+          = f.text_field :text, id: 'keyword', placeholder: 'キーワードから探す'
+          = link_to '#' do
+            .header__contents__upper__form__submit-btn
+              .header__contents__upper__form__submit-btn__icon
+    .header__contents__lower
+      %ul.header__contents__lower__left-items
+        %li.header__contents__lower__left-items__categories
+          = link_to '#' do
+            カテゴリー
+        %li.header__contents__lower__left-items__brands
+          = link_to '#' do
+            ブランド
+      %ul.header__contents__lower__right-items
+        %li.header__contents__lower__right-items__login
+          = link_to '#' do
+            ログイン
+        %li.header__contents__lower__right-items__signup
+          = link_to '#' do
+            新規会員登録
