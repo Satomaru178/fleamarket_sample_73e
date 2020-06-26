@@ -5,10 +5,10 @@ class CreateAddresses < ActiveRecord::Migration[5.2]
       t.string :last_name,          null: false
       t.string :first_name_kana,    null: false
       t.string :last_name_kana,     null: false
-      t.string :zipcode
-      t.string :prefecture 
-      t.string :municipalitie
-      t.string :address
+      t.string :zipcode,            null: false
+      t.integer :prefecture,        null: false, default: 0
+      t.string :municipalitie,      null: false
+      t.string :address,            null: false
       t.string :address_other
       t.string	 :tell
       t.references :user

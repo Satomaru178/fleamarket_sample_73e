@@ -63,4 +63,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 
+gem "haml-rails", ">= 1.0", '<= 2.0.1'
+
+gem 'font-awesome-sass'
+
 gem 'pry-rails'
+gem 'compass-rails', '3.1.0'
+gem 'sprockets', '3.7.2'
+
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'enum_help' 
