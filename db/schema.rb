@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(version: 2020_06_23_065830) do
     t.string "last_name", null: false
     t.string "first_name_kana", null: false
     t.string "last_name_kana", null: false
-    t.string "zipcode"
-    t.string "prefecture"
-    t.string "municipalitie"
-    t.string "address"
+    t.string "zipcode", null: false
+    t.integer "prefecture", default: 0, null: false
+    t.string "municipalitie", null: false
+    t.string "address", null: false
     t.string "address_other"
     t.string "tell"
     t.bigint "user_id"
