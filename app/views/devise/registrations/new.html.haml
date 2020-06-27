@@ -1,6 +1,6 @@
+= render "devise/shared/error_messages", resource: @user
 %h2 Sign up
 = form_for(@user, url: user_registration_path) do |f|
-  = render "devise/shared/error_messages", resource: @user
   .field
     = f.label :nickname
     %br/
