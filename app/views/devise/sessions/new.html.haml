@@ -1,17 +1,34 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+#account-page.account-page
+  .header
+    %a{ href: '', id: 'header__logo' }
+      = image_tag 'logo.png', alt: 'FURIMA', width: "200px"
+  .account-page__inner
+    .account-page__inner__wrapper
+      .account-page__inner__wrapper--head
+        %p アカウントをお持ちでない方はこちら
+        %a{ href: '', id: '' }
+          新規会員登録
+      .sns-log-in
+        %a{ href: '', id: '' }
+          Googleでログイン
+        %a{ href: '', id: '' }
+          Facebookでログイン
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .field
+          = f.email_field :email, autofocus: true, autocomplete: "email"
+        .field
+          = f.password_field :password, autocomplete: "current-password"
+        - if devise_mapping.rememberable?
+          .field
+            = f.check_box :remember_me
+            = f.label :remember_me
+        .actions
+          = f.submit "Log in"
+      %a
+        パスワードをお忘れの方
+  .footer
+    %a{ href: '', id: 'footer__logo' }
+      = image_tag 'logo.png', alt: 'FURIMA', width: "200px"
+    %small.footer__copywrite
+      © FURIMA 
+-# = render "devise/shared/links" 
