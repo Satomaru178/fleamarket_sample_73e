@@ -1,0 +1,225 @@
+.account-page {
+  background-color: #f6f6f6;
+
+  .header {
+    padding-top: 40px;
+    padding-left: 80px;
+    display: flex;
+    justify-content: center;
+
+
+    .progress {
+      padding-left: 54px;
+      border: 0;
+      display: inline-block;
+      vertical-align: top;
+      font-size: 0;
+      text-align: center;
+      &-bar{
+        margin: 0;
+        li{
+          margin: 0 40px 0 0;
+          padding: 0;
+          position: relative;
+          z-index: 40;
+          display: inline-block;
+          min-width: 60px;
+          font-weight: 600;
+          font-size: 12px;
+          color: gray;
+
+          .progress-status{
+            position: absolute;
+            left: 40%;
+            width: 12px;
+            height: 12px;
+            margin: 8px auto 0;
+            background: gray;
+            border-radius: 50%;
+            z-index: 30;
+          }
+
+          // デフォルトのプログレスバー
+          .progress-status_bar {
+            position: absolute;
+            left: 50%;
+            top: 25px;
+            bottom: 5px;
+            display: block;
+            width: 120px;
+            height: 2px;
+            background: gray;
+            z-index: 10;
+          }
+        }
+
+        #through {
+          color: #ea352d;
+
+          .progress-status {
+            background: #ea352d;
+          }
+        }
+      } 
+    }
+  }
+
+  &__inner {
+    width: 700px;
+    margin: 40px auto;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+
+    &__wrapper {
+      width: 50%;
+
+      &--head {
+        text-align: center;
+        padding: 32px;
+        border-bottom: 1px solid #f5f5f5;
+        
+        h1 {
+          font-size: 22px;
+        }
+      }
+
+      .user-form {
+        &__field {
+          
+          &__label {
+            padding-top: 24px;
+            font-weight: 600;
+            font-size: 14px;
+
+            &__require {
+              background: #ea352d;
+              margin: 0 0 0 8px;
+              padding: 3px 4px;
+              border-radius: 2px;
+              color: #fff;
+              font-size: 12px;
+              vertical-align: top;
+              font-weight: 300;
+            }
+          }
+
+          &__input {
+            margin: 8px 0 0;
+            position: relative;
+            
+            input {
+              width: 100%;
+              height: 48px;
+              padding: 10px 16px 8px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              background: #fff;
+              line-height: 1.5;
+              font-size: 16px;
+            }
+
+            #user_birthday_1i {
+              width: 76px;
+              height: 48px;
+              padding: 0 10px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              background: #fff;
+              line-height: 1.5;
+              font-size: 16px;
+              -webkit-appearance: none;
+            }
+
+            #user_birthday_2i {
+              width: 76px;
+              height: 48px;
+              padding: 0 10px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              background: #fff;
+              line-height: 1.5;
+              font-size: 16px;
+              -webkit-appearance: none;
+            }
+
+            #user_birthday_3i {
+              width: 76px;
+              height: 48px;
+              padding: 0 10px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              background: #fff;
+              line-height: 1.5;
+              font-size: 16px;
+              -webkit-appearance: none;
+            }
+
+            &__icon1{
+              position: absolute;
+              top: 17px;
+              left: 55px;
+              color: #888888;
+              pointer-events: none;
+            }
+
+            &__icon2{
+              position: absolute;
+              top: 17px;
+              left: 155px;
+              color: #888888;
+              pointer-events: none;
+            }
+
+            &__icon3{
+              position: absolute;
+              top: 17px;
+              left: 260px;
+              color: #888888;
+              pointer-events: none;
+            }
+          }
+        }
+
+        h2 {
+          margin-top: 24px;
+        }
+
+        p {
+          font-size: 14px;
+          padding-top: 8px;
+          color: #333;
+          line-height: 1.5;
+        }
+
+        &__submit-button {
+          display: flex;
+          justify-content: center;
+
+          input {
+            margin: 32px 0;
+            width: 40%;
+            line-height: 48px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            background: #c0c0c0;
+            border: 1px solid ;
+            color: #fff;
+          }
+        }
+      }
+
+    }
+  }
+
+  .footer {
+    text-align: center;
+    padding-bottom: 20px;
+
+    small {
+      display: block;
+      font-size: 12px;
+    }
+  }
+}
