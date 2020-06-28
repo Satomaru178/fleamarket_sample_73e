@@ -17,8 +17,7 @@
   ### Association
   - has_many :comments
   - has_many :likes
-  - has_many :from_messages, class_name: "Message", foreign_key: "from_id"
-  - has_many :to_messages, class_name: "Message", foreign_key: "to_id"
+  - has_many :messages
   - has_many :evaluations
   - has_one  :account
   - has_one  :address
@@ -70,13 +69,15 @@
   |delivery_method     |string |null: false                   |
 
   ### Association
+  - belongs_to :buyer, class_name: "User", foreign_key: "user_id"
+  - belongs_to :seller, class_name: "User", foreign_key: "user_id"
   - belongs_to :category
   - belongs_to :brand
   - has_many   :images
   - has_many   :comments
   - has_many   :likes
   - has_many   :cards
-  - has_many   :rooms, class_name: "Message", foreign_key: "room_id"
+  - has_many   :messages
 
   ## imagesテーブル
   | Column | Type  | Options                      |
@@ -147,9 +148,9 @@
   |message |text   |null: false                   |
 
   ### Association
-  - belongs_to :from, class_name: "User"
-  - belongs_to :to,   class_name: "User"
-  - belongs_to :room, class_name: "Item"
+  - belongs_to :from, class_name: "User", foreign_key: "user_id"
+  - belongs_to :to,   class_name: "User", foreign_key: "user_id"
+  - belongs_to :room, class_name: "Item", foreign_key: "item_id"
 
   ## sales_pricesテーブル
   | Column | Type     | Options                      |
@@ -172,13 +173,11 @@
   ## evaluationテーブル
   | Column   | Type  | Options                      |
   |----------|-------|------------------------------|
-  |user_id   |integer|null: false, foreign_key: true|
   |seller_id |integer|null: false, foreign_key: true|
   |buyer_id  |integer|null: false, foreign_key: true|
   |comment   |text   |                              |
   |evaluation|integer|null: false                   |
 
   ### Association
-  - belongs_to :user
-  - belongs_to :seller, class_name :"User"
-  - belongs_to :buyer,  class_name :"User"
+  - belongs_to :seller, class_name :"User", foreign_key: "user_id"
+  - belongs_to :buyer,  class_name :"User", foreign_key: "user_id"
