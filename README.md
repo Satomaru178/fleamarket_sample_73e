@@ -1,7 +1,7 @@
 # DBテーブル設計
 
 <!--
-  ここに解説を書く
+  ユーザ登録時に入力する基本情報。
 -->
 
 ## usersテーブル
@@ -24,19 +24,22 @@
 - has_one  :acount
 - has_many :comments
 - has_many :creditcards, through: :users_creditcards
-- has_many :evaluations, through: :users_evaluations
 - has_many :points,      through: :users_points
-- has_many :sold,   class_name: 'Product', through: :histories
-- has_many :bought, class_name: 'Product', through: :histories
+- has_many :sold,   class_name: 'Product', through: :users_products
+- has_many :bought, class_name: 'Product', through: :users_products
 - has_many :likes,       through: users_likes
 - has_many :users_creditcards
-- has_many :users_evaluations
 - has_many :users_points
-- has_many :histories
+- has_many :users_products
 - has_many :users_likes
 
 <!--
-  ここに解説を書く
+  ユーザ登録時に登録する基本情報。
+
+  prefecture:都道府県
+  0:未入力
+  1-47:各都道府県
+  48:未定
 -->
 
 ## addressesテーブル
@@ -52,13 +55,14 @@
 |city           |string |null: false, default: ''      |
 |address        |string |null: false, default: ''      |
 |address_other  |string |                              |
-|tell           |integer|                              |
+|tell           |string |                              |
 
 ### Association
 - belongs_to :user
 
 <!--
-  ここに解説を書く
+  マイページでアイコン画像や背景画像を設定できる。
+  設定なしだとデフォルトのものにする。
 -->
 
 ## accountsテーブル
@@ -72,7 +76,8 @@
 - belongs_to :user
 
 <!--
-  ここに解説を書く
+  クレジットカード情報。
+  各ユーザは複数枚のカードを登録できる。
 -->
 
 ## creditcardsテーブル
@@ -88,23 +93,8 @@
 - has_many :users, through: :users_creditcards
 
 <!--
-  ここに解説を書く
--->
-
-## evaluationsテーブル
-| Column          | Type  | Option                |
-|-----------------|-------|-----------------------|
-|seller_evaluation|integer|null: false, default: 0|
-|buyer_evaluation |integer|null: false, default: 0|
-
-### Association
-- belongs_to :transaction
-- has_many :users_evaluations
-- has_many :seller, class_name: 'User', through: :users_evaluations
-- has_many :buyer,  class_name: 'User', through: :users_evaluations
-
-<!--
-  ここに解説を書く
+  ユーザが買い物したりするとポイントがたまる。
+  ポイントは支払いの割引に使える。
 -->
 
 ## pointsテーブル
@@ -117,7 +107,37 @@
 - has_many :users, through: :users_points
 
 <!--
-  ここに解説を書く
+  商品を出品する時に登録する情報。
+
+  condition:商品の状態
+  0:未選択
+  1:新品、未使用
+  2:未使用に近い
+  3:目立った傷や汚れなし
+  4:やや傷や汚れあり
+  5:傷や汚れあり
+  6:全体的に状態が悪い
+
+  cost_burden:送料負担
+  0:未選択
+  1:送料込み(出品者負担)
+  2:着払い(購入者負担)
+
+  shipping_origin:発送元住所
+  0:未入力
+  1-47:各都道府県
+  48:未定
+
+  shipping_period:発送までの期間
+  0:未選択
+  1:1〜2日で発送
+  2:2〜3日で発送
+  3:4〜7日で発送
+
+  price:値段。300円〜9,999,999円まで
+  299以下:エラー
+  300-9,999,999:値段
+  10,000,000以上:エラー
 -->
 
 ## productsテーブル
@@ -136,16 +156,16 @@
 ### Association
 - belongs_to :category
 - belongs_to :bland
-- has_many :seller, class_name: 'User', through: :transactions
-- has_many :buyer,  class_name: 'User', through: :transactions
+- has_many :seller, class_name: 'User', through: :users_products
+- has_many :buyer,  class_name: 'User', through: :users_products
 - has_many :images
 - has_many :comments
 - has_many :likes, through: :products_likes
-- has_many :transactions
+- has_many :users_products
 - has_many :products_likes
 
 <!--
-  ここに解説を書く
+  商品の画像。１枚必須。
 -->
 
 ## imagesテーブル
@@ -158,7 +178,9 @@
 - belongs_to :products
 
 <!--
-  ここに解説を書く
+  カテゴリーはancestryを使って
+  カテゴリー、サブカテゴリー、サブサブカテゴリー、商品、
+  という階層構造にする。
 -->
 
 ## categoriesテーブル
@@ -171,19 +193,20 @@
 - has_ancestry
 
 <!--
-  ここに解説を書く
+  ブランド名は任意でユーザに入力させる。
+  存在しないブランドでも登録できる。
 -->
 
 ## brandsテーブル
-| Column | Type | Option                 |
-|--------|------|------------------------|
-|name    |string|null: false, index: true|
+| Column | Type | Option    |
+|--------|------|-----------|
+|name    |string|index: true|
 
 ### Association
 - has_many :products
 
 <!--
-  ここに解説を書く
+  商品詳細ページでユーザがコメントを残すことができる。
 -->
 
 ## commentsテーブル
@@ -198,13 +221,16 @@
 - belongs_to :product
 
 <!--
-  ここに解説を書く
+  商品詳細ページでユーザがいいね！することができる。
+  like:いいね！フラグ
+  false:いいね！していない状態
+  true:いいね！している状態
 -->
 
 ## likesテーブル
-| Column | Type  | Option                |
-|--------|-------|-----------------------|
-|like    |integer|null: false, default: 0|
+| Column | Type  | Option                    |
+|--------|-------|---------------------------|
+|like    |boolean|null: false, default: false|
 
 ### Association
 - has_many :users,    through: :users_likes
@@ -213,7 +239,7 @@
 - has_many :products_likes
 
 <!--
-  ここに解説を書く
+  usersテーブルとcreditcardsテーブルの中間テーブル。
 -->
 
 ## users_creditcardsテーブル
@@ -227,21 +253,7 @@
 - belongs_to :credit_card
 
 <!--
-  ここに解説を書く
--->
-
-## users_evaluationsテーブル
-| Column      | Type  | Option                       |
-|-------------|-------|------------------------------|
-|user_id      |integer|null: false, foreign_key: true|
-|evaluation_id|integer|null: false, foreign_key: true|
-
-### Association
-- belongs_to :user
-- belongs_to :evaluation
-
-<!--
-  ここに解説を書く
+  usersテーブルとpointsテーブルの中間テーブル。
 -->
 
 ## users_pointsテーブル
@@ -255,36 +267,33 @@
 - belongs_to :point
 
 <!--
-  ここに解説を書く
+  usersテーブルとproductsテーブルの中間テーブル。
+
+  seller_evaluation/buyer_evaluation:取引後に売り手と買い手でそれぞれ評価を行う。
+  0:未評価
+  1-5:評価
+  6以上:エラー
 -->
 
-## historiesテーブル
-| Column  | Type  | Option                       |
-|---------|-------|------------------------------|
-|sold_id  |integer|null: false, foreign_key: true|
-|bought_id|integer|null: false, foreign_key: true|
+## users_productsテーブル
+
+| Column          | Type  | Option                       |
+|-----------------|-------|------------------------------|
+|sold_id          |integer|null: false, foreign_key: true|
+|seller_id        |integer|null: false, foreign_key: true|
+|seller_evaluation|integer|default: 0                    |
+|bourght_id       |integer|foreign_key: true             |
+|buyer_id         |integer|foreign_key: true             |
+|buyer_evaluation |integer|default: 0                    |
 
 ### Association
-- belongs_to :sold,   class_name: 'Product'
-- belongs_to :bought, class_name: 'Product'
+- belogns_to :sold,    class_name: 'Product'
+- belongs_to :seller,  class_name: 'User'
+- belongs_to :bourght, class_name: 'Product'
+- belongs_to :buyer,   class_name: 'User'
 
 <!--
-  ここに解説を書く
--->
-
-## transactionsテーブル
-| Column  | Type  | Option                       |
-|---------|-------|------------------------------|
-|seller_id|integer|null: false, foreign_key: true|
-|buyer_id |integer|null: false, foreign_key: true|
-
-### Association
-- has_one :evaluation
-- belongs_to :seller, class_name: 'User'
-- belongs_to :buyer,  class_name: 'User'
-
-<!--
-  ここに解説を書く
+  usersテーブルとlikesテーブルの中間テーブル。
 -->
 
 ## users_likesテーブル
@@ -298,7 +307,7 @@
 - belongs_to :like
 
 <!--
-  ここに解説を書く
+  productsテーブルとlikesテーブルの中間テーブル。
 -->
 
 ## products_likesテーブル
