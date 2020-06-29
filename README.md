@@ -5,39 +5,37 @@
 -->
 
 ## usersテーブル
-| Column               | Type   | Option                                            |
-|----------------------|--------|---------------------------------------------------|
-|nickname              |string  |null: false, unique: true, default: ''             |
-|email                 |string  |null: false, unique: true, default: '', index: true|
-|encrypted_password    |string  |null: false, default: ''                           |
-|first_name            |string  |null: false, default: ''                           |
-|last_name             |string  |null: false, default: ''                           |
-|first_name_kana       |string  |null: false, default: ''                           |
-|last_name_kana        |string  |null: false, default: ''                           |
-|birthday              |date    |null: false, default: ’1970-01-01'                 |
-|reset_password_token  |string  |index: true                                        |
-|reset_password_sent_at|datetime|                                                   |
-|remember_created_at   |datetime|                                                   |
+| Column               | Type   | Option                               |
+|----------------------|--------|--------------------------------------|
+|nickname              |string  |null: false, unique: true             |
+|email                 |string  |null: false, unique: true, index: true|
+|encrypted_password    |string  |null: false                           |
+|first_name            |string  |null: false                           |
+|last_name             |string  |null: false                           |
+|first_name_kana       |string  |null: false                           |
+|last_name_kana        |string  |null: false                           |
+|birthday              |date    |null: false, default: '1970-01-01'    |
+|reset_password_token  |string  |index: true                           |
+|reset_password_sent_at|datetime|                                      |
+|remember_created_at   |datetime|                                      |
 
 ### Association
 - has_one  :address
 - has_one  :acount
-- has_many :comments
-- has_many :creditcards, through: :users_creditcards
-- has_many :points,      through: :users_points
+- has_one  :point
 - has_many :sold,   class_name: 'Product', through: :users_products
 - has_many :bought, class_name: 'Product', through: :users_products
-- has_many :likes,       through: users_likes
-- has_many :users_creditcards
-- has_many :users_points
+- has_many :comments
+- has_many :likes, through: users_likes
+- has_many :creditcards
 - has_many :users_products
 - has_many :users_likes
 
 <!--
   ユーザ登録時に登録する基本情報。
 
-  prefecture:都道府県
-  0:未入力
+  prefecture:都道府県(プルダウン)
+  0:未選択
   1-47:各都道府県
   48:未定
 -->
@@ -46,14 +44,14 @@
 | Column        | Type  | Option                       |
 |---------------|-------|------------------------------|
 |user_id        |integer|null: false, foreign_key: true|
-|first_name     |string |null: false, default: ''      |
-|last_name      |string |null: false, default: ''      |
-|first_name_kana|string |null: false, default: ''      |
-|last_name_kana |string |null: false, default: ''      |
-|zipcode        |string |null: false, default: ''      |
+|first_name     |string |null: false                   |
+|last_name      |string |null: false                   |
+|first_name_kana|string |null: false                   |
+|last_name_kana |string |null: false                   |
+|zipcode        |string |null: false                   |
 |prefecture     |integer|null: false, default: 0       |
-|city           |string |null: false, default: ''      |
-|address        |string |null: false, default: ''      |
+|city           |string |null: false                   |
+|address        |string |null: false                   |
 |address_other  |string |                              |
 |tell           |string |                              |
 
@@ -81,16 +79,16 @@
 -->
 
 ## creditcardsテーブル
-| Column         | Type  | Option                               |
-|----------------|-------|--------------------------------------|
-|number          |string |null: false, unique: true, default: ''|
-|expiration_year |integer|null: false, default: 2025            |
-|expiration_month|integer|null: false, default: 1               |
-|security_code   |string |null: false, default: ''              |
+| Column         | Type  | Option                       |
+|----------------|-------|------------------------------|
+|user_id         |integer|null: false, foreign_key: true|
+|number          |string |null: false, unique: true     |
+|expiration_year |integer|null: false, default: 2025    |
+|expiration_month|integer|null: false, default: 1       |
+|security_code   |string |null: false                   |
 
 ### Association
-- has_many :users_creditcards
-- has_many :users, through: :users_creditcards
+- belongs_to :user
 
 <!--
   ユーザが買い物したりするとポイントがたまる。
@@ -98,18 +96,18 @@
 -->
 
 ## pointsテーブル
-| Column | Type  | Option                |
-|--------|-------|-----------------------|
-|point   |integer|null: false, default: 0|
+| Column | Type  | Option                       |
+|--------|-------|------------------------------|
+|user_id |integer|null: false, foreign_key: true|
+|point   |integer|null: false, default: 0       |
 
 ### Association
-- has_many :users_points
-- has_many :users, through: :users_points
+- belongs_to :users
 
 <!--
   商品を出品する時に登録する情報。
 
-  condition:商品の状態
+  condition:商品の状態(プルダウン)
   0:未選択
   1:新品、未使用
   2:未使用に近い
@@ -118,23 +116,23 @@
   5:傷や汚れあり
   6:全体的に状態が悪い
 
-  cost_burden:送料負担
+  cost_burden:送料負担(プルダウン)
   0:未選択
   1:送料込み(出品者負担)
   2:着払い(購入者負担)
 
-  shipping_origin:発送元住所
-  0:未入力
+  shipping_origin:発送元住所(プルダウン)
+  0:未選択
   1-47:各都道府県
   48:未定
 
-  shipping_period:発送までの期間
+  shipping_period:発送までの期間(プルダウン)
   0:未選択
   1:1〜2日で発送
   2:2〜3日で発送
   3:4〜7日で発送
 
-  price:値段。300円〜9,999,999円まで
+  price:値段。300円〜9,999,999円まで(数値入力)
   299以下:エラー
   300-9,999,999:値段
   10,000,000以上:エラー
@@ -143,15 +141,15 @@
 ## productsテーブル
 | Column        | Type  | Option                              |
 |---------------|-------|-------------------------------------|
-|name           |string |null: false, default: '', index: true|
-|explain        |text   |null: false, default: ''             |
+|name           |string |null: false, index: true             |
+|explain        |text   |null: false                          |
 |category_id    |integer|null: false, foreign_key: true       |
 |brand_id       |integer|foreign_key: true                    |
 |condition      |integer|null: false, default: 0              |
 |cost_burden    |integer|null: false, default: 0              |
 |shipping_origin|integer|null: false, default: 0              |
 |shipping_period|integer|null: false, default: 0              |
-|price          |integer|null: false, default: 300            |
+|price          |integer|null: false, default: 0              |
 
 ### Association
 - belongs_to :category
@@ -214,7 +212,7 @@
 |----------|-------|------------------------------|
 |writer_id |integer|null: false, foreign_key: true|
 |product_id|integer|null: false, foreign_key: true|
-|comment   |text   |null: false, default: ''      |
+|comment   |text   |null: false                   |
 
 ### Association
 - belongs_to :writer, class_name: 'User'
@@ -239,40 +237,15 @@
 - has_many :products_likes
 
 <!--
-  usersテーブルとcreditcardsテーブルの中間テーブル。
--->
-
-## users_creditcardsテーブル
-| Column      | Type  | Option                       |
-|-------------|-------|------------------------------|
-|user_id      |integer|null: false, foreign_key: true|
-|creditcard_id|integer|null: false, foreign_key: true|
-
-### Association
-- belongs_to :user
-- belongs_to :credit_card
-
-<!--
-  usersテーブルとpointsテーブルの中間テーブル。
--->
-
-## users_pointsテーブル
-| Column | Type  | Option                       |
-|--------|-------|------------------------------|
-|user_id |integer|null: false, foreign_key: true|
-|point_id|integer|null: false, foreign_key: true|
-
-### Association
-- belongs_to :user
-- belongs_to :point
-
-<!--
   usersテーブルとproductsテーブルの中間テーブル。
 
-  seller_evaluation/buyer_evaluation:取引後に売り手と買い手でそれぞれ評価を行う。
+  seller_evaluation:取引後に売り手と買い手でそれぞれ評価を行う。(ラジオボタン)
   0:未評価
   1-5:評価
-  6以上:エラー
+
+  buyer_evaluation:取引後に売り手と買い手でそれぞれ評価を行う。(ラジオボタン)
+  0:未評価
+  1-5:評価
 -->
 
 ## users_productsテーブル
