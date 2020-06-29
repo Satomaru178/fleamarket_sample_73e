@@ -61,59 +61,59 @@ describe User do
     end
 
     #9
+    it "family_nameがない場合は登録できないこと" do
+      user = build(:user, family_name: nil)
+      user.valid?
+      expect(user.errors[:family_name]).to include("can't be blank")
+    end
+
+    #10
+    it "family_nameが日本語以外の文字がある場合は登録できないこと" do
+      user = build(:user, family_name: "Sato")
+      user.valid?
+      expect(user.errors[:family_name]).to include("is invalid")
+    end
+
+    #11
     it "first_nameがない場合は登録できないこと" do
       user = build(:user, first_name: nil)
       user.valid?
       expect(user.errors[:first_name]).to include("can't be blank")
     end
 
-    #10
-    it "first_nameが日本語以外の文字がある場合は登録できないこと" do
+    #12
+    it "first_nameが日本語以外の文字がある場合には登録できないこと" do
       user = build(:user, first_name: "Sato")
       user.valid?
       expect(user.errors[:first_name]).to include("is invalid")
     end
 
-    #11
-    it "last_nameがない場合は登録できないこと" do
-      user = build(:user, last_name: nil)
-      user.valid?
-      expect(user.errors[:last_name]).to include("can't be blank")
-    end
-
-    #12
-    it "last_nameが日本語以外の文字がある場合には登録できないこと" do
-      user = build(:user, last_name: "Sato")
-      user.valid?
-      expect(user.errors[:last_name]).to include("is invalid")
-    end
-
     #13
+    it "family_name_kanaの入力がない場合は登録できないこと" do
+      user = build(:user, family_name_kana: nil)
+      user.valid?
+      expect(user.errors[:family_name_kana]).to include("can't be blank")
+    end
+
+    #14
+    it "family_name_kanaがひらがな以外が入力されている場合登録できないこと" do
+      user = build(:user, family_name_kana: "Sato")
+      user.valid?
+      expect(user.errors[:family_name_kana]).to include("is invalid")
+    end
+
+    #15
     it "first_name_kanaの入力がない場合は登録できないこと" do
       user = build(:user, first_name_kana: nil)
       user.valid?
       expect(user.errors[:first_name_kana]).to include("can't be blank")
     end
 
-    #14
-    it "first_name_kanaがひらがな以外が入力されている場合登録できないこと" do
-      user = build(:user, first_name_kana: "Sato")
+    #16
+    it "first_name_kanaがひらがな以外が入力されている場合は登録できにないこと" do
+      user = build(:user, first_name_kana: "Taro")
       user.valid?
       expect(user.errors[:first_name_kana]).to include("is invalid")
-    end
-
-    #15
-    it "last_name_kanaの入力がない場合は登録できないこと" do
-      user = build(:user, last_name_kana: nil)
-      user.valid?
-      expect(user.errors[:last_name_kana]).to include("can't be blank")
-    end
-
-    #16
-    it "last_name_kanaがひらがな以外が入力されている場合は登録できにないこと" do
-      user = build(:user, last_name_kana: "Taro")
-      user.valid?
-      expect(user.errors[:last_name_kana]).to include("is invalid")
     end
 
     #17

@@ -1,20 +1,22 @@
 class Address < ApplicationRecord
   belongs_to :user, optional: true
-  validates :first_name, :last_name, presence: true,
+  validates :family_name, :first_name, presence: true,
   format: {
     with:/\A[ぁ-んァ-ン一-龥]/,
   }
-  validates :first_name_kana, :last_name_kana, presence: true,
+  validates :family_name_kana, :first_name_kana, presence: true,
   format: {
   with:/\A[ぁ-んー－]+\z/,
   }
   validates :zipcode, presence:true, format: {
-    with: /\A[0-9]+\z/
+    with: /\A\d{7}\z/
   }
-  validates :municipalitie, :address, presence: true
+
+  validates :city, :address, :prefecture, presence: true
   
-  validates :tell, format: {
-    with: /\A[0-9]+\z/
+  validates :tell,
+  format: {
+  with: /\A\d{10,11}\z/
   }
 
   enum prefecture:{
