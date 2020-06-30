@@ -13,13 +13,13 @@
 ActiveRecord::Schema.define(version: 2020_06_23_065830) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "family_name", null: false
     t.string "first_name", null: false
-    t.string "last_name", null: false
+    t.string "family_name_kana", null: false
     t.string "first_name_kana", null: false
-    t.string "last_name_kana", null: false
     t.string "zipcode", null: false
-    t.string "prefecture", null: false
-    t.string "municipalitie", null: false
+    t.integer "prefecture", default: 0, null: false
+    t.string "city", null: false
     t.string "address", null: false
     t.string "address_other"
     t.string "tell"
@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(version: 2020_06_23_065830) do
     t.string "nickname", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "family_name", null: false
     t.string "first_name", null: false
-    t.string "last_name", null: false
+    t.string "family_name_kana", null: false
     t.string "first_name_kana", null: false
-    t.string "last_name_kana", null: false
     t.date "birthday", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
