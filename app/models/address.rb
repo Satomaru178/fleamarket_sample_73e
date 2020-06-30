@@ -4,16 +4,18 @@ class Address < ApplicationRecord
   format: {
     with:/\A[ぁ-んァ-ン一-龥]/,
   }
+  
   validates :first_name_kana, :last_name_kana, presence: true,
   format: {
   with:/\A[ぁ-んー－]+\z/,
   }
+
   validates :zipcode, presence:true, format: {
     with: /\A\d{7}\z/
   }
 
   validates :city, :address, :prefecture, presence: true
-  
+
   validates :tell,
   format: {
   with: /\A\d{10,11}\z/
