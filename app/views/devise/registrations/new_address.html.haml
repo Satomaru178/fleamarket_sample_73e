@@ -77,10 +77,6 @@
               %span.user-form__field__label__optional 任意
             .user-form__field__input
               = f.text_field :tell, autofocus: true, placeholder: "例）09012345678"
-          .user-form__submit-button
+          .user-form__submit-btn
             = f.submit "登録", class: 'btn'
-  .footer
-    %a{ href: '', id: 'footer__logo' }
-      = image_tag 'logo.png', alt: 'FURIMA', width: "200px"
-    %small.footer__copywrite
-      © FURIMA 
+  = render "devise/registrations/footer"

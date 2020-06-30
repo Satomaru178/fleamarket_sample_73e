@@ -8,7 +8,10 @@
 @import "top/others/header";
 
 // sign-upページ
-@import "modules/user";
+@import "account/sign-up";
+
+// sign-inページ
+@import "account/sign-in";
 
 @import 'font-awesome-sprockets';
 @import 'font-awesome';

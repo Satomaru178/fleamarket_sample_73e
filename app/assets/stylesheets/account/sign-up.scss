@@ -125,94 +125,46 @@
             position: relative;
             
             input {
-              width: 100%;
-              height: 48px;
+              @include input();
               padding: 10px 16px 8px;
-              border-radius: 4px;
-              border: 1px solid #ccc;
-              background: #fff;
-              line-height: 1.5;
-              font-size: 16px;
             }
 
             #user_birthday_1i {
-              width: 76px;
-              height: 48px;
-              padding: 0 10px;
-              border-radius: 4px;
-              border: 1px solid #ccc;
-              background: #fff;
-              line-height: 1.5;
-              font-size: 16px;
-              -webkit-appearance: none;
+              @include birth-input();
             }
 
             #user_birthday_2i {
-              width: 76px;
-              height: 48px;
-              padding: 0 10px;
-              border-radius: 4px;
-              border: 1px solid #ccc;
-              background: #fff;
-              line-height: 1.5;
-              font-size: 16px;
-              -webkit-appearance: none;
+              @include birth-input();
             }
 
             #user_birthday_3i {
-              width: 76px;
-              height: 48px;
-              padding: 0 10px;
-              border-radius: 4px;
-              border: 1px solid #ccc;
-              background: #fff;
-              line-height: 1.5;
-              font-size: 16px;
-              -webkit-appearance: none;
+              @include birth-input();
             }
 
             #address_prefecture {
-              width: 100%;
-              height: 48px;
+              @include input();
               padding: 0 20px;
-              border-radius: 4px;
-              border: 1px solid #ccc;
-              background: #fff;
-              line-height: 1.5;
-              font-size: 16px;
               -webkit-appearance: none;
             }
 
             &__icon1{
-              position: absolute;
-              top: 17px;
+              @include icon();
               left: 55px;
-              color: #888888;
-              pointer-events: none;
             }
 
             &__icon2{
-              position: absolute;
-              top: 17px;
+              @include icon();
               left: 155px;
-              color: #888888;
-              pointer-events: none;
             }
 
             &__icon3{
-              position: absolute;
-              top: 17px;
+              @include icon();
               left: 260px;
-              color: #888888;
-              pointer-events: none;
             }
 
             &__icon4{
-              position: absolute;
-              top: 17px;
+              @include icon();
               left: 325px;
-              color: #888888;
-              pointer-events: none;
             }
           }
 
@@ -236,21 +188,14 @@
           line-height: 1.5;
         }
 
-        &__submit-button {
+        &__submit-btn {
           display: flex;
           justify-content: center;
 
           input {
+            @include submit-btn();
             margin: 32px 0;
             width: 40%;
-            line-height: 48px;
-            font-size: 14px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: 0.5s ;
-            background: #c0c0c0;
-            border: 1px solid ;
-            color: #fff;
           }
 
           input:hover {

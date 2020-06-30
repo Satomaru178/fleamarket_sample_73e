@@ -1,34 +1,26 @@
 #account-page.account-page
-  .header
-    %a{ href: '', id: 'header__logo' }
-      = image_tag 'logo.png', alt: 'FURIMA', width: "200px"
-  .account-page__inner
-    .account-page__inner__wrapper
-      .account-page__inner__wrapper--head
+  = render "devise/registrations/header"
+  .sign-in-page__inner
+    .sign-in-page__inner__wrapper
+      .sign-in-page__inner__wrapper--head
         %p アカウントをお持ちでない方はこちら
-        %a{ href: '', id: '' }
+        %a{ href: '', id: 'sign-up-btn' }
           新規会員登録
-      .sns-log-in
-        %a{ href: '', id: '' }
+      .sns-log-in-form
+        %a.sns-btn{ href: '', id: 'google-login' }
           Googleでログイン
-        %a{ href: '', id: '' }
+          %i.fab.fa-google.fa-lg
+        %a.sns-btn{ href: '', id: 'facebook-login' }
           Facebookでログイン
-      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        .field
-          = f.email_field :email, autofocus: true, autocomplete: "email"
-        .field
-          = f.password_field :password, autocomplete: "current-password"
-        - if devise_mapping.rememberable?
-          .field
-            = f.check_box :remember_me
-            = f.label :remember_me
-        .actions
-          = f.submit "Log in"
-      %a
-        パスワードをお忘れの方
-  .footer
-    %a{ href: '', id: 'footer__logo' }
-      = image_tag 'logo.png', alt: 'FURIMA', width: "200px"
-    %small.footer__copywrite
-      © FURIMA 
--# = render "devise/shared/links" 
+          %i.fab.fa-facebook-square.fa-lg
+      .sign-in-form
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .sign-in-form__field__input
+            = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス"
+          .sign-in-form__field__input
+            = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード"
+          .sign-in-form__submit-btn
+            = f.submit "ログイン"
+        %a{ href: '/users/password/new', id: 'forget-password' }
+          パスワードをお忘れの方
+  = render "devise/registrations/footer"

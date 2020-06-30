@@ -88,11 +88,6 @@
               = icon 'fas', 'chevron-down',class:"user-form__field__input__icon1"
               = icon 'fas', 'chevron-down',class:"user-form__field__input__icon2"
               = icon 'fas', 'chevron-down',class:"user-form__field__input__icon3"
-          .user-form__submit-button
+          .user-form__submit-btn
             = f.submit "次へ", class: 'btn'
-  .footer
-    %a{ href: '', id: 'footer__logo' }
-      = image_tag 'logo.png', alt: 'FURIMA', width: "200px"
-    %small.footer__copywrite
-      © FURIMA 
--# = render "devise/shared/links"
+  = render "devise/registrations/footer"
