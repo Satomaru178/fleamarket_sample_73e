@@ -22,21 +22,21 @@
     = f.password_field :password_confirmation, autocomplete: "new-password"
   本人確認情報
   .field
-    = f.label :family_name
-    %br/
-    = f.text_field :family_name, autofocus: true
-  .field
     = f.label :first_name
     %br/
     = f.text_field :first_name, autofocus: true
   .field
-    = f.label :family_name_kana
+    = f.label :last_name
     %br/
-    = f.text_field :family_name_kana, autofocus: true
+    = f.text_field :last_name, autofocus: true
   .field
     = f.label :first_name_kana
     %br/
     = f.text_field :first_name_kana, autofocus: true
+  .field
+    = f.label :last_name_kana
+    %br/
+    = f.text_field :last_name_kana, autofocus: true
   .birthday_field
     = f.label :birthday
     = raw sprintf(                     |
@@ -47,7 +47,7 @@
         end_year: (Time.now.year),     |
         default: Date.new(1989, 1, 1), |
         date_separator: '%s'),         |
-      '年 ', '月 ') + '日'                |
+        '年 ', '月 ') + '日'            |
   .actions
     = f.submit "Next"
 = render "devise/shared/links"

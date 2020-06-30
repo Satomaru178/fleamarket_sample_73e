@@ -9,59 +9,59 @@ describe Address do
     end
     
     #2
-    it "family_nameがない場合は登録できないこと" do
-      address = build(:address, family_name: nil)
-      address.valid?
-      expect(address.errors[:family_name]).to include("can't be blank")
-    end
-
-    #3
-    it "family_nameが日本語以外の文字がある場合は登録できないこと" do
-      address = build(:address, family_name: "Sato")
-      address.valid?
-      expect(address.errors[:family_name]).to include("is invalid")
-    end
-
-    #4
     it "first_nameがない場合は登録できないこと" do
       address = build(:address, first_name: nil)
       address.valid?
       expect(address.errors[:first_name]).to include("can't be blank")
     end
 
-    #5
-    it "first_nameが日本語以外の文字がある場合には登録できないこと" do
+    #3
+    it "first_nameが日本語以外の文字がある場合は登録できないこと" do
       address = build(:address, first_name: "Sato")
       address.valid?
       expect(address.errors[:first_name]).to include("is invalid")
     end
 
+    #4
+    it "lastがない場合は登録できないこと" do
+      address = build(:address, last: nil)
+      address.valid?
+      expect(address.errors[:last]).to include("can't be blank")
+    end
+
+    #5
+    it "lastが日本語以外の文字がある場合には登録できないこと" do
+      address = build(:address, last: "Sato")
+      address.valid?
+      expect(address.errors[:last]).to include("is invalid")
+    end
+
     #6
-    it "family_name_kanaの入力がない場合は登録できないこと" do
-      address = build(:address, family_name_kana: nil)
-      address.valid?
-      expect(address.errors[:family_name_kana]).to include("can't be blank")
-    end
-
-    #7
-    it "family_name_kanaがひらがな以外が入力されている場合登録できないこと" do
-      address = build(:address, family_name_kana: "Sato")
-      address.valid?
-      expect(address.errors[:family_name_kana]).to include("is invalid")
-    end
-
-    #8
     it "first_name_kanaの入力がない場合は登録できないこと" do
       address = build(:address, first_name_kana: nil)
       address.valid?
       expect(address.errors[:first_name_kana]).to include("can't be blank")
     end
 
-    #9
-    it "first_name_kanaがひらがな以外が入力されている場合は登録できにないこと" do
-      address = build(:address, first_name_kana: "Taro")
+    #7
+    it "first_name_kanaがひらがな以外が入力されている場合登録できないこと" do
+      address = build(:address, first_name_kana: "Sato")
       address.valid?
       expect(address.errors[:first_name_kana]).to include("is invalid")
+    end
+
+    #8
+    it "last_kanaの入力がない場合は登録できないこと" do
+      address = build(:address, last_kana: nil)
+      address.valid?
+      expect(address.errors[:last_kana]).to include("can't be blank")
+    end
+
+    #9
+    it "last_kanaがひらがな以外が入力されている場合は登録できにないこと" do
+      address = build(:address, last_kana: "Taro")
+      address.valid?
+      expect(address.errors[:last_kana]).to include("is invalid")
     end
 
     #10
@@ -126,10 +126,15 @@ describe Address do
     end
 
     #19
-    it "tellが10桁or11桁である場合は登録できること" do
-      address = build(:address, tell: "08012345678")
+    it "tellが10桁である場合は登録できること" do
+      address = build(:address, tell: "1234567890")
       expect(address).to be_valid
     end
 
+    #20
+    it "tellが11桁である場合は登録できること" do
+      address = build(:address, tell: "08012345678")
+      expect(address).to be_valid
+    end
   end
 end

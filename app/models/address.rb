@@ -1,10 +1,10 @@
 class Address < ApplicationRecord
   belongs_to :user, optional: true
-  validates :family_name, :first_name, presence: true,
+  validates :first_name, :last_name, presence: true,
   format: {
     with:/\A[ぁ-んァ-ン一-龥]/,
   }
-  validates :family_name_kana, :first_name_kana, presence: true,
+  validates :first_name_kana, :last_name_kana, presence: true,
   format: {
   with:/\A[ぁ-んー－]+\z/,
   }
