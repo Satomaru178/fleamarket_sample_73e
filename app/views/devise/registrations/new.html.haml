@@ -1,10 +1,10 @@
 = render "devise/shared/error_messages", resource: @user
 #account-page.account-page
-  .header
+  .account-page__header
     %a{ href: '', id: 'header__logo' }
       = image_tag 'logo.png', alt: 'FURIMA', width: "200px"
     %nav.progress
-      %ul.progress-bar
+      %ul.progress__bar
         %li.through#through
           会員情報
           .progress-status
@@ -18,7 +18,7 @@
           .progress-status
   .account-page__inner
     .account-page__inner__wrapper
-      .account-page__inner__wrapper--head
+      .account-page__inner__wrapper__head
         %h1 会員情報入力
       .user-form
         = form_for(@user, url: user_registration_path) do |f|
