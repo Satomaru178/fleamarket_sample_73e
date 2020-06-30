@@ -1,17 +1,26 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+#account-page.account-page
+  = render "devise/registrations/header"
+  .sign-in-page__inner
+    .sign-in-page__inner__wrapper
+      .sign-in-page__inner__wrapper--head
+        %p アカウントをお持ちでない方はこちら
+        %a{ href: '', id: 'sign-up-btn' }
+          新規会員登録
+      .sns-log-in-form
+        %a.sns-btn{ href: '', id: 'google-login' }
+          Googleでログイン
+          %i.fab.fa-google.fa-lg
+        %a.sns-btn{ href: '', id: 'facebook-login' }
+          Facebookでログイン
+          %i.fab.fa-facebook-square.fa-lg
+      .sign-in-form
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .sign-in-form__field__input
+            = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス"
+          .sign-in-form__field__input
+            = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード"
+          .sign-in-form__submit-btn
+            = f.submit "ログイン"
+        %a{ href: '/users/password/new', id: 'forget-password' }
+          パスワードをお忘れの方
+  = render "devise/registrations/footer"
