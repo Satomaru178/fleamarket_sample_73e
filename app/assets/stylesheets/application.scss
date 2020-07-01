@@ -6,6 +6,15 @@
 
 // トップページ用
 @import "top/others/header";
+
+// sign-upページ
+@import "account/sign-up";
+
+// sign-inページ
+@import "account/sign-in";
+
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 @import "top/introduction/introduction-upper";
 @import "top/feature/feature-upper";
 @import "top/introduction/introduction-middle";
