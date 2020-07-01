@@ -1,12 +1,11 @@
 .account-page {
   background-color: #f6f6f6;
 
-  .header {
+  &__header {
     padding-top: 40px;
     padding-left: 80px;
     display: flex;
     justify-content: center;
-
 
     .progress {
       padding-left: 54px;
@@ -16,7 +15,7 @@
       font-size: 0;
       text-align: center;
 
-      &-bar{
+      &__bar{
         margin: 0;
 
         li{
@@ -79,7 +78,7 @@
     &__wrapper {
       width: 50%;
 
-      &--head {
+      &__head {
         text-align: center;
         padding: 32px;
         border-bottom: 1px solid #f5f5f5;

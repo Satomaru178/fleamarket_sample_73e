@@ -1,9 +1,9 @@
 #account-page.account-page
-  .header
+  .account-page__header
     %a{ href: '', id: 'header__logo' }
       = image_tag 'logo.png', alt: 'FURIMA', width: "200px"
     %nav.progress
-      %ul.progress-bar
+      %ul.progress__bar
         %li.through#through
           会員情報
           .progress-status
@@ -15,10 +15,9 @@
         %li.end#end
           完了
           .progress-status
-          -# .progress-status_bar
   .account-page__inner
     .account-page__inner__wrapper
-      .account-page__inner__wrapper--head
+      .account-page__inner__wrapper__head
         %h1 お届け先住所入力
       .user-form
         = form_for @address do |f|
