@@ -1,0 +1,48 @@
+.introduction-lower {
+  // 外枠の大きさ指定
+  @include box(100vw, 359.33px);
+  // 箱の背景を画像にする
+  @include backimg('material/pict/bg-appBanner-pict.jpg', cover);
+  // 文字色指定
+  color: #fff;
+  // 上の空間作成
+  padding-top: 110px;
+  // 文字は中央揃え
+  text-align: center;
+
+  &__slogan {
+    // 文字をデコレーション
+    @include font(24px, "YuGothic", 1.5px);
+  }
+
+  &__recomend {
+    // 文字をデコレーション
+    @include font(34px, "YuGothic", 1.5px);
+    // 上下に空間作成
+    margin: 14px 0 30px;
+  }
+
+  &__download-btns {
+    // 2つのボタンを囲む見えない箱の外枠サイズ指定
+    @include box(370px, 53.33px);
+    // ボタンは画面中央で横並べ
+    display: flex;
+    margin: 0 auto;
+
+    &__apple-btn {
+      // ボタンの外枠サイズ指定
+      @include box(180px, 53.33px);
+      // 外枠にボタンを埋め込む
+      @include backimg('Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg', cover);
+      // ボタンとボタンの間の空間作成
+      margin-right: 10px;
+    }
+
+    &__google-btn {
+      // ボタンの外枠サイズ指定
+      @include box(180px, 53.33px);
+      // 外枠にボタンを埋め込む
+      @include backimg('google-play-badge.png', 115%);
+    }
+  }
+}

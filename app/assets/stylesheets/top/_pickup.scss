@@ -1,0 +1,118 @@
+// 4つの商品画像、1番目
+#first.pickup__products__lists__list__image {
+  @include backimg('material/icon/icon-01.png', contain);
+}
+
+// 4つの商品画像、2番目
+#second.pickup__products__lists__list__image {
+  @include backimg('material/icon/icon-02.png', contain);
+}
+
+// 4つの商品画像、3番目
+#third.pickup__products__lists__list__image {
+  @include backimg('material/icon/icon-03.png', contain);
+}
+
+// 4つの商品画像、4番目
+#fourth.pickup__products__lists__list__image {
+  @include backimg('material/icon/icon-04.png', contain);
+}
+
+#upper.pickup {
+  // 外枠サイズ指定
+  @include box(100vw, 426px);
+}
+
+#lower.pickup {
+  // 外枠サイズ指定
+  @include box(100vw, 532px);
+}
+
+.pickup {
+  // 背景色指定
+  background-color: #f5f5f5;
+  // 上の空間作成
+  padding-top: 120px;
+
+  a {
+    // リンクのデコレーションを無効
+    text-decoration: none;
+  }
+
+  &__title {
+    // 文字色指定
+    color: #000;
+    // 文字は中央揃え
+    text-align: center;
+    // 文字サイズ指定
+    font-size: 24px;
+    // 太字
+    font-weight: bold;
+    // 上の空間作成
+    margin-bottom: 10px;
+  }
+
+  &__products {
+    // 商品リストの高さ指定
+    height: 307px;
+
+    &__caption {
+      // 文字色指定
+      color: #20b2aa;
+      // 文字は中央揃え
+      text-align: center;
+      // 文字サイズ指定
+      font-size: 24px;
+      // 太字
+      font-weight: bold;
+      // 下の空間作成
+      margin-bottom: 20px;
+    }
+
+    &__lists {
+      // 商品リストの高さ指定
+      height: 245px;
+      // 横並べかつ中央寄せ
+      display: flex;
+      justify-content: center;
+
+      &__list {
+        // 商品の外枠作成
+        @include box(220px, 100%);
+
+        &__image {
+          // 商品画像の高さ指定
+          height: 150px;
+        }
+
+        &__contents {
+          // 商品説明の外枠高さ指定
+          height: 95px;
+          // 文字色指定
+          color: #000;
+          // 上下左右の空間作成
+          padding: 16px;
+          // 文字サイズ指定
+          font-size: 12px;
+
+          &__name {
+            // 商品名の外枠作成
+            @include box(188px, 24px);
+          }
+
+          &__details {
+            // 商品詳細の外枠指定
+            @include box(188px, 39px);
+
+            ul {
+              // 横並べ
+              @include between();
+              // 点を消す
+              list-style: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
