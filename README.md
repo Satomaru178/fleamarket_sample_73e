@@ -26,10 +26,9 @@
 - has_many :sold,   class_name: 'Product', through: :users_products
 - has_many :bought, class_name: 'Product', through: :users_products
 - has_many :comments
-- has_many :likes, through: users_likes
+- has_many :likes
 - has_many :creditcards
 - has_many :users_products
-- has_many :users_likes
 
 <!--
   ユーザ登録時に登録する基本情報。
@@ -102,7 +101,7 @@
 |point   |integer|null: false, default: 0       |
 
 ### Association
-- belongs_to :users
+- belongs_to :user
 
 <!--
   商品を出品する時に登録する情報。
@@ -158,9 +157,8 @@
 - has_many :buyer,  class_name: 'User', through: :users_products
 - has_many :images
 - has_many :comments
-- has_many :likes, through: :products_likes
+- has_many :likes
 - has_many :users_products
-- has_many :products_likes
 
 <!--
   商品の画像。１枚必須。
@@ -210,12 +208,12 @@
 ## commentsテーブル
 | Column   | Type  | Option                       |
 |----------|-------|------------------------------|
-|writer_id |integer|null: false, foreign_key: true|
+|user_id   |integer|null: false, foreign_key: true|
 |product_id|integer|null: false, foreign_key: true|
 |comment   |text   |null: false                   |
 
 ### Association
-- belongs_to :writer, class_name: 'User'
+- belongs_to :user
 - belongs_to :product
 
 <!--
@@ -226,15 +224,15 @@
 -->
 
 ## likesテーブル
-| Column | Type  | Option                    |
-|--------|-------|---------------------------|
-|like    |boolean|null: false, default: false|
+| Column   | Type  | Option                       |
+|----------|-------|------------------------------|
+|user_id   |integer|null: false, foreign_key: true|
+|product_id|integer|null: false, foreign_key: true|
+|like      |boolean|null: false, default: false   |
 
 ### Association
-- has_many :users,    through: :users_likes
-- has_many :products, through: users_likes
-- has_many :users_likes
-- has_many :products_likes
+- belongs_to :user
+- belongs_to :product
 
 <!--
   usersテーブルとproductsテーブルの中間テーブル。
@@ -264,31 +262,3 @@
 - belongs_to :seller,  class_name: 'User'
 - belongs_to :bourght, class_name: 'Product'
 - belongs_to :buyer,   class_name: 'User'
-
-<!--
-  usersテーブルとlikesテーブルの中間テーブル。
--->
-
-## users_likesテーブル
-| Column | Type  | Option                       |
-|--------|-------|------------------------------|
-|user_id |integer|null: false, foreign_key: true|
-|like_id |integer|null: false, foreign_key: true|
-
-### Association
-- belongs_to :user
-- belongs_to :like
-
-<!--
-  productsテーブルとlikesテーブルの中間テーブル。
--->
-
-## products_likesテーブル
-| Column   | Type  | Option                       |
-|----------|-------|------------------------------|
-|product_id|integer|null: false, foreign_key: true|
-|like_id   |integer|null: false, foreign_key: true|
-
-### Association
-- belongs_to :product
-- belongs_to :like
