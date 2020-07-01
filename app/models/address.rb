@@ -16,7 +16,8 @@ class Address < ApplicationRecord
 
   validates :city, :address, :prefecture, presence: true
 
-  validates :tell,format: {
+  validates :tell, allow_blank: true,
+  format: {
     with: /\A\d{10,11}\z/
   }
 
