@@ -36,7 +36,7 @@
       // ボタンの外枠サイズ指定
       @include box(180px, 53.33px);
       // 外枠にボタンを埋め込む
-      @include backimg('Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg', cover);
+      @include backimg('download/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg', cover);
       // ボタンとボタンの間の空間作成
       margin-right: 10px;
     }
@@ -45,7 +45,7 @@
       // ボタンの外枠サイズ指定
       @include box(180px, 53.33px);
       // 外枠にボタンを埋め込む
-      @include backimg('google-play-badge.png', 115%);
+      @include backimg('download/google-play-badge.png', 115%);
     }
   }
 }
