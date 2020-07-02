@@ -1,4 +1,3 @@
-= render "devise/shared/error_messages", resource: @user
 #account-page.account-page
   .account-page__header
     %a{ href: '', id: 'header__logo' }
@@ -22,6 +21,7 @@
         %h1 会員情報入力
       .user-form
         = form_for(@user, url: user_registration_path) do |f|
+          = render "devise/shared/error_messages", resource: @user
           .user-form__field
             .user-form__field__label
               = f.label :ニックネーム
