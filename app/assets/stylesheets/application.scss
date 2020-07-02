@@ -4,9 +4,6 @@
 // mixin用
 @import "mixin";
 
-// トップページ用
-@import "top/others/header";
-
 // sign-upページ
 @import "account/sign-up";
 
@@ -18,6 +15,7 @@
 @import 'font-awesome';
 
 // topページ
+@import "top/others/header";
 @import "top/introduction/introduction-upper";
 @import "top/feature/feature-upper";
 @import "top/introduction/introduction-middle";
