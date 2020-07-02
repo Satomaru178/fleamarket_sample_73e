@@ -7,17 +7,17 @@ ja:
         confirmation_token: パスワード確認用トークン
         confirmed_at: パスワード確認時刻
         created_at: 作成日
-        current_password: 現在のパスワード
+        current_password: "現在のパスワード"
         current_sign_in_at: 現在のログイン時刻
         current_sign_in_ip: 現在のログインIPアドレス
-        email: Eメール
+        email: "メールアドレス"
         encrypted_password: 暗号化パスワード
         failed_attempts: 失敗したログイン試行回数
         last_sign_in_at: 最終ログイン時刻
         last_sign_in_ip: 最終ログインIPアドレス
         locked_at: ロック時刻
-        password: パスワード
-        password_confirmation: パスワード（確認用）
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
         remember_created_at: ログイン記憶時刻
         remember_me: ログインを記憶する
         reset_password_sent_at: パスワードリセット送信時刻
@@ -26,8 +26,20 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+        nickname: "ニックネーム"
+        first_name: "名字"
+        last_name: "名前"
+        first_name_kana: "名字（カナ）"
+        last_name_kana: "名前（カナ）"
+        birthday: "生年月日"
+        zipcode: "郵便番号"
+        prefectures: "都道府県"
+        city: "市区町村"
+        address: "番地"
+        address_other: "マンション名など"
+        tell: "電話番号"
     models:
-      user: ユーザ
+      user: "ユーザ"
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。

@@ -1,5 +1,5 @@
 #error_explanation {
-  background-color: #ffeff7;
+  background-color: pink;
   color: red;
   line-height: 1.5;
   padding: 10px;
@@ -7,4 +7,11 @@
   ul {
     padding-left: 20px;
   }
+}
+
+.notification {
+  background-color: pink;
+  color: red;
+  line-height: 1.5;
+  padding: 10px;
 }
