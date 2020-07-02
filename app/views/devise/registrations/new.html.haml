@@ -1,3 +1,4 @@
+= render "devise/shared/error_messages"
 #account-page.account-page
   .account-page__header
     %a{ href: '', id: 'header__logo' }
@@ -21,7 +22,6 @@
         %h1 会員情報入力
       .user-form
         = form_for(@user, url: user_registration_path) do |f|
-          = render "devise/shared/error_messages", resource: @user
           .user-form__field
             .user-form__field__label
               = f.label :ニックネーム
@@ -70,7 +70,7 @@
             .user-form__field__label      
               = f.label :birthday,"生年月日"
               %span.user-form__field__label__require 必須
-              %br/ 
+              -# %br/ 
             .user-form__field__input
               = raw sprintf(                     |
                 f.date_select(                   |
