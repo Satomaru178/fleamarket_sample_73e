@@ -12,70 +12,70 @@ describe Address do
     it "first_nameがない場合は登録できないこと" do
       address = build(:address, first_name: nil)
       address.valid?
-      expect(address.errors[:first_name]).to include("can't be blank")
+      expect(address.errors[:first_name]).to include("は不正な値です")
     end
 
     #3
     it "first_nameが日本語以外の文字がある場合は登録できないこと" do
       address = build(:address, first_name: "Sato")
       address.valid?
-      expect(address.errors[:first_name]).to include("is invalid")
+      expect(address.errors[:first_name]).to include("は不正な値です")
     end
 
     #4
     it "last_nameがない場合は登録できないこと" do
       address = build(:address, last_name: nil)
       address.valid?
-      expect(address.errors[:last_name]).to include("can't be blank")
+      expect(address.errors[:last_name]).to include("は不正な値です")
     end
 
     #5
     it "last_nameが日本語以外の文字がある場合には登録できないこと" do
       address = build(:address, last_name: "Sato")
       address.valid?
-      expect(address.errors[:last_name]).to include("is invalid")
+      expect(address.errors[:last_name]).to include("は不正な値です")
     end
 
     #6
     it "first_name_kanaの入力がない場合は登録できないこと" do
       address = build(:address, first_name_kana: nil)
       address.valid?
-      expect(address.errors[:first_name_kana]).to include("can't be blank")
+      expect(address.errors[:first_name_kana]).to include("は不正な値です")
     end
 
     #7
     it "first_name_kanaがひらがな以外が入力されている場合登録できないこと" do
       address = build(:address, first_name_kana: "Sato")
       address.valid?
-      expect(address.errors[:first_name_kana]).to include("is invalid")
+      expect(address.errors[:first_name_kana]).to include("は不正な値です")
     end
 
     #8
     it "last_name_kanaの入力がない場合は登録できないこと" do
       address = build(:address, last_name_kana: nil)
       address.valid?
-      expect(address.errors[:last_name_kana]).to include("can't be blank")
+      expect(address.errors[:last_name_kana]).to include("は不正な値です")
     end
 
     #9
     it "last_name_kanaがひらがな以外が入力されている場合は登録できにないこと" do
       address = build(:address, last_name_kana: "Taro")
       address.valid?
-      expect(address.errors[:last_name_kana]).to include("is invalid")
+      expect(address.errors[:last_name_kana]).to include("は不正な値です")
     end
 
     #10
     it "zipcodeが７桁でないなら登録できないこと" do
       address = build(:address, zipcode: "12345678")
       address.valid?
-      expect(address.errors[:zipcode]).to include("is invalid")
+      expect(address.errors[:zipcode]).to include("は不正な値です")
     end
 
     #11
     it "zipcodeが数字でないなら登録できないこと" do
       address = build(:address, zipcode: "abcdefg")
       address.valid?
-      expect(address.errors[:zipcode]).to include("is invalid")
+      expect(address.errors[:zipcode]).to include("は不正な値です")
     end
 
     #12
@@ -88,7 +88,7 @@ describe Address do
     it "prefectureの入力がない場合は登録できないこと" do
       address = build(:address, prefecture: nil)
       address.valid?
-      expect(address.errors[:prefecture]).to include("can't be blank")
+      expect(address.errors[:prefecture]).to include("を入力してください")
     end
 
     #14
@@ -101,28 +101,28 @@ describe Address do
     it "cityが入力されていないと登録できないこと" do
       address = build(:address, city: nil)
       address.valid?
-      expect(address.errors[:city]).to include("can't be blank")
+      expect(address.errors[:city]).to include("を入力してください")
     end
 
     #16
     it "addressが入力されてない場合は登録できないこと" do
       address = build(:address, address: nil)
       address.valid?
-      expect(address.errors[:address]).to include("can't be blank")
+      expect(address.errors[:address]).to include("を入力してください")
     end
 
     #17
     it "tellが10桁or11桁でなければ登録できないこと" do
       address = build(:address, tell: "123456789")
       address.valid?
-      expect(address.errors[:tell]).to include("is invalid")
+      expect(address.errors[:tell]).to include("は不正な値です")
     end
 
     #18
     it "tellが数字以外の入力がある場合は登録できないこと" do
       address = build(:address, tell: "abcdefghij")
       address.valid?
-      expect(address.errors[:tell]).to include("is invalid")
+      expect(address.errors[:tell]).to include("は不正な値です")
     end
 
     #19

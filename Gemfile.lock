@@ -122,7 +122,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    diff-lcs (1.4.3)
+    diff-lcs (1.4.4)
     enum_help (0.0.17)
       activesupport (>= 3.0.0)
     erubi (1.9.0)
