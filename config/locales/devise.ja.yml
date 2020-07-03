@@ -29,8 +29,8 @@ ja:
         nickname: "ニックネーム"
         first_name: "名字"
         last_name: "名前"
-        first_name_kana: "名字（カナ）"
-        last_name_kana: "名前（カナ）"
+        first_name_kana: "名字（かな）"
+        last_name_kana: "名前（かな）"
         birthday: "生年月日"
         zipcode: "郵便番号"
         prefectures: "都道府県"
@@ -38,8 +38,18 @@ ja:
         address: "番地"
         address_other: "マンション名など"
         tell: "電話番号"
+      address:
+        first_name: "名字"
+        last_name: "名前"
+        first_name_kana: "名字（かな）"
+        last_name_kana: "名前（かな）"
+        zipcode: "郵便番号"
+        city: "市区町村"
+        address: "番地"
+        tell: "電話番号"
     models:
       user: "ユーザ"
+      address: "お届け先住所"
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。
