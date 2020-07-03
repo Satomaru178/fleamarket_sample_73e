@@ -4,17 +4,21 @@
 // mixin用
 @import "mixin";
 
-// トップページ用
-@import "top/others/header";
-
 // sign-upページ
 @import "account/sign-up";
 
 // sign-inページ
 @import "account/sign-in";
 
+// icon用
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+// エラーメッセージ
+@import 'modules/flash.scss';
+
+// topページ
+@import "top/others/header";
 @import "top/introduction/introduction-upper";
 @import "top/feature/feature-upper";
 @import "top/introduction/introduction-middle";
@@ -23,7 +27,3 @@
 @import "top/introduction/introduction-lower";
 @import "top/others/footer";
 @import "top/others/exhibition-btn";
-
-// icon用
-@import "font-awesome-sprockets";
-@import "font-awesome";

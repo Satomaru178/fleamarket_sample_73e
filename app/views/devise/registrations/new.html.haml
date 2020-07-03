@@ -1,8 +1,8 @@
-= render "devise/shared/error_messages", resource: @user
+= render "devise/shared/error_messages"
 #account-page.account-page
   .account-page__header
     %a{ href: '', id: 'header__logo' }
-      = image_tag 'logo.png', alt: 'FURIMA', width: "200px"
+      = image_tag 'material/logo/logo.png', alt: 'FURIMA', width: "200px"
     %nav.progress
       %ul.progress__bar
         %li.through#through
@@ -70,7 +70,7 @@
             .user-form__field__label      
               = f.label :birthday,"生年月日"
               %span.user-form__field__label__require 必須
-              %br/ 
+              -# %br/ 
             .user-form__field__input
               = raw sprintf(                     |
                 f.date_select(                   |
