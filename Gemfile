@@ -82,3 +82,6 @@ gem 'mini_magick'
 gem 'enum_help' 
 
 gem 'active_hash'
+
+gem 'jquery-rails'
+gem 'jquery-turbolinks'
