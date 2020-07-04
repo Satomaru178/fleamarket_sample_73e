@@ -162,12 +162,12 @@
 |price            |integer   |null: false, default: 0       |
 
 ### Association
+- has_many :user_products
 - has_many :seller, class_name: 'User', through: :user_products
 - has_many :buyer,  class_name: 'User', through: :user_products
 - has_many :images, dependent: :destroy
 - has_many :comments
 - has_many :likes
-- has_many :user_products
 - belongs_to :category
 - belongs_to :brand
 - accepts_nested_attributes_for :images, allow_destroy: true
