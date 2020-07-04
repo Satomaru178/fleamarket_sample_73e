@@ -5,26 +5,25 @@
 -->
 
 ## usersテーブル
-| Column               | Type   | Option                               |
-|----------------------|--------|--------------------------------------|
-|nickname              |string  |null: false, unique: true             |
-|email                 |string  |null: false, unique: true, index: true|
-|encrypted_password    |string  |null: false                           |
-|first_name            |string  |null: false                           |
-|last_name             |string  |null: false                           |
-|first_name_kana       |string  |null: false                           |
-|last_name_kana        |string  |null: false                           |
-|birthday              |date    |null: false, default: '1970-01-01'    |
-|reset_password_token  |string  |index: true                           |
-|reset_password_sent_at|datetime|                                      |
-|remember_created_at   |datetime|                                      |
+| Column               | Type   | Option                                            |
+|----------------------|--------|---------------------------------------------------|
+|nickname              |string  |null: false, unique: true                          |
+|email                 |string  |null: false, unique: true, default: "", index: true|
+|encrypted_password    |string  |null: false, default: ""                           |
+|first_name            |string  |null: false                                        |
+|last_name             |string  |null: false                                        |
+|first_name_kana       |string  |null: false                                        |
+|last_name_kana        |string  |null: false                                        |
+|birthday              |date    |null: false                                        |
+|reset_password_token  |string  |unique: true, index: true                          |
+|reset_password_sent_at|datetime|                                                   |
+|remember_created_at   |datetime|                                                   |
 
 ### Association
 - has_one  :address
 - has_one  :acount
 - has_one  :point
-- has_many :sold,   class_name: 'Product', through: :users_products
-- has_many :bought, class_name: 'Product', through: :users_products
+- has_many :products
 - has_many :comments
 - has_many :likes
 - has_many :creditcards
@@ -40,22 +39,22 @@
 -->
 
 ## addressesテーブル
-| Column        | Type  | Option                       |
-|---------------|-------|------------------------------|
-|user_id        |integer|null: false, foreign_key: true|
-|first_name     |string |null: false                   |
-|last_name      |string |null: false                   |
-|first_name_kana|string |null: false                   |
-|last_name_kana |string |null: false                   |
-|zipcode        |string |null: false                   |
-|prefecture     |integer|null: false, default: 0       |
-|city           |string |null: false                   |
-|address        |string |null: false                   |
-|address_other  |string |                              |
-|tell           |string |                              |
+| Column        | Type     | Option                       |
+|---------------|----------|------------------------------|
+|user           |references|null: false, foreign_key: true|
+|first_name     |string    |null: false                   |
+|last_name      |string    |null: false                   |
+|first_name_kana|string    |null: false                   |
+|last_name_kana |string    |null: false                   |
+|zipcode        |string    |null: false                   |
+|prefecture     |integer   |null: false, default: 0       |
+|city           |string    |null: false                   |
+|address        |string    |null: false                   |
+|address_other  |string    |                              |
+|tell           |string    |                              |
 
 ### Association
-- belongs_to :user
+なし
 
 <!--
   マイページでアイコン画像や背景画像を設定できる。
@@ -63,14 +62,14 @@
 -->
 
 ## accountsテーブル
-| Column         | Type  | Option                       |
-|----------------|-------|------------------------------|
-|user_id         |integer|null: false, foreign_key: true|
-|icon_image      |string |                              |
-|background_image|string |                              |
+| Column         | Type     | Option                       |
+|----------------|----------|------------------------------|
+|user            |references|null: false, foreign_key: true|
+|icon_image      |string    |                              |
+|background_image|string    |                              |
 
 ### Association
-- belongs_to :user
+なし
 
 <!--
   クレジットカード情報。
@@ -78,16 +77,16 @@
 -->
 
 ## creditcardsテーブル
-| Column         | Type  | Option                       |
-|----------------|-------|------------------------------|
-|user_id         |integer|null: false, foreign_key: true|
-|number          |string |null: false, unique: true     |
-|expiration_year |integer|null: false, default: 2025    |
-|expiration_month|integer|null: false, default: 1       |
-|security_code   |string |null: false                   |
+| Column         | Type     | Option                       |
+|----------------|----------|------------------------------|
+|user            |references|null: false, foreign_key: true|
+|number          |string    |null: false, unique: true     |
+|expiration_year |integer   |null: false, default: 2025    |
+|expiration_month|integer   |null: false, default: 1       |
+|security_code   |string    |null: false                   |
 
 ### Association
-- belongs_to :user
+なし
 
 <!--
   ユーザが買い物したりするとポイントがたまる。
@@ -95,13 +94,13 @@
 -->
 
 ## pointsテーブル
-| Column | Type  | Option                       |
-|--------|-------|------------------------------|
-|user_id |integer|null: false, foreign_key: true|
-|point   |integer|null: false, default: 0       |
+| Column | Type     | Option                       |
+|--------|----------|------------------------------|
+|user    |references|null: false, foreign_key: true|
+|point   |integer   |null: false, default: 0       |
 
 ### Association
-- belongs_to :user
+なし
 
 <!--
   商品を出品する時に登録する情報。
@@ -138,21 +137,19 @@
 -->
 
 ## productsテーブル
-| Column        | Type  | Option                              |
-|---------------|-------|-------------------------------------|
-|name           |string |null: false, index: true             |
-|explain        |text   |null: false                          |
-|category_id    |integer|null: false, foreign_key: true       |
-|brand_id       |integer|foreign_key: true                    |
-|condition      |integer|null: false, default: 0              |
-|cost_burden    |integer|null: false, default: 0              |
-|shipping_origin|integer|null: false, default: 0              |
-|shipping_period|integer|null: false, default: 0              |
-|price          |integer|null: false, default: 0              |
+| Column        | Type     | Option                       |
+|---------------|----------|------------------------------|
+|category       |references|null: false, foreign_key: true|
+|brand          |references|foreign_key: true             |
+|name           |string    |null: false, index: true      |
+|explain        |text      |null: false                   |
+|condition      |integer   |null: false, default: 0       |
+|cost_burden    |integer   |null: false, default: 0       |
+|shipping_origin|integer   |null: false, default: 0       |
+|shipping_period|integer   |null: false, default: 0       |
+|price          |integer   |null: false, default: 0       |
 
 ### Association
-- belongs_to :category
-- belongs_to :bland
 - has_many :seller, class_name: 'User', through: :users_products
 - has_many :buyer,  class_name: 'User', through: :users_products
 - has_many :images
@@ -165,13 +162,13 @@
 -->
 
 ## imagesテーブル
-| Column   | Type  | Option                       |
-|----------|-------|------------------------------|
-|product_id|integer|null: false, foreign_key: true|
-|image     |string |null: false                   |
+| Column | Type     | Option                       |
+|--------|----------|------------------------------|
+|product |references|null: false, foreign_key: true|
+|image   |string    |null: false                   |
 
 ### Association
-- belongs_to :products
+なし
 
 <!--
   カテゴリーはancestryを使って
@@ -183,6 +180,7 @@
 | Column | Type | Option                 |
 |--------|------|------------------------|
 |name    |string|null: false, index: true|
+|ancestry|string|index: true             |
 
 ### Association
 - has_many :products
@@ -206,15 +204,14 @@
 -->
 
 ## commentsテーブル
-| Column   | Type  | Option                       |
-|----------|-------|------------------------------|
-|user_id   |integer|null: false, foreign_key: true|
-|product_id|integer|null: false, foreign_key: true|
-|comment   |text   |null: false                   |
+| Column | Type     | Option                       |
+|--------|----------|------------------------------|
+|user    |references|null: false, foreign_key: true|
+|product |references|null: false, foreign_key: true|
+|comment |text      |null: false                   |
 
 ### Association
-- belongs_to :user
-- belongs_to :product
+なし
 
 <!--
   商品詳細ページでユーザがいいね！することができる。
@@ -224,15 +221,14 @@
 -->
 
 ## likesテーブル
-| Column   | Type  | Option                       |
-|----------|-------|------------------------------|
-|user_id   |integer|null: false, foreign_key: true|
-|product_id|integer|null: false, foreign_key: true|
-|like      |boolean|null: false, default: false   |
+| Column | Type     | Option                       |
+|--------|----------|------------------------------|
+|user    |references|null: false, foreign_key: true|
+|product |references|null: false, foreign_key: true|
+|like    |boolean   |null: false, default: false   |
 
 ### Association
-- belongs_to :user
-- belongs_to :product
+なし
 
 <!--
   usersテーブルとproductsテーブルの中間テーブル。
@@ -248,17 +244,13 @@
 
 ## users_productsテーブル
 
-| Column          | Type  | Option                       |
-|-----------------|-------|------------------------------|
-|sold_id          |integer|null: false, foreign_key: true|
-|seller_id        |integer|null: false, foreign_key: true|
-|seller_evaluation|integer|default: 0                    |
-|bourght_id       |integer|foreign_key: true             |
-|buyer_id         |integer|foreign_key: true             |
-|buyer_evaluation |integer|default: 0                    |
+| Column          | Type     | Option                                       |
+|-----------------|----------|----------------------------------------------|
+|product          |references|null: false, foreign_key: true                |
+|seller           |references|null: false, foreign_key: { to_table: :users }|
+|buyer            |references|foreign_key: foreign_key: { to_table: :users }|
+|seller_evaluation|integer   |default: 0                                    |
+|buyer_evaluation |integer   |default: 0                                    |
 
 ### Association
-- belogns_to :sold,    class_name: 'Product'
-- belongs_to :seller,  class_name: 'User'
-- belongs_to :bourght, class_name: 'Product'
-- belongs_to :buyer,   class_name: 'User'
+なし
