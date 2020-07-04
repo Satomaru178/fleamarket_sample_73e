@@ -48,7 +48,7 @@ ja:
         address: "番地"
         tell: "電話番号"
     models:
-      user: "ユーザ"
+      user: "会員情報"
       address: "お届け先住所"
   devise:
     confirmations:
