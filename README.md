@@ -1,5 +1,8 @@
 # DBテーブル設計
 
+![04_erd_fleamarket_sample_73e](https://user-images.githubusercontent.com/64793100/86512440-4d74bc80-be3d-11ea-9dab-3aae05aea3c1.png)
+
+
 <!--
   ユーザ登録時に入力する基本情報。
 -->
