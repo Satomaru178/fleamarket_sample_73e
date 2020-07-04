@@ -8,4 +8,5 @@ class Product < ApplicationRecord
   belongs_to_active_hash :costburden
   belongs_to_active_hash :shippingorigin
   belongs_to_active_hash :shippingperiod
+  accepts_nested_attributes_for :images, allow_destroy: true
 end
