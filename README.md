@@ -113,8 +113,8 @@
 <!--
   商品を出品する時に登録する情報。
 
-  conditionカラム
-  商品の状態(プルダウン)
+  condition_idカラム
+  商品の状態(activehashによるプルダウン)
   0 : 未選択
   1 : 新品、未使用
   2 : 未使用に近い
@@ -123,20 +123,20 @@
   5 : 傷や汚れあり
   6 : 全体的に状態が悪い
 
-  cost_burdenカラム
-  送料負担(プルダウン)
+  costburden_idカラム
+  送料負担(activehashによるプルダウン)
   0 : 未選択
   1 : 送料込み(出品者負担)
   2 : 着払い(購入者負担)
 
-  shipping_originカラム
-  発送元住所(プルダウン)
+  shippingorigin_idカラム
+  発送元住所(activehashによるプルダウン)
   0    : 未選択
   1-47 : 各都道府県
   48   : 未定
 
-  shipping_periodカラム
-  発送までの期間(プルダウン)
+  shippingperiod_idカラム
+  発送までの期間(activehashによるプルダウン)
   0 : 未選択
   1 : 1〜2日で発送
   2 : 2〜3日で発送
@@ -150,17 +150,17 @@
 -->
 
 ## productsテーブル
-| Column        | Type     | Option                       |
-|---------------|----------|------------------------------|
-|category       |references|null: false, foreign_key: true|
-|brand          |references|foreign_key: true             |
-|name           |string    |null: false, index: true      |
-|explain        |text      |null: false                   |
-|condition      |integer   |null: false, default: 0       |
-|cost_burden    |integer   |null: false, default: 0       |
-|shipping_origin|integer   |null: false, default: 0       |
-|shipping_period|integer   |null: false, default: 0       |
-|price          |integer   |null: false, default: 0       |
+| Column          | Type     | Option                       |
+|-----------------|----------|------------------------------|
+|category         |references|null: false, foreign_key: true|
+|brand            |references|foreign_key: true             |
+|name             |string    |null: false, index: true      |
+|explain          |text      |null: false                   |
+|condition_id     |integer   |null: false, default: 0       |
+|costburden_id    |integer   |null: false, default: 0       |
+|shippingorigin_id|integer   |null: false, default: 0       |
+|shippingperiod_id|integer   |null: false, default: 0       |
+|price            |integer   |null: false, default: 0       |
 
 ### Association
 - has_many :seller, class_name: 'User', through: :users_products
@@ -169,6 +169,11 @@
 - has_many :comments
 - has_many :likes
 - has_many :users_products
+- extend ActiveHash::Associations::ActiveRecordExtensions
+- belongs_to_active_hash :condition
+- belongs_to_active_hash :costburden
+- belongs_to_active_hash :shippingorigin
+- belongs_to_active_hash :shippingperiod
 
 <!--
   商品の画像。１枚必須。
