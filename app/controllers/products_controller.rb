@@ -1,5 +1,9 @@
 class ProductsController < ApplicationController
-  before_action :set_product, except: [:new, :create]
+  before_action :set_product, except: [:index, :new, :create]
+
+  def index
+    @products = Product.includes(:images).order('created_at DESC')
+  end
 
   def new
     @product = Product.new
@@ -42,7 +46,7 @@ class ProductsController < ApplicationController
       :shippingorigin_id,
       :shippingperiod_id,
       :price,
-      images_attributes: [:src]
+      images_attributes: [:src, :_destroy, :id]
     )
   end
 

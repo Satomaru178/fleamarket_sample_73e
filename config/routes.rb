@@ -10,5 +10,5 @@ Rails.application.routes.draw do
     post 'addresses', to: 'users/registrations#create_address'
   end
 
-  resources :products, except: [:index, :show]
+  resources :products, except: :show
 end
