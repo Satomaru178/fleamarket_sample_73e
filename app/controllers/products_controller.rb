@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :set_product, except: [:new, :create]
+
   def new
     @product = Product.new
     @product.images.new
@@ -17,6 +19,11 @@ class ProductsController < ApplicationController
   end
 
   def update
+    if @product.update(product_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -35,5 +42,9 @@ class ProductsController < ApplicationController
       :price,
       images_attributes: [:src]
     )
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 end
