@@ -1,6 +1,6 @@
 # DBテーブル設計
 
-![05_erd_fleamarket_sample_73e](https://user-images.githubusercontent.com/64793100/86515268-abf86580-be52-11ea-8eff-ef967c29e0df.png)
+![06_erd_fleamarket_sample_73e](https://user-images.githubusercontent.com/64793100/86520012-381e8300-be7b-11ea-8444-c4c6d0d4ef19.png)
 
 <!--
   ユーザ登録時に入力する基本情報。
@@ -29,7 +29,7 @@
 - has_many :comments
 - has_many :likes
 - has_many :creditcards
-- has_many :users_products
+- has_many :user_products
 
 <!--
   ユーザ登録時に登録する基本情報。
@@ -57,7 +57,7 @@
 |tell           |string    |                              |
 
 ### Association
-なし
+- belongs_to :user
 
 <!--
   マイページでアイコン画像や背景画像を設定できる。
@@ -72,7 +72,7 @@
 |background_image|string    |                              |
 
 ### Association
-なし
+- belongs_to :user
 
 <!--
   クレジットカード情報。
@@ -93,7 +93,7 @@
 |card_id    |string    |null: false                   |
 
 ### Association
-なし
+- belongs_to :user
 
 <!--
   ユーザが買い物したりするとポイントがたまる。
@@ -107,7 +107,7 @@
 |point   |integer   |null: false, default: 0       |
 
 ### Association
-なし
+- belongs_to :user
 
 <!--
   商品を出品する時に登録する情報。
@@ -162,12 +162,15 @@
 |price            |integer   |null: false, default: 0       |
 
 ### Association
-- has_many :seller, class_name: 'User', through: :users_products
-- has_many :buyer,  class_name: 'User', through: :users_products
-- has_many :images
+- has_many :seller, class_name: 'User', through: :user_products
+- has_many :buyer,  class_name: 'User', through: :user_products
+- has_many :images, dependent: :destroy
 - has_many :comments
 - has_many :likes
-- has_many :users_products
+- has_many :user_products
+- belongs_to :category
+- belongs_to :brand
+- accepts_nested_attributes_for :images, allow_destroy: true
 - extend ActiveHash::Associations::ActiveRecordExtensions
 - belongs_to_active_hash :condition
 - belongs_to_active_hash :costburden
@@ -182,10 +185,11 @@
 | Column | Type     | Option                       |
 |--------|----------|------------------------------|
 |product |references|null: false, foreign_key: true|
-|image   |string    |null: false                   |
+|src     |string    |null: false                   |
 
 ### Association
-なし
+- mount_uploader :src, ImageUploader
+- belongs_to :product
 
 <!--
   カテゴリーはancestryを使って
@@ -228,7 +232,8 @@
 |comment |text      |null: false                   |
 
 ### Association
-なし
+- belongs_to :user
+- belongs_to :product
 
 <!--
   商品詳細ページでユーザがいいね！することができる。
@@ -246,7 +251,8 @@
 |like    |boolean   |null: false, default: false   |
 
 ### Association
-なし
+- belongs_to :user
+- belongs_to :product
 
 <!--
   usersテーブルとproductsテーブルの中間テーブル。
@@ -262,7 +268,7 @@
   1-5 : 評価
 -->
 
-## users_productsテーブル
+## user_productsテーブル
 
 | Column          | Type     | Option                                       |
 |-----------------|----------|----------------------------------------------|
@@ -273,4 +279,6 @@
 |buyer_evaluation |integer   |default: 0                                    |
 
 ### Association
-なし
+- belongs_to :product
+- belongs_to :seller, class_name: 'User'
+- belongs_to :buyer,  class_name: 'User'
