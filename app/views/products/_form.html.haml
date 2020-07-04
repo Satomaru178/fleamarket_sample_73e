@@ -1,5 +1,4 @@
 = form_for @product do |f|
-
   出品画像
   %br
   #image-box
@@ -14,7 +13,6 @@
         %br
         %span.js-remove
           削除
-
       - if @product.persisted?
         = image.check_box :_destroy, data: { index: image.index }, class: 'hidden-destroy'
 
@@ -29,39 +27,31 @@
   %br
   = f.text_field :name
   %br
-
   商品の説明
   %br
   = f.text_area :explain
   %br
-
   商品の状態
   %br
   = f.collection_select :condition_id, Condition.all, :id, :name
   %br
-
   配送料の負担
   %br
   = f.collection_select :costburden_id, Costburden.all, :id, :name
   %br
-
   発送元の地域
   %br
   = f.collection_select :shippingorigin_id, Shippingorigin.all, :id, :name
   %br
-
   発送までの日数
   %br
   = f.collection_select :shippingperiod_id, Shippingperiod.all, :id, :name
   %br
-
   販売価格
   %br
   = f.number_field :price
   %br
-
   = f.submit
   %br
-
-  = link_to root_path do
-    戻る
+= link_to root_path do
+  戻る

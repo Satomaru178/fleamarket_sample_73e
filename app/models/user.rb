@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name,
   format: {
-     with:/\A[ぁ-んァ-ン一-龥]/,
+     with:/\A[ぁ-んァ-ン一-龥]/
   }
 
   validates :password,
@@ -22,7 +22,7 @@ class User < ApplicationRecord
 
   validates :first_name_kana, :last_name_kana,
   format: {
-    with:/\A[ぁ-んー－]+\z/,
+    with:/\A[ぁ-んー－]+\z/
   }
 
   has_one  :address
