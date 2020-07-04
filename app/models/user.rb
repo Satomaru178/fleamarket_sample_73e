@@ -10,6 +10,10 @@ class User < ApplicationRecord
                  format: {
                    with:/\A[ぁ-んァ-ン一-龥]/,
                  }
+  validates :password,
+  format: {
+    with: /\A[a-zA-Z0-9]+\z/
+  }
   validates :first_name_kana, :last_name_kana,
   format: {
   with:/\A[ぁ-んー－]+\z/,
