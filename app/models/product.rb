@@ -9,4 +9,23 @@ class Product < ApplicationRecord
   belongs_to_active_hash :costburden
   belongs_to_active_hash :shippingorigin
   belongs_to_active_hash :shippingperiod
+
+  validates :name, presence: true, length: { maximum: 40 }
+
+  validates :explain, presence: true, length: { maximum: 1000 }
+
+  validates :condition_id, presence: true,
+  numericality: { greater_than: 0, message: "を選択してください" }
+
+  validates :costburden_id, presence: true,
+  numericality: { greater_than: 0, message: "を選択してください" }
+
+  validates :shippingorigin_id, presence: true,
+  numericality: { greater_than: 0, message: "を選択してください" }
+
+  validates :shippingperiod_id, presence: true,
+  numericality: { greater_than: 0, message: "を選択してください" }
+
+  validates :price, presence: true,
+  numericality: { greater_than_or_equal_to: 300, less_than: 10000000 }
 end
