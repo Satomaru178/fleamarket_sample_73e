@@ -86,6 +86,7 @@ gem 'compass-rails', '3.1.0'
 gem 'sprockets', '3.7.2'
 
 gem 'carrierwave'
+gem 'fog-aws'
 gem 'mini_magick'
 gem 'enum_help' 
 
