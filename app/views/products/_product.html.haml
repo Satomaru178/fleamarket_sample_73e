@@ -1,30 +1,50 @@
 .content
-  - product.images.each do |image|
-    = image_tag image.src.url
+  .content__images
+    画像
+    %br
+    - product.images.each do |image|
+      = image_tag image.src.url
   
-  %p
+  .content__name
+    商品名
+    %br
     #{product.name}
 
-  %p
+  .content__explain
+    商品の説明
+    %br
     #{product.explain}
 
-  %p
+  .content__condition
+    商品の状態
+    %br
     #{product.condition.name}
 
-  %p
+  .content__burden
+    配送料の負担
+    %br
     #{product.costburden.name}
 
-  %p
+  .content__region
+    発送の地域
+    %br
     #{product.shippingorigin.name}
 
-  %p
+  .content__period
+    発送までの日数
+    %br
     #{product.shippingperiod.name}
 
-  %p
+  .content__price
+    販売価格
+    %br
     #{product.price}
+    円
 
   = link_to edit_product_path(product) do
-    編集
+    .content__edit-btn
+      編集
 
   = link_to product_path(product), method: :delete do
-    削除
+    .content__delete-btn
+      削除
