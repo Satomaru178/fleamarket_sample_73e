@@ -39,8 +39,6 @@ $(document).on('turbolinks:load', ()=> {
     fileIndex.splice(pos, 1);
   });
 
-  console.log(fileIndex);
-
   // DBに保存されている画像かどうかを判定するフラグを隠す
   $('.hidden-destroy').hide();
 
@@ -71,7 +69,6 @@ $(document).on('turbolinks:load', ()=> {
         ;
       }
     }
-    console.log(fileIndex);
   });
 
 
@@ -107,6 +104,5 @@ $(document).on('turbolinks:load', ()=> {
     else {  // ない画像は消せない
       ;
     }
-    console.log(fileIndex);
   });
 });
