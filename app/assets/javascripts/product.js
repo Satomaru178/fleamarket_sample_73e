@@ -37,14 +37,12 @@ $(document).on('turbolinks:load', ()=> {
 
   // 画像用のinputに動的なindexをつける為の配列
   let fileIndex = [...Array(arraySize)].map((_,i) => i);
-  console.log(fileIndex);
 
   const lastIndex = $('.js-file_group:last').data('index');
   for (let i = 0; i < arraySize; i++) {
     // 画像に対応するindexを除去
     if ($(`img[data-index="i"]`)[0]) {  // 画像がある?
       fileIndex.splice(i, 1);
-      console.log(fileIndex);
     }
     else {  // 画像がない
       ;
@@ -71,24 +69,21 @@ $(document).on('turbolinks:load', ()=> {
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {  // 既存の画像を変更?
       if (blobUrl) {  // 画像のURLがある?
         img.setAttribute('src', blobUrl);
-        console.log(blobUrl);
       }
       else {  // 画像のURLがない
-        console.log("画像のURLがない");
+        // nop
       }
     }
     else {  // 新規の画像を追加
       if (blobUrl) {  // 画像のURLがある?
         $('#previews').append(buildImg(targetIndex, blobUrl));  // previewに画像を追加
-        console.log(blobUrl);
 
         // indexから追加した画像に対応するものを除去
         const pos = fileIndex.indexOf(targetIndex);
         fileIndex.splice(pos, 1);
-        console.log(fileIndex);
       }
       else {  // 画像のURLがない
-        console.log("画像のURLがない");
+        // nop
       }
     }
   });
@@ -103,7 +98,7 @@ $(document).on('turbolinks:load', ()=> {
       hiddenCheck.prop('checked', true);  // チェックを入れる
     }
     else {  // チェックボックスが存在しない
-      console.log("チェックボックスなし");
+      // nop
     }
 
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {  // 画像がある?
@@ -112,10 +107,9 @@ $(document).on('turbolinks:load', ()=> {
 
       // 削除した画像に対応するindexを配列に追加する
       fileIndex.push(targetIndex);
-      console.log(fileIndex);
     }
     else {  // ない画像は消せない
-      console.log("ない画像は消せない");
+      // nop
     }
   });
 });
