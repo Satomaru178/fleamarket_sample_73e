@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     if @product.save
       redirect_to root_path
+      return
     else
       render :new
     end

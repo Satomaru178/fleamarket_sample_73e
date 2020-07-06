@@ -12,7 +12,7 @@ class Product < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 40 }
 
-  validates :explain, presence: true, length: { maximum: 1000 }
+  validates :explain, presence: true, length: { maximum: 1_000 }
 
   validates :condition_id, presence: true,
   numericality: { greater_than: 0, message: "を選択してください" }
@@ -27,5 +27,5 @@ class Product < ApplicationRecord
   numericality: { greater_than: 0, message: "を選択してください" }
 
   validates :price, presence: true,
-  numericality: { greater_than_or_equal_to: 300, less_than: 10000000 }
+  numericality: { greater_than_or_equal_to: 300, less_than: 10_000_000 }
 end

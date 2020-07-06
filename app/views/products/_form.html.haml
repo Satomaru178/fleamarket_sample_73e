@@ -1,20 +1,34 @@
+- if @product.errors.any?
+  .alert
+    %ul
+      - @product.errors.full_messages.each do |message|
+        %li
+          = message
+- else
+  -# nop
+
 = form_for @product do |f|
-  %p
+  .product-images
     = f.label '出品画像(1枚以上必須)'
     %br
     #image-box
       #previews
         - if @product.persisted?
-          - @product.images.each_with_index do |image, i|
-            %label
-              画像
-              = i
-              = image_tag image.src.url, data: { index: i }, width: "100", height: "100"
-
+          - @product.images.each_with_index do |image, i|              
+            - if image.src.url.present?
+              %label
+                画像aaa
+                = i
+                = image_tag image.src.url, data: { index: i }, size: '100x100'
+            - else
+              -# nop
+        - else
+          -# nop
+          
       = f.fields_for :images do |image|
         .js-file_group{ data: { index: image.index } }
-          %div
-            画像
+          .image-index
+            画像bbb
             = image.index
           = image.file_field :src, class: 'js-file'
           %br
@@ -22,61 +36,66 @@
             削除
         - if @product.persisted?
           = image.check_box :_destroy, data: { index: image.index }, class: 'hidden-destroy'
+        - else
+          -# nop
 
       - if @product.persisted?
         .js-file_group{ data: { index: @product.images.count } }
-          %div
-            画像
+          .image-index
+            画像ccc
             = @product.images.count
           = file_field_tag :src, name: "product[images_attributes][#{@product.images.count}][src]", class: 'js-file'
           .js-remove
             削除
+      - else
+        -# nop
+
     %br
 
-  %p
+  .product-name
     = f.label '商品名(必須)'
     %br
     = f.text_field :name
     %br
 
-  %p
+  .product-explain
     = f.label '商品の説明(必須)'
     %br
     = f.text_area :explain
     %br
 
-  %p
+  .product-condition
     = f.label '商品の状態(必須)'
     %br
     = f.collection_select :condition_id, Condition.all, :id, :name
     %br
 
-  %p
+  .product-cost-burden
     = f.label '配送料の負担(必須)'
     %br
     = f.collection_select :costburden_id, Costburden.all, :id, :name
     %br
 
-  %p
+  .product-shipping-origin
     = f.label '発送元の地域(必須)'
     %br
     = f.collection_select :shippingorigin_id, Shippingorigin.all, :id, :name
     %br
 
-  %p
+  .product-shipping-period
     = f.label '発送までの日数(必須)'
     %br
     = f.collection_select :shippingperiod_id, Shippingperiod.all, :id, :name
     %br
 
-  %p
+  .product-price
     = f.label '販売価格(必須)'
     %br
     = f.number_field :price
     円
     %br
 
-  %p
+  .product-submit-btn
     = f.submit '出品する'
     %br
 
