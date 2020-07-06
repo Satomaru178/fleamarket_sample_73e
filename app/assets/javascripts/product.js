@@ -8,7 +8,7 @@ $(document).on('turbolinks:load', ()=> {
     const html =
     `
     <label>
-      画像${index}ddd
+      画像${index}
       <img data-index="${index}" src="${url}" width="100px" height="100px">
     </label>
     `;
@@ -17,14 +17,13 @@ $(document).on('turbolinks:load', ()=> {
 
   }
 
-
   // 画像用のinputを生成する関数
   const buildFileField = (index)=> {
 
     const html =
     `
     <div data-index="${index}" class="js-file_group">
-      <div class="image-index">画像${index}eee</div>
+      <div class="image-index">画像${index}</div>
       <input class="js-file" type="file"
         name="product[images_attributes][${index}][src]"
         id="product_images_attributes_${index}_src"><br>
@@ -37,20 +36,27 @@ $(document).on('turbolinks:load', ()=> {
   }
 
   // 画像用のinputに動的なindexをつける為の配列
-  let fileIndex = [...Array(arraySize)].map((_,i) => i + 1);
+  let fileIndex = [...Array(arraySize)].map((_,i) => i);
+  console.log(fileIndex);
 
-  // 既に使われているindexを除外
-  $('.js-file_group').each(function(){
+  const lastIndex = $('.js-file_group:last').data('index');
+  for (let i = 0; i < arraySize; i++) {
+    // 画像に対応するindexを除去
+    if ($(`img[data-index="i"]`)[0]) {  // 画像がある?
+      fileIndex.splice(i, 1);
+      console.log(fileIndex);
+    }
+    else {  // 画像がない
+      ;
+    }
+  }
 
-    const rm = $(this).data('index');
-    const pos = fileIndex.indexOf(rm + 1);
-    fileIndex.splice(pos, 1);
-
-  });
+  for (let j = lastIndex + 1; j < arraySize; j++) {
+    $('#image-box').append(buildFileField(j));  // 画像用inputを増やす
+  }
 
   // DBに保存されている画像かどうかを判定するフラグを隠す
   $('.hidden-destroy').hide();
-
 
   // 画像用のinputが変化した
   $('#image-box').on('change', '.js-file', function(e) {
@@ -61,36 +67,31 @@ $(document).on('turbolinks:load', ()=> {
     // 画像ファイルのURLを取得する
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);
-    // const test = readAsDataURL(file);
 
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {  // 既存の画像を変更?
       if (blobUrl) {  // 画像のURLがある?
         img.setAttribute('src', blobUrl);
+        console.log(blobUrl);
       }
       else {  // 画像のURLがない
-        console.log("URLエラー");
+        console.log("画像のURLがない");
       }
     }
     else {  // 新規の画像を追加
       if (blobUrl) {  // 画像のURLがある?
         $('#previews').append(buildImg(targetIndex, blobUrl));  // previewに画像を追加
-        if ($('.js-file').length < arraySize) {  // 画像用inputの数が最大数より少ない?
-          配列の先頭の数字を使ってinputを作る
-          $('#image-box').append(buildFileField(fileIndex[0] - 1));
-          配列を更新する
-          fileIndex.shift();
-          console.log(fileIndex);
-        }
-        else {  // 画像用inputの数が最大数以上となった
-          console.log("入力フォーム最大数");
-        }
+        console.log(blobUrl);
+
+        // indexから追加した画像に対応するものを除去
+        const pos = fileIndex.indexOf(targetIndex);
+        fileIndex.splice(pos, 1);
+        console.log(fileIndex);
       }
       else {  // 画像のURLがない
-        console.log("URLエラー");
+        console.log("画像のURLがない");
       }
     }
   });
-
 
   // 画像用inputの削除ボタンが押された
   $('#image-box').on('click', '.js-remove', function() {
@@ -109,20 +110,12 @@ $(document).on('turbolinks:load', ()=> {
       // previewの画像を削除する
       $(`img[data-index="${targetIndex}"]`).parent().remove();
 
-      if ($('.js-file').length > 1) {  // 画像用inputが複数ある?
-        対応するinputを削除する
-        $(this).parent().remove();
-        配列を更新する
-        fileIndex.push(targetIndex + 1);
-        console.log(fileIndex);
-      }
-      else {  // 画像用inputが1個以下
-        console.log("入力フォームがなくなっちゃう");
-      }
+      // 削除した画像に対応するindexを配列に追加する
+      fileIndex.push(targetIndex);
+      console.log(fileIndex);
     }
     else {  // ない画像は消せない
       console.log("ない画像は消せない");
-      console.log(fileIndex);
     }
   });
 });

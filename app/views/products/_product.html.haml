@@ -3,7 +3,11 @@
     画像
     %br
     - product.images.each do |image|
-      = image_tag image.src.url
+      - if image.src.url
+        = image_tag image.src.url, size: '100x100'
+      - else
+        %p
+          = image.src.url
   
   .content__name
     商品名

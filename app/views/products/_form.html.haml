@@ -14,43 +14,30 @@
     #image-box
       #previews
         - if @product.persisted?
-          - @product.images.each_with_index do |image, i|              
+          - @product.images.each_with_index do |image, i|
             - if image.src.url.present?
               %label
-                画像aaa
+                画像
                 = i
                 = image_tag image.src.url, data: { index: i }, size: '100x100'
             - else
               -# nop
         - else
           -# nop
-          
-      = f.fields_for :images do |image|
+
+      = f.fields_for :images do |image|        
         .js-file_group{ data: { index: image.index } }
           .image-index
-            画像bbb
+            画像
             = image.index
           = image.file_field :src, class: 'js-file'
           %br
-          %span.js-remove
+          .js-remove
             削除
         - if @product.persisted?
           = image.check_box :_destroy, data: { index: image.index }, class: 'hidden-destroy'
         - else
           -# nop
-
-      - if @product.persisted?
-        .js-file_group{ data: { index: @product.images.count } }
-          .image-index
-            画像ccc
-            = @product.images.count
-          = file_field_tag :src, name: "product[images_attributes][#{@product.images.count}][src]", class: 'js-file'
-          .js-remove
-            削除
-      - else
-        -# nop
-
-    %br
 
   .product-name
     = f.label '商品名(必須)'
