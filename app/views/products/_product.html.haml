@@ -1,6 +1,22 @@
+- line = "------------------------------"
+
 .content
+  %p
+    = "#{line}"
+
+  = link_to edit_product_path(product) do
+    .content__edit-btn
+      = "編集"
+
+  = link_to product_path(product), method: :delete do
+    .content__delete-btn
+      = "削除"
+
+  %p
+    = "#{line}"
+
   .content__images
-    画像
+    = "商品画像"
     %br
     - product.images.each do |image|
       - if image.src.url
@@ -8,47 +24,53 @@
       - else
         %p
           = image.src.url
+
+  %p
+    = "#{line}"
   
   .content__name
-    商品名
+    = "商品名"
     %br
-    #{product.name}
+    = "#{product.name}"
 
   .content__explain
-    商品の説明
+    = "商品の説明"
     %br
-    #{product.explain}
+    = "#{product.explain}"
+
+  %p
+    = "#{line}"
 
   .content__condition
-    商品の状態
+    = "商品の状態"
     %br
-    #{product.condition.name}
+    = "#{product.condition.name}"
+
+  %p
+    = "#{line}"
 
   .content__burden
-    配送料の負担
+    = "配送料の負担"
     %br
-    #{product.costburden.name}
+    = "#{product.costburden.name}"
 
   .content__region
-    発送の地域
+    = "発送の地域"
     %br
-    #{product.shippingorigin.name}
+    = "#{product.shippingorigin.name}"
 
   .content__period
-    発送までの日数
+    = "発送までの日数"
     %br
-    #{product.shippingperiod.name}
+    = "#{product.shippingperiod.name}"
+
+  %p
+    = "#{line}"
 
   .content__price
-    販売価格
+    = "販売価格"
     %br
-    #{product.price}
-    円
+    = "#{product.price}円"
 
-  = link_to edit_product_path(product) do
-    .content__edit-btn
-      編集
-
-  = link_to product_path(product), method: :delete do
-    .content__delete-btn
-      削除
+  %p
+    = "#{line}"

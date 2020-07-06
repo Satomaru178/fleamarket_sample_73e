@@ -1,3 +1,5 @@
+- line = "------------------------------"
+
 - if @product.errors.any?
   .alert
     %ul
@@ -7,84 +9,142 @@
 - else
   -# nop
 
-= form_for @product do |f|
-  .product-images
-    = f.label '出品画像(1枚以上必須)'
-    %br
-    #image-box
-      #previews
-        - if @product.persisted?
-          - @product.images.each_with_index do |image, i|
-            - if image.src.url.present?
-              %label
-                画像
-                = i
-                = image_tag image.src.url, data: { index: i }, size: '100x100'
+%p
+  = "#{line}"
+
+.contents
+  .contents__product
+    = form_for @product do |f|
+      .contents__product__images
+        = f.label '出品画像(1枚以上必須 最大5枚までアップロードできます)'
+        %br
+        #image-box
+          #previews
+            = "プレビュー"
+            - if @product.persisted?
+              - @product.images.each_with_index do |image, i|
+                - if image.src.url.present?
+                  %label
+                    = "画像#{i}"
+                    = image_tag image.src.url, data: { index: i }, size: '100x100'
+                - else
+                  -# nop
             - else
               -# nop
-        - else
-          -# nop
 
-      = f.fields_for :images do |image|        
-        .js-file_group{ data: { index: image.index } }
-          .image-index
-            画像
-            = image.index
-          = image.file_field :src, class: 'js-file'
+          %p
+            = "#{line}"
+
+          = f.fields_for :images do |image|        
+            .js-file_group{ data: { index: image.index } }
+              .image-index
+                = "画像#{image.index}"
+              = image.file_field :src, class: 'js-file'
+              %br
+              .js-remove
+                = "削除"
+            - if @product.persisted?
+              = image.check_box :_destroy, data: { index: image.index }, class: 'hidden-destroy'
+            - else
+              -# nop
+
+      %p
+        = "#{line}"
+
+      .contents__product__name
+        = f.label '商品名(必須 40文字以内)'
+        %br
+        = f.text_field :name, placeholder: "40文字以内"
+        %br
+
+      .contents__product__explain
+        = f.label '商品の説明(必須 1000文字以内)'
+        %br
+        = f.text_area :explain, placeholder: "1000文字以内"
+        %br
+      
+      %p
+        = "#{line}"
+
+      .contents__product__details
+        = "商品の詳細"
+
+        .contents__product__details__condition
+          = f.label '商品の状態(必須)'
           %br
-          .js-remove
-            削除
-        - if @product.persisted?
-          = image.check_box :_destroy, data: { index: image.index }, class: 'hidden-destroy'
-        - else
-          -# nop
+          = f.collection_select :condition_id, Condition.all, :id, :name
+          %br
 
-  .product-name
-    = f.label '商品名(必須)'
-    %br
-    = f.text_field :name
-    %br
+      %p
+        = "#{line}"
 
-  .product-explain
-    = f.label '商品の説明(必須)'
-    %br
-    = f.text_area :explain
-    %br
+      .contents__product__about-delivery
+        = "配送について"
 
-  .product-condition
-    = f.label '商品の状態(必須)'
-    %br
-    = f.collection_select :condition_id, Condition.all, :id, :name
-    %br
+        .contents__product__about-delivery__cost-burden
+          = f.label '配送料の負担(必須)'
+          %br
+          = f.collection_select :costburden_id, Costburden.all, :id, :name
+          %br
 
-  .product-cost-burden
-    = f.label '配送料の負担(必須)'
-    %br
-    = f.collection_select :costburden_id, Costburden.all, :id, :name
-    %br
+        .contents__product__about-delivery__shipping-origin
+          = f.label '発送元の地域(必須)'
+          %br
+          = f.collection_select :shippingorigin_id, Shippingorigin.all, :id, :name
+          %br
 
-  .product-shipping-origin
-    = f.label '発送元の地域(必須)'
-    %br
-    = f.collection_select :shippingorigin_id, Shippingorigin.all, :id, :name
-    %br
+        .contents__product__about-delivery__shipping-period
+          = f.label '発送までの日数(必須)'
+          %br
+          = f.collection_select :shippingperiod_id, Shippingperiod.all, :id, :name
+          %br
 
-  .product-shipping-period
-    = f.label '発送までの日数(必須)'
-    %br
-    = f.collection_select :shippingperiod_id, Shippingperiod.all, :id, :name
-    %br
+      %p
+        = "#{line}"
 
-  .product-price
-    = f.label '販売価格(必須)'
-    %br
-    = f.number_field :price
-    円
-    %br
+      .contents__product__price
+        = "価格(300円〜9,999,999円)"
 
-  .product-submit-btn
-    = f.submit '出品する'
-    %br
+        .contents__product__price__selling-price
+          = f.label '販売価格(必須)'
+          %br
+          = f.number_field :price
+          = "円"
+          %br
 
-= link_to root_path do
-  戻る
+        .contents__product__price__sells-commission
+          = "販売手数料(10%)"
+
+      %p
+        = "#{line}"
+
+      .contents__product__profit
+        = "販売利益"
+
+      .contents__product__submit-btn
+        = f.submit '出品する'
+        %br
+
+  = link_to root_path do
+    .contents__return-btn
+      = "戻る"
+
+  .contents__caution
+    = "禁止されている行為および出品物を必ずご確認ください。"
+    %br
+    = "偽ブランド品や盗難物などの販売は犯罪であり、"
+    %br
+    = "法律により処罰される可能性があります。また、出品をもちまして"
+    %br
+    = "加盟店規約に同意したことになります。"
+
+.footer
+  %ul.footer__items
+    %li.footer__items__left
+      = "プライバシーポリシー"
+    %li.footer__items__center
+      = "FURIMA利用規約"
+    %li.footer__items__right
+      = "特定商取引に関する表記"
+  %p.footer__copyright
+    &copy; FURIMA
