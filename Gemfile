@@ -90,3 +90,4 @@ gem 'mini_magick'
 gem 'enum_help' 
 
 gem 'ancestry'
+gem 'jquery-rails'
