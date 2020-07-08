@@ -28,4 +28,7 @@ class Product < ApplicationRecord
 
   validates :price, presence: true,
   numericality: { greater_than_or_equal_to: 300, less_than: 10_000_000 }
+
+  validates_associated :images
+  validates :images, presence: true
 end
