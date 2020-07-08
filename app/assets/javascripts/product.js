@@ -38,7 +38,6 @@ $(document).on('turbolinks:load', ()=> {
   // 画像用のinputに動的なindexをつける為の配列
   let fileIndex = [...Array(arraySize)].map((_,i) => i);
 
-  const lastIndex = $('.js-file_group:last').data('index');
   for (let i = 0; i < arraySize; i++) {
     // 画像に対応するindexを除去
     if ($(`img[data-index="i"]`)[0]) {  // 画像がある?
@@ -48,6 +47,8 @@ $(document).on('turbolinks:load', ()=> {
       ;
     }
   }
+
+  const lastIndex = $('.js-file_group:last').data('index');
 
   for (let j = lastIndex + 1; j < arraySize; j++) {
     $('#image-box').append(buildFileField(j));  // 画像用inputを増やす
