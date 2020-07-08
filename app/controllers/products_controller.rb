@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :set_product, except: [:index, :new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :upload, :destroy]
+  before_action :set_product, only: [:edit, :update, :destroy]
 
   def index
     @products = Product.includes(:images).order('created_at DESC')
@@ -13,8 +14,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to root_path
-      return
+      redirect_to root_path and return
     else
       render :new
     end
@@ -48,6 +48,8 @@ class ProductsController < ApplicationController
       :shippingperiod_id,
       :price,
       images_attributes: [:src, :_destroy, :id]
+    ).merge(
+      seller_ids: current_user.id
     )
   end
 
