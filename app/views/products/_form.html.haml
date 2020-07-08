@@ -1,3 +1,6 @@
+- if flash[:notice]
+  = flash[:notice]
+
 - line = "------------------------------"
 
 - if @product.errors.any?
@@ -128,6 +131,8 @@
   = link_to root_path do
     .contents__return-btn
       = "戻る"
+
+  %br
 
   .contents__caution
     = "禁止されている行為および出品物を必ずご確認ください。"

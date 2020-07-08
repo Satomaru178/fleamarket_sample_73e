@@ -16,6 +16,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to root_path and return
     else
+      flash[:notice] = "createエラー"
       render :new
     end
   end
@@ -27,6 +28,7 @@ class ProductsController < ApplicationController
     if @product.update(product_params)
       redirect_to root_path
     else
+      flash[:notice] = "updateエラー"
       render :edit
     end
   end
@@ -49,7 +51,7 @@ class ProductsController < ApplicationController
       :price,
       images_attributes: [:src, :_destroy, :id]
     ).merge(
-      seller_ids: current_user.id
+      seller_ids: [ current_user.id ]
     )
   end
 
