@@ -55,9 +55,9 @@ class ProductsController < ApplicationController
 
   def ensure_currect_user
     @product = Product.find(params[:id])
-    @target = UserProduct.find_by(product_id: @product.id)
+    @userproduct = UserProduct.find_by(product_id: @product.id)
 
-    if @target.seller_id != current_user.id
+    if @userproduct.seller_id != current_user.id
       flash[:notice] = "権限がありません"
       redirect_to root_path
     else
