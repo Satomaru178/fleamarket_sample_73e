@@ -23,7 +23,7 @@
             = link_to destroy_user_session_path, method: :delete do
               ログアウト
           %li.header__contents__lower__right-items__signup
-            = link_to '#' do
+            = link_to accounts_path(current_user) do
               マイページ       
         -else
           %li.header__contents__lower__right-items__login

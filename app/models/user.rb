@@ -19,4 +19,5 @@ class User < ApplicationRecord
   with:/\A[ぁ-んー－]+\z/,
   }
   has_one :address
+  has_one :account
 end

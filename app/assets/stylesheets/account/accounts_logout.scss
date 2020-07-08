@@ -1,0 +1,19 @@
+.user_mypage_logout{
+  background-color:#ffffff ;
+  width: 700px;
+  padding: 64px;
+  height: 180px;
+  &-btn{
+    display: block;
+    width: 320px;
+    height: 50px;
+    background-color: #20b2aa;
+    border: 1px solid #20b2aa;
+    line-height: 50px;
+    text-align: center;
+    margin: 0 auto;
+    text-decoration: none;
+    color: #ffffff;
+    border-radius: 4px;
+  }
+}
