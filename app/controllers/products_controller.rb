@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :upload, :destroy]
-  before_action :set_product, only: [:edit, :update, :destroy]
+  before_action :ensure_currect_user, only: [:edit, :update, :destroy]
 
   def index
     @products = Product.includes(:images).order('created_at DESC')
@@ -53,7 +53,15 @@ class ProductsController < ApplicationController
     )
   end
 
-  def set_product
+  def ensure_currect_user
     @product = Product.find(params[:id])
+    @target = UserProduct.find_by(product_id: @product.id)
+
+    if @target.seller_id != current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to root_path
+    else
+      # nop
+    end
   end
 end
