@@ -14,7 +14,7 @@
 
 .contents
   .contents__product
-    = form_for @product do |f|
+    = form_with model: @product, local: true do |f|
       .contents__product__images
         = f.label '出品画像(1枚以上必須 最大5枚までアップロードできます)'
         %br
@@ -35,7 +35,7 @@
           %p
             = "#{line}"
 
-          = f.fields_for :images do |image|        
+          = f.fields_for :images do |image|
             .js-file_group{ data: { index: image.index } }
               .image-index
                 = "画像#{image.index}"
