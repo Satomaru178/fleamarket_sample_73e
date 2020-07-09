@@ -89,6 +89,12 @@
       .contents__product__details
         = "商品の詳細"
 
+        .contents__product__details__category
+          = f.label 'カテゴリー(必須)'
+          %br
+          = f.collection_select(:category_id, @parents, :id, :name, {prompt: "カテゴリーを選択してください"})
+          %br
+
         .contents__product__details__condition
           = f.label '商品の状態(必須)'
           %br

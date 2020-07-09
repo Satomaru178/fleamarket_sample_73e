@@ -12,6 +12,9 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.images.new
+    
+    # カテゴリ数は13個
+    @parents = Category.all.order("id ASC").limit(13)
   end
 
   def create
