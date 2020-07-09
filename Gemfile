@@ -86,3 +86,5 @@ gem 'active_hash'
 
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
+
+gem 'ancestry'
