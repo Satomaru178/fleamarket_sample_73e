@@ -1,7 +1,9 @@
+-# エラー
+
 - if flash[:notice]
   = flash[:notice]
-
-- line = "------------------------------"
+- else
+  -# nop
 
 - if @product.errors.any?
   .alert
@@ -12,12 +14,19 @@
 - else
   -# nop
 
+-# 変数
+
+- line = "------------------------------"
+
 %p
   = "#{line}"
 
 .contents
   .contents__product
     = form_with model: @product, local: true do |f|
+
+      -# 画像
+
       .contents__product__images
         = f.label '出品画像(1枚以上必須 最大5枚までアップロードできます)'
         %br
@@ -54,6 +63,8 @@
       %p
         = "#{line}"
 
+      -# 商品
+
       .contents__product__name
         = f.label '商品名(必須 40文字以内)'
         %br
@@ -69,6 +80,8 @@
       %p
         = "#{line}"
 
+      -# 詳細
+
       .contents__product__details
         = "商品の詳細"
 
@@ -80,6 +93,8 @@
 
       %p
         = "#{line}"
+
+      -# 配送
 
       .contents__product__about-delivery
         = "配送について"
@@ -104,6 +119,8 @@
 
       %p
         = "#{line}"
+
+      -# 価格
 
       .contents__product__price
         = "価格(300円〜9,999,999円)"
