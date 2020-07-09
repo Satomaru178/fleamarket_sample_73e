@@ -44,7 +44,7 @@ $(document).on('turbolinks:load', ()=> {
       fileIndex.splice(i, 1);
     }
     else {  // 画像がない
-      ;
+      // nop
     }
   }
 
