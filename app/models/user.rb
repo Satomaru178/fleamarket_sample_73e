@@ -26,6 +26,6 @@ class User < ApplicationRecord
   }
 
   has_one  :address
-  has_many :user_products
-  has_many :products, through: :user_products
+
+  has_many :products, dependent: :destroy
 end
