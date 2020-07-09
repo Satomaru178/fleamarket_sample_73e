@@ -8,6 +8,10 @@ class Product < ApplicationRecord
 
   has_many :images, dependent: :destroy
 
+  #categories
+  
+  belongs_to :category
+
   # activehash
 
   extend ActiveHash::Associations::ActiveRecordExtensions
