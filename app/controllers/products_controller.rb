@@ -1,6 +1,12 @@
 class ProductsController < ApplicationController
+  # ログイン中のユーザしかできない
   before_action :authenticate_user!, only: [:new, :create, :edit, :upload, :destroy]
-  before_action :ensure_currect_user, only: [:edit, :update, :destroy]
+
+
+  before_action :set_params, only: [:edit, :update, :destroy]
+
+  # 出品したユーザしかできない
+  # before_action :ensure_currect_user, only: [:edit, :update, :destroy]
 
   def index
     @products = Product.includes(:images).order('created_at DESC')
@@ -50,20 +56,22 @@ class ProductsController < ApplicationController
       :shippingperiod_id,
       :price,
       images_attributes: [:src, :_destroy, :id]
-    ).merge(
-      seller_ids: [ current_user.id ]
     )
   end
 
-  def ensure_currect_user
+  def set_params
     @product = Product.find(params[:id])
-    @userproduct = UserProduct.find_by(product_id: @product.id)
-
-    if @userproduct.seller_id != current_user.id
-      flash[:notice] = "権限がありません"
-      redirect_to root_path
-    else
-      # nop
-    end
   end
+
+  # def ensure_currect_user
+  #   @product = Product.find(params[:id])
+  #   @userproduct = UserProduct.find_by(product_id: @product.id)
+
+  #   if @userproduct.seller_id != current_user.id
+  #     flash[:notice] = "権限がありません"
+  #     redirect_to root_path
+  #   else
+  #     # nop
+  #   end
+  # end
 end
