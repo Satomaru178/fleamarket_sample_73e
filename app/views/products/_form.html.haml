@@ -25,6 +25,10 @@
   .contents__product
     = form_with model: @product, local: true do |f|
 
+      -# ユーザ
+
+      = f.hidden_field :seller_id, value: current_user.id
+
       -# 画像
 
       .contents__product__images
