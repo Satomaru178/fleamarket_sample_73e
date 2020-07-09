@@ -1,4 +1,4 @@
-%ul.header__contents__lower__left-items.category1
+%ul.header__contents__lower__left-items
   %li.header__contents__lower__left-items__categories
     = link_to '#' do
       カテゴリー
@@ -14,11 +14,6 @@
                   - child.children.each do |grandchild|
                     %li.grandchild__list
                       = link_to grandchild.name
-
--# ul.category1
--# ul.category2
--# ul.category3で「親」「子」「孫」を分けています
-
   %li.header__contents__lower__left-items__brands
     = link_to '#' do
       ブランド
