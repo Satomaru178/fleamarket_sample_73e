@@ -4,7 +4,6 @@ $(document).on('turbolinks:load', ()=> {
 
   // preview用のimgタグを生成する関数
   const buildImg = (index, url)=> {
-
     const html =
     `
     <label>
@@ -14,12 +13,10 @@ $(document).on('turbolinks:load', ()=> {
     `;
 
     return html;
-
   }
 
   // 画像用のinputを生成する関数
   const buildFileField = (index)=> {
-
     const html =
     `
     <div data-index="${index}" class="js-file_group">
@@ -32,7 +29,6 @@ $(document).on('turbolinks:load', ()=> {
     `;
 
     return html;
-
   }
 
   // 画像用のinputに動的なindexをつける為の配列
@@ -112,5 +108,72 @@ $(document).on('turbolinks:load', ()=> {
     else {  // ない画像は消せない
       // nop
     }
+  });
+
+  // 販売手数料と販売利益を計算する関数
+  let recalculation = ()=> {
+    // 一旦消したのを再描画する
+    const rebuild = (value)=> {
+      let html;
+
+      if ((value >= 300) && (value < 10_000_000)) {  // 販売価格の有効範囲内
+        let commission = Math.ceil(0.1*value);
+        let profit     = (value - commission);
+
+        html =
+        `
+        <div class="contents__product__price__sells-commission">
+        販売手数料(10%)
+        ${commission.toLocaleString()}円
+        </div>
+        <div class="contents__product__price__line">
+        ------------------------------
+        </div>
+        <div class="contents__product__price__profit">
+        販売利益
+        ${profit.toLocaleString()}円
+        </div>
+        `;
+      }
+      else {  // 販売価格の有効範囲外
+        html =
+        `
+        <div class="contents__product__price__sells-commission">
+        販売手数料(10%)
+        ---
+        </div>
+        <div class="contents__product__price__line">
+        ------------------------------
+        </div>
+        <div class="contents__product__price__profit">
+        販売利益
+        ---
+        </div>
+        `;
+      }
+
+      return html;
+    }
+
+    // 一旦全部消す
+    $('.contents__product__price__sells-commission').remove();
+    $('.contents__product__price__line').remove();
+    $('.contents__product__price__profit').remove();
+
+    // 販売価格の値を取得
+    let target = $('#product_price').val();
+
+    // 再描画
+    $('.contents__product__price').append(rebuild(target));
+  }
+
+  // キー入力による変更の場合
+  $('.contents__product__price').on('keyup', function() {
+    recalculation();
+  });
+
+  // フォームのボタンによる変更の場合
+  $('.contents__product__price').on('change', function() {
+    recalculation();
   });
 });
