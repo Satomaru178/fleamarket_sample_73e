@@ -1,6 +1,6 @@
 # DBテーブル設計
 
-![06_erd_fleamarket_sample_73e](https://user-images.githubusercontent.com/64793100/86520012-381e8300-be7b-11ea-8444-c4c6d0d4ef19.png)
+![07_erd_fleamarket_sample_73e](https://user-images.githubusercontent.com/64793100/87167490-00df2480-c308-11ea-9b44-bb8101feedd0.png)
 
 <!--
   ユーザ登録時に入力する基本情報。
@@ -11,25 +11,24 @@
 |----------------------|--------|---------------------------------------------------|
 |nickname              |string  |null: false, unique: true                          |
 |email                 |string  |null: false, unique: true, default: "", index: true|
-|encrypted_password    |string  |null: false, default: ""                           |
+|encrypted_password    |string  |null: false,               default: ""             |
 |first_name            |string  |null: false                                        |
 |last_name             |string  |null: false                                        |
 |first_name_kana       |string  |null: false                                        |
 |last_name_kana        |string  |null: false                                        |
 |birthday              |date    |null: false                                        |
-|reset_password_token  |string  |unique: true, index: true                          |
+|reset_password_token  |string  |             unique: true,              index: true|
 |reset_password_sent_at|datetime|                                                   |
 |remember_created_at   |datetime|                                                   |
 
 ### Association
-- has_one  :address
-- has_one  :acount
-- has_one  :point
-- has_many :products
-- has_many :comments
-- has_many :likes
-- has_many :creditcards
-- has_many :user_products
+- has_one  :address,     dependent: :destroy
+- has_one  :acount,      dependent: :destroy
+- has_one  :point,       dependent: :destroy
+- has_many :products,    dependent: :destroy
+- has_many :comments,    dependent: :destroy
+- has_many :likes,       dependent: :destroy
+- has_many :creditcards, dependent: :destroy
 
 <!--
   ユーザ登録時に登録する基本情報。
@@ -42,22 +41,22 @@
 -->
 
 ## addressesテーブル
-| Column        | Type     | Option                       |
-|---------------|----------|------------------------------|
-|user           |references|null: false, foreign_key: true|
-|first_name     |string    |null: false                   |
-|last_name      |string    |null: false                   |
-|first_name_kana|string    |null: false                   |
-|last_name_kana |string    |null: false                   |
-|zipcode        |string    |null: false                   |
-|prefecture     |integer   |null: false, default: 0       |
-|city           |string    |null: false                   |
-|address        |string    |null: false                   |
-|address_other  |string    |                              |
-|tell           |string    |                              |
+| Column        | Type     | Option                |
+|---------------|----------|-----------------------|
+|user           |references|foreign_key: true      |
+|first_name     |string    |null: false            |
+|last_name      |string    |null: false            |
+|first_name_kana|string    |null: false            |
+|last_name_kana |string    |null: false            |
+|zipcode        |string    |null: false            |
+|prefecture     |integer   |null: false, default: 0|
+|city           |string    |null: false            |
+|address        |string    |null: false            |
+|address_other  |string    |                       |
+|tell           |string    |                       |
 
 ### Association
-- belongs_to :user
+- belongs_to :user, optional: true
 
 <!--
   マイページでアイコン画像や背景画像を設定できる。
@@ -70,6 +69,7 @@
 |user            |references|null: false, foreign_key: true|
 |icon_image      |string    |                              |
 |background_image|string    |                              |
+|introduction    |text      |                              |
 
 ### Association
 - belongs_to :user
@@ -146,31 +146,44 @@
   299以下        : エラー
   300-9,999,999 : 値段
   10,000,000以上 : エラー
+
+  seller_evaluationカラム
+  取引後に売り手と買い手でそれぞれ評価を行う。(ラジオボタン)
+  0   : 未評価
+  1-5 : 評価
+
+  buyer_evaluationカラム
+  取引後に売り手と買い手でそれぞれ評価を行う。(ラジオボタン)
+  0   : 未評価
+  1-5 : 評価
 -->
 
 ## productsテーブル
-| Column          | Type     | Option                       |
-|-----------------|----------|------------------------------|
-|category         |references|null: false, foreign_key: true|
-|brand            |references|foreign_key: true             |
-|name             |string    |null: false, index: true      |
-|explain          |text      |null: false                   |
-|condition_id     |integer   |null: false, default: 0       |
-|costburden_id    |integer   |null: false, default: 0       |
-|shippingorigin_id|integer   |null: false, default: 0       |
-|shippingperiod_id|integer   |null: false, default: 0       |
-|price            |integer   |null: false, default: 0       |
+| Column          | Type     | Option                                       |
+|-----------------|----------|----------------------------------------------|
+|seller           |references|null: false, foreign_key: { to_table: :users }|
+|buyer            |references|             foreign_key: { to_table: :users }|
+|category         |references|null: false, foreign_key: true                |
+|brand            |references|             foreign_key: true                |
+|name             |string    |null: false, index: true                      |
+|explain          |text      |null: false                                   |
+|condition_id     |integer   |null: false, default: 0                       |
+|costburden_id    |integer   |null: false, default: 0                       |
+|shippingorigin_id|integer   |null: false, default: 0                       |
+|shippingperiod_id|integer   |null: false, default: 0                       |
+|price            |integer   |null: false, default: 0                       |
+|seller_evaluation|integer   |             default: 0                       |
+|buyer_evaluation |integer   |             default: 0                       |
 
 ### Association
-- has_many :user_products
-- has_many :seller, class_name: 'User', through: :user_products
-- has_many :buyer,  class_name: 'User', through: :user_products
-- has_many :images, dependent: :destroy
-- has_many :comments
-- has_many :likes
+- accepts_nested_attributes_for :images, allow_destroy: true
+- has_many :images,   dependent: :destroy
+- has_many :comments, dependent: :destroy
+- has_many :likes,    dependent: :destroy
+- belongs_to :seller, class_name: 'User'
+- belongs_to :buyer,  class_name: 'User', optional: true
 - belongs_to :category
 - belongs_to :brand
-- accepts_nested_attributes_for :images, allow_destroy: true
 - extend ActiveHash::Associations::ActiveRecordExtensions
 - belongs_to_active_hash :condition
 - belongs_to_active_hash :costburden
@@ -189,7 +202,7 @@
 
 ### Association
 - mount_uploader :src, ImageUploader
-- belongs_to :product
+- belongs_to :product, optional: true
 
 <!--
   カテゴリーはancestryを使って
@@ -201,7 +214,7 @@
 | Column | Type | Option                 |
 |--------|------|------------------------|
 |name    |string|null: false, index: true|
-|ancestry|string|index: true             |
+|ancestry|string|             index: true|
 
 ### Association
 - has_many :products
@@ -253,32 +266,3 @@
 ### Association
 - belongs_to :user
 - belongs_to :product
-
-<!--
-  usersテーブルとproductsテーブルの中間テーブル。
-
-  seller_evaluationカラム
-  取引後に売り手と買い手でそれぞれ評価を行う。(ラジオボタン)
-  0   : 未評価
-  1-5 : 評価
-
-  buyer_evaluationカラム
-  取引後に売り手と買い手でそれぞれ評価を行う。(ラジオボタン)
-  0   : 未評価
-  1-5 : 評価
--->
-
-## user_productsテーブル
-
-| Column          | Type     | Option                                       |
-|-----------------|----------|----------------------------------------------|
-|product          |references|null: false, foreign_key: true                |
-|seller           |references|null: false, foreign_key: { to_table: :users }|
-|buyer            |references|foreign_key: foreign_key: { to_table: :users }|
-|seller_evaluation|integer   |default: 0                                    |
-|buyer_evaluation |integer   |default: 0                                    |
-
-### Association
-- belongs_to :product
-- belongs_to :seller, class_name: 'User'
-- belongs_to :buyer,  class_name: 'User'
