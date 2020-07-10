@@ -25,7 +25,7 @@ class User < ApplicationRecord
     with: /\A[ぁ-んー－]+\z/
   }
 
-  has_one  :address
+  has_one  :address,  dependent: :destroy
 
   has_many :products, dependent: :destroy
 end
