@@ -9,7 +9,7 @@
           %ul.category2
             - parent.children.each do |child|
               %li.child__list
-                =link_to child.name
+                = link_to child.name
                 %ul.category3
                   - child.children.each do |grandchild|
                     %li.grandchild__list
