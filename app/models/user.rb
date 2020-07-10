@@ -18,5 +18,5 @@ class User < ApplicationRecord
   format: {
   with:/\A[ぁ-んー－]+\z/,
   }
-  has_one :address, dependent: :destroy
+  has_one :address, dependent: :destroy, class_name: Address
 end
