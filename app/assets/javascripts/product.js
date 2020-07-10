@@ -110,6 +110,42 @@ $(document).on('turbolinks:load', ()=> {
     }
   });
 
+
+
+
+
+
+  const buildSubcategories = ()=> {
+    let html =
+    `
+    <div class="contents__product__details__categories__subcategory">
+      <select>
+        <option value>サブカテゴリーを選択してください</option>
+        <option value="1">テスト</option>
+      </select>
+    </div>
+    <br>
+    `;
+
+    return html;
+  }
+
+  $('.contents__product__details__categories__category').on('change', function() {
+    let target = $('.contents__product__details__categories__category option:selected').val();
+    if (target) {
+      $('.contents__product__details__categories').append(buildSubcategories());
+    }
+    else {
+      $('.contents__product__details__categories__subcategory').remove();
+      $('.contents__product__details__categories__subsubcategory').remove();
+    }
+  });
+
+
+
+
+
+  
   // 販売手数料と販売利益を計算する関数
   let recalculation = ()=> {
     // 一旦消したのを再描画する

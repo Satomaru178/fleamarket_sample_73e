@@ -1,7 +1,8 @@
 -# エラー
 
 - if flash[:notice]
-  = flash[:notice]
+  .notice
+    = flash[:notice]
 - else
   -# nop
 
@@ -27,6 +28,7 @@
 
       -# ユーザ
 
+      .contents__product__user
       = f.hidden_field :seller_id, value: current_user.id
 
       -# 画像
@@ -89,11 +91,12 @@
       .contents__product__details
         = "商品の詳細"
 
-        .contents__product__details__category
-          = f.label 'カテゴリー(必須)'
-          %br
-          = f.collection_select(:category_id, @parents, :id, :name, {prompt: "カテゴリーを選択してください"})
-          %br
+        .contents__product__details__categories
+          .contents__product__details__categories__category
+            = f.label 'カテゴリー(必須)'
+            %br
+            = f.collection_select(:category_id, @parents, :id, :name, {prompt: "カテゴリーを選択してください"})
+            %br
 
         .contents__product__details__condition
           = f.label '商品の状態(必須)'
@@ -144,12 +147,14 @@
 
         .contents__product__price__sells-commission
           = "販売手数料(10%)"
+          = "---"
 
-      %p
-        = "#{line}"
+        .contents__product__price__line
+          = "#{line}"
 
-      .contents__product__profit
-        = "販売利益"
+        .contents__product__price__profit
+          = "販売利益"
+          = "---"
 
       .contents__product__submit-btn
         = f.submit '出品する'
