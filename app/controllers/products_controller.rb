@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.images.new
+    @product.build_brand
   end
 
   def create
@@ -74,7 +75,7 @@ class ProductsController < ApplicationController
       :shippingperiod_id,
       :price,
       images_attributes: [:id, :src, :_destroy],
-      category_attributes: [:id],
+      brand_attributes: [:id, :name],
     )
   end
 
