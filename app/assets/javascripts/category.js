@@ -32,7 +32,7 @@ $(document).on('turbolinks:load', ()=> {
     `
     <div class='contents__product__details__categories__category__wrapper__added' id='grandchildren_wrapper'>
       <div class='contents__product__details__categories__category__wrapper__box'>
-        <select class='contents__product__details__categories__category__wrapper__box--select' id='grandchild_category' name="category_id">
+        <select class='contents__product__details__categories__category__wrapper__box--select' id='grandchild_category' name="product[category_id]">
           <option value='---' data-category='---'>孫カテゴリーを選択してください</option>
           ${insertHTML}
         </select>
