@@ -6,11 +6,17 @@ class Product < ApplicationRecord
 
   # images
 
+  accepts_nested_attributes_for :images, allow_destroy: true
   has_many :images, dependent: :destroy
 
-  #categories
+  # categories
   
+  accepts_nested_attributes_for :brand
   belongs_to :category
+
+  # brands
+  
+  belongs_to :brand
 
   # activehash
 
@@ -34,7 +40,6 @@ class Product < ApplicationRecord
 
   validates :seller_id, presence: true
 
-  accepts_nested_attributes_for :images, allow_destroy: true
   validates_associated :images
   validates :images, presence: true
 end
