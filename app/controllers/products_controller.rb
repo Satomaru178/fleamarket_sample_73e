@@ -15,13 +15,13 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.images.new
-    @product.build_brand
+    @brands = Brand.all
   end
 
   def create
     @product = Product.new(product_params)
-    binding.pry
-    if @product.save
+    if @product.save!
+      flash[:notice] = "商品を出品しました"
       redirect_to root_path and return
     else
       flash[:notice] = "createエラー"
@@ -34,6 +34,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
+      flash[:notice] = "商品を編集しました"
       redirect_to root_path
     else
       flash[:notice] = "updateエラー"
@@ -46,6 +47,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy
+    flash[:notice] = "商品を削除しました"
     redirect_to root_path
   end
 
@@ -69,6 +71,7 @@ class ProductsController < ApplicationController
       :name,
       :explain,
       :category_id,
+      :brand_id,
       :condition_id,
       :costburden_id,
       :shippingorigin_id,
@@ -77,10 +80,6 @@ class ProductsController < ApplicationController
       images_attributes: [:id, :src, :_destroy],
       brand_attributes: [:id, :name],
     )
-  end
-
-  def category_params
-    params.require(:category).permit(:id, :name, :ancestry)
   end
 
   def set_categories

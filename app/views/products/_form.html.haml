@@ -29,7 +29,7 @@
       -# ユーザ
 
       .contents__product__user
-      = f.hidden_field :seller_id, value: current_user.id
+        = f.hidden_field :seller_id, value: current_user.id
 
       -# 画像
 
@@ -99,6 +99,15 @@
                 #parent_category.contents__product__details__categories__category__wapper__box--select
                   = f.select :category_id, @category_parent_array, { prompt: "親カテゴリーを選択してください" }
 
+        .contents__product__details__brand
+          = f.label "ブランド(任意)"
+          %br
+          = f.collection_select :brand_id, @brands, :id, :name, { prompt: "未選択" }
+          %br
+          = link_to new_brand_path do
+            .contents__product__details__brand__add-btn
+              = "他のブランドを登録する"
+
         .contents__product__details__condition
           = f.label '商品の状態(必須)'
           %br
@@ -163,7 +172,7 @@
 
   = link_to root_path do
     .contents__return-btn
-      = "戻る"
+      = "トップページへ戻る"
 
   %br
 
