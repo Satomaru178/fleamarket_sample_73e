@@ -97,7 +97,7 @@
             .contents__product__details__categories__category__wrapper
               .contents__product__details__categories__category__wapper__box
                 #parent_category.contents__product__details__categories__category__wapper__box--select
-                  = f.select :category, @category_parent_array, { prompt: "親カテゴリーを選択してください" }
+                  = f.select :category_id, @category_parent_array, { prompt: "親カテゴリーを選択してください" }
 
         .contents__product__details__condition
           = f.label '商品の状態(必須)'
