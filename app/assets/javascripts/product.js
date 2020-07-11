@@ -113,6 +113,15 @@ $(document).on('turbolinks:load', ()=> {
 
 
 
+  // 商品説明文の文字数カウンタ
+  $('.contents__product__explain').on('keyup', '#product_explain', function() {
+    let count = $(this).val().length;
+    $('.contents__product__explain__counter__count').text(count); 
+  });
+
+
+
+
 
   // 販売手数料と販売利益を計算する関数
   let recalculation = ()=> {

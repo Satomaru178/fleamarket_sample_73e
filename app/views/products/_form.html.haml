@@ -19,6 +19,10 @@
 
 - line = "------------------------------"
 
+.ceiling-contents
+  .furima-logo
+    = "logo"
+
 %p
   = "#{line}"
 
@@ -39,6 +43,9 @@
         #image-box
           #previews
             = "プレビュー"
+
+            %br
+
             - if @product.persisted?
               - @product.images.each_with_index do |image, i|
                 - if image.src.url.present?
@@ -57,36 +64,41 @@
             .js-file_group{ data: { index: image.index } }
               .image-index
                 = "画像#{image.index}"
-              = image.file_field :src, class: 'js-file'
-              %br
+              .js-file
+                = image.file_field :src
               .js-remove
                 = "削除"
             - if @product.persisted?
-              = image.check_box :_destroy, data: { index: image.index }, class: 'hidden-destroy'
+              .hidden-destroy
+                = image.check_box :_destroy, data: { index: image.index }
             - else
               -# nop
 
       %p
         = "#{line}"
 
-      -# 商品
+      -# 商品基本情報
 
-      .contents__product__name
-        = f.label '商品名(必須 40文字以内)'
-        %br
-        = f.text_field :name, placeholder: "40文字以内"
-        %br
+      .contents__product__basic
+        .contents__product__name
+          = f.label '商品名(必須 40文字以内)'
+          %br
+          = f.text_field :name, placeholder: "40文字以内"
+          %br
 
-      .contents__product__explain
-        = f.label '商品の説明(必須 1000文字以内)'
-        %br
-        = f.text_area :explain, placeholder: "1000文字以内"
-        %br
+        .contents__product__explain
+          = f.label '商品の説明(必須 1000文字以内)'
+          %br
+          = f.text_area :explain, placeholder: "1000文字以内"
+          .contents__product__explain__counter
+            %span.contents__product__explain__counter__count
+              0
+            = "/1000"
       
       %p
         = "#{line}"
 
-      -# 詳細
+      -# 商品詳細情報
 
       .contents__product__details
         = "商品の詳細"
@@ -168,13 +180,14 @@
 
       .contents__product__submit-btn
         = f.submit '出品する'
-        %br
 
-  = link_to root_path do
-    .contents__return-btn
-      = "トップページへ戻る"
+      = link_to '#' do
+        .contents__product__draft-btn
+          = "下書きに保存"
 
-  %br
+      = link_to root_path do
+        .contents__return-btn
+          = "トップページへ戻る"
 
   .contents__caution
     = "禁止されている行為および出品物を必ずご確認ください。"
@@ -185,13 +198,15 @@
     %br
     = "加盟店規約に同意したことになります。"
 
-.footer
-  %ul.footer__items
-    %li.footer__items__left
+.bottom-contents
+  %ul.bottom-contents__items
+    %li.bottom-contents__items__left
       = "プライバシーポリシー"
-    %li.footer__items__center
+    %li.bottom-contents__items__center
       = "FURIMA利用規約"
-    %li.footer__items__right
+    %li.bottom-contents__items__right
       = "特定商取引に関する表記"
-  %p.footer__copyright
+  .furima-logo
+    = "logo"
+  %p.bottom-contents__copyright
     &copy; FURIMA
