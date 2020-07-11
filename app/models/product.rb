@@ -6,17 +6,16 @@ class Product < ApplicationRecord
 
   # images
 
-  accepts_nested_attributes_for :images, allow_destroy: true
   has_many :images, dependent: :destroy
+  accepts_nested_attributes_for :images, allow_destroy: true
 
   # categories
   
-  accepts_nested_attributes_for :brand
   belongs_to :category
 
   # brands
   
-  belongs_to :brand
+  belongs_to :brand, optional: true
 
   # activehash
 

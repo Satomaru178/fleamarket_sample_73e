@@ -11,6 +11,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.references :seller, null: false, foreign_key: { to_table: :users }
       t.references :buyer,               foreign_key: { to_table: :users }
       t.references :category,            foreign_key: true
+      t.references :brand,               foreign_key: true
       t.timestamps
     end
   end

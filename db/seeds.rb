@@ -1,3 +1,55 @@
+# ブランド初期データ生成
+
+def createBrand(array)
+  array.each do |name|
+    Brand.create(name: name)
+  end
+end
+
+brand_list = [
+  "TOMORROWLAND",
+  "Pierrot",
+  "titivate",
+  "夢展望",
+  "nano universe",
+  "fifth",
+  "RE:EDIT",
+  "BEAMS",
+  "NATURAL BEAUTY BASIC",
+  "ICB",
+  "ViS",
+  "23区",
+  "MK MICHEL KLEIN",
+  "ronherman",
+  "BouJeloud",
+  "ur's",
+  "NEWYORKER",
+  "H&M",
+  "GAP",
+  "ZARA",
+  "IENA",
+  "UNIQLO",
+  "GLOBAL WORK",
+  "メンズファッションプラス",
+  "SPUTNICKS",
+  "Dry Bones",
+  "EDIFICE",
+  "無印良品",
+  "BEAMS",
+  "RALPHLAUREN",
+  "BROOKS BROTHERS",
+  "L.L.BEAN",
+  "EddieBauer",
+  "JOURNAL STANDARD",
+  "BARNEYS NEWYORK",
+  "LANVIN en Blue",
+  "DUFFER",
+  "Abercrombie&Fitch",
+  "R.NEWBOLD",
+]
+
+createBrand(brand_list)
+
 # レディース親カテゴリー
 lady = Category.create(name: "レディース")
 
