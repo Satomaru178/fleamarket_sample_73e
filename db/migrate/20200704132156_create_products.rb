@@ -10,7 +10,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.integer    :price
       t.references :seller, null: false, foreign_key: { to_table: :users }
       t.references :buyer,               foreign_key: { to_table: :users }
-      t.references :category, null: false, foreign_key: true
+      t.references :category,            foreign_key: true
       t.timestamps
     end
   end
