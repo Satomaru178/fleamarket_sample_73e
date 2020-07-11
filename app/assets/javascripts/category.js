@@ -3,7 +3,7 @@ $(document).on('turbolinks:load', ()=> {
   const buildOption = (category)=> {
     let html =
     `
-    <option value="${category.name}" data-category="${category.id}">
+    <option value="${category.id}" data-category="${category.id}">
       ${category.name}
     </option>
     `;
@@ -16,7 +16,7 @@ $(document).on('turbolinks:load', ()=> {
     `
     <div class='contents__product__details__categories__category__wrapper__added' id='children_wrapper'>
       <div class='contents__product__details__categories__category__wrapper__box'>
-        <select class='contents__product__details__categories__category__wrapper__box--select' id='child_category' name='category_id'>
+        <select class='contents__product__details__categories__category__wrapper__box--select' id='child_category' name="">
           <option value='---' data-category='---'>子カテゴリーを選択してください</option>
           ${insertHTML}
         </select>
@@ -32,7 +32,7 @@ $(document).on('turbolinks:load', ()=> {
     `
     <div class='contents__product__details__categories__category__wrapper__added' id='grandchildren_wrapper'>
       <div class='contents__product__details__categories__category__wrapper__box'>
-        <select class='contents__product__details__categories__category__wrapper__box--select' id='grandchild_category' name='category_id'>
+        <select class='contents__product__details__categories__category__wrapper__box--select' id='grandchild_category' name="category_id">
           <option value='---' data-category='---'>孫カテゴリーを選択してください</option>
           ${insertHTML}
         </select>
@@ -41,6 +41,8 @@ $(document).on('turbolinks:load', ()=> {
     `;
     $('.contents__product__details__categories__category').append(html);
   }
+
+  $('#product_category_id').attr('name', "");
 
   // 親カテゴリーのセレクトボックスが変化した
   $('#parent_category').on('change', function() {
@@ -57,11 +59,11 @@ $(document).on('turbolinks:load', ()=> {
         $('#children_wrapper').remove();  // 一旦削除する
         $('#grandchildren_wrapper').remove();
 
-        let insertHTML;
+        let insertHTML='';
 
-        for (let v of children) {
-          insertHTML += buildOption(v);
-        }
+        children.forEach(function(child) {
+          insertHTML += buildOption(child);
+        });
 
         appendChildrenBox(insertHTML);
       })
@@ -87,13 +89,14 @@ $(document).on('turbolinks:load', ()=> {
         dataType: 'json'
       })
       .done(function(grandchildren){
+        console.log(grandchildren);
         if (grandchildren) {
           $('#grandchildren_wrapper').remove();  // 一旦削除する
-          let insertHTML;
+          let insertHTML='';
 
-          for (let v of grandchildren) {
-            insertHTML += buildOption(v);
-          }
+          grandchildren.forEach(function(grandchild) {
+            insertHTML += buildOption(grandchild);
+          });
 
           appendGrandchildrenBox(insertHTML);
         }
