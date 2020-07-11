@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    if @product.save!
+    if @product.save
       flash[:notice] = "商品を出品しました"
       redirect_to root_path and return
     else
@@ -30,12 +30,13 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @brands = Brand.all
   end
 
   def update
     if @product.update(product_params)
       flash[:notice] = "商品を編集しました"
-      redirect_to root_path
+      redirect_to root_path and return
     else
       flash[:notice] = "updateエラー"
       render :edit
