@@ -22,6 +22,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @product.images.new
     if @product.save
       flash[:notice] = "商品を出品しました"
       redirect_to root_path
