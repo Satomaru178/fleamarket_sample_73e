@@ -60,8 +60,7 @@
               .js-remove
                 = "削除"
             - if @product.persisted?
-              .hidden-destroy
-                = image.check_box :_destroy, data: { index: image.index }
+              = image.check_box :_destroy, data: { index: image.index }, class: 'hidden-destroy'
             - else
               -# nop
 
