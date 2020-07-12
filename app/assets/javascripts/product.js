@@ -110,10 +110,14 @@ $(document).on('turbolinks:load', ()=> {
     }
   });
 
+
+
+
+
   // 商品説明文の文字数カウンタ
-  $('.contents__product__explain').on('keyup', '#product_explain', function() {
+  $('#product_explain').on('keyup', function() {
     let count = $(this).val().length;
-    $('.contents__product__explain__counter__count').text(count); 
+    $('.contents__product__basic__explain__counter__count').text(count); 
   });
 
 
