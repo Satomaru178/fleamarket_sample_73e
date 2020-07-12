@@ -23,7 +23,7 @@ $(document).on('turbolinks:load', ()=> {
       <div class="image-index">画像${index}</div>
       <input class="js-file" type="file"
         name="product[images_attributes][${index}][src]"
-        id="product_images_attributes_${index}_src"><br>
+        id="product_images_attributes_${index}_src">
       <div class="js-remove">削除</div>
     </div>
     `;
@@ -110,9 +110,6 @@ $(document).on('turbolinks:load', ()=> {
     }
   });
 
-
-
-
   // 商品説明文の文字数カウンタ
   $('.contents__product__explain').on('keyup', '#product_explain', function() {
     let count = $(this).val().length;
@@ -124,69 +121,29 @@ $(document).on('turbolinks:load', ()=> {
 
 
   // 販売手数料と販売利益を計算する関数
-  let recalculation = ()=> {
-    // 一旦消したのを再描画する
-    const rebuild = (value)=> {
-      let html;
+  let calculate = (price)=> {
+    let commission;
+    let profit;
 
-      if ((value >= 300) && (value < 10_000_000)) {  // 販売価格の有効範囲内
-        let commission = Math.ceil(0.1*value);
-        let profit     = (value - commission);
-
-        html =
-        `
-        <div class="contents__product__price__sells-commission">
-        販売手数料(10%)
-        ${commission.toLocaleString()}円
-        </div>
-        <div class="contents__product__price__line">
-        ------------------------------
-        </div>
-        <div class="contents__product__price__profit">
-        販売利益
-        ${profit.toLocaleString()}円
-        </div>
-        `;
-      }
-      else {  // 販売価格の有効範囲外
-        html =
-        `
-        <div class="contents__product__price__sells-commission">
-        販売手数料(10%)
-        ---
-        </div>
-        <div class="contents__product__price__line">
-        ------------------------------
-        </div>
-        <div class="contents__product__price__profit">
-        販売利益
-        ---
-        </div>
-        `;
-      }
-
-      return html;
+    if ((price >= 300) && (price < 10_000_000)) {  // 販売価格の有効範囲内
+      commission = Math.floor(0.1*price);
+      profit     = (price - commission);
+      commission.toLocaleString();
+      profit.toLocaleString();
+    }
+    else {  // 販売価格の有効範囲外
+      commission = "---";
+      profit     = "---";
     }
 
-    // 一旦全部消す
-    $('.contents__product__price__sells-commission').remove();
-    $('.contents__product__price__line').remove();
-    $('.contents__product__price__profit').remove();
-
-    // 販売価格の値を取得
-    let target = $('#product_price').val();
-
     // 再描画
-    $('.contents__product__price').append(rebuild(target));
+    $('#commission').text(commission);
+    $('#profit').text(profit);
   }
 
-  // キー入力による変更の場合
-  $('.contents__product__price').on('keyup', function() {
-    recalculation();
-  });
-
-  // フォームのボタンによる変更の場合
-  $('.contents__product__price').on('change', function() {
-    recalculation();
+  // キー入力またはフォームのボタンにより販売価格が変更された場合
+  $('#product_price').on('keyup change', function() {
+    let price = $(this).val();
+    calculate(price);
   });
 });

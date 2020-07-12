@@ -1,22 +1,20 @@
--# 変数
-
-- line = "------------------------------"
-
 .content
+
+  %hr
+
   -# 編集削除ボタン
-  %p
-    = "#{line}"
 
   = link_to edit_product_path(product) do
     .content__edit-btn
       = "編集"
 
+  %br
+
   = link_to product_path(product), method: :delete do
     .content__delete-btn
       = "削除"
 
-  %p
-    = "#{line}"
+  %hr
 
   -# 画像
   .content__images
@@ -29,8 +27,7 @@
         %p
           = image.src.url
 
-  %p
-    = "#{line}"
+  %hr
 
   -# 商品
   
@@ -39,13 +36,14 @@
     %br
     = "#{product.name}"
 
+  %br
+
   .content__explain
     = "商品の説明"
     %br
     = "#{product.explain}"
 
-  %p
-    = "#{line}"
+  %hr
 
   -# 詳細
 
@@ -54,8 +52,7 @@
     %br
     = "#{product.condition.name}"
 
-  %p
-    = "#{line}"
+  %hr
 
   -# 配送
 
@@ -64,18 +61,21 @@
     %br
     = "#{product.costburden.name}"
 
+  %br
+
   .content__region
     = "発送の地域"
     %br
     = "#{product.shippingorigin.name}"
+
+  %br
 
   .content__period
     = "発送までの日数"
     %br
     = "#{product.shippingperiod.name}"
 
-  %p
-    = "#{line}"
+  %hr
 
   -# 価格
 
@@ -84,5 +84,4 @@
     %br
     = "#{product.price}円"
 
-  %p
-    = "#{line}"
+  %hr

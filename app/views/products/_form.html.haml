@@ -15,16 +15,12 @@
 - else
   -# nop
 
--# 変数
-
-- line = "------------------------------"
-
 .ceiling-contents
-  .furima-logo
-    = "logo"
+  = link_to root_path do
+    .furima-logo
+      = image_tag src="material/logo/logo.png", size: "140x40"
 
-%p
-  = "#{line}"
+%hr
 
 .contents
   .contents__product
@@ -57,8 +53,7 @@
             - else
               -# nop
 
-          %p
-            = "#{line}"
+          %hr
 
           = f.fields_for :images do |image|
             .js-file_group{ data: { index: image.index } }
@@ -74,19 +69,20 @@
             - else
               -# nop
 
-      %p
-        = "#{line}"
+      %hr
 
       -# 商品基本情報
 
       .contents__product__basic
-        .contents__product__name
+        .contents__product__basic__name
           = f.label '商品名(必須 40文字以内)'
           %br
           = f.text_field :name, placeholder: "40文字以内"
           %br
 
-        .contents__product__explain
+        %br
+
+        .contents__product__basic__explain
           = f.label '商品の説明(必須 1000文字以内)'
           %br
           = f.text_area :explain, placeholder: "1000文字以内"
@@ -95,8 +91,7 @@
               0
             = "/1000"
       
-      %p
-        = "#{line}"
+      %hr
 
       -# 商品詳細情報
 
@@ -111,14 +106,19 @@
                 #parent_category.contents__product__details__categories__category__wapper__box--select
                   = f.select :category_id, @category_parent_array, { prompt: "親カテゴリーを選択してください" }
 
+        %br
+
         .contents__product__details__brand
           = f.label "ブランド(任意)"
           %br
           = f.collection_select :brand_id, @brands, :id, :name, { prompt: "未選択" }
           %br
+          %br
           = link_to new_brand_path do
             .contents__product__details__brand__add-btn
               = "他のブランドを登録する"
+
+        %br
 
         .contents__product__details__condition
           = f.label '商品の状態(必須)'
@@ -126,8 +126,7 @@
           = f.collection_select :condition_id, Condition.all, :id, :name
           %br
 
-      %p
-        = "#{line}"
+      %hr
 
       -# 配送
 
@@ -140,11 +139,15 @@
           = f.collection_select :costburden_id, Costburden.all, :id, :name
           %br
 
+        %br
+
         .contents__product__about-delivery__shipping-origin
           = f.label '発送元の地域(必須)'
           %br
           = f.collection_select :shippingorigin_id, Shippingorigin.all, :id, :name
           %br
+
+        %br
 
         .contents__product__about-delivery__shipping-period
           = f.label '発送までの日数(必須)'
@@ -152,8 +155,7 @@
           = f.collection_select :shippingperiod_id, Shippingperiod.all, :id, :name
           %br
 
-      %p
-        = "#{line}"
+      %hr
 
       -# 価格
 
@@ -167,27 +169,36 @@
           = "円"
           %br
 
+        %br
+
         .contents__product__price__sells-commission
           = "販売手数料(10%)"
-          = "---"
+          %span#commission
+            = "---"
 
-        .contents__product__price__line
-          = "#{line}"
+        %hr
 
         .contents__product__price__profit
           = "販売利益"
-          = "---"
+          %span#profit
+            = "---"
 
       .contents__product__submit-btn
         = f.submit '出品する'
+
+      %br
 
       = link_to '#' do
         .contents__product__draft-btn
           = "下書きに保存"
 
+      %br
+
       = link_to root_path do
         .contents__return-btn
           = "トップページへ戻る"
+
+  %br
 
   .contents__caution
     = "禁止されている行為および出品物を必ずご確認ください。"
@@ -198,15 +209,25 @@
     %br
     = "加盟店規約に同意したことになります。"
 
+  %br
+
 .bottom-contents
   %ul.bottom-contents__items
     %li.bottom-contents__items__left
       = "プライバシーポリシー"
+    %br
     %li.bottom-contents__items__center
       = "FURIMA利用規約"
+    %br
     %li.bottom-contents__items__right
       = "特定商取引に関する表記"
-  .furima-logo
-    = "logo"
+    %br
+
+  = link_to root_path do
+    .furima-logo
+      = image_tag src="material/logo/logo.png", size: "140x40"
+
+  %br
+
   %p.bottom-contents__copyright
     &copy; FURIMA
