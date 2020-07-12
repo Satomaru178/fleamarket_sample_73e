@@ -1,5 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Image, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "product_idがない時は登録できないこと" do
+    pending 'うまくいかないのであとで修正する'
+    image = build(:image, product_id: nil)
+    expect(image).to be_invalid
+  end
+
+  it "srcがない時は登録できないこと" do
+    pending 'うまくいかないのであとで修正する'
+    image = build(:image, src: nil)
+    expect(image).to be_invalid
+  end
 end

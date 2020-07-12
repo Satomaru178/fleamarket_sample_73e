@@ -1,5 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe Brand, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#create' do
+    it "nameがない時は登録できないこと" do
+      brand = build(:brand, name: nil)
+      expect(brand).to be_invalid
+    end
+
+    it "nameが41文字の時は登録できないこと" do
+      brand = build(:brand, name: "a" * 41)
+      expect(brand).to be_invalid
+    end
+
+    it "nameが40文字の時は登録できること" do
+      brand = build(:brand, name: "a" * 40)
+      expect(brand).to be_valid
+    end
+  end
 end
