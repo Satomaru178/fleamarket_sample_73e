@@ -19,7 +19,9 @@
   .content
     = form_with model: @brand, local: true do |f|
       .content__brand-name
-        = f.label 'ブランド名(必須 40文字以内)'
+        = f.label 'ブランド名'
+        %span.must
+          = "(必須)"
         %br
         = f.text_field :name, placeholder: "40文字以内"
         %br
