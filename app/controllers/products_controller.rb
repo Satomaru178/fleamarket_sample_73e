@@ -8,6 +8,9 @@ class ProductsController < ApplicationController
   # 親カテゴリの配列を用意する
   before_action :set_categories, only: [:new, :create, :edit, :update]
 
+  # ブランド一覧を用意する
+  before_action :set_brands, only: [:new, :create, :edit, :update]
+
   def index
     @products = Product.includes(:images).order('created_at DESC')
   end
@@ -15,31 +18,33 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.images.new
-    @brands = Brand.all
   end
 
   def create
     @product = Product.new(product_params)
     if @product.save
       flash[:notice] = "商品を出品しました"
-      redirect_to root_path and return
+      redirect_to root_path
+      return
     else
-      flash[:notice] = "createエラー"
+      flash[:alert] = "createエラー"
       render :new
+      return
     end
   end
 
   def edit
-    @brands = Brand.all
   end
 
   def update
     if @product.update(product_params)
       flash[:notice] = "商品を編集しました"
-      redirect_to root_path and return
+      redirect_to root_path
+      return
     else
-      flash[:notice] = "updateエラー"
+      flash[:alert] = "updateエラー"
       render :edit
+      return
     end
   end
 
@@ -92,11 +97,15 @@ class ProductsController < ApplicationController
     end
   end
 
+  def set_brands
+    @brands = Brand.all
+  end
+
   def ensure_currect_user
     @product = Product.find(params[:id])
 
     if @product.seller_id != current_user.id
-      flash[:notice] = "権限がありません"
+      flash[:alert] = "権限がありません"
       redirect_to root_path
     else
       # nop

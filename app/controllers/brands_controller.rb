@@ -7,10 +7,12 @@ class BrandsController < ApplicationController
     @brand = Brand.new(brand_params)
     if @brand.save
       flash[:notice] = "ブランドを追加しました"
-      redirect_to root_path and return
+      redirect_to root_path
+      return
     else
-      flash[:notice] = "createエラー"
+      flash[:alert] = "createエラー"
       render :new
+      return
     end
   end
 
