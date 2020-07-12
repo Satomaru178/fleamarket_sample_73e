@@ -1,11 +1,5 @@
 -# エラー
 
-- if flash[:notice]
-  .notice
-    = flash[:notice]
-- else
-  -# nop
-
 - if @brand.errors.any?
   .alert
     %ul
