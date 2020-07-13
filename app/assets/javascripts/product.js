@@ -130,10 +130,8 @@ $(document).on('turbolinks:load', ()=> {
     let profit;
 
     if ((price >= 300) && (price < 10_000_000)) {  // 販売価格の有効範囲内
-      commission = Math.floor(0.1*price);
-      profit     = (price - commission);
-      commission.toLocaleString();
-      profit.toLocaleString();
+      commission = Math.floor(0.1 * price).toLocaleString();
+      profit     = Math.ceil(0.9 * price).toLocaleString();
     }
     else {  // 販売価格の有効範囲外
       commission = "---";
