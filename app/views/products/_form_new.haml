@@ -1,0 +1,196 @@
+= form_with model: @product, local: true do |f|
+
+  -# エラーメッセージ
+
+  = render 'layouts/error_messages', model: f.object
+
+  -# ユーザ
+
+  .contents__product__user
+    = f.hidden_field :seller_id, value: current_user.id
+
+  -# 画像
+
+  .contents__product__images
+    = f.label '出品画像'
+    %span.must
+      = "(必須)"
+    %br
+    #image-box
+      #previews
+        = "プレビュー(最大5枚までアップロードできます)"
+
+        %br
+
+        - if @product.persisted?
+          - @product.images.each_with_index do |image, i|
+            - if image.src.url.present?
+              %label
+                = "画像#{i}"
+                = image_tag image.src.url, data: { index: i }, size: '100x100'
+            - else
+              -# nop
+        - else
+          -# nop
+
+      %hr
+
+      = f.fields_for :images do |image|
+        .js-file_group{ data: { index: image.index } }
+          .image-index
+            = "画像#{image.index}"
+          .js-file
+            = image.file_field :src
+          .js-remove
+            = "削除"
+        - if @product.persisted?
+          = image.check_box :_destroy, data: { index: image.index }, class: 'hidden-destroy'
+        - else
+          -# nop
+
+  %hr
+
+  -# 商品基本情報
+
+  .contents__product__basic
+    .contents__product__basic__name
+      = f.label '商品名'
+      %span.must
+        = "(必須)"
+      %br
+      = f.text_field :name, placeholder: "40文字以内"
+      %br
+
+    %br
+
+    .contents__product__basic__explain
+      = f.label '商品の説明'
+      %span.must
+        = "(必須)"
+      %br
+      = f.text_area :explain, placeholder: "1000文字以内"
+      .contents__product__basic__explain__counter
+        %span.contents__product__basic__explain__counter__count
+          0
+        = "/1000"
+  
+  %hr
+
+  -# 商品詳細情報
+
+  .contents__product__details
+    = "商品の詳細"
+
+    .contents__product__details__categories
+      .contents__product__details__categories__category
+        = f.label 'カテゴリー'
+        %span.must
+          = "(必須)"
+        .contents__product__details__categories__category__wrapper
+          .contents__product__details__categories__category__wapper__box
+            #parent_category.contents__product__details__categories__category__wapper__box--select
+              = f.select :category_id, @category_parent_array, { prompt: "親カテゴリーを選択してください" }
+
+    %br
+
+    .contents__product__details__brand
+      = f.label "ブランド"
+      %span.optional
+        = "(任意)"
+      %br
+      = f.collection_select :brand_id, @brands, :id, :name, { prompt: "未選択" }
+      %br
+      %br
+      = link_to new_brand_path do
+        .contents__product__details__brand__add-btn
+          = "他のブランドを登録する"
+
+    %br
+
+    .contents__product__details__condition
+      = f.label '商品の状態'
+      %span.must
+        = "(必須)"
+      %br
+      = f.collection_select :condition_id, Condition.all, :id, :name
+      %br
+
+  %hr
+
+  -# 配送
+
+  .contents__product__about-delivery
+    = "配送について"
+
+    .contents__product__about-delivery__cost-burden
+      = f.label '配送料の負担'
+      %span.must
+        = "(必須)"
+      %br
+      = f.collection_select :costburden_id, Costburden.all, :id, :name
+      %br
+
+    %br
+
+    .contents__product__about-delivery__shipping-origin
+      = f.label '発送元の地域'
+      %span.must
+        = "(必須)"
+      %br
+      = f.collection_select :shippingorigin_id, Shippingorigin.all, :id, :name
+      %br
+
+    %br
+
+    .contents__product__about-delivery__shipping-period
+      = f.label '発送までの日数'
+      %span.must
+        = "(必須)"
+      %br
+      = f.collection_select :shippingperiod_id, Shippingperiod.all, :id, :name
+      %br
+
+  %hr
+
+  -# 価格
+
+  .contents__product__price
+    = "価格(300円〜9,999,999円)"
+
+    .contents__product__price__selling-price
+      = f.label '販売価格'
+      %span.must
+        = "(必須)"
+      %br
+      = f.number_field :price
+      = "円"
+      %br
+
+    %br
+
+    .contents__product__price__sells-commission
+      = "販売手数料(10%)"
+      %span#commission
+        = "---円"
+
+    %hr
+
+    .contents__product__price__profit
+      = "販売利益"
+      %span#profit
+        = "---円"
+
+  .contents__product__submit-btn
+    = f.submit '出品する'
+
+  %br
+
+  = link_to '#' do
+    .contents__product__draft-btn
+      = "下書きに保存"
+
+  %br
+
+  = link_to root_path do
+    .contents__return-btn
+      = "トップページへ戻る"
