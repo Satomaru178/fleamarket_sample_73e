@@ -1,0 +1,19 @@
+.user_mypage_sidebar
+  .user_mypage_sidebar-list
+    = link_to "マイページ", accounts_path, class: "user_mypage_sidebar-list_item"
+    = link_to "いいね！一覧", "#", class: "user_mypage_sidebar-list_item"
+    = link_to "出品する", "#", class: "user_mypage_sidebar-list_item"
+    = link_to "ニュース一覧", "#", class: "user_mypage_sidebar-list_item"
+    = link_to "評価一覧", "#", class: "user_mypage_sidebar-list_item"
+    = link_to "お問い合わせ", "#", class: "user_mypage_sidebar-list_item"
+    %h3.user_mypage_sidebar-config 
+      設定
+    .user_mypage_sidebar-list
+    = link_to "プロフィール", "#", class: "user_mypage_sidebar-list_item"
+    = link_to "発送元・お届け先住所変更", "#", class: "user_mypage_sidebar-list_item"
+    = link_to "支払い方法", "/creditcards/#{current_user.id}", class: "user_mypage_sidebar-list_item"
+    = link_to "メール/パスワード", "#", class: "user_mypage_sidebar-list_item"
+    = link_to "本人情報", "#", class: "user_mypage_sidebar-list_item"
+    = link_to "電話番号の確認", "#", class: "user_mypage_sidebar-list_item"
+    = link_to "ログアウト", logout_accounts_path, class: "user_mypage_sidebar-list_item"
+    

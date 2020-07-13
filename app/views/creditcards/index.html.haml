@@ -1,0 +1,16 @@
+.wrapper
+  = render "top/others/header"
+  .user_mypage
+    = render 'accounts/sidebar'
+    .user_mypage-config
+      .user_mypage-config_header
+        支払い方法
+      .user_mypage-config_main
+        .user_mypage-config_main-creditcard
+          %h3.user_mypage-config_main-creditcard_text
+            クレジットカード一覧
+          =link_to "クレジットカードを登録する", new_creditcard_path, class: "user_mypage-config_main-btn"
+        
+  = render "top/introduction/introduction-lower"
+  = render "top/others/footer"
+  = render "top/others/exhibition-btn"

@@ -1,11 +1,11 @@
 .user_mypage_main
-  - @user.each do |user|
-    .user_mypage_main-icon
-      .user_mypage_main-icon_image
-        .user_mypage_main-icon_image-photo
-        .user_mypage_main-icon_image-name
-          = user.nickname
+  .user_mypage_main-icon
+    .user_mypage_main-icon_image
+      .user_mypage_main-icon_image-photo
+      .user_mypage_main-icon_image-name
+      = current_user.nickname
     .user_mypage_main-icon_background-image
+      = image_tag ('material/pict/user_mypage_test.JPG')
   .user_mypage_main-buy
     %h2.user_mypage_main-buy_product
       購入した商品
@@ -15,3 +15,4 @@
       %a.user_mypage_main-buy_list-past
         過去の取引
     .user_mypage_main-buy_image
+    

@@ -1,14 +1,13 @@
 class AccountsController < ApplicationController
+  before_action :move_to_index
+
   def index
-    @user = User.all
-    @account = Account.new(account_params)
   end
 
-  def show
+  def logout
   end
 
-  def destory
+  def move_to_index
+    redirect_to controller: :top, action: :index unless user_signed_in?
   end
-
-
 end

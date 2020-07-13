@@ -1,0 +1,24 @@
+.wrapper
+  = render "top/others/header"
+  .user_mypage
+    = render 'accounts/sidebar'
+    .user_mypage-config
+      .user_mypage-config_header
+        支払い方法
+      .user_mypage-config_main
+        .user_mypage-config_main-creditcard
+          %h3.user_mypage-config_main-creditcard_text
+            クレジットカード一覧
+          .user_mypage-config_main-creditcard_list
+            .user_mypage-config_main-creditcard_list-icon
+              = image_tag "material/cards/#{@card_src}", class: "user_mypage-config_main-creditcard_list-icon_img", alt: @card_brand
+            .user_mypage-config_main-creditcard_list-number
+              = "**** **** **** " + @customer_card.last4
+            .user_mypage-config_main-creditcard_list-details
+              = @exp_month + " / " + @exp_year
+            .user_mypage-config_main-creditcard_btn
+              =link_to "編集", "#", class: "user_mypage-config_main-creditcard_btn-edit"
+              =link_to "削除", delete_creditcards_path, method: :delete, class: "user_mypage-config_main-creditcard_btn-delete"
+  = render "top/introduction/introduction-lower"
+  = render "top/others/footer"
+  = render "top/others/exhibition-btn"

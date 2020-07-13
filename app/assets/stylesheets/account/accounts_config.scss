@@ -1,0 +1,78 @@
+.user_mypage-config{
+  &_header{
+    width: 700px;
+    height: 50px;
+    border-bottom: 2px solid #f5f5f5;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 50px;
+    background-color: #ffffff;
+  }
+  &_main{
+    background-color:#ffffff ;
+    width: 700px;
+    height: fit-content;
+    padding: 64px;
+    &-creditcard{
+      border-bottom: 1px solid #f5f5f5;
+      &_text{
+        font-size: 16px;
+        margin: 0 126px;
+      }
+      &_list{
+        padding: 24px 0;
+        position: relative;
+        margin: 0 126px;
+        &-icon_img{
+          height:20px;
+          width: 26px;
+        }
+        &-number{
+          font-size: 16px;
+          margin:8px 0;
+        }
+        &-details{
+          font-size: 16px;
+          margin:8px 0;
+        }
+      }
+      &_btn{
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding:24px;
+        &-edit{
+          padding:4px 6px;
+          color:#20b2aa;
+          border: 1px solid #20b2aa;
+          border-radius: 3px;
+          text-decoration: none;
+          display: block;
+        }
+        &-delete{
+          padding:4px 6px;
+          color:red;
+          border: 1px solid red;
+          border-radius: 3px;
+          margin-top:8px;
+          text-decoration: none;
+          display: block;
+        }
+      }
+    }
+    &-btn{
+      display: block;
+      width: 320px;
+      height: 50px;
+      background-color: #20b2aa;
+      border: 1px solid #20b2aa;
+      line-height: 50px;
+      text-align: center;
+      margin: 24px auto;
+      text-decoration: none;
+      color: #ffffff;
+      border-radius: 4px;
+    }
+  }
+}

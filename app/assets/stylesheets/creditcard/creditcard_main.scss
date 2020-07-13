@@ -1,0 +1,142 @@
+.user_mypage-creditcard{
+  margin: 0 118.5px;
+  &_list{
+    display: flex;
+    &-text{
+      font-size:14px;
+    }
+  }
+  &_form{
+    margin-top:8px;
+    padding: 10px 16px 8px 16px;
+    height: 50px;
+    width: 100%;
+  }
+}
+
+.expirationdate{
+  margin-top:32px;
+  &_details{
+    display: flex;
+    &-date{
+      font-size: 14px;
+    }
+  }
+  &_choice{
+    display: flex;
+    &-month{
+      width: calc(50% - 2px);
+      height: 48px;
+      margin-top: 8px;
+      display: flex;
+      &_details{
+        text-align: center;
+        line-height: 50px;
+        margin: 0 auto;
+      }
+    }
+    &-year{
+      width: calc(50% - 2px);
+      height: 48px;
+      margin-top: 8px;
+      display: flex;
+      &_details{
+        text-align: center;
+        line-height: 50px;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+.securitycode{
+  margin-top:32px ;
+  &-details{
+    display: flex;
+    &_title{
+      font-size:14px;
+    }
+  }
+  &-cardsecurity{
+    margin-top: 8px;
+    &_form{
+      width: 100%;
+      height: 50px;
+      padding: 10px 16px 8px 16px;
+    }
+  }
+}
+
+.add{
+  display: block;
+  margin-top:32px;
+  width: 100%;
+  height: 50px;
+  &_btn{
+    width: 100%;
+    height: 50px;
+    line-height: 44px;
+    background-color: #20b2aa;
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    border: 1px solid #20b2aa;
+  }
+}
+
+#payment_card_month{
+  width: calc(100% - 38px);
+  padding: 0 16px;
+  height: 50px;
+}
+
+#payment_card_year{
+  width: calc(100% - 38px);
+  padding: 0 16px;
+  height: 50px;
+}
+
+.visa{
+  width: 49px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+.master{
+  width: 34px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+.jcb{
+  width: 32px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+.amex{
+  width: 21px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+.diners{
+  width: 32px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+.discover{
+  width: 32px;
+  height: 20px;
+  margin-top: 10px;
+}
+.must_check {
+  background-color: red;
+  color: #ffffff;
+  margin-left:10px;
+  padding:2px 4px;
+  border: 1px solid red;
+  border-radius: 3px;
+  font-size:12px
+}

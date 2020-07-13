@@ -2,7 +2,9 @@
   = render "top/others/header"
   .user_mypage
     = render "sidebar"
-    = render "main"
+    .user_mypage-config_main
+      =link_to "ログアウト", destroy_user_session_path, method: :delete, class: "user_mypage-config_main-btn"
+        
   = render "top/introduction/introduction-lower"
   = render "top/others/footer"
   = render "top/others/exhibition-btn"

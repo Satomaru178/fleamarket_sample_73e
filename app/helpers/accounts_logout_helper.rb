@@ -1,2 +1,0 @@
-module AccountsLogoutHelper
-end

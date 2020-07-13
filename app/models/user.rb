@@ -20,4 +20,5 @@ class User < ApplicationRecord
   }
   has_one :address
   has_one :account
+  has_one :creditcard
 end

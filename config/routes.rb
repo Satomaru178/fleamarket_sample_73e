@@ -8,6 +8,14 @@ Rails.application.routes.draw do
     get 'addresses', to: 'users/registrations#new_address'
     post 'addresses', to: 'users/registrations#create_address'
   end
-  resources :accounts, only: [:index, :show]
-  resources :accounts_logout , only: :index
+  resources :accounts, only: [:index, :show] do
+    collection do
+      get 'logout', to: 'accounts#logout'
+    end
+  end
+  resources :creditcards, only: [:index ,:new, :create, :show] do
+    collection do
+      delete 'delete', to: 'creditcards#delete'
+    end
+  end
 end

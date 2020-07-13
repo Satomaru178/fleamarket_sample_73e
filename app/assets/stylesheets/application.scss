@@ -31,4 +31,7 @@
 //ユーザーページー・ログアウトページ
 @import "account/sidebar";
 @import "account/main";
-@import "account/accounts_logout";
+@import "account/accounts_config";
+
+//クレジットカード登録画面
+@import "creditcard/creditcard_main"
