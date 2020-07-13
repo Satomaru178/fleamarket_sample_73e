@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :product do
+    id                 { 1 }
     name               { "test" }
     explain            { "test" }
     seller_id          { 1 }
