@@ -10,7 +10,7 @@ class BrandsController < ApplicationController
       redirect_to root_path
       return
     else
-      flash[:alert] = "createエラー"
+      flash[:alert] = "ブランドを追加できませんでした"
       render :new
       return
     end
