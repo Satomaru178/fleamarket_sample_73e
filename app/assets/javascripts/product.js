@@ -139,8 +139,8 @@ $(document).on('turbolinks:load', ()=> {
     }
 
     // 再描画
-    $('#commission').text(commission);
-    $('#profit').text(profit);
+    $('#commission').text(commission + "円");
+    $('#profit').text(profit + "円");
   }
 
   // キー入力またはフォームのボタンにより販売価格が変更された場合
