@@ -1,17 +1,10 @@
--# エラー
-
-- if @brand.errors.any?
-  .alert
-    %ul
-      - @brand.errors.full_messages.each do |message|
-        %li
-          = message
-- else
-  -# nop
-
 .wrapper
   .content
     = form_with model: @brand, local: true do |f|
+      -# エラーメッセージ
+      
+      = render 'layouts/error_messages', model: f.object
+
       .content__brand-name
         = f.label 'ブランド名'
         %span.must
@@ -19,9 +12,11 @@
         %br
         = f.text_field :name, placeholder: "40文字以内"
         %br
+
       .content__submit-btn
         = f.submit 'ブランドを追加する'
         %br
+
     = link_to root_path do
       .content__return-btn
         = "トップページへ戻る"
