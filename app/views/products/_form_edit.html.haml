@@ -87,9 +87,15 @@
         %span.must
           = "(必須)"
         .contents__product__details__categories__category__wrapper
-          .contents__product__details__categories__category__wapper__box
-            #parent_category.contents__product__details__categories__category__wapper__box--select
-              = f.select :category_id, @category_parent_array, { prompt: "親カテゴリーを選択してください" }
+          .contents__product__details__categories__category__wrapper__box
+            #parent_category.contents__product__details__categories__category__wrapper__box--select
+              = f.select "", options_for_select(@category_parent_array.map{|c|[c, {}]}, @product.category.parent.parent.name), { prompt: "親カテゴリーを選択してください" }, {name: '', id: 'parent_category_id'}
+        #children_wrapper.contents__product__details__categories__category__wrapper__added
+          .contents__product__details__categories__category__wrapper__box
+            = f.select "", options_for_select(@category_child_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @product.category.parent.id), { prompt: "子カテゴリーを選択してください" }, {class: 'contents__product__details__categories__category__wrapper__box--select', name: '', id: 'child_category'}
+        #grandchildren_wrapper.contents__product__details__categories__category__wrapper__added
+          .contents__product__details__categories__category__wrapper__box
+            = f.select :category_id, options_for_select(@category_grandchild_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @product.category.id), { prompt: "孫カテゴリーを選択してください" }, {class: 'contents__product__details__categories__category__wrapper__box--select', name: 'product[category_id]', id: 'grandchild_category'}
 
     %br
 

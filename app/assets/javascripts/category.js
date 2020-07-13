@@ -89,7 +89,6 @@ $(document).on('turbolinks:load', ()=> {
         dataType: 'json'
       })
       .done(function(grandchildren){
-        console.log(grandchildren);
         if (grandchildren) {
           $('#grandchildren_wrapper').remove();  // 一旦削除する
           let insertHTML='';

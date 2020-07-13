@@ -8,6 +8,9 @@ class ProductsController < ApplicationController
   # 親カテゴリの配列を用意する
   before_action :set_categories, only: [:new, :create, :edit, :update]
 
+  # 子カテゴリと孫カテゴリの配列を用意する
+  before_action :set_categories_edit, only: [:edit, :update]
+
   # ブランド一覧を用意する
   before_action :set_brands, only: [:new, :create, :edit, :update]
 
@@ -96,6 +99,14 @@ class ProductsController < ApplicationController
     Category.where(ancestry: nil).each do |parent|
       @category_parent_array << parent.name
     end
+  end
+
+  def set_categories_edit
+    # productが所属する子カテゴリーの一覧を配列で取得
+    @category_child_array = @product.category.parent.parent.children
+
+    # productが所属する孫カテゴリーの一覧を配列で取得
+    @category_grandchild_array = @product.category.parent.children
   end
 
   def set_brands
