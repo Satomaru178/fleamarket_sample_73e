@@ -26,12 +26,13 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.images.new
+    
     if @product.save
       flash[:notice] = "商品を出品しました"
       redirect_to root_path
       return
     else
-      flash[:alert] = "createエラー"
+      flash[:alert] = "商品を出品できませんでした"
       render :new
       return
     end
@@ -46,7 +47,7 @@ class ProductsController < ApplicationController
       redirect_to root_path
       return
     else
-      flash[:alert] = "updateエラー"
+      flash[:alert] = "商品を編集できませんでした"
       render :edit
       return
     end
@@ -56,9 +57,14 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
-    flash[:notice] = "商品を削除しました"
+    if @product.destroy
+      flash[:notice] = "商品を削除しました"
+    else
+      flash[:alert] = "商品を削除できませんでした"
+    end
+
     redirect_to root_path
+    return
   end
 
   # 親カテゴリーが選択された時に動くアクション
