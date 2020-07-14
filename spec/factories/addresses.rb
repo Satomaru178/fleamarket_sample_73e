@@ -1,7 +1,6 @@
 FactoryBot.define do
   
   factory :address do
-    id                { 1 }
     first_name        { "佐藤" }
     last_name         { "太郎" }
     first_name_kana   { "さとう" }
