@@ -9,7 +9,7 @@
         .user_mypage-config_main-creditcard
           %h3.user_mypage-config_main-creditcard_text
             クレジットカード一覧
-          =link_to "クレジットカードを登録する", new_creditcard_path, class: "user_mypage-config_main-btn"
+          =link_to "クレジットカードを登録する", new_creditcard_path, data: {"turbolinks" => false}, class: "user_mypage-config_main-btn"
         
   = render "top/introduction/introduction-lower"
   = render "top/others/footer"
