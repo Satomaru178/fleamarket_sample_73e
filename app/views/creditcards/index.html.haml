@@ -1,15 +1,15 @@
 .wrapper
   = render "top/others/header"
-  .user_mypage
+  .user__mypage
     = render 'accounts/sidebar'
-    .user_mypage-config
-      .user_mypage-config_header
+    .user__mypage__config
+      .user__mypage__config__header
         支払い方法
-      .user_mypage-config_main
-        .user_mypage-config_main-creditcard
-          %h3.user_mypage-config_main-creditcard_text
+      .user__mypage__config__main
+        .user__mypage__config__main__creditcard
+          %h3.user__mypage__config__main__creditcard__text
             クレジットカード一覧
-          =link_to "クレジットカードを登録する", new_creditcard_path, data: {"turbolinks" => false}, class: "user_mypage-config_main-btn"
+          =link_to "クレジットカードを登録する", new_creditcard_path, data: {"turbolinks" => false}, class: "user__mypage__config__main__btn"
         
   = render "top/introduction/introduction-lower"
   = render "top/others/footer"

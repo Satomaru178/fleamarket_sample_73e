@@ -1,12 +1,12 @@
-.user_mypage-creditcard{
+.user__mypage__creditcard{
   margin: 0 118.5px;
-  &_list{
+  &__list{
     display: flex;
-    &-text{
+    &__text{
       font-size:14px;
     }
   }
-  &_form{
+  &__form{
     margin-top:8px;
     padding: 10px 16px 8px 16px;
     height: 50px;
@@ -16,31 +16,31 @@
 
 .expirationdate{
   margin-top:32px;
-  &_details{
+  &__details{
     display: flex;
-    &-date{
+    &__date{
       font-size: 14px;
     }
   }
-  &_choice{
+  &__choice{
     display: flex;
-    &-month{
+    &__month{
       width: calc(50% - 2px);
       height: 48px;
       margin-top: 8px;
       display: flex;
-      &_details{
+      &__details{
         text-align: center;
         line-height: 50px;
         margin: 0 auto;
       }
     }
-    &-year{
+    &__year{
       width: calc(50% - 2px);
       height: 48px;
       margin-top: 8px;
       display: flex;
-      &_details{
+      &__details{
         text-align: center;
         line-height: 50px;
         margin: 0 auto;
@@ -51,15 +51,15 @@
 
 .securitycode{
   margin-top:32px ;
-  &-details{
+  &__details{
     display: flex;
-    &_title{
+    &__title{
       font-size:14px;
     }
   }
-  &-cardsecurity{
+  &__cardsecurity{
     margin-top: 8px;
-    &_form{
+    &__form{
       width: 100%;
       height: 50px;
       padding: 10px 16px 8px 16px;
@@ -72,7 +72,7 @@
   margin-top:32px;
   width: 100%;
   height: 50px;
-  &_btn{
+  &__btn{
     width: 100%;
     height: 50px;
     line-height: 44px;
@@ -81,6 +81,7 @@
     border-radius: 4px;
     font-size: 14px;
     border: 1px solid #20b2aa;
+    cursor: pointer;
   }
 }
 
@@ -131,6 +132,7 @@
   height: 20px;
   margin-top: 10px;
 }
+
 .must_check {
   background-color: red;
   color: #ffffff;

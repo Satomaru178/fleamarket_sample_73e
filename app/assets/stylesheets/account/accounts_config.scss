@@ -1,5 +1,5 @@
-.user_mypage-config{
-  &_header{
+.user__mypage__config{
+  &__header{
     width: 700px;
     height: 50px;
     border-bottom: 2px solid #f5f5f5;
@@ -9,40 +9,40 @@
     line-height: 50px;
     background-color: #ffffff;
   }
-  &_main{
+  &__main{
     background-color:#ffffff;
     width: 700px;
     height: fit-content;
     padding: 64px;
-    &-creditcard{
+    &__creditcard{
       border-bottom: 1px solid #f5f5f5;
-      &_text{
+      &__text{
         font-size: 16px;
         margin: 0 126px;
       }
-      &_list{
+      &__list{
         padding: 24px 0;
         position: relative;
         margin: 0 126px;
-        &-icon_img{
+        &__icon__img{
           height:20px;
           width: 26px;
         }
-        &-number{
+        &__number{
           font-size: 16px;
           margin:8px 0;
         }
-        &-details{
+        &__details{
           font-size: 16px;
           margin:8px 0;
         }
       }
-      &_btn{
+      &__btn{
         position: absolute;
         top: 0;
         right: 0;
         padding:24px;
-        &-edit{
+        &__edit{
           padding:4px 6px;
           color:#20b2aa;
           border: 1px solid #20b2aa;
@@ -50,7 +50,7 @@
           text-decoration: none;
           display: block;
         }
-        &-delete{
+        &__delete{
           padding:4px 6px;
           color:red;
           border: 1px solid red;
@@ -61,7 +61,7 @@
         }
       }
     }
-    &-btn{
+    &__btn{
       display: block;
       width: 320px;
       height: 50px;

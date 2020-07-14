@@ -28,7 +28,7 @@ class CreditcardsController < ApplicationController
       if @card.save
         redirect_to "/creditcards/#{current_user.id}"
       else
-        redirect_to action: "create"
+        redirect_to action: "new"
       end
     end
   end
@@ -77,5 +77,4 @@ class CreditcardsController < ApplicationController
   def move_to_index
     redirect_to controller: :top, action: :index unless user_signed_in?
   end
-
 end

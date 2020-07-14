@@ -31,6 +31,7 @@ window.addEventListener('DOMContentLoaded', function(){
         alert("登録が完了しました"); //正常処理完了確認用。createビューがあればつけなくてもOKかな
       } else {
         alert("カード情報が正しくありません。"); //エラー確認用
+        location.reload();
       }
     });
   });
