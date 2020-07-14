@@ -2,14 +2,19 @@ require 'rails_helper'
 
 describe BrandsController do
   describe 'GET #new' do
-    it "@productに正しい値が入っていること" do
-      pending 'あとで記載する'
+    it 'リクエストが成功すること' do
+      get :new
+      expect(response.status).to eq 200
     end
 
-    it "new.html.hamlに遷移すること" do
-      pending 'うまくいかないのであとで修正する'
+    it 'newテンプレートで表示されること' do
       get :new
       expect(response).to render_template :new
+    end
+
+    it '@brandがnewされていること' do
+      get :new
+      expect(assigns :brand).to_not be_nil
     end
   end
 end
