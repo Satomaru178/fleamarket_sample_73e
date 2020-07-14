@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
     e.preventDefault(); //ボタンを1度無効化
 
-    let card = { //入力されたカード情報を取得(id名の記載ミスに注意！)
+    var card = { //入力されたカード情報を取得(id名の記載ミスに注意！)
         number: document.getElementById("payment_card_no").value,
         cvc: document.getElementById("payment_card_cvc").value,
         exp_month: document.getElementById("payment_card_month").value,
