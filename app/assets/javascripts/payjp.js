@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
  
   //id名が"payment_card_submit-button"というボタンが押されたら取得
-  let submit = document.getElementById("payment_card_submit-button");
+  const submit = document.getElementById("payment_card_submit-button");
 
   Payjp.setPublicKey('pk_test_2b2efb535dc7f0a1d38745d2'); //公開鍵の記述(ご自身の公開鍵コードを記述しよう！)
   
