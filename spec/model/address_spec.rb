@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Address do
   describe '#create' do
     #1
-    it "入力された情報が全て正しい婆は登録できること" do
+    it "入力された情報が全て正しい場合は登録できること" do
       address = build(:address)
       expect(address).to be_valid
     end
@@ -30,7 +30,7 @@ describe Address do
     end
 
     #5
-    it "last_nameが日本語以外の文字がある場合には登録できないこと" do
+    it "last_nameが日本語以外の文字がある場合は登録できないこと" do
       address = build(:address, last_name: "Sato")
       address.valid?
       expect(address.errors[:last_name]).to include("は不正な値です")
@@ -44,7 +44,7 @@ describe Address do
     end
 
     #7
-    it "first_name_kanaがひらがな以外が入力されている場合登録できないこと" do
+    it "first_name_kanaにひらがな以外が入力されている場合は登録できないこと" do
       address = build(:address, first_name_kana: "Sato")
       address.valid?
       expect(address.errors[:first_name_kana]).to include("は不正な値です")
@@ -58,28 +58,28 @@ describe Address do
     end
 
     #9
-    it "last_name_kanaがひらがな以外が入力されている場合は登録できにないこと" do
+    it "last_name_kanaにひらがな以外が入力されている場合は登録できにないこと" do
       address = build(:address, last_name_kana: "Taro")
       address.valid?
       expect(address.errors[:last_name_kana]).to include("は不正な値です")
     end
 
     #10
-    it "zipcodeが７桁でないなら登録できないこと" do
+    it "zipcodeが7桁でない場合は登録できないこと" do
       address = build(:address, zipcode: "12345678")
       address.valid?
       expect(address.errors[:zipcode]).to include("は不正な値です")
     end
 
     #11
-    it "zipcodeが数字でないなら登録できないこと" do
+    it "zipcodeが数字でない場合は登録できないこと" do
       address = build(:address, zipcode: "abcdefg")
       address.valid?
       expect(address.errors[:zipcode]).to include("は不正な値です")
     end
 
     #12
-    it "zipコードが7桁であるなら登録できること" do
+    it "zipcodeが7桁であるなら登録できること" do
       address = build(:address, zipcode: "1111111")
       expect(address).to be_valid
     end
@@ -92,13 +92,13 @@ describe Address do
     end
 
     #14
-    it "prefectureが都道府県であるなら、登録できること" do
+    it "prefectureが都道府県である場合は登録できること" do
       address = build(:address, prefecture: "沖縄県")
       expect(address).to be_valid
     end
 
     #15
-    it "cityが入力されていないと登録できないこと" do
+    it "cityが入力されていない場合は登録できないこと" do
       address = build(:address, city: nil)
       address.valid?
       expect(address.errors[:city]).to include("を入力してください")
@@ -112,14 +112,14 @@ describe Address do
     end
 
     #17
-    it "tellが10桁or11桁でなければ登録できないこと" do
+    it "tellが10桁or11桁でない場合は登録できないこと" do
       address = build(:address, tell: "123456789")
       address.valid?
       expect(address.errors[:tell]).to include("は不正な値です")
     end
 
     #18
-    it "tellが数字以外の入力がある場合は登録できないこと" do
+    it "tellに数字以外の入力がある場合は登録できないこと" do
       address = build(:address, tell: "abcdefghij")
       address.valid?
       expect(address.errors[:tell]).to include("は不正な値です")
