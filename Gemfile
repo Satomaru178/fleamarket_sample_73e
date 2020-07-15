@@ -82,6 +82,9 @@ gem 'carrierwave'
 gem 'fog-aws'
 gem 'mini_magick'
 gem 'enum_help' 
+gem 'payjp'
+gem 'dotenv-rails'
+gem 'jquery-rails'
 
 gem 'active_hash'
 

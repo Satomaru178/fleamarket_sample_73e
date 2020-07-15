@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
+    sessions: 'users/sessions'
   }
 
   devise_scope :user do
@@ -20,4 +21,17 @@ Rails.application.routes.draw do
   end
 
   resources :brands, only: [:new, :create]
+
+  resources :accounts, only: [:index, :show] do
+    collection do
+      get 'logout', to: 'accounts#logout'
+    end
+  end
+
+  resources :creditcards, only: [:index ,:new, :create, :show] do
+    collection do
+      delete 'delete', to: 'creditcards#delete'
+      post   "date",   to: 'creditcards#show'
+    end
+  end
 end
