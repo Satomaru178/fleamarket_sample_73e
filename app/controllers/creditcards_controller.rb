@@ -5,19 +5,23 @@ class CreditcardsController < ApplicationController
   require "payjp"
 
   def index
+    if @card.blank?
+      redirect_to action: "show"
+    else
+    end
   end
 
   def new
     @card = Creditcard.where(user_id: current_user.id)
     if @card.exists?
-      redirect_to "/creditcards/#{current_user.id}"
+      redirect_to action: "index"
     end
   end
 
   def create
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     if params["payjp_token"].blank?
-      redirect_to action: "new", alert: "クレジットカードを登録できませんでした。"
+      redirect_to action: "index" "クレジットカードを登録できませんでした"
     else
       customer = Payjp::Customer.create(
         email: current_user.email,
@@ -26,7 +30,7 @@ class CreditcardsController < ApplicationController
       )
       @card = Creditcard.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
-        redirect_to "/creditcards/#{current_user.id}"
+        redirect_to action: "show"
       else
         redirect_to action: "new"
       end
@@ -64,7 +68,7 @@ class CreditcardsController < ApplicationController
   def delete
     @card = Creditcard.find_by(user_id: current_user.id)
     if @card.blank?
-      redirect_to action: :index
+      redirect_to action: "index"
     else
       Payjp.api_key =  ENV["PAYJP_PRIVATE_KEY"]
       customer = Payjp::Customer.retrieve(@card.customer_id)
