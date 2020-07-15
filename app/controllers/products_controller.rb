@@ -25,13 +25,14 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.images.new
     
     if @product.save
       flash[:notice] = "商品を出品しました"
       redirect_to root_path
       return
     else
+      # renderで戻された時画像入力フォームがなくなってしまう事象への対策
+      @product.images.new(src: 'material/icon/icon_camera.png')
       flash[:alert] = "商品を出品できませんでした"
       render :new
       return

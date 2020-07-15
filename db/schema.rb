@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2020_07_11_111631) do
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "product_id"
-    t.string "src"
+    t.string "src", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_images_on_product_id"
