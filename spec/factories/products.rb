@@ -7,10 +7,26 @@ FactoryBot.define do
     shippingorigin_id  { 1 }
     shippingperiod_id  { 1 }
     price              { 500 }
-    seller             { build(:takashi) }
-    buyer              { build(:satoshi) }
+    seller             {
+                          create(
+                            :seller,
+                            nickname: Faker::Name.name,
+                            email:    Faker::Internet.email
+                          )
+                        }
+    buyer               {
+                          create(
+                            :buyer,
+                            nickname: Faker::Name.name,
+                            email:    Faker::Internet.email
+                          )
+                        }
     category
     brand
+
+    before(:create) do |product|
+      product.images << create(:image, src: "hoge.png")
+    end
   end
 
   factory :redshirt, class: Product do
@@ -21,10 +37,14 @@ FactoryBot.define do
     shippingorigin_id  { 2 }
     shippingperiod_id  { 2 }
     price              { 2500 }
-    seller             { build(:takashi) }
-    buyer              { build(:satoshi) }
+    seller
+    buyer
     category
     brand
+
+    before(:create) do |product|
+      product.images << create(:image, src: "hoge.png")
+    end
   end
 
   factory :blueshirt, class: Product do
@@ -35,9 +55,13 @@ FactoryBot.define do
     shippingorigin_id  { 3 }
     shippingperiod_id  { 3 }
     price              { 1500 }
-    seller             { build(:satoshi) }
-    buyer              { build(:takashi) }
+    seller
+    buyer
     category
     brand
+
+    before(:create) do |product|
+      product.images << create(:image, src: "hoge.png")
+    end
   end
 end

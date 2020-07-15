@@ -11,9 +11,9 @@ FactoryBot.define do
     birthday              { "1990-1-1" }
   end
 
-  factory :takashi, class: User do
-    nickname              { "takashi" }
-    email                 { "takashi@example.com" }
+  factory :seller, class: User do
+    nickname              { Faker::Name.name }
+    email                 { Faker::Internet.email }
     password              { "password" }
     password_confirmation { "password" }
     first_name            { "新井" }
@@ -23,9 +23,9 @@ FactoryBot.define do
     birthday              { "1995-6-15" }
   end
 
-  factory :satoshi, class: User do
-    nickname              { "satoshi" }
-    email                 { "satoshi@example.com" }
+  factory :buyer, class: User do
+    nickname              { Faker::Name.name }
+    email                 { Faker::Internet.email }
     password              { "password" }
     password_confirmation { "password" }
     first_name            { "石田" }

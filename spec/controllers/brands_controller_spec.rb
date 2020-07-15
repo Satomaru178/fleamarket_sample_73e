@@ -14,7 +14,7 @@ describe BrandsController do
 
     it '@brandがnewされていること' do
       get :new
-      expect(assigns :brand).to_not be_nil
+      expect(assigns :brand).not_to be_nil
     end
   end
 end
