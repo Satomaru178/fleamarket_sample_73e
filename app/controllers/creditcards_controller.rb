@@ -21,8 +21,7 @@ class CreditcardsController < ApplicationController
   def create
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     if params["payjp_token"].blank?
-      redirect_to action: "index" "クレジットカードを登録できませんでした"
-    else
+      redirect_to action: "index"
       customer = Payjp::Customer.create(
         email: current_user.email,
         card: params["payjp_token"],
