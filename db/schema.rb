@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(version: 2020_07_08_130742) do
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_creditcards_on_user_id"
   end
+  
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "ancestry"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "ancestry"], name: "index_categories_on_name_and_ancestry"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", null: false

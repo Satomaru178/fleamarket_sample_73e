@@ -4,7 +4,7 @@ class CreateAccounts < ActiveRecord::Migration[5.2]
       t.references :user,          null: false, forign_key: true
       t.string :icon_image
       t.string :background_image
-      t.text :profile
+      t.text :introduction
       t.timestamps
     end
   end
