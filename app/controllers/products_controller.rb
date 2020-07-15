@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
       return
     else
       # renderで戻された時画像入力フォームがなくなってしまう事象への対策
-      @product.images.new(src: 'material/icon/icon_camera.png')
+      @product.images.new
       flash[:alert] = "商品を出品できませんでした"
       render :new
       return
