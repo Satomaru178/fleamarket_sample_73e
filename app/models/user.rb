@@ -19,4 +19,6 @@ class User < ApplicationRecord
   with:/\A[ぁ-んー－]+\z/,
   }
   has_one :address
+  has_one :account
+  has_one :creditcard
 end

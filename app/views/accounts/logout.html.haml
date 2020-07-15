@@ -1,0 +1,10 @@
+.wrapper
+  = render "top/others/header"
+  .user__mypage
+    = render "sidebar"
+    .user__mypage__config__main
+      =link_to "ログアウト", destroy_user_session_path, method: :delete, class: "user__mypage__config__main__btn"
+        
+  = render "top/introduction/introduction-lower"
+  = render "top/others/footer"
+  = render "top/others/exhibition-btn"

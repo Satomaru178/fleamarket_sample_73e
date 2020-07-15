@@ -1,0 +1,67 @@
+.user__mypage{
+  background-color:#f5f5f5;
+  margin:auto;
+  padding: 40px 0; 
+  display: flex;
+  justify-content: center;
+  &__main{
+    width: 700px;
+    height: auto;
+    &__icon{
+      width: 700px;
+      height: 200px;
+      position: relative;
+      &__image{
+        position: absolute;
+        right: 320px;
+        top:50px;
+        &__photo{
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        }
+        &__name{
+          text-align: center;
+        }
+      }
+      &__backgraund__image{
+        position: absolute;
+      }
+    }
+    &__buy{
+      background-color: white;
+      width: 700px;
+      &__product{
+        padding:0 16px;
+        height: 72px;
+        line-height: 72px;
+        font-size:16px;
+      }
+      &__list{
+        display: flex;
+        &__now{
+        height: 72px;
+        width: 350px;
+        border-top: 2px solid #20b2aa;
+        background-color: #ffffff;
+        line-height: 72px;
+        text-align: center;
+
+        }
+        &__past{
+          height: 72px;
+          width: 350px;
+          background-color:#f5f5f5;
+          line-height: 72px;
+          text-align: center;
+        }
+      }
+      &__image{
+        width: 700px;
+        height: auto;
+        background-color:#ffffff;
+      }
+    }
+  }
+}
