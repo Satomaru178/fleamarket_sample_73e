@@ -76,25 +76,21 @@ $(document).on('turbolinks:load', ()=> {
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);
 
-    if (img = $(`img[data-index="${targetIndex}"]`)[0]) {  // 既存の画像を変更?
-      if (blobUrl) {  // 画像のURLがある?
+    if (blobUrl) {
+      img = $(`img[data-index="${targetIndex}"]`)[0]
+      if (img) {  // 既存の画像を変更?
         img.setAttribute('src', blobUrl);
       }
-      else {  // 画像のURLがない
-        // nop
-      }
-    }
-    else {  // 新規の画像を追加
-      if (blobUrl) {  // 画像のURLがある?
+      else {  // 新規の画像を追加
         $('#previews').append(buildImg(targetIndex, blobUrl));  // previewに画像を追加
 
         // indexから追加した画像に対応するものを除去
         const pos = fileIndex.indexOf(targetIndex);
         fileIndex.splice(pos, 1);
       }
-      else {  // 画像のURLがない
-        // nop
-      }
+    }
+    else {  // 画像のURLがない
+      // nop
     }
   });
 
@@ -107,7 +103,8 @@ $(document).on('turbolinks:load', ()=> {
     // 保存済画像を削除するフラグを立てる
     $(`input[data-index="${targetIndex}"].hidden-destroy`).prop('checked', true);
 
-    if (img = $(`img[data-index="${targetIndex}"]`)[0]) {  // 画像がある?
+    img = $(`img[data-index="${targetIndex}"]`)[0]
+    if (img) {  // 画像がある?
       // previewの画像を削除する
       $(`img[data-index="${targetIndex}"]`).parent().remove();
 
