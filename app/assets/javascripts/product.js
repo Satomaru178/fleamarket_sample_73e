@@ -35,6 +35,16 @@ $(document).on('turbolinks:load', ()=> {
   let fileIndex = [...Array(arraySize)].map((_,i) => i);
 
   for (let i = 0; i < arraySize; i++) {
+    // 保存済画像を削除するフラグを取得
+    const hiddenCheck = $(`input[data-index="${i}"].hidden-destroy`);
+    if (hiddenCheck.prop("checked")) {  // checked
+      // previewの画像を削除する
+      $(`img[data-index="${i}"]`).parent().remove();
+    }
+    else {  // unchecked
+      hiddenCheck.prop("checked", false);  // フラグを外す
+    }
+
     // 画像に対応するindexを除去
     if ($(`img[data-index="i"]`)[0]) {  // 画像がある?
       fileIndex.splice(i, 1);
@@ -50,7 +60,7 @@ $(document).on('turbolinks:load', ()=> {
     $('#image-box').append(buildFileField(j));  // 画像用inputを増やす
   }
 
-  // DBに保存されている画像かどうかを判定するフラグを隠す
+  // 保存済画像フラグを非表示にする
   $('.hidden-destroy').hide();
 
   // 画像用のinputが変化した
@@ -58,6 +68,9 @@ $(document).on('turbolinks:load', ()=> {
 
     // 対応するindexを取得する
     const targetIndex = $(this).parent().data('index');
+
+    // 保存済画像を削除するフラグを外す
+    $(`input[data-index="${targetIndex}"].hidden-destroy`).prop("checked", false);
 
     // 画像ファイルのURLを取得する
     const file = e.target.files[0];
@@ -88,15 +101,11 @@ $(document).on('turbolinks:load', ()=> {
   // 画像用inputの削除ボタンが押された
   $('#image-box').on('click', '.js-remove', function() {
 
-    // 対応するindexが振られているチェックボックスが存在すればチェックを入れる
+    // 対応するindexを取得する
     const targetIndex = $(this).parent().data('index');
-    const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
-    if (hiddenCheck) {  // チェックボックスが存在する?
-      hiddenCheck.prop('checked', true);  // チェックを入れる
-    }
-    else {  // チェックボックスが存在しない
-      // nop
-    }
+
+    // 保存済画像を削除するフラグを立てる
+    $(`input[data-index="${targetIndex}"].hidden-destroy`).prop('checked', true);
 
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {  // 画像がある?
       // previewの画像を削除する
