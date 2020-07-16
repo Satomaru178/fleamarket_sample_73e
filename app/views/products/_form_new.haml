@@ -22,17 +22,6 @@
 
         %br
 
-        - if @product.persisted?
-          - @product.images.each_with_index do |image, i|
-            - if image.src.url.present?
-              %label
-                = "画像#{i}"
-                = image_tag image.src.url, data: { index: i }, size: '100x100'
-            - else
-              -# nop
-        - else
-          -# nop
-
       %hr
 
       = f.fields_for :images do |image|
@@ -43,10 +32,6 @@
             = image.file_field :src
           .js-remove
             = "削除"
-        - if @product.persisted?
-          = image.check_box :_destroy, data: { index: image.index }, class: 'hidden-destroy'
-        - else
-          -# nop
 
   %hr
 
