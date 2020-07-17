@@ -16,7 +16,7 @@
           %li.header__contents__lower__right-items__signup
             = link_to accounts_path do
               マイページ       
-        -else
+        - else
           %li.header__contents__lower__right-items__login
             = link_to new_user_session_path do
               ログイン
