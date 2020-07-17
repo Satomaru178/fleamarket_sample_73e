@@ -10,10 +10,9 @@
 }
 
 .alert {
-  background-color: pink;
+  padding: 9px 0 15px;
   color: red;
-  line-height: 1.5;
-  padding: 10px;
+  font-size: 13px;
 }
 
 .success {
@@ -24,6 +23,7 @@
 }
 
 .alert__sign-up {
-  padding-top: 5px;
+  padding-top: 9px;
   color: red;
+  font-size: 13px;
 }
