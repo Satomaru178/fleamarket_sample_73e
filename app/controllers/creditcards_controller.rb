@@ -1,6 +1,5 @@
 class CreditcardsController < ApplicationController
-  before_action :move_to_index
-
+  before_action :move_to_index, only: [:index, :new, :create, :show, :delete]
 
   require "payjp"
 
@@ -77,6 +76,8 @@ class CreditcardsController < ApplicationController
       redirect_to action: "index"
     end
   end
+
+  private
 
   def move_to_index
     redirect_to controller: :top, action: :index unless user_signed_in?
