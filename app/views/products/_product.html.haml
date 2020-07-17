@@ -1,24 +1,21 @@
 .content
-
-  %hr
-
   -# 編集削除ボタン
 
   = link_to edit_product_path(product) do
     .content__edit-btn
-      = "編集"
+      = "商品#{product.id}を編集する"
 
   %br
 
   = link_to product_path(product), method: :delete do
     .content__delete-btn
-      = "削除"
+      = "商品#{product.id}を削除する"
 
   %hr
 
   -# 画像
   .content__images
-    = "商品画像"
+    = "商品#{product.id}の画像"
     %br
     - product.images.each do |image|
       - if image.src.url
@@ -32,14 +29,14 @@
   -# 商品
   
   .content__name
-    = "商品名"
+    = "商品#{product.id}の名前"
     %br
     = "#{product.name}"
 
   %br
 
   .content__explain
-    = "商品の説明"
+    = "商品#{product.id}の説明"
     %br
     = "#{product.explain}"
 
@@ -48,7 +45,7 @@
   -# 詳細
 
   .content__condition
-    = "商品の状態"
+    = "商品#{product.id}の状態"
     %br
     = "#{product.condition.name}"
 
