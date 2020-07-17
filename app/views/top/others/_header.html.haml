@@ -10,13 +10,7 @@
             .header__contents__upper__form__submit-btn
               .header__contents__upper__form__submit-btn__icon
     .header__contents__lower
-      %ul.header__contents__lower__left-items
-        %li.header__contents__lower__left-items__categories
-          = link_to '#' do
-            カテゴリー
-        %li.header__contents__lower__left-items__brands
-          = link_to '#' do
-            ブランド
+      = render "top/others/header-menu"
       %ul.header__contents__lower__right-items
         -if user_signed_in?
           %li.header__contents__lower__right-items__signup
