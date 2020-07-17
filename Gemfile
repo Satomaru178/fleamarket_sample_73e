@@ -94,3 +94,4 @@ gem 'dotenv-rails'
 gem 'jquery-rails'
 
 gem 'ancestry'
+gem 'jquery-rails'

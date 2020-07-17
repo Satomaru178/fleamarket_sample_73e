@@ -1,6 +1,3 @@
-.notification
-  - flash.each do |key, value|
-    = content_tag :div, value, class: key
 #account-page.account-page
   = render "devise/registrations/header"
   .sign-in-page__inner
@@ -22,6 +19,9 @@
             = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス"
           .sign-in-form__field__input
             = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード"
+            .notification
+              - flash.each do |key, value|
+                = content_tag :div, value, class: key
           .sign-in-form__submit-btn
             = f.submit "ログイン"
         %a{ href: '/users/password/new', id: 'forget-password' }

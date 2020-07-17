@@ -1,4 +1,3 @@
-= render "devise/shared/error_messages", resource: @address
 #account-page.account-page
   .account-page__header
     %a{ href: '/', id: 'header__logo' }
@@ -29,6 +28,12 @@
             .user-form__field__name
               .user-form__field__input
                 = f.text_field :first_name, autofocus: true, placeholder: "例）降間"
+                - if @address.errors.include?(:first_name)
+                  .alert__sign-up
+                    = @address.errors.full_messages_for(:first_name).first
+                - if @address.errors.include?(:last_name)
+                  .alert__sign-up
+                    = @address.errors.full_messages_for(:last_name).first
               .user-form__field__input
                 = f.text_field :last_name, autofocus: true, placeholder: "例）太郎"
           .user-form__field
@@ -38,6 +43,12 @@
             .user-form__field__name
               .user-form__field__input
                 = f.text_field :first_name_kana, autofocus: true, placeholder: "例）ふりま"
+                - if @address.errors.include?(:first_name_kana)
+                  .alert__sign-up
+                    = @address.errors.full_messages_for(:first_name_kana).first
+                - if @address.errors.include?(:last_name_kana)
+                  .alert__sign-up
+                    = @address.errors.full_messages_for(:last_name_kana).first
               .user-form__field__input
                 = f.text_field :last_name_kana, autofocus: true, placeholder: "例）たろう"
           .user-form__field
@@ -46,6 +57,9 @@
               %span.user-form__field__label__require 必須
             .user-form__field__input
               = f.text_field :zipcode, autofocus: true, placeholder: "例）1234567"
+              - if @address.errors.include?(:zipcode)
+                .alert__sign-up
+                  = @address.errors.full_messages_for(:zipcode).first
           .user-form__field
             .user-form__field__label
               = f.label :都道府県
@@ -53,30 +67,45 @@
             .user-form__field__input
               = f.select :prefecture, Address.prefectures.keys, {}
               = icon 'fas', 'chevron-down',class:"user-form__field__input__icon4"
+              - if @address.errors.include?(:prefecture)
+                .alert__sign-up
+                  = @address.errors.full_messages_for(:prefecture).first
           .user-form__field
             .user-form__field__label
               = f.label :市区町村
               %span.user-form__field__label__require 必須
             .user-form__field__input
               = f.text_field :city, autofocus: true, placeholder: "例）横浜市緑区"
+              - if @address.errors.include?(:city)
+                .alert__sign-up
+                  = @address.errors.full_messages_for(:city).first
           .user-form__field
             .user-form__field__label
               = f.label :番地
               %span.user-form__field__label__require 必須
             .user-form__field__input
               = f.text_field :address, autofocus: true, placeholder: "例）青山1-1-1"
+              - if @address.errors.include?(:address)
+                .alert__sign-up
+                  = @address.errors.full_messages_for(:address).first
           .user-form__field
             .user-form__field__label
               = f.label :建物名
               %span.user-form__field__label__optional 任意
             .user-form__field__input
               = f.text_field :address_other, autofocus: true, placeholder: "例）柳ビル103"
+              - if @address.errors.include?(:address_other)
+                .alert__sign-up
+                  = @address.errors.full_messages_for(:address_other).first
           .user-form__field
             .user-form__field__label
               = f.label :電話
               %span.user-form__field__label__optional 任意
             .user-form__field__input
               = f.text_field :tell, autofocus: true, placeholder: "例）09012345678"
+              - if @address.errors.include?(:tell)
+                .alert__sign-up
+                  = @address.errors.full_messages_for(:tell).first
           .user-form__submit-btn
             = f.submit "登録", class: 'btn'
   = render "devise/registrations/footer"
