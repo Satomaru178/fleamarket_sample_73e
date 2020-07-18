@@ -50,8 +50,7 @@ ActiveRecord::Schema.define(version: 2020_07_11_111631) do
     t.string "ancestry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ancestry"], name: "index_categories_on_ancestry"
-    t.index ["name"], name: "index_categories_on_name"
+    t.index ["name", "ancestry"], name: "index_categories_on_name_and_ancestry"
   end
 
   create_table "creditcards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -65,7 +64,7 @@ ActiveRecord::Schema.define(version: 2020_07_11_111631) do
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "product_id"
-    t.string "src", null: false
+    t.string "src"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_images_on_product_id"
@@ -81,11 +80,9 @@ ActiveRecord::Schema.define(version: 2020_07_11_111631) do
     t.integer "price"
     t.bigint "seller_id", null: false
     t.bigint "buyer_id"
-    t.bigint "category_id"
-    t.bigint "brand_id"
+    t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["buyer_id"], name: "index_products_on_buyer_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["seller_id"], name: "index_products_on_seller_id"
@@ -109,9 +106,7 @@ ActiveRecord::Schema.define(version: 2020_07_11_111631) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "addresses", "users"
   add_foreign_key "images", "products"
-  add_foreign_key "products", "brands"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "users", column: "buyer_id"
   add_foreign_key "products", "users", column: "seller_id"
