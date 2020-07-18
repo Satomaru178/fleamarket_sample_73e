@@ -8,7 +8,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.integer    :shippingorigin_id
       t.integer    :shippingperiod_id
       t.integer    :price
-      t.references :seller, null: false, foreign_key: { to_table: :users }
+      t.references :seller, null: false, foreign_key: { to_table: :users }, limit: 5
       t.references :buyer,               foreign_key: { to_table: :users }
       t.references :category,            foreign_key: true
       t.references :brand,               foreign_key: true
