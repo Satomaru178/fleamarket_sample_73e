@@ -1,16 +1,18 @@
 class Address < ApplicationRecord
   belongs_to :user, optional: true
+  
   validates :first_name, :last_name,
   format: {
-    with:/\A[ぁ-んァ-ン一-龥]/,
+    with:/\A[ぁ-んァ-ン一-龥]+\z/
   }
   
   validates :first_name_kana, :last_name_kana,
   format: {
-  with:/\A[ぁ-んー－]+\z/,
+    with:/\A[ぁ-んー－]+\z/
   }
 
-  validates :zipcode, format: {
+  validates :zipcode,
+  format: {
     with: /\A\d{7}\z/
   }
 
@@ -21,7 +23,7 @@ class Address < ApplicationRecord
     with: /\A\d{10,11}\z/
   }
 
-  enum prefecture:{
+  enum prefecture: {
     "---":0,
     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
     茨城県:8,栃木県:9,群馬県:10,埼玉県:11,千葉県:12,東京都:13,神奈川県:14,

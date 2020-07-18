@@ -1,0 +1,45 @@
+.wrapper
+  .ceiling-contents
+    = link_to root_path do
+      .furima-logo
+        = image_tag src="material/logo/logo.png", size: "140x40"
+
+  %hr
+
+  .contents
+    .contents__product
+      = render "products/form_edit"
+
+    %br
+
+    .contents__caution
+      = "禁止されている行為および出品物を必ずご確認ください。"
+      %br
+      = "偽ブランド品や盗難物などの販売は犯罪であり、"
+      %br
+      = "法律により処罰される可能性があります。また、出品をもちまして"
+      %br
+      = "加盟店規約に同意したことになります。"
+
+    %br
+
+  .bottom-contents
+    %ul.bottom-contents__items
+      %li.bottom-contents__items__left
+        = "プライバシーポリシー"
+      %br
+      %li.bottom-contents__items__center
+        = "FURIMA利用規約"
+      %br
+      %li.bottom-contents__items__right
+        = "特定商取引に関する表記"
+      %br
+
+    = link_to root_path do
+      .furima-logo
+        = image_tag src="material/logo/logo.png", size: "140x40"
+
+    %br
+
+    %p.bottom-contents__copyright
+      &copy; FURIMA

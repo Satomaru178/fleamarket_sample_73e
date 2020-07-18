@@ -87,6 +87,10 @@
         list-style: none;
         // 上下中央揃え
         line-height: 32px;
+
+        a:hover {
+          color: orange;
+        }
       }
 
       &__right-items {

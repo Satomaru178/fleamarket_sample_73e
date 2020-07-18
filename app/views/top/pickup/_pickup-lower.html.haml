@@ -6,7 +6,7 @@
       アーカイバ
     .pickup__products__lists
       .pickup__products__lists__list
-        = link_to '#' do
+        = link_to products_path do
           #first.pickup__products__lists__list__image
           .pickup__products__lists__list__contents
             %h3.pickup__products__lists__list__contents__name
@@ -14,14 +14,14 @@
             .pickup__products__lists__list__contents__details
               %ul
                 %li
-                  1000円
+                  = converting_to_jpy(1_000)
                 %li
                   = icon('fas','star')
                   0
               %p
                 (税込)
       .pickup__products__lists__list
-        = link_to '#' do
+        = link_to products_path do
           #second.pickup__products__lists__list__image
           .pickup__products__lists__list__contents
             %h3.pickup__products__lists__list__contents__name
@@ -29,14 +29,14 @@
             .pickup__products__lists__list__contents__details
               %ul
                 %li
-                  30000円
+                  = converting_to_jpy(30_000)
                 %li
                   = icon('fas','star')
                   0
               %p
                 (税込)
       .pickup__products__lists__list
-        = link_to '#' do
+        = link_to products_path do
           #third.pickup__products__lists__list__image
           .pickup__products__lists__list__contents
             %h3.pickup__products__lists__list__contents__name
@@ -44,14 +44,14 @@
             .pickup__products__lists__list__contents__details
               %ul
                 %li
-                  20000円
+                  = converting_to_jpy(20_000)
                 %li
                   = icon('fas','star')
                   0
               %p
                 (税込)
       .pickup__products__lists__list
-        = link_to '#' do
+        = link_to products_path do
           #fourth.pickup__products__lists__list__image
           .pickup__products__lists__list__contents
             %h3.pickup__products__lists__list__contents__name
@@ -59,7 +59,7 @@
             .pickup__products__lists__list__contents__details
               %ul
                 %li
-                  10000円
+                  = converting_to_jpy(10_000)
                 %li
                   = icon('fas','star')
                   1
