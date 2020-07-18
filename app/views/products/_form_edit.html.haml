@@ -1,9 +1,5 @@
 = form_with model: @product, local: true do |f|
 
-  -# エラーメッセージ
-
-  = render 'layouts/error_messages', model: f.object
-
   -# ユーザ
 
   .contents__product__user
@@ -32,6 +28,12 @@
 
       %hr
 
+      - if @product.errors.include?(:images)
+        .alert__sign-up
+          = @product.errors.full_messages_for(:images)
+      - else
+        -# nop
+
       = f.fields_for :images do |image|
         .js-file_group{ data: { index: image.index } }
           .image-index
@@ -47,6 +49,12 @@
   -# 商品基本情報
 
   .contents__product__basic
+    - if @product.errors.include?(:name)
+      .alert__sign-up
+        = @product.errors.full_messages_for(:name)
+    - else
+      -# nop
+
     .contents__product__basic__name
       = f.label '商品名'
       %span.must
@@ -56,6 +64,12 @@
       %br
 
     %br
+
+    - if @product.errors.include?(:explain)
+      .alert__sign-up
+        = @product.errors.full_messages_for(:explain)
+    - else
+      -# nop
 
     .contents__product__basic__explain
       = f.label '商品の説明'
@@ -75,6 +89,12 @@
   .contents__product__details
     = "商品の詳細"
 
+    - if @product.errors.include?(:category)
+      .alert__sign-up
+        = @product.errors.full_messages_for(:category)
+    - else
+      -# nop
+
     .contents__product__details__categories
       .contents__product__details__categories__category
         = f.label 'カテゴリー'
@@ -93,6 +113,12 @@
 
     %br
 
+    - if @product.errors.include?(:brand)
+      .alert__sign-up
+        = @product.errors.full_messages_for(:brand)
+    - else
+      -# nop
+
     .contents__product__details__brand
       = f.label "ブランド"
       %span.optional
@@ -106,6 +132,12 @@
           = "他のブランドを登録する"
 
     %br
+
+    - if @product.errors.include?(:condition_id)
+      .alert__sign-up
+        = @product.errors.full_messages_for(:condition_id)
+    - else
+      -# nop
 
     .contents__product__details__condition
       = f.label '商品の状態'
@@ -122,6 +154,12 @@
   .contents__product__about-delivery
     = "配送について"
 
+    - if @product.errors.include?(:costburden_id)
+      .alert__sign-up
+        = @product.errors.full_messages_for(:costburden_id)
+    - else
+      -# nop
+
     .contents__product__about-delivery__cost-burden
       = f.label '配送料の負担'
       %span.must
@@ -132,6 +170,12 @@
 
     %br
 
+    - if @product.errors.include?(:shippingorigin_id)
+      .alert__sign-up
+        = @product.errors.full_messages_for(:shippingorigin_id)
+    - else
+      -# nop
+
     .contents__product__about-delivery__shipping-origin
       = f.label '発送元の地域'
       %span.must
@@ -141,6 +185,12 @@
       %br
 
     %br
+
+    - if @product.errors.include?(:shippingperiod_id)
+      .alert__sign-up
+        = @product.errors.full_messages_for(:shippingperiod_id)
+    - else
+      -# nop
 
     .contents__product__about-delivery__shipping-period
       = f.label '発送までの日数'
@@ -156,6 +206,12 @@
 
   .contents__product__price
     = "価格(300円〜9,999,999円)"
+
+    - if @product.errors.include?(:price)
+      .alert__sign-up
+        = @product.errors.full_messages_for(:price)
+    - else
+      -# nop
 
     .contents__product__price__selling-price
       = f.label '販売価格'

@@ -1,9 +1,12 @@
 .wrapper
   .content
     = form_with model: @brand, local: true do |f|
-      -# エラーメッセージ
-      
-      = render 'layouts/error_messages', model: f.object
+
+      - if @brand.errors.include?(:name)
+        .alert__sign-up
+          = @brand.errors.full_messages_for(:name)
+      - else
+        -# nop
 
       .content__brand-name
         = f.label 'ブランド名'
