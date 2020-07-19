@@ -1,0 +1,25 @@
+.wrapper
+  .user__index__header
+    %a{href: "/", class: "user__index__header__logo"}
+      = image_tag 'material/logo/logo.png', alt: 'FURIMA', width: "200px"
+  .user__index__body
+    .user__index__body__header
+      新規館員登録
+    .user__index__body__main
+      .user__index__body__form
+        = link_to "メールアドレスで登録する", new_user_registration_path
+        %a{href: "#", class: "user__index__body__form__logo"}
+          %i.fab.fa-google.fa-lg
+          Googleで登録する
+        %a{href: "#", class: "user__index__body__form__logo"}
+          %i.fab.fa-facebook-square.fa-lg
+          Facebookで登録する
+    .user__index__footer
+      .user__index__footer__text
+        .user__index__footer__list
+          =link_to "プライバシーポリシー"
+        .user__index__footer__list
+          =link_to "FURIMA利用規約"
+        .user__index__footer__list
+          =link_to "特定商取引に関する表記"
+      .user__index__footer__logo
