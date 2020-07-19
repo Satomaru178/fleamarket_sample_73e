@@ -19,11 +19,11 @@ $(document).on('turbolinks:load', ()=> {
   const buildFileField = (index)=> {
     const html =
     `
-    <div data-index="${index}" class="js-file_group">
+    <div class="js-file_group" data-index="${index}">
       <div class="image-index">画像${index}</div>
-      <input class="js-file" type="file"
-        name="product[images_attributes][${index}][src]"
-        id="product_images_attributes_${index}_src">
+      <div class="js-file">
+        <input type="file" name="product[images_attributes][${index}][src]" id="product_images_attributes_${index}_src">
+      </div>
       <div class="js-remove">削除</div>
     </div>
     `;
@@ -123,7 +123,7 @@ $(document).on('turbolinks:load', ()=> {
   // 商品説明文の文字数カウンタ
   $('#product_explain').on('keyup', function() {
     let count = $(this).val().length;
-    $('.contents__product__basic__explain__counter__count').text(count); 
+    $('.contents__product__basic__explain__counter__count').text(count + "/1000"); 
   });
 
 
