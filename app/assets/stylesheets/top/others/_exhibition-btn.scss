@@ -1,6 +1,6 @@
 .exhibition-btn {
   // ボタンの外枠サイズ指定
-  @include box(120px, 120px);
+  @include box(120px, 120px, 5px);
   // ボタンの背景色m、文字色を指定
   @include colors(#20b2aa,#fff);
   // 文字は中央揃え
@@ -11,8 +11,6 @@
   position: fixed;
   bottom: 30px;
   right: 30px;
-  // 角を丸くする
-  border-radius: 5px 5px 5px 5px;
 
   &__explain {
     // 文字サイズ指定
@@ -21,7 +19,7 @@
 
   &__icon {
     // アイコン画像の外枠サイズ指定
-    @include box(60px, 60px);
+    @include box($width: 60px, $height: 60px);
     // 外枠にアイコン画像を埋め込む
     @include backimg('material/icon/icon_camera.png', contain);
     // 上下に空間作成、左右中央揃え

@@ -1,7 +1,8 @@
 // 箱を作成
-@mixin box($width: auto, $height: auto) {
+@mixin box($width: auto, $height: auto, $radius: 0) {
   width: $width;
   height: $height;
+  border-radius: $radius;
 }
 
 // 箱の背景を画像にする
@@ -29,6 +30,12 @@
 @mixin between() {
   display: flex;
   justify-content: space-between;
+}
+
+// 横並べかつ中央寄せ
+@mixin centering() {
+  display: flex;
+  justify-content: center;
 }
 
 // 絶対位置指定
@@ -83,4 +90,3 @@
   border: 1px solid ;
   color: #fff;
 }
-
