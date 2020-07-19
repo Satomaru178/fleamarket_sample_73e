@@ -1,22 +1,28 @@
 // 4つの商品画像、1番目
-#first.pickup__products__lists__list__image {
-  @include backimg('material/icon/icon-01.png', contain);
+.pickup__products__lists__list__image {
+  // @include backimg('material/icon/icon-01.png', contain);
+  text-align: center;
+
+  &__inner {
+    height: 150px;
+    width: auto;
+  }
 }
 
-// 4つの商品画像、2番目
-#second.pickup__products__lists__list__image {
-  @include backimg('material/icon/icon-02.png', contain);
-}
+// // 4つの商品画像、2番目
+// #second.pickup__products__lists__list__image {
+//   @include backimg('material/icon/icon-02.png', contain);
+// }
 
-// 4つの商品画像、3番目
-#third.pickup__products__lists__list__image {
-  @include backimg('material/icon/icon-03.png', contain);
-}
+// // 4つの商品画像、3番目
+// #third.pickup__products__lists__list__image {
+//   @include backimg('material/icon/icon-03.png', contain);
+// }
 
-// 4つの商品画像、4番目
-#fourth.pickup__products__lists__list__image {
-  @include backimg('material/icon/icon-04.png', contain);
-}
+// // 4つの商品画像、4番目
+// #fourth.pickup__products__lists__list__image {
+//   @include backimg('material/icon/icon-04.png', contain);
+// }
 
 #upper.pickup {
   // 外枠サイズ指定
@@ -79,6 +85,7 @@
       &__list {
         // 商品の外枠作成
         @include box(220px, 100%);
+        background-color: white;
 
         &__image {
           // 商品画像の高さ指定
@@ -112,6 +119,10 @@
             }
           }
         }
+      }
+
+      &__list:hover {
+        opacity: 0.5;
       }
     }
   }

@@ -3,65 +3,22 @@
     ピックアップブランド
   .pickup__products
     .pickup__products__caption
-      アーカイバ
+      TOMORROWLAND
     .pickup__products__lists
-      .pickup__products__lists__list
-        = link_to products_path do
-          #first.pickup__products__lists__list__image
-          .pickup__products__lists__list__contents
-            %h3.pickup__products__lists__list__contents__name
-              ee
-            .pickup__products__lists__list__contents__details
-              %ul
-                %li
-                  = converting_to_jpy(1_000)
-                %li
-                  = icon('fas','star')
-                  0
-              %p
-                (税込)
-      .pickup__products__lists__list
-        = link_to products_path do
-          #second.pickup__products__lists__list__image
-          .pickup__products__lists__list__contents
-            %h3.pickup__products__lists__list__contents__name
-              product3
-            .pickup__products__lists__list__contents__details
-              %ul
-                %li
-                  = converting_to_jpy(30_000)
-                %li
-                  = icon('fas','star')
-                  0
-              %p
-                (税込)
-      .pickup__products__lists__list
-        = link_to products_path do
-          #third.pickup__products__lists__list__image
-          .pickup__products__lists__list__contents
-            %h3.pickup__products__lists__list__contents__name
-              product2
-            .pickup__products__lists__list__contents__details
-              %ul
-                %li
-                  = converting_to_jpy(20_000)
-                %li
-                  = icon('fas','star')
-                  0
-              %p
-                (税込)
-      .pickup__products__lists__list
-        = link_to products_path do
-          #fourth.pickup__products__lists__list__image
-          .pickup__products__lists__list__contents
-            %h3.pickup__products__lists__list__contents__name
-              product1
-            .pickup__products__lists__list__contents__details
-              %ul
-                %li
-                  = converting_to_jpy(10_000)
-                %li
-                  = icon('fas','star')
-                  1
-              %p
-                (税込)
+      - @brandProducts.first(4).each do |product|
+        .pickup__products__lists__list
+          = link_to products_path do
+            .pickup__products__lists__list__image
+              = image_tag product.images[0].src.url, class: "pickup__products__lists__list__image__inner"
+            .pickup__products__lists__list__contents
+              %h3.pickup__products__lists__list__contents__name
+                = product.name
+              .pickup__products__lists__list__contents__details
+                %ul
+                  %li
+                    = converting_to_jpy(product.price)
+                  %li
+                    = icon('fas','star')
+                    0
+                %p
+                  (税込)
