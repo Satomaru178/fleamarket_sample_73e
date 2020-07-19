@@ -6,13 +6,13 @@ class ProductsController < ApplicationController
   before_action :ensure_currect_user, only: [:edit, :update, :destroy]
 
   # 親カテゴリの配列を用意する
-  before_action :set_categories, only: [:new, :create, :edit, :update]
+  before_action :set_categories, only: [:new, :create, :edit, :update, :show]
 
   # 子カテゴリと孫カテゴリの配列を用意する
-  before_action :set_categories_edit, only: [:edit, :update]
+  before_action :set_categories_edit, only: [:edit, :update, :show]
 
   # ブランド一覧を用意する
-  before_action :set_brands, only: [:new, :create, :edit, :update]
+  before_action :set_brands, only: [:new, :create, :edit, :update, :show]
 
   def index
     @products = Product.includes(:images).order('created_at DESC')
