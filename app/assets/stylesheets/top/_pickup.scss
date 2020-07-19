@@ -1,6 +1,5 @@
 // 4つの商品画像
 .pickup__products__lists__list__image {
-  // @include backimg('material/icon/icon-01.png', contain);
   text-align: center;
 
   &__inner {
@@ -8,7 +7,6 @@
     width: auto;
   }
 }
-
 
 #upper.pickup {
   // 外枠サイズ指定
