@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # 商品確認
+  resources :confimation, only: [:index, :show]
+
   resources :brands, only: [:new, :create]
 
   resources :accounts, only: [:index, :show] do
@@ -34,4 +37,6 @@ Rails.application.routes.draw do
       post   "date",   to: 'creditcards#show'
     end
   end
+  
+
 end
