@@ -1,0 +1,23 @@
+.container  
+  -# 商品詳細・コメント欄・商品一覧
+  .content
+    -# 商品詳細・コメント欄
+    .content-main
+      -# 商品詳細
+      .content-main__product
+      -# コメント欄
+      .content-main__comment
+    -# 前の商品・後ろの商品のリンク
+    %ul.contnet-links
+      %li.content-link
+        = link_to "#" do
+          = icon("fas", "angle-left")
+          %span
+            前の商品
+      %li.content-link
+        = link_to "#" do
+          %span
+            後ろの商品
+          = icon("fas", "angle-right")
+    -# ここにコメント欄
+  -# ここに商品一覧
