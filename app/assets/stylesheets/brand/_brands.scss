@@ -19,7 +19,7 @@
   @include box($width: 700px, $height: $contents-height);
   @include centering();
   background-color: #fff;
-  margin: 0px auto;
+  margin: 0 auto;
 
   a {
     text-decoration: none;
