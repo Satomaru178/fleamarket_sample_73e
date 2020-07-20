@@ -1,0 +1,27 @@
+- if @product.errors.include?(:price)
+  .alert__sign-up
+    = @product.errors.full_messages_for(:price)
+- else
+  -# nop
+
+.contents__product__price__selling-price
+  = f.label '販売価格'
+  %span.require 必須
+  %br
+  = f.number_field :price
+  円
+  %br
+
+%br
+
+.contents__product__price__sells-commission
+  販売手数料(10%)
+  %span#commission<
+    = "---円"
+
+%hr
+
+.contents__product__price__profit
+  販売利益
+  %span#profit<
+    = "---円"

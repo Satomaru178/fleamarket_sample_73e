@@ -1,0 +1,29 @@
+- if @product.errors.include?(:name)
+  .alert__sign-up
+    = @product.errors.full_messages_for(:name)
+- else
+  -# nop
+
+.contents__product__basic__name
+  = f.label '商品名'
+  %span.require 必須
+  %br
+  = f.text_field :name, placeholder: "40文字以内"
+  %br
+
+%br
+
+- if @product.errors.include?(:explain)
+  .alert__sign-up
+    = @product.errors.full_messages_for(:explain)
+- else
+  -# nop
+
+.contents__product__basic__explain
+  = f.label '商品の説明'
+  %span.require 必須
+  %br
+  = f.text_area :explain, placeholder: "1000文字以内"
+  .contents__product__basic__explain__counter
+    %span.contents__product__basic__explain__counter__count<
+      0/1000

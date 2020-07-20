@@ -1,0 +1,42 @@
+- if @product.errors.include?(:costburden_id)
+  .alert__sign-up
+    = @product.errors.full_messages_for(:costburden_id)
+- else
+  -# nop
+
+.contents__product__about-delivery__cost-burden
+  = f.label '配送料の負担'
+  %span.require 必須
+  %br
+  = f.collection_select :costburden_id, Costburden.all, :id, :name
+  %br
+
+%br
+
+- if @product.errors.include?(:shippingorigin_id)
+  .alert__sign-up
+    = @product.errors.full_messages_for(:shippingorigin_id)
+- else
+  -# nop
+
+.contents__product__about-delivery__shipping-origin
+  = f.label '発送元の地域'
+  %span.require 必須
+  %br
+  = f.collection_select :shippingorigin_id, Shippingorigin.all, :id, :name
+  %br
+
+%br
+
+- if @product.errors.include?(:shippingperiod_id)
+  .alert__sign-up
+    = @product.errors.full_messages_for(:shippingperiod_id)
+- else
+  -# nop
+
+.contents__product__about-delivery__shipping-period
+  = f.label '発送までの日数'
+  %span.require 必須
+  %br
+  = f.collection_select :shippingperiod_id, Shippingperiod.all, :id, :name
+  %br
