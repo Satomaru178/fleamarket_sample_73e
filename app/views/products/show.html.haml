@@ -1,7 +1,8 @@
 .wrapper
   = render "top/others/header"
   -# ここにパンクズ？（追加実装）
-  = render "products/show/show_main"
+  .container 
+    = render "products/show/show_main", product: @product
   = render "top/introduction/introduction-lower"
   = render "top/others/footer"
   = render "top/others/exhibition-btn"
