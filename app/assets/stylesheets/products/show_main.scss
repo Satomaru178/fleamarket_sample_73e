@@ -121,6 +121,43 @@ img {
           border-collapse: collapse;
           // ボーダーの設定
           border: 1px solid #f8f8f8;
+
+          tbody {
+            display: table-row-group;
+            vertical-align: middle;
+            border-color: inherit;
+
+            tr {
+              display: table-row;
+              vertical-align: inherit;
+              border-color: inherit;
+
+              th {
+                vertical-align: inherit;
+                width: 20%;
+                background-color: #eee;
+                font-weight: 400;
+                padding: 8px;
+                border: 1px solid #dedede;
+                font-size: 14px;
+                text-align: center;
+              }
+
+              td {
+                vertical-align: inherit;
+                border-color: inherit;
+                width: 61%;
+                padding: 15px 15px;
+                border: 1px solid #dedede;
+                font-size: 14px;
+
+                a {
+                  text-decoration: none;
+                  color: #3CCACE;
+                }
+              }
+            }
+          }
         }
       }
     }
