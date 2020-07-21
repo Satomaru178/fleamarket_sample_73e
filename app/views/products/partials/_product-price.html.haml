@@ -4,24 +4,17 @@
 - else
   -# nop
 
-.contents__product__price__selling-price
+.product-contents__label
   = f.label '販売価格'
-  %span.require 必須
-  %br
+  %span.product-contents__label__require 必須
+.product-contents__price__selling-price
   = f.number_field :price
   円
-  %br
-
-%br
-
-.contents__product__price__sells-commission
+.product-contents__price__sells-commission
   販売手数料(10%)
   %span#commission<
     = "---円"
-
-%hr
-
-.contents__product__price__profit
+.product-contents__price__profit
   販売利益
   %span#profit<
     = "---円"

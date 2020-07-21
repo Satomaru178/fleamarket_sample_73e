@@ -1,52 +1,55 @@
-.product-contents__product
-  = form_with model: @product, local: true do |f|
-    = f.hidden_field :seller_id, value: current_user.id
-    -# 画像
-    .contents__product__images
-      = render partial: "products/partials/product-image", locals: { f: f }
-    %hr
-    -# 商品基本情報
-    .contents__product__basic
-      = render partial: "products/partials/product-basic", locals: { f: f }
-    %hr
-    -# 商品詳細情報
-    .contents__product__details
-      商品の詳細
-      - if @product.errors.include?(:category)
-        .alert__sign-up
-          = @product.errors.full_messages_for(:category)
-      - else
-        -# nop
-      .contents__product__details__categories
-        .contents__product__details__categories__category
+= form_with model: @product, local: true do |f|
+  = f.hidden_field :seller_id, value: current_user.id
+
+  -# 画像
+  .product-contents__images
+    = render partial: "products/partials/product-image", locals: { f: f }
+
+  -# 商品基本情報
+  .product-contents__basic
+    = render partial: "products/partials/product-basic", locals: { f: f }
+
+  -# 商品詳細情報
+  .product-contents__details
+    商品の詳細
+
+    - if @product.errors.include?(:category)
+      .alert__sign-up
+        = @product.errors.full_messages_for(:category)
+    - else
+      -# nop
+
+    .product-contents__details__categories
+      .product-contents__details__categories__category
+        .product-contents__label
           = f.label 'カテゴリー'
-          %span.require 必須
-          .contents__product__details__categories__category__wrapper
-            .contents__product__details__categories__category__wapper__box
-              #parent_category.contents__product__details__categories__category__wapper__box--select
-                = f.select :category_id, @category_parent_array, { prompt: "親カテゴリーを選択してください" }
-      = render partial: "products/partials/product-details", locals: { f: f }
-    %hr
-    -# 配送
-    .contents__product__about-delivery
-      配送について
-      = render partial: "products/partials/product-delivery", locals: { f: f }
-    %hr
-    -# 価格
-    .contents__product__price
-      価格(300円〜9,999,999円)
-      = render partial: "products/partials/product-price", locals: { f: f }
-    .contents__product__submit-btn
-      = f.submit '出品する'
-    %br
-    = link_to '#' do
-      .contents__product__draft-btn
-        下書きに保存
-    %br
-    = link_to root_path do
-      .contents__return-btn
-        トップページへ戻る
-%br
-.contents__caution
+          %span.product-contents__label__require 必須
+        .product-contents__details__categories__category__wrapper
+          .product-contents__details__categories__category__wapper__box
+            #parent_category.product-contents__details__categories__category__wapper__box--select
+              = f.select :category_id, @category_parent_array, { prompt: "親カテゴリーを選択してください" }
+    = render partial: "products/partials/product-details", locals: { f: f }
+
+  -# 配送
+  .product-contents__delivery
+    配送について
+    = render partial: "products/partials/product-delivery", locals: { f: f }
+
+  -# 価格
+  .product-contents__price
+    価格(300円〜9,999,999円)
+    = render partial: "products/partials/product-price", locals: { f: f }
+
+  .product-contents__submit-btn
+    = f.submit '出品する'
+
+  = link_to '#' do
+    .product-contents__draft-btn
+      下書きに保存
+
+  = link_to root_path do
+    .product-contents__return-btn
+      トップページへ戻る
+
+.product-contents__caution
   禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗難物などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして加盟店規約に同意したことになります。
-%br

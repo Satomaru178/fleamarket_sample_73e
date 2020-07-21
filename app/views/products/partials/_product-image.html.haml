@@ -1,24 +1,24 @@
-= f.label '出品画像'
-%span.require 必須
-%br
+.product-contents__label
+  = f.label '出品画像'
+  %span.product-contents__label__require 必須
 #image-box
+  .image-box-rule<
+    最大5枚までアップロードできます
   #previews
-    プレビュー(最大5枚までアップロードできます)
-
-    %br
-
-    - if @product.persisted?
-      - @product.images.each_with_index do |image, i|
-        - if image.src.url.present?
-          %label
-            = "画像#{i}"
-            = image_tag image.src.url, data: { index: i }, size: '100x100'
-        - else
-          -# nop
-    - else
-      -# nop
-
-  %hr
+    .preview-title<
+      プレビュー
+    .preview-images
+      - if @product.persisted?
+        - @product.images.each_with_index do |image, i|
+          - if image.src.url.present?
+            %div
+              %div<
+                = "画像#{i}"
+              = image_tag image.src.url, data: { index: i }, size: '100x100'
+          - else
+            -# nop
+      - else
+        -# nop
 
   - if @product.errors.include?(:images)
     .alert__sign-up
@@ -26,15 +26,18 @@
   - else
     -# nop
 
-  = f.fields_for :images do |image|
-    .js-file_group{ data: { index: image.index } }
-      .image-index<
-        = "画像#{image.index}"
-      .js-file
-        = image.file_field :src
-      .js-remove<
-        削除
-      - if @product.persisted?
-        = image.check_box :_destroy, data: { index: image.index }, class: 'hidden-destroy'
-      - else
-        -# nop
+  .input-box-groups
+    = f.fields_for :images do |image|
+      .input-box-group{ data: { index: image.index } }
+        .image-index<
+          = "画像#{image.index}"
+        .input-box
+          %label
+            追加・変更
+            = image.file_field :src, class: 'input-box__file'
+        .js-remove<
+          削除
+        - if @product.persisted?
+          = image.check_box :_destroy, data: { index: image.index }, class: 'hidden-destroy'
+        - else
+          -# nop
