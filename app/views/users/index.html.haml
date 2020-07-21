@@ -8,8 +8,8 @@
     .user__index__body__main
       .user__index__body__form
         = link_to "メールアドレスで登録する", new_user_registration_path
-        %a{href: "#", class: "user__index__body__form__logo"}
-          %i.fab.fa-google.fa-lg
+        = link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post
+        %i.fab.fa-google.fa-lg
           Googleで登録する
         %a{href: "#", class: "user__index__body__form__logo"}
           %i.fab.fa-facebook-square.fa-lg
