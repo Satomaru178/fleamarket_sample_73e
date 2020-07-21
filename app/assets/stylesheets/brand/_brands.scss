@@ -45,7 +45,6 @@
   }
 
   &__input {
-    @include box($height: 48px);
     margin: 5px auto 50px;
 
     input {
@@ -56,14 +55,12 @@
   }
 
   &__submit-btn {
-    @include box($height: 48px);
     @include centering();
     margin: 50px auto 50px;
 
     input {
-      @include box($width: 200px, $radius: 4px);
+      @include box(200px, 48px, 4px);
       @include colors(#20b2aa, #fff);
-      line-height: 48px;
       cursor: pointer;
       transition: 0.5s;
       border: none;
