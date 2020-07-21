@@ -1,4 +1,4 @@
-class CreateCreditcards < ActiveRecord::Migration[5.2]
+class CreateCreditcards < ActiveRecord::Migration[5.0]
   def change
     create_table :creditcards do |t|
       t.references :user,          null: false, forign_key: true
