@@ -1,1 +1,324 @@
-// フロントサイド開発時に実装
+.product-wrapper {
+  background-color: #f6f6f6;
+}
+
+.product-header {
+  @include box($height: 120px);
+  @include centering();
+
+  &__logo {
+    $header-logo-padding-size: calc((120px - 60px) / 2);
+    @include box($width: 200px, $height: 60px);
+    padding: $header-logo-padding-size 0;
+  }
+}
+
+.product-contents {
+  @include box($width: 700px);
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 10px 40px 40px;
+
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  &__label {
+    @include box($height: 24px);
+    margin: 40px auto 5px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
+
+    &__require {
+      @include box($width: 42px, $radius: 2px);
+      @include colors(#ea352d, #fff);
+      margin-left: 5px;
+      padding: 5px 0;
+      text-align: center;
+      display: inline-block;
+      font-weight: 300;
+      font-size: 12px;
+    }
+
+    &__optional {
+      @include box($width: 42px, $radius: 2px);
+      @include colors(#c0c0c0, #fff);
+      margin-left: 5px;
+      padding: 5px 0;
+      text-align: center;
+      display: inline-block;
+      font-weight: 300;
+      font-size: 12px;
+    }
+  }
+
+  &__images {
+    font-weight: 600;
+    font-size: 14px;
+    color: #999;
+
+    #image-box {
+      padding: 10px 0;
+      font-weight: normal;
+      color: #000;
+
+      #previews {
+        margin: 10px 0;
+        padding: 10px 0;
+        border: solid #ccc;
+        border-width: 1px 0;
+
+        .preview-title {
+          margin-bottom: 5px;
+        }
+  
+        .preview-images {
+          display: flex;
+        }
+      }
+
+      .input-box-groups {
+        display: flex;
+
+        .input-box-group {
+          border: 1px solid #000;
+          border-radius: 4px;
+          margin: 0 auto;
+
+          .image-index {
+            padding: 5px;
+            text-align: center;
+          }
+
+          .input-box {
+            padding: 5px;
+            text-align: center;
+            color: #00f;
+
+            &__file {
+              display: none;
+            }
+          }
+
+          .input-box:hover {
+            text-decoration: underline;
+          }
+
+          .js-remove {
+            padding: 5px;
+            text-align: center;
+            color: #00f;
+            cursor: default;
+            transition: 0.5s;
+          }
+
+          .js-remove:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  &__basic {
+    border: solid #ccc;
+    border-width: 1px 0;
+    padding-bottom: 40px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #999;
+
+    &__name {
+      margin: 5px auto 10px;
+
+      input {
+        @include box(400px, 48px, 4px);
+        border: 1px solid #ccc;
+        font-size: 16px;
+      }
+    }
+
+    &__explain {
+      @include box($height: 420px);
+      margin: 5px auto 10px;
+
+      textarea {
+        @include box(600px, 400px, 4px);
+        border: 1px solid #ccc;
+        font-size: 16px;
+      }
+
+      &__counter {
+        @include box($height: 20px);
+        padding-left: 540px;
+
+        &__count {
+          font-weight: normal;
+          font-size: 12px;
+          color: #000;
+        }
+      }
+    }
+  }
+
+  &__details {
+    padding: 40px 0;
+    font-weight: 600;
+    font-size: 14px;
+    color: #999;
+
+    select {
+      @include box(400px, 48px, 4px);
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    &__brand {
+      &__add-btn {
+        margin-top: 20px;
+        font-weight: normal;
+        font-size: 16px;
+        color: #00f;
+      }
+
+      &__add-btn:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__delivery {
+    border: solid #ccc;
+    border-width: 1px 0;
+    padding: 40px 0;
+    font-weight: 600;
+    font-size: 14px;
+    color: #999;
+
+    select {
+      @include box(400px, 48px, 4px);
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+  }
+
+  &__price {
+    padding: 40px 0;
+    font-weight: 600;
+    font-size: 14px;
+    color: #999;
+
+    input {
+      @include box(400px, 48px, 4px);
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    &__selling-price {
+      font-weight: normal;
+      font-size: 16px;
+      color: #000;
+    }
+
+    &__sells-commission {
+      font-weight: normal;
+      font-size: 16px;
+      color: #000;
+      padding: 30px 0;
+
+      span {
+        margin-left: 257px;
+      }
+    }
+
+    &__profit {
+      border: solid #ccc;
+      border-width: 1px 0 0;
+      font-weight: normal;
+      font-size: 16px;
+      color: #000;
+      padding: 30px 0;
+
+      span {
+        margin-left: 320px;
+      }
+    }
+  }
+
+  &__caution {
+    font-size: 12px;
+  }
+
+  &__submit-btn {
+    @include centering();
+    margin: 30px auto;
+
+    input {
+      @include box(200px, 48px, 4px);
+      @include colors(#20b2aa, #fff);
+      cursor: pointer;
+      transition: 0.5s;
+      border: none;
+      font-size: 14px;
+    }
+  }
+
+  &__draft-btn {
+    @include box(200px, 48px, 4px);
+    background-color: #c0c0c0;
+    line-height: 48px;
+    margin: 30px auto;
+    text-align: center;
+    transition: 0.5s;
+    font-size: 14px;
+  }
+
+  &__return-btn {
+    @include box(200px, 48px, 4px);
+    background-color: #c0c0c0;
+    line-height: 48px;
+    margin: 30px auto;
+    text-align: center;
+    transition: 0.5s;
+    font-size: 14px;
+  }
+}
+
+.product-footer {
+  $footer-padding-size: calc((200px - (60px + 60px + 12px) - 20px) / 2);
+  @include box($height: 200px);
+  padding: $footer-padding-size 0;
+
+  &__terms {
+    @include box($width: 380px, $height: 60px);
+    line-height: 60px;
+    margin: 0 auto 20px;
+
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    &__items {
+      @include between();
+      list-style: none;
+
+      &__item {
+        font-size: 12px;
+      }
+    }
+  }
+
+  &__logo {
+    @include box($width: 200px, $height: 60px);
+    margin: 20px auto 0;
+  }
+
+  &__copywrite {
+    @include box($height: 12px);
+    text-align: center;
+    font-size: 12px;
+  }
+}
