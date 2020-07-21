@@ -56,7 +56,7 @@
 
   &__submit-btn {
     @include centering();
-    margin: 50px auto 50px;
+    margin: 50px auto;
 
     input {
       @include box(200px, 48px, 4px);
