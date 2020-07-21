@@ -12,8 +12,7 @@
         %i.fab.fa-google.fa-lg
           Googleで登録する
         %a{href: "#", class: "user__index__body__form__logo"}
-          %i.fab.fa-facebook-square.fa-lg
-          Facebookで登録する
+        = link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, method: :post
     .user__index__footer
       .user__index__footer__text
         .user__index__footer__list
