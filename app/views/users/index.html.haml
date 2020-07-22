@@ -1,24 +1,20 @@
 .wrapper
-  .user__index__header
-    %a{href: "/", class: "user__index__header__logo"}
-      = image_tag 'material/logo/logo.png', alt: 'FURIMA', width: "200px"
-  .user__index__body
-    .user__index__body__header
-      新規館員登録
-    .user__index__body__main
-      .user__index__body__form
-        = link_to "メールアドレスで登録する", new_user_registration_path
-        = link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post
-        %i.fab.fa-google.fa-lg
-          Googleで登録する
-        %a{href: "#", class: "user__index__body__form__logo"}
-        = link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, method: :post
-    .user__index__footer
-      .user__index__footer__text
-        .user__index__footer__list
-          =link_to "プライバシーポリシー"
-        .user__index__footer__list
-          =link_to "FURIMA利用規約"
-        .user__index__footer__list
-          =link_to "特定商取引に関する表記"
-      .user__index__footer__logo
+  .user__index
+    .user__index__header
+      .user__index__header__logo
+        %a{href: "/", class: "user__index__header__logo__icon"}
+          = image_tag 'material/logo/logo.png', alt: 'FURIMA', width: "200px"
+    .user__index__body
+      .user__index__body__header
+        .user__index__body__header__text
+          新規会員登録
+      .user__index__body__main
+        .user__index__body__main__form
+          = link_to "メールアドレスで登録する", new_user_registration_path, class: "user__index__body__main__form__logo", id: "email__btn"
+          = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "user__index__body__main__form__logo", id: "google__btn" do
+            Googleで登録
+            %i.fab.fa-google.fa-lg
+          = link_to user_facebook_omniauth_authorize_path, method: :post, class: "user__index__body__main__form__logo", id: "facebook__btn" do
+            Facebookで登録する
+            %i.fab.fa-facebook-square.fa-lg
+    = render "devise/registrations/footer"
