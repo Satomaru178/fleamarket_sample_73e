@@ -39,14 +39,16 @@
               %th
                 カテゴリー
               %td
-                = link_to "#" do
-                  その他
-                %br/
-                = link_to "#" do
-                  食品
-                %br/
-                = link_to "#" do
-                  菓子
+                - @categories.each do |category|
+                  - if @product.category_id == category.id
+                    = link_to "#" do
+                      = category.parent.parent.name
+                      %br/
+                    = link_to "#" do
+                      = category.parent.name
+                      %br/
+                    = link_to "#" do
+                      = category.name
             %tr
               %th
                 ブランド
