@@ -13,8 +13,15 @@
     margin: 0 auto;
     list-style: none;
 
+    &::after {
+      display: block;
+      content: "";
+      clear: both;
+    }
+
     li {
       padding-right: 10px;
+      float: left;
 
       a {
         text-decoration: none;
