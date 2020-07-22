@@ -26,43 +26,36 @@
 
   &__label {
     @include box($height: 24px);
+    @include font2(600, 14px, #000);
     margin: 40px auto 5px;
-    font-weight: 600;
-    font-size: 14px;
-    color: #000;
 
     &__require {
       @include box($width: 42px, $radius: 2px);
+      @include font2(300, 12px, #fff);
       @include colors(#ea352d, #fff);
       margin-left: 5px;
       padding: 5px 0;
       text-align: center;
       display: inline-block;
-      font-weight: 300;
-      font-size: 12px;
     }
 
     &__optional {
       @include box($width: 42px, $radius: 2px);
+      @include font2(300, 12px, #fff);
       @include colors(#c0c0c0, #fff);
       margin-left: 5px;
       padding: 5px 0;
       text-align: center;
       display: inline-block;
-      font-weight: 300;
-      font-size: 12px;
     }
   }
 
   &__images {
-    font-weight: 600;
-    font-size: 14px;
-    color: #999;
+    @include font2(600, 14px, #999);
 
     #image-box {
+      @include font2($weight: normal, $clr: #000);
       padding: 10px 0;
-      font-weight: normal;
-      color: #000;
 
       #previews {
         margin: 10px 0;
@@ -83,9 +76,9 @@
         display: flex;
 
         .input-box-group {
+          margin: 0 auto;
           border: 1px solid #000;
           border-radius: 4px;
-          margin: 0 auto;
 
           .image-index {
             padding: 5px;
@@ -123,12 +116,10 @@
   }
 
   &__basic {
+    @include font2(600, 14px, #999);
+    padding-bottom: 40px;
     border: solid #ccc;
     border-width: 1px 0;
-    padding-bottom: 40px;
-    font-weight: 600;
-    font-size: 14px;
-    color: #999;
 
     &__name {
       margin: 5px auto 10px;
@@ -155,19 +146,15 @@
         padding-left: 540px;
 
         &__count {
-          font-weight: normal;
-          font-size: 12px;
-          color: #000;
+          @include font2(normal, 12px, #000);
         }
       }
     }
   }
 
   &__details {
+    @include font2(600, 14px, #999);
     padding: 40px 0;
-    font-weight: 600;
-    font-size: 14px;
-    color: #999;
 
     select {
       @include box(400px, 48px, 4px);
@@ -177,10 +164,8 @@
 
     &__brand {
       &__add-btn {
+        @include font2(normal, 16px, #00f);
         margin-top: 20px;
-        font-weight: normal;
-        font-size: 16px;
-        color: #00f;
       }
 
       &__add-btn:hover {
@@ -190,12 +175,10 @@
   }
 
   &__delivery {
+    @include font2(600, 14px, #999);
+    padding: 40px 0;
     border: solid #ccc;
     border-width: 1px 0;
-    padding: 40px 0;
-    font-weight: 600;
-    font-size: 14px;
-    color: #999;
 
     select {
       @include box(400px, 48px, 4px);
@@ -205,10 +188,8 @@
   }
 
   &__price {
+    @include font2(600, 14px, #999);
     padding: 40px 0;
-    font-weight: 600;
-    font-size: 14px;
-    color: #999;
 
     input {
       @include box(400px, 48px, 4px);
@@ -217,15 +198,11 @@
     }
 
     &__selling-price {
-      font-weight: normal;
-      font-size: 16px;
-      color: #000;
+      @include font2(normal, 16px, #000);
     }
 
     &__sells-commission {
-      font-weight: normal;
-      font-size: 16px;
-      color: #000;
+      @include font2(normal, 16px, #000);
       padding: 30px 0;
 
       span {
@@ -234,12 +211,10 @@
     }
 
     &__profit {
+      @include font2(normal, 16px, #000);
+      padding: 30px 0;
       border: solid #ccc;
       border-width: 1px 0 0;
-      font-weight: normal;
-      font-size: 16px;
-      color: #000;
-      padding: 30px 0;
 
       span {
         margin-left: 320px;
@@ -258,10 +233,10 @@
     input {
       @include box(200px, 48px, 4px);
       @include colors(#20b2aa, #fff);
-      cursor: pointer;
-      transition: 0.5s;
       border: none;
       font-size: 14px;
+      cursor: pointer;
+      transition: 0.5s;
     }
   }
 
@@ -271,8 +246,8 @@
     line-height: 48px;
     margin: 30px auto;
     text-align: center;
-    transition: 0.5s;
     font-size: 14px;
+    transition: 0.5s;
   }
 
   &__return-btn {
@@ -281,8 +256,8 @@
     line-height: 48px;
     margin: 30px auto;
     text-align: center;
-    transition: 0.5s;
     font-size: 14px;
+    transition: 0.5s;
   }
 }
 
@@ -293,8 +268,8 @@
 
   &__terms {
     @include box($width: 380px, $height: 60px);
-    line-height: 60px;
     margin: 0 auto 20px;
+    line-height: 60px;
 
     a {
       text-decoration: none;

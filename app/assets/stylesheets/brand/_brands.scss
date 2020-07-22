@@ -28,19 +28,17 @@
 
   &__label {
     @include box($height: 24px);
+    @include font2($weight: 600, $size: 14px);
     margin: $contents-margin-size auto 5px;
-    font-weight: 600;
-    font-size: 14px;
 
     &__require {
       @include box($width: 42px, $radius: 2px);
+      @include font2(300, 12px, #fff);
       @include colors(#ea352d, #fff);
       margin-left: 5px;
       padding: 5px 0;
       text-align: center;
       display: inline-block;
-      font-weight: 300;
-      font-size: 12px;
     }
   }
 
@@ -62,9 +60,9 @@
       @include box(200px, 48px, 4px);
       @include colors(#20b2aa, #fff);
       cursor: pointer;
-      transition: 0.5s;
       border: none;
       font-size: 14px;
+      transition: 0.5s;
     }
   }
 
@@ -73,9 +71,9 @@
     background-color: #c0c0c0;
     margin: 50px auto $contents-margin-size;
     line-height: 48px;
+    font-size: 14px;
     text-align: center;
     transition: 0.5s;
-    font-size: 14px;
   }
 }
 
