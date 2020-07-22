@@ -37,7 +37,7 @@ img {
         font-size: 24px;
       }
 
-      &__image {
+      &__images {
         // 画像用の箱設定
         margin: 16px 0 0;
 
@@ -47,27 +47,35 @@ img {
           position: relative;
         }
 
-        &-top {
-          // 大きい画像の設定
-          object-fit: cover;
-          height: 346px;
-        }
-
-        &__lists {
-          // 小さい画像の横並び設定
+        &__image {
           display: flex;
-          justify-content: center;
-          margin-top: 10px;
+          flex-direction: column;
+          width: 560px;
+          align-items: center;
+          margin: 0 auto;
+        
+          &-top {
+            // 大きい画像の設定
+            object-fit: cover;
+            height: 346px;
+          }
 
-          &__list {
-            // 小さい画像のサイズ設定
-            width: 25%;
-            margin-right: 10px;
+          &__lists {
+            // 小さい画像の横並び設定
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
 
-            &-sub {
-              // 小さい画像の設定
-              object-fit: cover;
-              height: 87px;
+            &__list {
+              // 小さい画像のサイズ設定
+              width: 25%;
+              margin-right: 10px;
+
+              &-sub {
+                // 小さい画像の設定
+                object-fit: cover;
+                height: 87px;
+              }
             }
           }
         }
