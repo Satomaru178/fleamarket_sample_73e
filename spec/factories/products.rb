@@ -25,7 +25,7 @@ FactoryBot.define do
     brand
 
     before(:create) do |product|
-      product.images << create(:image, src: "hoge.png")
+      product.images << create(:image)
     end
   end
 
