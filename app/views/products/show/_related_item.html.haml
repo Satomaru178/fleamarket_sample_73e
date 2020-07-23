@@ -1,0 +1,21 @@
+.content__related
+  = link_to "#" do
+    = grandchild.parent.parent.name
+  .content__related__products
+    .content__related__products__product
+      = link_to "/products/id" do
+        %figure.content__related__products__product__image
+          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png"
+        .content__related__products__product__body
+          %h3.content__related__products__product__body__name
+            サバ缶マン
+          .content__related__products__product__body__detail
+            %ul
+              %li
+                30000円
+              %li
+                = icon("fas", "star")
+                0
+            %p
+              税込
+
