@@ -226,9 +226,9 @@
 -->
 
 ## brandsテーブル
-| Column | Type | Option    |
-|--------|------|-----------|
-|name    |string|index: true|
+| Column | Type | Option                  |
+|--------|------|-------------------------|
+|name    |string|index: true, unique: true|
 
 ### Association
 - has_many :products
