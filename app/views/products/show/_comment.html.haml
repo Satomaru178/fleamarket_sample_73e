@@ -1,13 +1,11 @@
 .content-main__comment
-  #new-comment.content-main__comment__new-comment
-    = form_with local: true do |f|
-      #comment-body.content-main__comment__new-comment
-        = f.text_area :comment
-        %p.content-main__comment__new-comment__message
-          相手のことを考え丁寧なコメントを心がけましょう。
-          %br/
-          不快な言葉遣いなどは利用制限や退会処分となることがあります。
-        %br/
-        .content-main__comment__new-comment__btn
-          = f.submit 'コメントする' do 
-            = icon("fas", "commit")
+  = form_with local: true do |f|
+    = f.text_area :comment, class: "content-main__comment__form"
+    %p.content-main__comment__notice
+      相手のことを考え丁寧なコメントを心がけましょう。
+      %br/
+      不快な言葉遣いなどは利用制限や退会処分となることがあります。
+    %br/
+    = button_tag type: "submit", class: "content-main__comment__btn" do 
+      = icon("fas", "comment")
+      コメントする
