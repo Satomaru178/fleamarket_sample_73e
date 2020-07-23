@@ -57,7 +57,6 @@ class ProductsController < ApplicationController
   def show
     @parents = Category.where(ancestry: nil)
     @product = Product.find(params[:id])
-    @categories = Category.all
   end
 
   def destroy
