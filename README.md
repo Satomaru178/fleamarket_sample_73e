@@ -198,7 +198,7 @@
 | Column | Type     | Option                       |
 |--------|----------|------------------------------|
 |product |references|null: false, foreign_key: true|
-|src     |string    |null: false                   |
+|src     |string    |                              |
 
 ### Association
 - mount_uploader :src, ImageUploader
