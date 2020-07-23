@@ -39,16 +39,18 @@
               %th
                 カテゴリー
               %td
-                - @categories.each do |category|
-                  - if @product.category_id == category.id
-                    = link_to "#" do
-                      = category.parent.parent.name
-                      %br/
-                    = link_to "#" do
-                      = category.parent.name
-                      %br/
-                    = link_to "#" do
-                      = category.name
+                -@parents.each do |parent|
+                  -parent.children.each do |child|
+                    -child.children.each do |grandchild|
+                      -if(grandchild.id == @product.category_id)
+                        =link_to '#' do
+                          =grandchild.parent.parent.name
+                        %br/
+                        =link_to '#' do
+                          =grandchild.parent.name
+                        %br/
+                        =link_to '#' do
+                          =grandchild.name
             %tr
               %th
                 ブランド
