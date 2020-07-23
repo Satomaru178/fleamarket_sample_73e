@@ -41,4 +41,14 @@ class Product < ApplicationRecord
 
   validates_associated :images
   validates :images, presence: true
+
+  def self.search(search)
+    if (search)
+      # Product.where("name LIKE ? OR explain LIKE ?", "%#{search}%", "%#{search}%")
+      Product.where("name LIKE ?", "%#{search}%")
+      # Product.where("explain LIKE ?", "%#{search}%")
+    else
+      # nop
+    end
+  end
 end
