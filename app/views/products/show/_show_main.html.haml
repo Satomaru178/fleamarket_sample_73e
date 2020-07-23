@@ -90,8 +90,7 @@
             = link_to "#" do
               = icon("fas", "flag")
               不適切な商品の通報
-    -# コメント欄
-    .content-main__comment
+    = render "products/show/comment"
   -# 前の商品・後ろの商品のリンク
   %ul.contnet-links
     %li.content-link
@@ -104,5 +103,8 @@
         %span
           後ろの商品
         = icon("fas", "angle-right")
-  = render "products/show/comment"
--# ここに商品一覧
+  -@parents.each do |parent|
+    -parent.children.each do |child|
+      -child.children.each do |grandchild|
+        -if(grandchild.id == @product.category_id)
+          = render "products/show/related_item", grandchild: grandchild
