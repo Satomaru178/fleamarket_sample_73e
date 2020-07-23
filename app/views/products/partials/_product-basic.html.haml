@@ -1,24 +1,22 @@
+.product-contents__label
+  = f.label '商品名'
+  %span.product-contents__label__require 必須
 - if @product.errors.include?(:name)
   .alert__sign-up
     = @product.errors.full_messages_for(:name)
 - else
   -# nop
-
-.product-contents__label
-  = f.label '商品名'
-  %span.product-contents__label__require 必須
 .product-contents__basic__name
   = f.text_field :name, maxlength: 40, placeholder: "40文字以内"
 
+.product-contents__label
+  = f.label '商品の説明'
+  %span.product-contents__label__require 必須
 - if @product.errors.include?(:explain)
   .alert__sign-up
     = @product.errors.full_messages_for(:explain)
 - else
   -# nop
-
-.product-contents__label
-  = f.label '商品の説明'
-  %span.product-contents__label__require 必須
 .product-contents__basic__explain
   = f.text_area :explain, maxlength: 1000, placeholder: "1000文字以内"
   .product-contents__basic__explain__counter
