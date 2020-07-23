@@ -34,4 +34,10 @@ Rails.application.routes.draw do
       post   "date",   to: 'creditcards#show'
     end
   end
+
+  resources :top, only: [:index] do
+    collection do
+      get :search
+    end
+  end
 end
