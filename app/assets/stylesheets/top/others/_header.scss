@@ -46,6 +46,10 @@
           @include absolute(0px, 0px, auto, auto);
           // 検索ボタンの背景色指定
           background-color: #20b2aa;
+
+          .search-btn {
+            display: none;
+          }
           
           &__icon {
             // 虫眼鏡マークの外枠作成
