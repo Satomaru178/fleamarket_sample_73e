@@ -13,11 +13,7 @@
     margin: 0 auto;
     list-style: none;
 
-    &::after {
-      display: block;
-      content: "";
-      clear: both;
-    }
+    @include clearfix;
 
     li {
       padding-right: 10px;

@@ -1,9 +1,5 @@
 .content-main__related {
-  &::after {
-    display: block;
-    content: "";
-    clear: both;
-  }
+  @include clearfix;
 
   a {
     display: block;

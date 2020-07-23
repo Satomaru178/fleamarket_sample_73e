@@ -177,6 +177,10 @@ img {
           ul {
             margin: 10px 0 0;
             display: flex;
+
+            :hover {
+              opacity: 0.5;
+            }
           }
 
           &__left-btn {
@@ -185,10 +189,6 @@ img {
             border-radius: 40px;
             color: #3CCACE;
             border: 1px solid #ffb340;  
-
-            :hover {
-              opacity: 0.5;
-            }
           }
 
           &__right-btn {
@@ -208,11 +208,7 @@ img {
     }
 
     &__links {
-      &::after {
-        display: block;
-        content: "";
-        clear: both;
-      }
+      @include clearfix;
   
       &__left {
         float: left;
