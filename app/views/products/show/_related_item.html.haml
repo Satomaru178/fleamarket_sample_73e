@@ -1,15 +1,15 @@
-.content__related
-  = link_to "#" do
+.content-main__related
+  = link_to "#", class: "content-main__related__category" do
     = grandchild.parent.parent.name
-  .content__related__products
-    .content__related__products__product
+  .content-main__related__products
+    .content-main__related__products__product
       = link_to "/products/id" do
-        %figure.content__related__products__product__image
-          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png"
-        .content__related__products__product__body
-          %h3.content__related__products__product__body__name
+        %figure.content-main__related__products__product__upper
+          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png", class: "content-main__related__products__product__upper-image"
+        .content-main__related__products__product__lower
+          %h3.content-main__related__products__product__lower__name
             サバ缶マン
-          .content__related__products__product__body__detail
+          .content-main__related__products__product__lower__detail
             %ul
               %li
                 30000円
@@ -17,5 +17,5 @@
                 = icon("fas", "star")
                 0
             %p
-              税込
+              (税込)
 
