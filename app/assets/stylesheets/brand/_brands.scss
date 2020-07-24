@@ -1,0 +1,95 @@
+.brand-wrapper {
+  background-color: #f6f6f6;
+}
+
+.brand-header {
+  @include box($height: 120px);
+  @include centering();
+
+  &__logo {
+    $header-logo-padding-size: calc((120px - 60px) / 2);
+    @include box($width: 200px, $height: 60px);
+    padding: $header-logo-padding-size 0;
+  }
+}
+
+.brand-contents {
+  $contents-height:      calc(100vh - 2 * 120px); /* 画面高さ-header高さ-footer高さ */
+  $contents-margin-size: calc((100vh - 2 * 120px - (5px + 2 * 50px) - (24px + 3 * 48px)) / 2);
+  @include box($width: 700px, $height: $contents-height);
+  @include centering();
+  background-color: #fff;
+  margin: 0 auto;
+
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  &__label {
+    @include box($height: 24px);
+    @include font2($weight: 600, $size: 14px);
+    margin: $contents-margin-size auto 5px;
+
+    &__require {
+      @include box($width: 42px, $radius: 2px);
+      @include font2(300, 12px, #fff);
+      @include colors(#ea352d, #fff);
+      margin-left: 5px;
+      padding: 5px 0;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  &__input {
+    margin: 5px auto 50px;
+
+    input {
+      @include box(400px, 48px, 4px);
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+  }
+
+  &__submit-btn {
+    @include centering();
+    margin: 50px auto;
+
+    input {
+      @include box(200px, 48px, 4px);
+      @include colors(#20b2aa, #fff);
+      cursor: pointer;
+      border: none;
+      font-size: 14px;
+      transition: 0.5s;
+    }
+  }
+
+  &__return-btn {
+    @include box(200px, 48px, 4px);
+    background-color: #c0c0c0;
+    margin: 50px auto $contents-margin-size;
+    line-height: 48px;
+    font-size: 14px;
+    text-align: center;
+    transition: 0.5s;
+  }
+}
+
+.brand-footer {
+  $footer-padding-size: calc((120px - (60px + 12px)) / 2);
+  @include box($height: 120px);
+  padding: $footer-padding-size 0;
+
+  &__logo {
+    @include box($width: 200px, $height: 60px);
+    margin: 0 auto;
+  }
+
+  &__copyright {
+    @include box($height: 12px);
+    text-align: center;
+    font-size: 12px;
+  }
+}

@@ -15,7 +15,7 @@
 
 .feature-lower {
   // 外枠の大きさ指定
-  @include box(100vw, 711.7px);
+  @include box($width: 100vw, $height: 711.7px);
   // 背景色、文字色指定
   @include colors();
   // 文字は中央揃え
@@ -40,7 +40,7 @@
 
   &__card-lists {
     // 外枠の大きさ指定
-    @include box(1050px, 560px);
+    @include box($width: 1050px, $height: 560px);
     // 横並べ
     @include between();
     // 左右中央揃え
@@ -51,13 +51,13 @@
     // 3つの箱
     &__card {
       // 外枠の大きさ指定
-      @include box(350px, 500px);
+      @include box($width: 350px, $height: 500px);
       // 上の空間作成、左右中央揃え
       margin: 50px auto;
 
       &__image {
         // 画像の大きさ指定
-        @include box(205.09px, 315.7px);
+        @include box($width: 205.09px, $height: 315.7px);
         // 左右中央揃え
         margin: 0 auto;
       }

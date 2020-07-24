@@ -1,0 +1,299 @@
+.product-wrapper {
+  background-color: #f6f6f6;
+}
+
+.product-header {
+  @include box($height: 120px);
+  @include centering();
+
+  &__logo {
+    $header-logo-padding-size: calc((120px - 60px) / 2);
+    @include box($width: 200px, $height: 60px);
+    padding: $header-logo-padding-size 0;
+  }
+}
+
+.product-contents {
+  @include box($width: 700px);
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 10px 40px 40px;
+
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  &__label {
+    @include box($height: 24px);
+    @include font2(600, 14px, #000);
+    margin: 40px auto 5px;
+
+    &__require {
+      @include box($width: 42px, $radius: 2px);
+      @include font2(300, 12px, #fff);
+      @include colors(#ea352d, #fff);
+      margin-left: 5px;
+      padding: 5px 0;
+      text-align: center;
+      display: inline-block;
+    }
+
+    &__optional {
+      @include box($width: 42px, $radius: 2px);
+      @include font2(300, 12px, #fff);
+      @include colors(#c0c0c0, #fff);
+      margin-left: 5px;
+      padding: 5px 0;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  &__images {
+    @include font2(600, 14px, #999);
+
+    #image-box {
+      @include font2($weight: normal, $clr: #000);
+      padding: 10px 0;
+
+      #previews {
+        margin: 10px 0;
+        padding: 10px 0;
+        border: solid #ccc;
+        border-width: 1px 0;
+
+        .preview-title {
+          margin-bottom: 5px;
+        }
+  
+        .preview-images {
+          display: flex;
+        }
+      }
+
+      .input-box-groups {
+        display: flex;
+
+        .input-box-group {
+          margin: 0 auto;
+          border: 1px solid #000;
+          border-radius: 4px;
+
+          .image-index {
+            padding: 5px;
+            text-align: center;
+          }
+
+          .input-box {
+            padding: 5px;
+            text-align: center;
+            color: #00f;
+
+            &__file {
+              display: none;
+            }
+          }
+
+          .input-box:hover {
+            text-decoration: underline;
+          }
+
+          .js-remove {
+            padding: 5px;
+            text-align: center;
+            color: #00f;
+            cursor: default;
+            transition: 0.5s;
+          }
+
+          .js-remove:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  &__basic {
+    @include font2(600, 14px, #999);
+    padding-bottom: 40px;
+    border: solid #ccc;
+    border-width: 1px 0;
+
+    &__name {
+      margin: 5px auto 10px;
+
+      input {
+        @include box(400px, 48px, 4px);
+        border: 1px solid #ccc;
+        font-size: 16px;
+      }
+    }
+
+    &__explain {
+      @include box($height: 420px);
+      margin: 5px auto 10px;
+
+      textarea {
+        @include box(600px, 400px, 4px);
+        border: 1px solid #ccc;
+        font-size: 16px;
+      }
+
+      &__counter {
+        @include box($height: 20px);
+        padding-left: 540px;
+
+        &__count {
+          @include font2(normal, 12px, #000);
+        }
+      }
+    }
+  }
+
+  &__details {
+    @include font2(600, 14px, #999);
+    padding: 40px 0;
+
+    select {
+      @include box(400px, 48px, 4px);
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    &__brand {
+      &__add-btn {
+        @include font2(normal, 16px, #00f);
+        margin-top: 20px;
+      }
+
+      &__add-btn:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__delivery {
+    @include font2(600, 14px, #999);
+    padding: 40px 0;
+    border: solid #ccc;
+    border-width: 1px 0;
+
+    select {
+      @include box(400px, 48px, 4px);
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+  }
+
+  &__price {
+    @include font2(600, 14px, #999);
+    padding: 40px 0;
+
+    input {
+      @include box(400px, 48px, 4px);
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    &__selling-price {
+      @include font2(normal, 16px, #000);
+    }
+
+    &__sells-commission {
+      @include font2(normal, 16px, #000);
+      padding: 30px 0;
+
+      span {
+        margin-left: 257px;
+      }
+    }
+
+    &__profit {
+      @include font2(normal, 16px, #000);
+      padding: 30px 0;
+      border: solid #ccc;
+      border-width: 1px 0 0;
+
+      span {
+        margin-left: 320px;
+      }
+    }
+  }
+
+  &__caution {
+    font-size: 12px;
+  }
+
+  &__submit-btn {
+    @include centering();
+    margin: 30px auto;
+
+    input {
+      @include box(200px, 48px, 4px);
+      @include colors(#20b2aa, #fff);
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.5s;
+    }
+  }
+
+  &__draft-btn {
+    @include box(200px, 48px, 4px);
+    background-color: #c0c0c0;
+    line-height: 48px;
+    margin: 30px auto;
+    text-align: center;
+    font-size: 14px;
+    transition: 0.5s;
+  }
+
+  &__return-btn {
+    @include box(200px, 48px, 4px);
+    background-color: #c0c0c0;
+    line-height: 48px;
+    margin: 30px auto;
+    text-align: center;
+    font-size: 14px;
+    transition: 0.5s;
+  }
+}
+
+.product-footer {
+  $footer-padding-size: calc((200px - (60px + 60px + 12px) - 20px) / 2);
+  @include box($height: 200px);
+  padding: $footer-padding-size 0;
+
+  &__terms {
+    @include box($width: 380px, $height: 60px);
+    margin: 0 auto 20px;
+    line-height: 60px;
+
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    &__items {
+      @include between();
+      list-style: none;
+
+      &__item {
+        font-size: 12px;
+      }
+    }
+  }
+
+  &__logo {
+    @include box($width: 200px, $height: 60px);
+    margin: 20px auto 0;
+  }
+
+  &__copyright {
+    @include box($height: 12px);
+    text-align: center;
+    font-size: 12px;
+  }
+}

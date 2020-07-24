@@ -1,7 +1,8 @@
 // 箱を作成
-@mixin box($width: auto, $height: auto) {
+@mixin box($width: auto, $height: auto, $radius: 0) {
   width: $width;
   height: $height;
+  border-radius: $radius;
 }
 
 // 箱の背景を画像にする
@@ -13,10 +14,17 @@
 }
 
 // 文字のデコレーション
-@mixin font($size,$family,$shadow) {
+@mixin font($size, $family, $shadow) {
   font-size: $size;
   font-family: $family;
   text-shadow: 0 0 $shadow #000;
+}
+
+// 文字のデコレーション
+@mixin font2($weight: normal, $size: 12px, $clr: #000) {
+  font-weight: $weight;
+  font-size: $size;
+  color: $clr;
 }
 
 // 背景画像、文字色指定
@@ -29,6 +37,12 @@
 @mixin between() {
   display: flex;
   justify-content: space-between;
+}
+
+// 横並べかつ中央寄せ
+@mixin centering() {
+  display: flex;
+  justify-content: center;
 }
 
 // 絶対位置指定
@@ -91,4 +105,3 @@
     clear: both;
   }
 }
-

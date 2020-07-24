@@ -1,31 +1,21 @@
-// 4つの商品画像、1番目
-#first.pickup__products__lists__list__image {
-  @include backimg('material/icon/icon-01.png', contain);
-}
+// 4つの商品画像
+.pickup__products__lists__list__image {
+  text-align: center;
 
-// 4つの商品画像、2番目
-#second.pickup__products__lists__list__image {
-  @include backimg('material/icon/icon-02.png', contain);
-}
-
-// 4つの商品画像、3番目
-#third.pickup__products__lists__list__image {
-  @include backimg('material/icon/icon-03.png', contain);
-}
-
-// 4つの商品画像、4番目
-#fourth.pickup__products__lists__list__image {
-  @include backimg('material/icon/icon-04.png', contain);
+  &__inner {
+    height: 150px;
+    width: auto;
+  }
 }
 
 #upper.pickup {
   // 外枠サイズ指定
-  @include box(100vw, 426px);
+  @include box($width: 100vw, $height: 426px);
 }
 
 #lower.pickup {
   // 外枠サイズ指定
-  @include box(100vw, 532px);
+  @include box($width: 100vw, $height: 532px);
 }
 
 .pickup {
@@ -70,15 +60,15 @@
     }
 
     &__lists {
+      // 横並べかつ中央寄せ
+      @include centering();
       // 商品リストの高さ指定
       height: 245px;
-      // 横並べかつ中央寄せ
-      display: flex;
-      justify-content: center;
 
       &__list {
         // 商品の外枠作成
-        @include box(220px, 100%);
+        @include box($width: 220px);
+        background-color: white;
 
         &__image {
           // 商品画像の高さ指定
@@ -97,12 +87,12 @@
 
           &__name {
             // 商品名の外枠作成
-            @include box(188px, 24px);
+            @include box($width: 188px, $height: 24px);
           }
 
           &__details {
             // 商品詳細の外枠指定
-            @include box(188px, 39px);
+            @include box($width: 188px, $height: 39px);
 
             ul {
               // 横並べ
@@ -112,6 +102,10 @@
             }
           }
         }
+      }
+
+      &__list:hover {
+        opacity: 0.5;
       }
     }
   }
