@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :products
 
-  resources :brands, only: [:new, :create, :show]
+  resources :brands, only: [:new, :create]
 
   resources :accounts, only: [:index, :show] do
     collection do
