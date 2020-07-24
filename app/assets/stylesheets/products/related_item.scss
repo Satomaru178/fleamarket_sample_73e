@@ -28,7 +28,6 @@
         position: relative;
         overflow: hidden;
         margin: 0;
-        z-index: auto;
 
         &-image {
           position: absolute;
@@ -37,7 +36,6 @@
           right: 0;
           bottom: 0;
           width: 100%;
-          z-index: auto;
           height: 150px;
           object-fit: cover;  
         }
