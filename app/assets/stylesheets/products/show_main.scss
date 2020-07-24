@@ -1,229 +1,227 @@
-ul {
-  // 点を消す
-  list-style: none;
-}
-
-img {
-  // 画像の幅を設定
-  width: 100%;
-  // 画像を下端合わせにする設定
-  vertical-align: bottom;
-}
-
 .container {
   // 全体の背景色を指定
   background-color: #f8f8f8;
-}
 
-.content {
-  // メイン部分の外枠
-  padding: 40px;
-  margin: 0 auto;
+  ul {
+    list-style: none;
+  }
 
-  &-main {
-    // 外枠サイズ指定
-    width: 700px;
+  img {
+    // 画像の幅を設定
+    width: 100%;
+    // 画像を下端合わせにする設定
+    vertical-align: bottom;
+  }
+
+  .content {
+    // メイン部分の外枠
+    padding: 40px;
     margin: 0 auto;
 
-    &__top {
-      &__product {
-        // 商品詳細部分の箱設定
-        background-color: #fff;
-        padding: 24px 40px 40px;
+    &-main {
+      // 外枠サイズ指定
+      width: 700px;
+      margin: 0 auto;
 
-        &__name {
-          // 商品名の設定
-          text-align: center;
-          font-weight: bold;
-          font-size: 24px;
-        }
+      &__top {
+        &__product {
+          // 商品詳細部分の箱設定
+          background-color: #fff;
+          padding: 24px 40px 40px;
 
-        &__images {
-          // 画像用の箱設定
-          margin: 16px 0 0;
-
-          ul {
-            // 画像を横並び
-            display: flex;
-            position: relative;
-          }
-
-          &__image {
-            display: flex;
-            flex-direction: column;
-            width: 560px;
-            align-items: center;
-            margin: 0 auto;
-          
-            &-top {
-              // 大きい画像の設定
-              object-fit: cover;
-              height: 346px;
-            }
-
-            &__lists {
-              // 小さい画像の横並び設定
-              display: flex;
-              justify-content: center;
-              margin-top: 10px;
-
-              &__list {
-                // 小さい画像のサイズ設定
-                width: 25%;
-                margin-right: 10px;
-
-                &-sub {
-                  // 小さい画像の設定
-                  object-fit: cover;
-                  height: 87px;
-                }
-              }
-            }
-          }
-        }
-
-        // 金額等の設定
-        &__price {
-          // 金額表示欄の上下の空間
-          margin: 24px 0 24px;
-          // 金額表示を中央に
-          text-align: center;
-          // 金額の下の表示を横並びに
-          display: flex;
-          // 画像を積み重なるように配置する設定（但し横並び）
-          flex-direction: column;
-
-          // 金額の表示設定
-          &__number {
-            // 文字のサイズ設定
-            font-size: 46px;
-            // 文字を太字に
+          &__name {
+            // 商品名の設定
+            text-align: center;
             font-weight: bold;
-            // 右側に空間を指定
-            margin-right: 10px;
+            font-size: 24px;
           }
 
-          &__detail {
-            // 金額以外の文字のサイズ指定
-            font-size: 16px;
-          }
-        }
+          &__images {
+            // 画像用の箱設定
+            margin: 16px 0 0;
 
-        // 中間にある商品名の設定
-        &__detail {
-          line-height: 1.5;
-          font-size: 18px;
-          // 下の空間の指定
-          margin-bottom: 30px;
-        }
+            ul {
+              // 画像を横並び
+              display: flex;
+              position: relative;
+            }
 
-        // 表の箱の設定
-        &__table {
-          // 表の下部の空間を指定
-          margin-bottom: 20px;
+            &__image {
+              display: flex;
+              flex-direction: column;
+              width: 560px;
+              align-items: center;
+              margin: 0 auto;
+            
+              &-top {
+                // 大きい画像の設定
+                object-fit: cover;
+                height: 346px;
+              }
 
-          // 表本体の設定
-          table {
-            width: 100%;
-            height: 375px;
-            // 隣接するボーダーを重ねて表示する設定
-            border-collapse: collapse;
-            // ボーダーの設定
-            border: 1px solid #f8f8f8;
+              &__lists {
+                // 小さい画像の横並び設定
+                display: flex;
+                justify-content: center;
+                margin-top: 10px;
 
-            tbody {
-              display: table-row-group;
-              vertical-align: middle;
-              border-color: inherit;
+                &__list {
+                  // 小さい画像のサイズ設定
+                  width: 25%;
+                  margin-right: 10px;
 
-              tr {
-                display: table-row;
-                vertical-align: inherit;
-                border-color: inherit;
-
-                th {
-                  vertical-align: inherit;
-                  width: 20%;
-                  background-color: #eee;
-                  font-weight: 400;
-                  padding: 8px;
-                  border: 1px solid #dedede;
-                  font-size: 14px;
-                  text-align: center;
-                }
-
-                td {
-                  vertical-align: inherit;
-                  border-color: inherit;
-                  width: 61%;
-                  padding: 15px 15px;
-                  border: 1px solid #dedede;
-                  font-size: 14px;
-
-                  a {
-                    text-decoration: none;
-                    color: #3CCACE;
+                  &-sub {
+                    // 小さい画像の設定
+                    object-fit: cover;
+                    height: 87px;
                   }
                 }
               }
             }
           }
-        }
 
-        &__bottom {
-          display: flex;
-          justify-content: space-between;
-
-          ul {
-            margin: 10px 0 0;
+          // 金額等の設定
+          &__price {
+            // 金額表示欄の上下の空間
+            margin: 24px 0 24px;
+            // 金額表示を中央に
+            text-align: center;
+            // 金額の下の表示を横並びに
             display: flex;
+            // 画像を積み重なるように配置する設定（但し横並び）
+            flex-direction: column;
 
-            :hover {
-              opacity: 0.5;
+            // 金額の表示設定
+            &__number {
+              // 文字のサイズ設定
+              font-size: 46px;
+              // 文字を太字に
+              font-weight: bold;
+              // 右側に空間を指定
+              margin-right: 10px;
+            }
+
+            &__detail {
+              // 金額以外の文字のサイズ指定
+              font-size: 16px;
             }
           }
 
-          &__left-btn {
-            margin-right: auto;
-            padding: 6px 10px;
-            border-radius: 40px;
-            color: #3CCACE;
-            border: 1px solid #ffb340;  
+          // 中間にある商品名の設定
+          &__detail {
+            line-height: 1.5;
+            font-size: 18px;
+            // 下の空間の指定
+            margin-bottom: 30px;
           }
 
-          &__right-btn {
-            font-size: 14px;
+          // 表の箱の設定
+          &__table {
+            // 表の下部の空間を指定
+            margin-bottom: 20px;
 
-            a {
+            // 表本体の設定
+            table {
+              width: 100%;
+              height: 375px;
+              // 隣接するボーダーを重ねて表示する設定
+              border-collapse: collapse;
+              // ボーダーの設定
+              border: 1px solid #f8f8f8;
+
+              tbody {
+                display: table-row-group;
+                vertical-align: middle;
+                border-color: inherit;
+
+                tr {
+                  display: table-row;
+                  vertical-align: inherit;
+                  border-color: inherit;
+
+                  th {
+                    vertical-align: inherit;
+                    width: 20%;
+                    background-color: #eee;
+                    font-weight: 400;
+                    padding: 8px;
+                    border: 1px solid #dedede;
+                    font-size: 14px;
+                    text-align: center;
+                  }
+
+                  td {
+                    vertical-align: inherit;
+                    border-color: inherit;
+                    width: 61%;
+                    padding: 15px 15px;
+                    border: 1px solid #dedede;
+                    font-size: 14px;
+
+                    a {
+                      text-decoration: none;
+                      color: #3CCACE;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          &__bottom {
+            display: flex;
+            justify-content: space-between;
+
+            ul {
+              margin: 10px 0 0;
+              display: flex;
+
+              :hover {
+                opacity: 0.5;
+              }
+            }
+
+            &__left-btn {
+              margin-right: auto;
               padding: 6px 10px;
-              display: inline-block;
-              border-radius: 4px;
-              color: #333;
-              border: 1px solid #333;
-              text-decoration: none;
+              border-radius: 40px;
+              color: #3CCACE;
+              border: 1px solid #ffb340;  
+            }
+
+            &__right-btn {
+              font-size: 14px;
+
+              a {
+                padding: 6px 10px;
+                display: inline-block;
+                border-radius: 4px;
+                color: #333;
+                border: 1px solid #333;
+                text-decoration: none;
+              }
             }
           }
         }
       }
-    }
 
-    &__links {
-      @include clearfix;
-  
-      &__left {
-        float: left;
-      }
-  
-      &__right {
-        float: right;
-      }
-  
-      a {
-        text-decoration: none;
-        color: #3CCACE;
+      &__links {
+        @include clearfix;
+    
+        &__left {
+          float: left;
+        }
+    
+        &__right {
+          float: right;
+        }
+    
+        a {
+          text-decoration: none;
+          color: #3CCACE;
+        }
       }
     }
   }
 }
-
 
