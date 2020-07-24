@@ -18,8 +18,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :products
-
   resources :brands, only: [:new, :create]
 
   resources :accounts, only: [:index, :show] do
