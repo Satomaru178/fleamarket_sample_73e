@@ -1,6 +1,11 @@
 .product-contents__label
   = f.label '出品画像'
   %span.product-contents__label__require 必須
+- if @product.errors.include?(:images)
+  .alert__sign-up
+    = @product.errors.full_messages_for(:images)
+- else
+  -# nop
 #image-box
   .image-box-rule<
     最大5枚までアップロードできます
@@ -19,12 +24,6 @@
             -# nop
       - else
         -# nop
-
-  - if @product.errors.include?(:images)
-    .alert__sign-up
-      = @product.errors.full_messages_for(:images)
-  - else
-    -# nop
 
   .input-box-groups
     = f.fields_for :images do |image|

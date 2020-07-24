@@ -13,17 +13,16 @@
   .product-contents__details
     商品の詳細
 
-    - if @product.errors.include?(:category)
-      .alert__sign-up
-        = @product.errors.full_messages_for(:category)
-    - else
-      -# nop
-
     .product-contents__details__categories
       .product-contents__details__categories__category
         .product-contents__label
           = f.label 'カテゴリー'
           %span.product-contents__label__require 必須
+        - if @product.errors.include?(:category)
+          .alert__sign-up
+            = @product.errors.full_messages_for(:category)
+        - else
+          -# nop
         .product-contents__details__categories__category__wrapper
           .product-contents__details__categories__category__wapper__box
             #parent_category.product-contents__details__categories__category__wapper__box--select
