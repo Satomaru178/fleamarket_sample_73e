@@ -27,7 +27,7 @@
 
       &__form {
         // 入力フォームの外枠サイズ指定
-        @include box($width: 870px, $height: 41px);
+        @include box($width: 829px, $height: 41px);
         // 入力フォームの中に検索ボタンを埋め込むための設定
         position: relative;
 
@@ -43,7 +43,7 @@
           // 検索ボタンの外枠サイズ指定
           @include box($width: 41px, $height: 41px);
           // 検索ボタンの位置を調整
-          @include absolute(0px, 0px, auto, auto);
+          @include absolute(0px, -41px, auto, auto);
           // 検索ボタンの背景色指定
           background-color: #20b2aa;
 
@@ -53,11 +53,12 @@
           
           &__icon {
             // 虫眼鏡マークの外枠作成
-            @include box($width: 20px, $height: 20px);
+            @include box($width: 41px, $height: 41px);
             // 外枠に虫眼鏡マークを埋め込む
-            @include backimg('material/icon/icon-search01.png', contain);
-            // 中央に配置
-            margin: 10px;
+            @include backimg('material/icon/icon-search01.png', 50%);
+            // カーソル設定
+            cursor: pointer;
+            transition: 0.5s;
           }
         }
       }

@@ -1,7 +1,7 @@
 .exhibition-btn {
   // ボタンの外枠サイズ指定
   @include box(120px, 120px, 5px);
-  // ボタンの背景色m、文字色を指定
+  // ボタンの背景色、文字色を指定
   @include colors(#20b2aa,#fff);
   // 文字は中央揃え
   text-align: center;
@@ -11,6 +11,9 @@
   position: fixed;
   bottom: 30px;
   right: 30px;
+  // カーソル設定
+  cursor: pointer;
+  transition: 0.5s;
 
   &__explain {
     // 文字サイズ指定
