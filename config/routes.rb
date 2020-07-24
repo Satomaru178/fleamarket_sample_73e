@@ -34,4 +34,7 @@ Rails.application.routes.draw do
       post   "date",   to: 'creditcards#show'
     end
   end
+
+  resources :addresses, only: [:edit, :update]
+
 end

@@ -1,5 +1,7 @@
 class CreditcardsController < ApplicationController
   before_action :move_to_index, only: [:index, :new, :create, :show, :delete]
+  before_action :set_categories, only: [:index, :new, :create, :show, :delete]
+  before_action :user_login, only: [:index, :new, :create, :show, :delete]
 
   require "payjp"
 
@@ -81,5 +83,13 @@ class CreditcardsController < ApplicationController
 
   def move_to_index
     redirect_to controller: :top, action: :index unless user_signed_in?
+  end
+
+  def set_categories
+    @parents = Category.where(ancestry: nil)
+  end
+
+  def user_login
+    @account = current_user[:id]
   end
 end

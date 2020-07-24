@@ -29,10 +29,13 @@
 @import "top/others/footer";
 @import "top/others/exhibition-btn";
 
-//ユーザーページー・ログアウトページ
+//ユーザーページ&ログアウトページ
 @import "account/sidebar";
 @import "account/main";
 @import "account/accounts_config";
 
+//ユーザー編集ページ
+@import "address/edit";
+
 //クレジットカード登録画面
-@import "creditcard/creditcard_main"
+@import "creditcard/creditcard_main";
