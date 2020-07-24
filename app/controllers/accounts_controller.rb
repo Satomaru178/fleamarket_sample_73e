@@ -8,6 +8,18 @@ class AccountsController < ApplicationController
     @parents = Category.where(ancestry: nil)
   end
 
+  def new
+  end
+
+  def create
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
   def logout
   end
 
