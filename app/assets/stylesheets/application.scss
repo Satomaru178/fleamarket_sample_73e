@@ -29,7 +29,7 @@
 @import "top/others/footer";
 @import "top/others/exhibition-btn";
 
-//ユーザーページー・ログアウトページ
+// ユーザーページ&ログアウトページ
 @import "account/sidebar";
 @import "account/main";
 @import "account/accounts_config";
@@ -42,3 +42,9 @@
 @import "products/bread_crambs";
 @import "products/comment";
 @import "products/related_item"
+
+// 商品出品編集ページ
+@import "product/products";
+
+// ブランド追加ページ
+@import "brand/brands";
