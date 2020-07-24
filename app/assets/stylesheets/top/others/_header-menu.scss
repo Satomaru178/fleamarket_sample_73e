@@ -1,3 +1,29 @@
+// デフォルトは非表示
+.category1, .category2, .category3 {
+  display: none;
+}
+
+.header__contents__lower__left-items__categories:hover {
+  
+  .category1 {
+    display: block;
+
+    .parent__list:hover {
+
+      .category2 {
+        display: block;
+
+        .child__list:hover {
+          
+          .category3 {
+            display:  block;
+          }
+        }
+      }
+    }
+  }
+}
+
 .header__contents__lower__left-items__categories {
   position: relative;
 
@@ -7,14 +33,16 @@
     padding-top: 11px;
     padding-left: 5px;
     background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
     width: 224px;
     list-style: none;
     cursor: pointer;
     line-height: 40px;
-    display: none;
     color: #000;
     z-index: 1;
+
+    li {
+      border-bottom: 0.2px solid #eaffff;
+    }
   }
 
   .category2 {
@@ -24,14 +52,13 @@
     padding-top: 11px;
     padding-left: 5px;
     background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
     width: 224px;
     list-style: none;
     cursor: pointer;
     line-height: 30px;
-    display: none;
     color: #000;
     z-index: 1;
+    min-height: 500px;
   }
 
   .category3 {
@@ -41,25 +68,12 @@
     padding-left: 5px;
     padding-top: 11px;
     background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
     width: 224px;
     list-style: none;
     cursor: pointer;
     line-height: 30px;
-    display: none;
     color: #000;
     z-index: 1;
+    min-height: 500px;
   }
-}
-
-.category1.appeared {
-  display: block;
-}
-
-.category2.appeared {
-  display: block;
-}
-
-.category3.appeared {
-  display: block;
 }
