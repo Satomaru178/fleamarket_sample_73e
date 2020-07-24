@@ -93,3 +93,5 @@ gem 'jquery-turbolinks'
 gem 'ancestry'
 
 gem 'faker'
+
+gem 'kaminari'
