@@ -96,13 +96,15 @@
     -# 前の商品・後ろの商品のリンク
     %ul.content-main__links
       %li.content-main__links__left
-        = link_to product_path(@product.id - 1) do
-          = icon("fas", "angle-left")
-          %span
-            前の商品
+        - if @product.previous.present?
+          =link_to product_path(@product.previous.id) do
+            = icon("fas", "angle-left")
+            %span
+              前の商品
       %li.content-main__links__right
-        = link_to product_path(@product.id + 1) do
-          %span
-            後ろの商品
-          = icon("fas", "angle-right")
+        - if @product.next.present?
+          = link_to product_path(@product.next.id) do
+            %span
+              後ろの商品
+            = icon("fas", "angle-right")
     = render "products/show/related_item", grandchild: grandchild
