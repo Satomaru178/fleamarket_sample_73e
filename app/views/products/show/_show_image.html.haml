@@ -4,5 +4,5 @@
       = image_tag @product.images[0].src.url, class: "content-main__top__product__images__image-top", id: "main"
     %ul.content-main__top__product__images__image__lists
       - @product.images.each do |image|
-        %li#sub.content-main__top__product__images__image__lists__list
+        %li.content-main__top__product__images__image__lists__list
           = image_tag image.src.url, class: "content-main__top__product__images__image__lists__list-sub"
