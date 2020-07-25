@@ -17,8 +17,12 @@
           .content-main__top__product__price__detail
             %span
               (税込)
-            %span
-              送料込み
+            - if(@product.costburden.id == 1)
+              %span
+                送料込み
+            - else
+              %span
+                送料別
         .content-main__top__product__detail
           = @product.name
         .content-main__top__product__table
@@ -70,7 +74,9 @@
                   発送日の目安
                 %td
                   = @product.shippingperiod.name
-        - if(@product.seller_id =! current_user.id)
+        - if(@product.seller_id == current_user.id)
+          -# ここに商品編集・削除ボタン
+        - else
           .content-main__top__product__buy-btn
             = link_to "#" do
               購入画面に進む
