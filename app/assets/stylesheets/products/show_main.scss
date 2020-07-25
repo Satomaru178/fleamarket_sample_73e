@@ -46,6 +46,7 @@
 
             ul {
               // 画像を横並び
+              width: 100%;
               display: flex;
               position: relative;
             }
@@ -65,6 +66,7 @@
 
               &__lists {
                 // 小さい画像の横並び設定
+                width: 100%;
                 display: flex;
                 justify-content: center;
                 margin-top: 10px;
@@ -73,11 +75,13 @@
                   // 小さい画像のサイズ設定
                   width: 25%;
                   margin-right: 10px;
-
+                  @include centering();
+                  
                   &-sub {
                     // 小さい画像の設定
                     object-fit: cover;
                     height: 87px;
+                    width: auto;
                   }
                 }
               }
