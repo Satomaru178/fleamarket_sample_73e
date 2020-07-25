@@ -43,21 +43,21 @@
           &__images {
             // 画像用の箱設定
             margin: 16px 0 0;
-
-            ul {
-              // 画像を横並び
-              width: 100%;
-              display: flex;
-              position: relative;
-            }
-
+            width: 100%;
+            display: flex;
+            position: relative;
+            
             &__image {
               display: flex;
               flex-direction: column;
-              width: 560px;
               align-items: center;
-              margin: 0 auto;
-            
+              width: 560px;
+              margin: 0 auto;  
+
+              &-link {
+                width: 100%;
+              }
+
               &-top {
                 // 大きい画像の設定
                 object-fit: cover;
