@@ -32,7 +32,7 @@
                 %th
                   出品者
                 %td
-                  = "#{@product.seller.nickname}"
+                  = @product.seller.nickname
               %tr
                 %th
                   カテゴリー
@@ -49,6 +49,8 @@
                 %th
                   ブランド
                 %td
+                  -if @product.brand
+                    = @product.brand.name
               %tr
                 %th
                   商品のサイズ
