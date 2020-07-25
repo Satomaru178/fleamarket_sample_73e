@@ -7,28 +7,20 @@
       -# 商品詳細
       .content-main__top__product
         -# 商品名
-        %h2.content-main__top__product__name
-          あぶラーメンマン
+        %h2.content-main__top__product__name 
+          = @product.name
         -# 商品写真の大枠
-        .content-main__top__product__images
-          %ul
-            %li.content-main__top__product__images__image
-              = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG', class: "content-main__top__product__images__image-top"
-              %ul.content-main__top__product__images__image__lists
-                %li.content-main__top__product__images__image__lists__list
-                  = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG', class: "content-main__top__product__images__image__lists__list-sub"
-                %li.content-main__top__product__images__image__lists__list
-                  = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/17/IMG_9069.JPG', class: "content-main__top__product__images__image__lists__list-sub"
+        = render "products/show/show_image"
         .content-main__top__product__price
           %span.content-main__top__product__price__number
-            ¥1000
+            = converting_to_jpy(@product.price)
           .content-main__top__product__price__detail
             %span
               (税込)
             %span
               送料込み
         .content-main__top__product__detail
-          あぶラーメンマン
+          = @product.name
         .content-main__top__product__table
           %table
             %tbody
@@ -36,23 +28,19 @@
                 %th
                   出品者
                 %td
-                  Santos
+                  = "#{@product.seller.nickname}"
               %tr
                 %th
                   カテゴリー
                 %td
-                  -@parents.each do |parent|
-                    -parent.children.each do |child|
-                      -child.children.each do |grandchild|
-                        -if(grandchild.id == @product.category_id)
-                          =link_to '#' do
-                            =grandchild.parent.parent.name
-                          %br/
-                          =link_to '#' do
-                            =grandchild.parent.name
-                          %br/
-                          =link_to '#' do
-                            =grandchild.name
+                  =link_to '#' do
+                    =grandchild.parent.parent.name
+                  %br/
+                  =link_to '#' do
+                    =grandchild.parent.name
+                  %br/
+                  =link_to '#' do
+                    =grandchild.name
               %tr
                 %th
                   ブランド
@@ -65,26 +53,27 @@
                 %th
                   商品の状態
                 %td
-                  新品に近い
+                  = @product.condition.name
               %tr
                 %th
                   配送料の負担
                 %td
-                  送料込み（出品者負担）
+                  = @product.costburden.name
               %tr
                 %th
                   発送元の地域
                 %td
                   = link_to "#" do
-                    神奈川県
+                    = @product.shippingorigin.name
               %tr
                 %th
                   発送日の目安
                 %td
-                  1~2日で発送
-        .content-main__top__product__buy-btn
-          = link_to "#" do
-            購入画面に進む
+                  = @product.shippingperiod.name
+        - if(@product.seller_id =! current_user.id)
+          .content-main__top__product__buy-btn
+            = link_to "#" do
+              購入画面に進む
         .content-main__top__product__bottom
           %ul.content-main__top__product__bottom__left
             %li.content-main__top__product__bottom__left-btn
@@ -99,17 +88,13 @@
     -# 前の商品・後ろの商品のリンク
     %ul.content-main__links
       %li.content-main__links__left
-        = link_to "#" do
+        = link_to product_path(@product.id - 1) do
           = icon("fas", "angle-left")
           %span
             前の商品
       %li.content-main__links__right
-        = link_to "#" do
+        = link_to product_path(@product.id + 1) do
           %span
             後ろの商品
           = icon("fas", "angle-right")
-    -@parents.each do |parent|
-      -parent.children.each do |child|
-        -child.children.each do |grandchild|
-          -if(grandchild.id == @product.category_id)
-            = render "products/show/related_item", grandchild: grandchild
+    = render "products/show/related_item", grandchild: grandchild
