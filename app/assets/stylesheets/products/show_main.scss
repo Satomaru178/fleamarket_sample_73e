@@ -51,7 +51,7 @@
               display: flex;
               flex-direction: column;
               align-items: center;
-              width: 560px;
+              width: 100%;
               margin: 0 auto;  
 
               &-link {
@@ -60,29 +60,32 @@
 
               &-top {
                 // 大きい画像の設定
-                object-fit: cover;
+                object-fit: contain;
                 height: 346px;
+                background-color: #f8f8f8;
               }
 
               &__lists {
                 // 小さい画像の横並び設定
                 width: 100%;
                 display: flex;
-                justify-content: space-between;
+                justify-content: center;
                 margin-top: 10px;
 
                 &__list {
                   // 小さい画像のサイズ設定
                   width: 20%;
+                  height: 87px;
                   margin-right: 10px;
                   @include centering();
                   display: flex;
                   justify-content: center;
+                  background-color: #f8f8f8;
       
                   &-sub {
                     // 小さい画像の設定
-                    object-fit: cover;
-                    height: 87px;
+                    object-fit: contain;
+                    height: 100%;
                     width: auto;
                   }
                   
