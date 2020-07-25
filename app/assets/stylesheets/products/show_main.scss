@@ -68,20 +68,26 @@
                 // 小さい画像の横並び設定
                 width: 100%;
                 display: flex;
-                justify-content: center;
+                justify-content: space-between;
                 margin-top: 10px;
 
                 &__list {
                   // 小さい画像のサイズ設定
-                  width: 25%;
+                  width: 20%;
                   margin-right: 10px;
                   @include centering();
-                  
+                  display: flex;
+                  justify-content: center;
+      
                   &-sub {
                     // 小さい画像の設定
                     object-fit: cover;
                     height: 87px;
                     width: auto;
+                  }
+                  
+                  &:not(.active) {
+                    opacity: 0.4;
                   }
                 }
               }
