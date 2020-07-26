@@ -1,0 +1,104 @@
+-# 全体
+.content
+  -# 商品詳細・コメント欄・リンク・商品一覧
+  .content-main
+    -# 商品詳細・コメント欄
+    .content-main__top
+      -# 商品詳細
+      .content-main__top__product
+        -# 商品名
+        %h2.content-main__top__product__name 
+          = @product.name
+        -# 商品写真の大枠
+        = render "products/show/show_image"
+        .content-main__top__product__price
+          %span.content-main__top__product__price__number
+            = converting_to_jpy(@product.price)
+          .content-main__top__product__price__detail
+            %span
+              (税込)
+            - if(@product.costburden.id == 1)
+              %span
+                送料込み
+            - else
+              %span
+                送料別
+        .content-main__top__product__detail
+          = @product.name
+        .content-main__top__product__table
+          %table
+            %tbody
+              %tr
+                %th
+                  出品者
+                %td
+                  = @product.seller.nickname
+              %tr
+                %th
+                  カテゴリー
+                %td
+                  =link_to '#' do
+                    =grandchild.parent.parent.name
+                  %br/
+                  =link_to '#' do
+                    =grandchild.parent.name
+                  %br/
+                  =link_to '#' do
+                    =grandchild.name
+              %tr
+                %th
+                  ブランド
+                %td
+                  -if @product.brand
+                    = @product.brand.name
+              %tr
+                %th
+                  商品のサイズ
+                %td
+              %tr
+                %th
+                  商品の状態
+                %td
+                  = @product.condition.name
+              %tr
+                %th
+                  配送料の負担
+                %td
+                  = @product.costburden.name
+              %tr
+                %th
+                  発送元の地域
+                %td
+                  = link_to "#" do
+                    = @product.shippingorigin.name
+              %tr
+                %th
+                  発送日の目安
+                %td
+                  = @product.shippingperiod.name
+        .content-main__top__product__buy-btn
+          = link_to new_user_session_path do
+            購入画面に進む 
+        .content-main__top__product__bottom
+          %ul
+            %li
+          %ul.content-main__top__product__bottom__right
+            %li.content-main__top__product__bottom__right-btn#logout
+              = link_to "#" do
+                = icon("fas", "flag")
+                不適切な商品の通報
+    -# 前の商品・後ろの商品のリンク
+    %ul.content-main__links
+      %li.content-main__links__left
+        - if @product.previous.present?
+          =link_to product_path(@product.previous.id) do
+            = icon("fas", "angle-left")
+            %span
+              前の商品
+      %li.content-main__links__right
+        - if @product.next.present?
+          = link_to product_path(@product.next.id) do
+            %span
+              後ろの商品
+            = icon("fas", "angle-right")
+      = render "products/show/related_item", grandchild: grandchild

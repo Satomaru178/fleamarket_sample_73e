@@ -6,7 +6,10 @@
           = render "top/others/header"
           = render "products/show/bread_crambs", grandchild: grandchild
           .container 
-            = render "products/show/show_main", grandchild: grandchild
+            - if user_signed_in?
+              = render "products/show/show_main_login", grandchild: grandchild
+            - else
+              = render "products/show/show_main_logout", grandchild: grandchild
           = render "top/introduction/introduction-lower"
           = render "top/others/footer"
           = render "top/others/exhibition-btn"
