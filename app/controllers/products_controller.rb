@@ -15,7 +15,8 @@ class ProductsController < ApplicationController
   before_action :set_brands, only: [:new, :create, :edit, :update]
 
   def index
-    @products = Product.includes(:images).order('created_at DESC')
+    @q = Product.ransack(params[:q])
+    @results = @q.result.includes(:images).order("created_at DESC").page(params[:page]).per(5)
   end
 
   def new

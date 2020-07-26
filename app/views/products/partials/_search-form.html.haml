@@ -1,0 +1,6 @@
+.contents__search-form
+  = search_form_for @q do |f|
+    %p
+      = f.label :name_cont, '商品名'
+      = f.search_field :name_cont
+    = f.submit
