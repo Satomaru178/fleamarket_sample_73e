@@ -57,6 +57,7 @@ class ProductsController < ApplicationController
   def show
     @parents = Category.where(ancestry: nil)
     @product = Product.find(params[:id])
+    @products = Product.includes(:images).where(buyer_id: nil).order('created_at DESC')
   end
 
   def destroy
