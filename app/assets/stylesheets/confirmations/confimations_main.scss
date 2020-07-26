@@ -1,0 +1,227 @@
+.confimation-page {
+  background-color: rgb(245, 245, 245);
+  height: 1270px;
+  font-family: "Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif";
+}
+
+.confimation__header {
+  background-color: rgb(245, 245, 245);
+  height: 128px;
+  padding-top: 35px;
+  .confimation__header--icon {
+    @include backimg("material/logo/logo.png", cover);
+    height: 49px;
+    width: 185px;
+    margin: auto;
+  }
+}
+
+// メイン 購入内容
+.confimation__main {
+  width: 700px;
+  height: 912px;
+  margin: auto;
+  background-color: #fff;
+  justify-content: center;
+  .confimation__main--topmost {
+    width: 375px;
+    height: 98px;
+    margin: 0px auto;
+    padding: 32px 16px;
+    font-size: 24px;
+    color: #333333;
+    text-align: center;
+  }
+  // 画像の蘭
+  .confimation__main--image {
+    width: 375px;
+    height: 145px;
+    padding: 32px 16px;
+    margin: auto;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(245, 245, 245);
+    .item-images {
+      width: 343px;
+      height: 80px;
+      display: flex;
+      .item-image {
+        width:80px;
+        height: 80px;
+      }
+      .item-name {
+        width: 247px;
+        height: 80px;
+        margin-left: 16px;
+        .item-names {
+          font-size: 14px;
+          margin-bottom: 8px;
+        }
+        .item-price {
+          text-align: right;
+          .postage {
+            font-size: 12px;
+          }
+          .price {
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 8px;
+          }
+        }
+      }
+    }
+  }
+  // 支払い金額
+  .confimation__main--payment {
+    width: 375px;
+    height: 133px;
+    padding: 32px 16px;
+    margin: auto;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(245, 245, 245);
+    .item-payment {
+      width: 343px;
+      height: 24px;
+      margin-bottom: 24px;
+      .item-payment-amount {
+        font-size:18px;
+        margin-right: 175px;
+      }
+      .item-payments {
+        font-size:24px
+      }
+    }
+    //ポイント
+    .item-point {
+      height: 20px;
+      font-size:14px;
+      display: flex;
+      .possession-point {
+        font-size:12px;
+        margin-left: 150px;
+      }
+    }
+  }
+  // 支払い方法
+  .confimation__main--method {
+    width: 375px;
+    height: 111px;
+    padding: 32px 16px;
+    margin: auto;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(245, 245, 245);
+    text-decoration: none;
+    .item-method {
+      width: 343px;
+      height: 46px;
+      .item-methods {
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
+    }
+    .item-register {
+      text-decoration: none;
+      color: rgb(0, 149, 238);
+      .item-registers {
+        font-size:14px;
+      }
+    }
+  }
+  // 配送先
+  .confimation__main--delivery {
+    width: 375px;
+    height: 144px;
+    padding: 32px 16px;
+    margin: auto;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(245, 245, 245);
+    text-decoration: none;
+    .item-delivery {
+      width: 343px;
+      height: 22px;
+      display: flex;
+      .delibers {
+        font-size: 14px;
+        margin-right: 240px;
+      }
+      .item-change {
+        font-size: 14px;
+        text-decoration: none;
+        color: rgb(0, 149, 238);
+      }
+    }
+    .item-address {
+      font-size: 14px;
+      color: #333333;
+      line-height:1.5;
+    }
+  }
+  // 購入ボタン
+  .confimation__main--purchase {
+    width: 375px;
+    height: 290px;
+    padding-top: 32px;
+    padding-bottom: 56px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin: auto;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(245, 245, 245);
+    text-decoration: none;
+    .item-purchase {
+      width: 343px;
+      height: 180px;
+      .explanation {
+        font-size: 14px;
+        color: #888888;
+        margin-bottom: 24px;
+        line-height:1.5;
+      }
+      .input-confirmation {
+        color: #FF0211;
+        margin-bottom: 24px;
+      }
+    }
+    .item-btn {
+      display: inline-block;
+      margin-left: 10ko0px;
+      padding: 0.5em 1em;
+      text-decoration: none;
+      background: #888888;/*ボタン色*/
+      color: #FFF;
+      border-bottom: solid 4px #888888;
+      border-radius: 3px;
+    }
+  }
+  // フッター
+  .footer-contents{
+    font-size: 12px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: 150px;
+    &__items {
+      list-style: none;
+      display: flex;
+      &__left {
+        margin-right: 10px;
+      }
+      &__center {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.furima-logo {
+  margin-left: 250px;
+}
+.footer-contents__copyright {
+  margin-left: 280px;
+}
+
+
+

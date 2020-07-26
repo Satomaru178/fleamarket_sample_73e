@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   # 商品確認
-  resources :confimation, only: [:index, :show]
+  resources :confimations, only: [:new, :create]
 
   resources :brands, only: [:new, :create]
 
