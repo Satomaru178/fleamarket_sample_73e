@@ -21,4 +21,4 @@
 - else
   -# nop
 .product-contents__details__condition
-  = f.collection_select :condition_id, Condition.all, :id, :name
+  = f.collection_select :condition_id, Condition.all, :id, :name, { prompt: "選択してください" }

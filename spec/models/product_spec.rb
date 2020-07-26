@@ -84,32 +84,32 @@ RSpec.describe Product, type: :model do
         expect(product.errors[:brand]).not_to be_present
       end
   
-      it "condition_idが0の時は登録できないこと" do
-        product = build(:product, condition_id: 0)
+      it "condition_idがない時は登録できないこと" do
+        product = build(:product, condition_id: nil)
         product.images.build(src: "hoge.png")
         expect(product).to be_invalid
-        expect(product.errors[:condition_id]).to include("を選択してください")
+        expect(product.errors[:condition_id]).to include("を入力してください")
       end
   
-      it "costburden_idが0の時は登録できないこと" do
-        product = build(:product, costburden_id: 0)
+      it "costburden_idがない時は登録できないこと" do
+        product = build(:product, costburden_id: nil)
         product.images.build(src: "hoge.png")
         expect(product).to be_invalid
-        expect(product.errors[:costburden_id]).to include("を選択してください")
+        expect(product.errors[:costburden_id]).to include("を入力してください")
       end
   
-      it "shippingorigin_idが0の時は登録できないこと" do
-        product = build(:product, shippingorigin_id: 0)
+      it "shippingorigin_idがない時は登録できないこと" do
+        product = build(:product, shippingorigin_id: nil)
         product.images.build(src: "hoge.png")
         expect(product).to be_invalid
-        expect(product.errors[:shippingorigin_id]).to include("を選択してください")
+        expect(product.errors[:shippingorigin_id]).to include("を入力してください")
       end
   
-      it "shippingperiod_idが0の時は登録できないこと" do
-        product = build(:product, shippingperiod_id: 0)
+      it "shippingperiod_idがない時は登録できないこと" do
+        product = build(:product, shippingperiod_id: nil)
         product.images.build(src: "hoge.png")
         expect(product).to be_invalid
-        expect(product.errors[:shippingperiod_id]).to include("を選択してください")
+        expect(product.errors[:shippingperiod_id]).to include("を入力してください")
       end
   
       it "priceがない時は登録できないこと" do
@@ -229,32 +229,32 @@ RSpec.describe Product, type: :model do
         expect(product.errors[:brand]).not_to be_present
       end
   
-      it "condition_idが0の時は更新できないこと" do
+      it "condition_idがない時は更新できないこと" do
         product = Product.first
-        product.update(condition_id: 0)
+        product.update(condition_id: nil)
         expect(product).to be_invalid
-        expect(product.errors[:condition_id]).to include("を選択してください")
+        expect(product.errors[:condition_id]).to include("を入力してください")
       end
   
-      it "costburden_idが0の時は更新できないこと" do
+      it "costburden_idがない時は更新できないこと" do
         product = Product.first
-        product.update(costburden_id: 0)
+        product.update(costburden_id: nil)
         expect(product).to be_invalid
-        expect(product.errors[:costburden_id]).to include("を選択してください")
+        expect(product.errors[:costburden_id]).to include("を入力してください")
       end
   
-      it "shippingorigin_idが0の時は更新できないこと" do
+      it "shippingorigin_idがない時は更新できないこと" do
         product = Product.first
-        product.update(shippingorigin_id: 0)
+        product.update(shippingorigin_id: nil)
         expect(product).to be_invalid
-        expect(product.errors[:shippingorigin_id]).to include("を選択してください")
+        expect(product.errors[:shippingorigin_id]).to include("を入力してください")
       end
   
-      it "shippingperiod_idが0の時は更新できないこと" do
+      it "shippingperiod_idがない時は更新できないこと" do
         product = Product.first
-        product.update(shippingperiod_id: 0)
+        product.update(shippingperiod_id: nil)
         expect(product).to be_invalid
-        expect(product.errors[:shippingperiod_id]).to include("を選択してください")
+        expect(product.errors[:shippingperiod_id]).to include("を入力してください")
       end
   
       it "priceがない時は更新できないこと" do
@@ -325,20 +325,16 @@ RSpec.describe Product, type: :model do
   describe 'self.serachメソッド' do
     context '引数が入力されている時' do
       it "検索文字列に一致する商品を返す" do
-        product1 = create(:product, name: "hogeb")
-        product2 = create(:product, name: "ahogeb")
-        product3 = create(:product, name: "ahoge")
-        product4 = create(:product, name: "fuga")
-        expect(Product.search("hoge")).to include(product1, product2, product3)
-        expect(Product.search("hoge")).not_to include(product4)
+        product = create(:redshirt)
+        expect(Product.search("red")).to include(product)
       end
+
       it "検索結果が1件も見つからなければ空のコレクションを返す" do
-        product1 = create(:product, name: "hogeb")
-        product2 = create(:product, name: "ahogeb")
-        product3 = create(:product, name: "ahoge")
-        expect(Product.search("huga")).to be_empty
+        product = create(:blueshirt)
+        expect(Product.search("red")).to be_empty
       end
     end
+
     context '引数が入力されていない時' do
       it "空のコレクションを返す" do
         expect(Product.search("")).to be_empty
