@@ -107,5 +107,5 @@
             %span
               後ろの商品
             = icon("fas", "angle-right")
-    - if(@product.seller_id =! current_user.id)
+    - if(@product.seller_id != current_user.id)
       = render "products/show/related_item", grandchild: grandchild
