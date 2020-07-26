@@ -78,12 +78,12 @@
                   = @product.shippingperiod.name
         - if(@product.seller_id == current_user.id)
           .content-main__top__product__edit-btn
-            = link_to "#" do
+            = link_to edit_product_path(@product) do
               商品の編集
           %p.content-main__top__product__text-center
             or
           .content-main__top__product__delete-btn
-            = link_to "#" do
+            = link_to product_path(@product), method: :delete do
               この商品を削除する
         - else
           .content-main__top__product__buy-btn
