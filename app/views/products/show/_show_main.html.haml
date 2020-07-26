@@ -82,16 +82,16 @@
           .content-main__top__product__buy-btn
             = link_to "#" do
               購入画面に進む
-        .content-main__top__product__bottom
-          %ul.content-main__top__product__bottom__left
-            %li.content-main__top__product__bottom__left-btn
-              = icon("fas", "star")
-              お気に入り 0
-          %ul.content-main__top__product__bottom__right
-            %li.content-main__top__product__bottom__right-btn
-              = link_to "#" do
-                = icon("fas", "flag")
-                不適切な商品の通報
+          .content-main__top__product__bottom
+            %ul.content-main__top__product__bottom__left
+              %li.content-main__top__product__bottom__left-btn
+                = icon("fas", "star")
+                お気に入り 0
+            %ul.content-main__top__product__bottom__right
+              %li.content-main__top__product__bottom__right-btn
+                = link_to "#" do
+                  = icon("fas", "flag")
+                  不適切な商品の通報
     = render "products/show/comment"
     -# 前の商品・後ろの商品のリンク
     %ul.content-main__links
@@ -107,4 +107,5 @@
             %span
               後ろの商品
             = icon("fas", "angle-right")
-    = render "products/show/related_item", grandchild: grandchild
+    - if(@product.seller_id =! current_user.id)
+      = render "products/show/related_item", grandchild: grandchild
