@@ -7,6 +7,6 @@ class TopController < ApplicationController
   end
 
   def search
-    @products = Product.includes(:images).search(params[:keyword]).order("created_at DESC").page(params[:page]).per(5)
+    @results = Product.includes(:images).search(params[:keyword]).order("created_at DESC").page(params[:page]).per(5)
   end
 end
