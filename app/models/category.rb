@@ -21,7 +21,8 @@ class Category < ApplicationRecord
   
       # 孫カテゴリーの場合
     else
-      return self.items
+      items = Product.where(category_id: self.id)
+      return items
     end
   end
 end

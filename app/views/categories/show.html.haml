@@ -1,14 +1,14 @@
-// 追記--------------------------------------------------
-.category_wrapper
-  .category_links
-    - @category_links.each do |category|
-      = link_to category.name, category_path(category)
-// -----------------------------------------------------
-.products-container
-  .products-index
-    .title
-      = "#{@category.name}の商品一覧"
-      .title__border
-    - if @items
-      %ul.lists
-        -# = render "items/item", items: @items
+.title
+  = "#{@category.name}の商品一覧"
+
+// リンクリスト
+- if @category_links.present?
+  .category_wrapper
+    .category_links
+      - @category_links.each do |category|
+        = link_to category.name, category_path(category)
+
+-# 商品一覧表示
+- if @items
+  %ul.lists
+    = render "top/others/items", products: @items

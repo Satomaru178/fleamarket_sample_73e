@@ -1,8 +1,0 @@
-= render "top/others/header"
-.index
-  .index__wrapper
-    .index__wrapper__head
-    .index__wrapper__main
-= "#{@category.name}の商品一覧"
-- @category.children.each do |child|
-  = link_to "#{child.name}"
