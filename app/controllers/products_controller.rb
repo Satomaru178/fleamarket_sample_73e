@@ -82,6 +82,10 @@ class ProductsController < ApplicationController
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
+  def fuzzy_search
+    @results = Product.includes(:images).search(params[:keyword]).order("created_at DESC").page(params[:page]).per(5)
+  end
+
   private
 
   def product_params
