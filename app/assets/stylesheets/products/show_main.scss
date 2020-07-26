@@ -294,6 +294,7 @@
       // 前の商品、後ろの商品のリンクボタン
       &__links {
         @include clearfix;
+        margin-top: 10px;
         
         // 前の商品
         &__left {
