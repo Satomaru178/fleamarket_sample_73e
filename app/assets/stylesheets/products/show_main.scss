@@ -192,6 +192,45 @@
             }
           }
 
+          // 商品編集ボタン
+          &__edit-btn {
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+            margin: 16px 0;
+            background-color: #3CCACE;
+            text-align: center;
+            border-radius: 5px;
+
+            // リンク設定
+            a {
+              color: #fff;
+              display: block;
+            }
+          }
+
+          &__text-center {
+            text-align: center;
+            font-size: 16px;
+          }
+
+          // 商品削除ボタン
+          &__delete-btn {
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+            margin: 16px 0;
+            background-color: #aaa;
+            text-align: center;
+            border-radius: 5px;
+
+            // リンク設定
+            a {
+              color: #fff;
+              display: block;
+            }
+          }
+
           // 購入画面に進むボタン
           &__buy-btn {
             width: 100%;

@@ -77,7 +77,14 @@
                 %td
                   = @product.shippingperiod.name
         - if(@product.seller_id == current_user.id)
-          -# ここに商品編集・削除ボタン
+          .content-main__top__product__edit-btn
+            = link_to "#" do
+              商品の編集
+          %p.content-main__top__product__text-center
+            or
+          .content-main__top__product__delete-btn
+            = link_to "#" do
+              この商品を削除する
         - else
           .content-main__top__product__buy-btn
             = link_to "#" do
