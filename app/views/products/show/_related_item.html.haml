@@ -3,20 +3,20 @@
     = grandchild.parent.parent.name
   .content-main__related__products
     - @products.first(4).each do |product|
-      .content-main__related__products__product
-        = link_to product_path(product) do
-          %figure.content-main__related__products__product__upper
-            = image_tag product.images[0].src.url, class: "content-main__related__products__product__upper-image"
-          .content-main__related__products__product__lower
-            %h3.content-main__related__products__product__lower__name
-              = product.name
-            .content-main__related__products__product__lower__detail
-              %ul
-                %li
-                  = converting_to_jpy(product.price)
-                %li
-                  = icon("fas", "star")
-                  0
-              %p
-                (税込)
-
+      -if(product.category.root_id == grandchild.root_id)
+        .content-main__related__products__product
+          = link_to product_path(product) do
+            %figure.content-main__related__products__product__upper
+              = image_tag product.images[0].src.url, class: "content-main__related__products__product__upper-image"
+            .content-main__related__products__product__lower
+              %h3.content-main__related__products__product__lower__name
+                = product.name
+              .content-main__related__products__product__lower__detail
+                %ul
+                  %li
+                    = converting_to_jpy(product.price)
+                  %li
+                    = icon("fas", "star")
+                    0
+                %p
+                  (税込)
