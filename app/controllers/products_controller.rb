@@ -88,7 +88,7 @@ class ProductsController < ApplicationController
   end
 
   def fuzzy_search
-    @results = Product.includes(:images).search(params[:keyword]).order("created_at DESC").page(params[:page]).per(5)
+    @results = Product.includes([:images, :brand, :category]).search(params[:keyword]).order("created_at DESC").page(params[:page]).per(5)
   end
 
   private
