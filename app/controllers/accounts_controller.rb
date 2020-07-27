@@ -5,10 +5,10 @@ class AccountsController < ApplicationController
 
 
   def index
-    @parents = Category.where(ancestry: nil)
   end
 
   def new
+    @profile = Account.new
   end
 
   def create
