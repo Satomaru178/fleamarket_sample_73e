@@ -8,9 +8,8 @@
     - @parents.each do |parent|
       .categories-head__lists
         .categories-head__lists__list
-          %a(href="#category_#{parent.id}")
-            #{parent.name}
-  
+          = link_to "#{parent.name}", "#category_#{parent.id}"
+          
   .categories-index
     - @parents.each do |parent|
       .categories-index__parent
