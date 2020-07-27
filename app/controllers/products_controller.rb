@@ -6,17 +6,17 @@ class ProductsController < ApplicationController
   before_action :ensure_currect_user, only: [:edit, :update, :destroy]
 
   # 親カテゴリの配列を用意する
-  before_action :set_categories, only: [:new, :create, :edit, :update]
+  before_action :set_categories, only: [:index, :new, :create, :edit, :update]
 
   # 子カテゴリと孫カテゴリの配列を用意する
   before_action :set_categories_edit, only: [:edit, :update]
 
   # ブランド一覧を用意する
-  before_action :set_brands, only: [:new, :create, :edit, :update]
+  before_action :set_brands, only: [:index, :new, :create, :edit, :update]
 
   def index
     @q = Product.ransack(params[:q])
-    @results = @q.result.includes(:images).order("created_at DESC").page(params[:page]).per(5)
+    @results = @q.result.includes([:images, :brand, :category]).order("created_at DESC").page(params[:page]).per(5)
   end
 
   def new

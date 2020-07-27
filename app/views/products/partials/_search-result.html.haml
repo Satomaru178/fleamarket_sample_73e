@@ -11,6 +11,10 @@
               = image_tag image.src.url, size: '100x100'
           .product-search__results__result__explain
             = "商品の説明：#{result.explain}"
+          .product-search__results__result__category
+            = "カテゴリー：#{result.category.parent.parent.name}>#{result.category.parent.name}>#{result.category.name}"
+          .product-search__results__result__brand
+            = "ブランド：#{result.brand.name}"
           .product-search__results__result__condition
             = "商品の状態：#{result.condition.name}"
           .product-search__results__result__burden
@@ -21,16 +25,19 @@
             = "発送までの日数：#{result.shippingperiod.name}"
           .product-search__results__result__price
             = "販売価格：#{converting_to_jpy(result.price)}"
-          = link_to edit_product_path(result) do
-            .product-search__results__result__edit-btn
-              = "#{result.name}を編集する"
-          = link_to product_path(result), method: :delete do
-            .product-search__results__result__delete-btn
-              = "#{result.name}を削除する"
+          - if result.seller_id == current_user.id
+            = link_to edit_product_path(result) do
+              .product-search__results__result__edit-btn
+                = "#{result.name}を編集する"
+            = link_to product_path(result), method: :delete do
+              .product-search__results__result__delete-btn
+                = "#{result.name}を削除する"
+          - else
+            -# nop
         %hr
     - else
       .product-search__results__blank
-        キーワードを含む商品はありませんでした
+        条件に一致する商品はありませんでした
   = paginate(@results)
   = link_to root_path do
     .product-search__return-btn

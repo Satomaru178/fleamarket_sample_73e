@@ -1,4 +1,7 @@
 $(document).on('turbolinks:load', ()=> {
+
+  // 商品出品編集ページ用
+
   // カテゴリーセレクトボックスのオプション設定
   const buildOption = (category)=> {
     let html =
@@ -109,6 +112,129 @@ $(document).on('turbolinks:load', ()=> {
     }
     else {  // 初期値になっている
       $('#grandchildren_wrapper').remove();  // 一旦削除する
+    }
+  });
+
+
+
+
+
+  // 詳細検索用
+
+  // カテゴリーセレクトボックスのオプション設定
+  const buildOption2 = (category)=> {
+    let html =
+    `
+    <option value="${category.id}">
+      ${category.name}
+    </option>
+    `;
+    return html;
+  }
+
+  // 子カテゴリーの表示を生成、追加
+  const appendChildrenBox2 = (insertHTML)=> {
+    let html =
+    `
+    <div id="child-cat">
+      <div class="contents__search-form__items__label">
+        <label for="q_category_child_id">子カテゴリー</label>
+      </div>
+      <div class="contents__search-form__items__field">
+        <select name="q[category_id]" id="q_category_child_id">
+          <option value>指定なし</option>
+          ${insertHTML}
+        </select>
+      </div>
+    </div>
+    `;
+    $('#cat').append(html);
+  }
+
+  // 孫カテゴリーの表示を生成、追加
+  const appendGrandchildrenBox2 = (insertHTML)=> {
+    let html =
+    `
+    <div id="grandchild-cat">
+      <div class="contents__search-form__items__label">
+        <label for="q_category_id">孫カテゴリー</label>
+      </div>
+      <div class="contents__search-form__items__field">
+        <select name="q[category_id_eq]" id="q_category_id_eq">
+          <option value>指定なし</option>
+          ${insertHTML}
+        </select>
+      </div>
+    </div>
+    `;
+    $('#cat').append(html);
+  }
+
+  // 親カテゴリーのセレクトボックスが変化した
+  $('#parent-cat').on('change', function() {
+    // 選択された親カテゴリーを抽出
+    let parentCategory = $('#q_category_id option:selected').val();
+    if (parentCategory) {  // 初期値以外が選択されている
+      $.ajax({
+        url: '/products/get_category_children',
+        type: 'GET',
+        data: { parent_name: parentCategory },
+        dataType: 'json'
+      })
+      .done(function(children){
+        $('#child-cat').remove();  // 一旦削除する
+        $('#grandchild-cat').remove();
+
+        let insertHTML='';
+
+        children.forEach(function(child) {
+          insertHTML += buildOption2(child);
+        });
+
+        appendChildrenBox2(insertHTML);
+      })
+      .fail(function(){
+        alert('カテゴリーの取得に失敗しました');
+      });
+    }
+    else {  // 初期値になっている
+      $('#child-cat').remove();  // 一旦削除する
+      $('#grandchild-cat').remove();
+    }
+  });
+
+  // 子カテゴリーのセレクトボックスが変化した
+  $('#cat').on('change', '#q_category_child_id', function() {
+    // 選択された親カテゴリーを抽出
+    let childCategory = $('#q_category_child_id option:selected').val();
+    if (childCategory) {  // 初期値以外が選択されている
+      $.ajax({
+        url: '/products/get_category_grandchildren',
+        type: 'GET',
+        data: { child_id: childCategory },
+        dataType: 'json'
+      })
+      .done(function(grandchildren){
+        if (grandchildren) {
+          $('#grandchild-cat').remove();  // 一旦削除する
+          let insertHTML='';
+
+          grandchildren.forEach(function(grandchild) {
+            insertHTML += buildOption2(grandchild);
+          });
+
+          appendGrandchildrenBox2(insertHTML);
+        }
+        else {
+          // nop
+        }
+      })
+      .fail(function(){
+        alert('カテゴリーの取得に失敗しました');
+      });
+    }
+    else {  // 初期値になっている
+      $('#grandchild-cat').remove();  // 一旦削除する
     }
   });
 });
