@@ -8,6 +8,7 @@ class CreditcardsController < ApplicationController
   def index
     @card = Creditcard.where(user_id: current_user.id)
     if @card.blank?
+      render action: :index
     else
       redirect_to action: "show"
     end
