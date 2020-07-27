@@ -2,8 +2,14 @@ class ProductsController < ApplicationController
   # ログイン中のユーザしかできない
   before_action :authenticate_user!, only: [:new, :create, :edit, :upload, :destroy]
 
+  # 変数に商品を格納する
+  before_action :set_product, only: [:edit, :update, :show, :destroy]
+
   # 出品したユーザしかできない
   before_action :ensure_currect_user, only: [:edit, :update, :destroy]
+
+  # 変数に親カテゴリを格納する
+  before_action :set_parents, only: [:index, :new, :create, :edit, :update, :show]
 
   # 親カテゴリの配列を用意する
   before_action :set_categories, only: [:index, :new, :create, :edit, :update]
@@ -56,8 +62,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @parents = Category.where(ancestry: nil)
-    @product = Product.find(params[:id])
   end
 
   def destroy
@@ -106,11 +110,28 @@ class ProductsController < ApplicationController
     )
   end
 
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  def ensure_currect_user
+    if @product.seller_id != current_user.id
+      flash[:alert] = "権限がありません"
+      redirect_to root_path
+    else
+      # nop
+    end
+  end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
+  end
+
   def set_categories
     # セレクトボックスの初期値設定
     @category_parent_array = []
     # 親カテゴリー名を抽出し配列化
-    Category.where(ancestry: nil).each do |parent|
+    @parents.each do |parent|
       @category_parent_array << parent.name
     end
   end
@@ -125,16 +146,5 @@ class ProductsController < ApplicationController
 
   def set_brands
     @brands = Brand.all
-  end
-
-  def ensure_currect_user
-    @product = Product.find(params[:id])
-
-    if @product.seller_id != current_user.id
-      flash[:alert] = "権限がありません"
-      redirect_to root_path
-    else
-      # nop
-    end
   end
 end
