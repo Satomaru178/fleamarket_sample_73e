@@ -7,7 +7,7 @@
 - else
   -# nop
 .product-contents__delivery__cost-burden
-  = f.collection_select :costburden_id, Costburden.all, :id, :name, { prompt: "選択してください" }
+  = f.collection_select :costburden_id, Costburden.all, :id, :name, { include_blank: "選択してください" }
 
 .product-contents__label
   = f.label '発送元の地域'
@@ -18,7 +18,7 @@
 - else
   -# nop
 .product-contents__delivery__shipping-origin
-  = f.collection_select :shippingorigin_id, Shippingorigin.all, :id, :name, { prompt: "選択してください" }
+  = f.collection_select :shippingorigin_id, Shippingorigin.all, :id, :name, { include_blank: "選択してください" }
 
 .product-contents__label
   = f.label '発送までの日数'
@@ -29,4 +29,4 @@
 - else
   -# nop
 .product-contents__delivery__shipping-period
-  = f.collection_select :shippingperiod_id, Shippingperiod.all, :id, :name, { prompt: "選択してください" }
+  = f.collection_select :shippingperiod_id, Shippingperiod.all, :id, :name, { include_blank: "選択してください" }

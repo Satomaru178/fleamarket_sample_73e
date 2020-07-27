@@ -7,7 +7,7 @@
 - else
   -# nop
 .product-contents__details__brand
-  = f.collection_select :brand_id, @brands, :id, :name, { prompt: "未選択" }
+  = f.collection_select :brand_id, @brands, :id, :name, { include_blank: "未選択" }
 = link_to new_brand_path do
   .product-contents__details__brand__add-btn
     他のブランドを登録する
@@ -21,4 +21,4 @@
 - else
   -# nop
 .product-contents__details__condition
-  = f.collection_select :condition_id, Condition.all, :id, :name, { prompt: "選択してください" }
+  = f.collection_select :condition_id, Condition.all, :id, :name, { include_blank: "選択してください" }
