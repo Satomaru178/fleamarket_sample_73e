@@ -7,14 +7,14 @@
       = icon("fas", "angle-right")
     %li
       = link_to "#" do
-        = grandchild.parent.parent.name
+        = @product.category.root.name
     %li
       = icon("fas", "angle-right")
     %li
       = link_to "#" do
-        = grandchild.parent.name
+        = @product.category.parent.name
     %li
       = icon("fas", "angle-right")
     %li
       = link_to "#" do
-        = grandchild.name
+        = @product.category.name

@@ -1,15 +1,11 @@
 .wrapper
-  -@parents.each do |parent|
-    -parent.children.each do |child|
-      -child.children.each do |grandchild|
-        -if(grandchild.id == @product.category_id)
-          = render "top/others/header"
-          = render "products/show/bread_crambs", grandchild: grandchild
-          .container 
-            - if user_signed_in?
-              = render "products/show/show_main_login", grandchild: grandchild
-            - else
-              = render "products/show/show_main_logout", grandchild: grandchild
-          = render "top/introduction/introduction-lower"
-          = render "top/others/footer"
-          = render "top/others/exhibition-btn"
+  = render "top/others/header"
+  = render "products/show/bread_crambs"
+  .container 
+    - if user_signed_in?
+      = render "products/show/show_main_login"
+    - else
+      = render "products/show/show_main_logout"
+  = render "top/introduction/introduction-lower"
+  = render "top/others/footer"
+  = render "top/others/exhibition-btn"

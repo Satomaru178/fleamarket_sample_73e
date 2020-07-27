@@ -1,9 +1,9 @@
 .content-main__related
   = link_to "#", class: "content-main__related__category" do
-    = grandchild.parent.parent.name
+    = @product.category.root.name
   .content-main__related__products
-    - @products.first(4).each do |product|
-      -if(product.category.root_id == grandchild.root_id)
+    - @categoryProducts.each do |product|
+      - if(product != @product)
         .content-main__related__products__product
           = link_to product_path(product) do
             %figure.content-main__related__products__product__upper
