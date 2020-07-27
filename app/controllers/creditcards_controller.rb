@@ -6,7 +6,7 @@ class CreditcardsController < ApplicationController
   require "payjp"
 
   def index
-    @card = Creditcard.where(user_id: current_user.id)
+    @card = Creditcard.where(user_id: current_user.id).first
     if @card.blank?
       render action: :index
     else
@@ -41,7 +41,7 @@ class CreditcardsController < ApplicationController
   end
 
   def show
-    @card = Creditcard.where(user_id: current_user.id)
+    @card = Creditcard.where(user_id: current_user.id).first
     if @card.blank?
       render action: :index
     else
