@@ -1,12 +1,37 @@
-%h1 カテゴリー一覧
-%ul.categories
-  - @parents.each do |parent|
-    %li.parents= link_to "#{parent.name}", category_path(parent)
+= render "top/others/header"
 
-    %ul.categories__children
-      - parent.children.each do |child|
-        %li.childern= link_to "#{child.name}", category_path(child)
+.index-wrapper
+  .index-wrapper__title
+    %h1 カテゴリー一覧  
+  
+  .categories-head.clearfix
+    - @parents.each do |parent|
+      .categories-head__lists
+        .categories-head__lists__list
+          %a(href="#category_#{parent.id}")
+            #{parent.name}
+  
+  .categories-index
+    - @parents.each do |parent|
+      .categories-index__parent
+        .parents{:id => "category_#{parent.id}"}
+          = link_to "#{parent.name}", category_path(parent)  
 
-        %ul.categories__grandchildren
-          - child.children.each do |grandchild|
-            %li= link_to "#{grandchild.name}", category_path(grandchild)
+        .categories__children
+          - parent.children.each do |child|
+            .children
+              = link_to "#{child.name}", category_path(child)
+
+            .categories__grandchildren.clearfix
+              - child.children.each do |grandchild|
+                .grandchild
+                  = link_to "#{grandchild.name}", category_path(grandchild)
+
+          .go-to-top
+            %a(href="#")
+              %i.fas.fa-arrow-up
+                ページトップへ
+
+= render "top/introduction/introduction-lower"
+= render "top/others/footer"
+= render "top/others/exhibition-btn"
