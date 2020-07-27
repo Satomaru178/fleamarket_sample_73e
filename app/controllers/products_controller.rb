@@ -1,9 +1,15 @@
 class ProductsController < ApplicationController
   # ログイン中のユーザしかできない
-  before_action :authenticate_user!, only: [:new, :create, :edit, :upload, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :upload, :destroy, :purchase]
+
+  # 商品を変数にセットする
+  before_action :set_product, only: [:edit, :update, :destroy, :purchase]
 
   # 出品したユーザしかできない
-  before_action :ensure_currect_user, only: [:edit, :update, :destroy]
+  before_action :ensure_currect_user, only: [:edit, :destroy]
+
+  # 出品者は購入できない
+  before_action :reject_seller, only: [:purchase]
 
   # 親カテゴリの配列を用意する
   before_action :set_categories, only: [:new, :create, :edit, :update]
@@ -44,11 +50,15 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      flash[:notice] = "商品を編集しました"
+      if @product.buyer_id
+        flash[:notice] = "商品を購入しました"
+      else
+        flash[:notice] = "商品を編集しました"
+      end
       redirect_to root_path
       return
     else
-      flash[:alert] = "商品を編集できませんでした"
+      flash[:alert] = "商品を購入または編集できませんでした"
       render :edit
       return
     end
@@ -80,11 +90,15 @@ class ProductsController < ApplicationController
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
+  def purchase
+  end
+
   private
 
   def product_params
     params.require(:product).permit(
       :seller_id,
+      :buyer_id,
       :name,
       :explain,
       :category_id,
@@ -97,6 +111,10 @@ class ProductsController < ApplicationController
       images_attributes: [:id, :src, :_destroy],
       brand_attributes: [:id, :name],
     )
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 
   def set_categories
@@ -121,10 +139,17 @@ class ProductsController < ApplicationController
   end
 
   def ensure_currect_user
-    @product = Product.find(params[:id])
-
     if @product.seller_id != current_user.id
       flash[:alert] = "権限がありません"
+      redirect_to root_path
+    else
+      # nop
+    end
+  end
+
+  def reject_seller
+    if @product.seller_id == current_user.id
+      flash[:alert] = "権限がないよ"
       redirect_to root_path
     else
       # nop

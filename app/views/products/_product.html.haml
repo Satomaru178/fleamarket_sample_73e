@@ -11,6 +11,10 @@
     .content__delete-btn
       = "商品#{product.id}を削除する"
 
+  = link_to purchase_product_path(product) do
+    .content__purchase-btn
+      = "商品#{product.id}を購入する"
+
   %hr
 
   -# 画像
