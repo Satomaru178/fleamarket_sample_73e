@@ -41,7 +41,7 @@ class CreditcardsController < ApplicationController
   end
 
   def show
-    @card = Creditcard.where(user_id: current_user.id).first
+    @card = Creditcard.where(user_id: current_user.id)
     if @card.blank?
       render action: :index
     else
