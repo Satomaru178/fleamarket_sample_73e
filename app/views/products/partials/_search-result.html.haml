@@ -1,44 +1,43 @@
-.product-search
-  .product-search__results
-    - if @results.present?
-      - @results.each do |result|
-        %hr
-        .product-search__results__result
-          .product-search__results__result__name
-            = "商品名：#{result.name}"
-          .product-search__results__result__images
-            - result.images.each do |image|
-              = image_tag image.src.url, size: '100x100'
-          .product-search__results__result__explain
-            = "商品の説明：#{result.explain}"
-          .product-search__results__result__category
-            = "カテゴリー：#{result.category.parent.parent.name}>#{result.category.parent.name}>#{result.category.name}"
-          .product-search__results__result__brand
-            = "ブランド：#{result.brand.name}"
-          .product-search__results__result__condition
-            = "商品の状態：#{result.condition.name}"
-          .product-search__results__result__burden
-            = "配送料の負担：#{result.costburden.name}"
-          .product-search__results__result__region
-            = "発送の地域：#{result.shippingorigin.name}"
-          .product-search__results__result__period
-            = "発送までの日数：#{result.shippingperiod.name}"
-          .product-search__results__result__price
-            = "販売価格：#{converting_to_jpy(result.price)}"
-          - if result.seller_id == current_user.id
-            = link_to edit_product_path(result) do
-              .product-search__results__result__edit-btn
-                = "#{result.name}を編集する"
-            = link_to product_path(result), method: :delete do
-              .product-search__results__result__delete-btn
-                = "#{result.name}を削除する"
-          - else
-            -# nop
-        %hr
-    - else
-      .product-search__results__blank
-        条件に一致する商品はありませんでした
-  = paginate(@results)
-  = link_to root_path do
-    .product-search__return-btn
-      トップページへ戻る
+.product-search-contents__results
+  - if @results.present?
+    - @results.each do |result|
+      %hr
+      .product-search-contents__results__result
+        .product-search-contents__results__result__name
+          = "商品名：#{result.name}"
+        .product-search-contents__results__result__images
+          - result.images.each do |image|
+            = image_tag image.src.url, size: '100x100'
+        .product-search-contents__results__result__explain
+          = "商品の説明：#{result.explain}"
+        .product-search-contents__results__result__category
+          = "カテゴリー：#{result.category.parent.parent.name}>#{result.category.parent.name}>#{result.category.name}"
+        .product-search-contents__results__result__brand
+          = "ブランド：#{result.brand.name}"
+        .product-search-contents__results__result__condition
+          = "商品の状態：#{result.condition.name}"
+        .product-search-contents__results__result__burden
+          = "配送料の負担：#{result.costburden.name}"
+        .product-search-contents__results__result__region
+          = "発送の地域：#{result.shippingorigin.name}"
+        .product-search-contents__results__result__period
+          = "発送までの日数：#{result.shippingperiod.name}"
+        .product-search-contents__results__result__price
+          = "販売価格：#{converting_to_jpy(result.price)}"
+        - if result.seller_id == current_user.id
+          = link_to edit_product_path(result) do
+            .product-search-contents__results__result__edit-btn
+              = "#{result.name}を編集する"
+          = link_to product_path(result), method: :delete do
+            .product-search-contents__results__result__delete-btn
+              = "#{result.name}を削除する"
+        - else
+          -# nop
+      %hr
+    = paginate(@results)
+  - else
+    .product-search-contents__results__blank
+      条件に一致する商品はありませんでした
+= link_to root_path do
+  .product-search-contents__return-btn
+    トップページへ戻る
