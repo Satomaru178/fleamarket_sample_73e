@@ -6,6 +6,7 @@ class CreditcardsController < ApplicationController
   require "payjp"
 
   def index
+    @card = Creditcard.where(user_id: current_user.id)
     if @card.blank?
     else
       redirect_to action: "show"

@@ -1,0 +1,14 @@
+.wrapper
+  = render "top/others/header"
+  .user__mypage
+    = render "sidebar"
+    .user__mypage__main
+      .user__mypage__header
+        プロフィール
+      .user__mypage__main
+      = form_with model: @account, local: true do |f|
+        .user__nickname
+          ニックネームの変更
+  = render "top/introduction/introduction-lower"
+  = render "top/others/footer"
+  = render "top/others/exhibition-btn"
