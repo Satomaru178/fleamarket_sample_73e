@@ -1,14 +1,23 @@
-.title
-  = "#{@category.name}の商品一覧"
+= render "top/others/header"
 
-// リンクリスト
-- if @category_links.present?
-  .category_wrapper
-    .category_links
-      - @category_links.each do |category|
-        = link_to category.name, category_path(category)
+.show-wrapper
+  .categories
+    .categories__title
+      = "#{@category.name}の商品一覧"
 
--# 商品一覧表示
-- if @items
-  %ul.lists
-    = render "top/others/items", products: @items
+    // リンクリスト
+    - if @category_links.present?
+      .categories__links
+        - @category_links.each do |category|
+          .categories__links__link
+            = link_to category.name, category_path(category)
+
+  -# 商品一覧表示
+  - if @items
+    %ul.items-list
+      %li
+        = render "top/others/items", products: @items
+
+= render "top/introduction/introduction-lower"
+= render "top/others/footer"
+= render "top/others/exhibition-btn"
