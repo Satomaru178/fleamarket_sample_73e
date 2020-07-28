@@ -5,6 +5,7 @@ class AccountsController < ApplicationController
 
 
   def index
+    @profile = Account.where(icon_image: params[:icon_image], background_image: params[:background_image])
   end
 
   def new
