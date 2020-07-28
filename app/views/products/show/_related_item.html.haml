@@ -2,21 +2,20 @@
   = link_to "#", class: "content-main__related__category" do
     = @product.category.root.name
   .content-main__related__products
-    - @categoryProducts.each do |product|
-      - if(product != @product)
-        .content-main__related__products__product
-          = link_to product_path(product) do
-            %figure.content-main__related__products__product__upper
-              = image_tag product.images[0].src.url, class: "content-main__related__products__product__upper-image"
-            .content-main__related__products__product__lower
-              %h3.content-main__related__products__product__lower__name
-                = product.name
-              .content-main__related__products__product__lower__detail
-                %ul
-                  %li
-                    = converting_to_jpy(product.price)
-                  %li
-                    = icon("fas", "star")
-                    0
-                %p
-                  (税込)
+    - @products.first(3).each do |product|
+      .content-main__related__products__product
+        = link_to product_path(product) do
+          %figure.content-main__related__products__product__upper
+            = image_tag product.images[0].src.url, class: "content-main__related__products__product__upper-image"
+          .content-main__related__products__product__lower
+            %h3.content-main__related__products__product__lower__name
+              = product.name
+            .content-main__related__products__product__lower__detail
+              %ul
+                %li
+                  = converting_to_jpy(product.price)
+                %li
+                  = icon("fas", "star")
+                  0
+              %p
+                (税込)
