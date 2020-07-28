@@ -12,6 +12,12 @@ class AccountsController < ApplicationController
   end
 
   def create
+    @profile = Account.create(account_params)
+    if @profile.save
+      redirect_to action: :index
+    else
+      redirect_to action: :new
+    end
   end
 
   def edit
@@ -24,6 +30,10 @@ class AccountsController < ApplicationController
   end
 
   private
+
+  def account_params
+    params.require(:account).permit(:icon_image, :background_image, :profile).merge(user_id: current_user.id)
+  end
 
   def move_to_index
     redirect_to controller: :top, action: :index unless user_signed_in?

@@ -3,19 +3,19 @@
   .user__mypage
     = render "sidebar"
     .user__mypage__main
-      .user__mypage__header
+      .user__mypage__main__header
         プロフィール
-      .user__mypage__main
       = form_with model: @profile, local: true do |f|
-        .user__mypage__main__nickname
-          ニックネームの変更
-          =f.text_area :profile, class: "user__mypage__main__nickname__form"
         .user__mypage__main__profile
-          .user__mypage__main__profile__image
+          プロフィールの変更
+          =f.text_area :profile, class: "user__mypage__main__profile__form"
+        .user__mypage__main__image
+          .user__mypage__main__image__icon-image
             プロフィール写真の変更
-            
-          .user__mypage__main__profile__background-image
+            = f.file_field :icon_image, class: "user__mypage__main__image__icon-image__btn"
+          .user__mypage__main__image__background-image
             背景写真の変更
+            = f.file_field :background_image, class: "user__mypage__main__image__background-image__btn"
         .user__mypage__main__form__submit
           = f.submit "更新", class: 'user__mypage__main__form__submit__btn' 
   = render "top/introduction/introduction-lower"
