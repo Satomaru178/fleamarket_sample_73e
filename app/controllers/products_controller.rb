@@ -1,18 +1,15 @@
 class ProductsController < ApplicationController
   # ログイン中のユーザしかできない
-  before_action :authenticate_user!, only: [:new, :create, :edit, :upload, :destroy]
-
-  # 変数に商品を格納する
-  before_action :set_product, only: [:edit, :update, :show, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   # 出品したユーザしかできない
   before_action :ensure_currect_user, only: [:edit, :update, :destroy]
 
   # 変数に親カテゴリを格納する
-  before_action :set_parents, only: [:index, :new, :create, :edit, :update, :show, :fuzzy_search]
+  before_action :set_parents, only: [:show, :fuzzy_search]
 
   # 親カテゴリの配列を用意する
-  before_action :set_categories, only: [:index, :new, :create, :edit, :update]
+  before_action :set_categories, only: [:index, :new, :create]
 
   # 子カテゴリと孫カテゴリの配列を用意する
   before_action :set_categories_edit, only: [:edit, :update]
@@ -46,6 +43,7 @@ class ProductsController < ApplicationController
     else
       # renderで戻された時画像入力フォームがなくなってしまう事象への対策
       @product.images.new
+
       flash[:alert] = "商品を出品できませんでした"
       render :new
       return
@@ -68,6 +66,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
   end
 
   def destroy
@@ -81,6 +80,16 @@ class ProductsController < ApplicationController
     return
   end
 
+  def fuzzy_search
+    @products = Product.search(params[:keyword])
+
+    if @products.length <= 24
+      @results = @products.includes(:images).order("created_at DESC")
+    else
+      @results = @products.includes(:images).order("created_at DESC").page(params[:page]).per(24)
+    end
+  end
+
   # 親カテゴリーが選択された時に動くアクション
   def get_category_children
     # 選択された親カテゴリーに対応する子カテゴリーの配列を取得
@@ -91,16 +100,6 @@ class ProductsController < ApplicationController
   def get_category_grandchildren
     #選択された子カテゴリーに対応する孫カテゴリーの配列を取得
     @category_grandchildren = Category.find("#{params[:child_id]}").children
-  end
-
-  def fuzzy_search
-    @products = Product.search(params[:keyword])
-
-    if @products.length <= 24
-      @results = @products.includes(:images).order("created_at DESC")
-    else
-      @results = @products.includes(:images).order("created_at DESC").page(params[:page]).per(24)
-    end
   end
 
   private
@@ -122,11 +121,9 @@ class ProductsController < ApplicationController
     )
   end
 
-  def set_product
-    @product = Product.find(params[:id])
-  end
-
   def ensure_currect_user
+    @product = Product.find(params[:id])
+
     if @product.seller_id != current_user.id
       flash[:alert] = "権限がありません"
       redirect_to root_path
@@ -140,8 +137,11 @@ class ProductsController < ApplicationController
   end
 
   def set_categories
+    set_parents
+
     # セレクトボックスの初期値設定
     @category_parent_array = []
+
     # 親カテゴリー名を抽出し配列化
     @parents.each do |parent|
       @category_parent_array << parent.name
@@ -149,6 +149,8 @@ class ProductsController < ApplicationController
   end
 
   def set_categories_edit
+    set_categories
+
     # productが所属する子カテゴリーの一覧を配列で取得
     @category_child_array = @product.category.parent.parent.children
 
