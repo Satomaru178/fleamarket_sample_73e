@@ -137,10 +137,10 @@ $(document).on('turbolinks:load', ()=> {
     let html =
     `
     <div id="child-cat">
-      <div class="product-search-contents__search-form__items__label">
+      <div class="product-search__form__items__label">
         <label for="q_category_child_id">子カテゴリー</label>
       </div>
-      <div class="product-search-contents__search-form__items__field">
+      <div class="product-search__form__items__field">
         <select name="q[category_id]" id="q_category_child_id">
           <option value>指定なし</option>
           ${insertHTML}
@@ -156,10 +156,10 @@ $(document).on('turbolinks:load', ()=> {
     let html =
     `
     <div id="grandchild-cat">
-      <div class="product-search-contents__search-form__items__label">
+      <div class="product-search__form__items__label">
         <label for="q_category_id">孫カテゴリー</label>
       </div>
-      <div class="product-search-contents__search-form__items__field">
+      <div class="product-search__form__items__field">
         <select name="q[category_id_eq]" id="q_category_id_eq">
           <option value>指定なし</option>
           ${insertHTML}
