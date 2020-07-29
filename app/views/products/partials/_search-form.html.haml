@@ -1,49 +1,49 @@
-.product-search-contents__search-form
+.product-search__form
   = search_form_for @q do |f|
-    .product-search-contents__search-form__items
-      .product-search-contents__search-form__items__label
+    .product-search__form__items
+      .product-search__form__items__label
         = f.label :name_or_explain, 'キーワード'
-      .product-search-contents__search-form__items__field
+      .product-search__form__items__field
         = f.search_field :name_or_explain_cont
-    #cat.product-search-contents__search-form__items
+    #cat.product-search__form__items
       #parent-cat
-        .product-search-contents__search-form__items__label
+        .product-search__form__items__label
           = f.label :category_id, '親カテゴリー'
-        .product-search-contents__search-form__items__field
+        .product-search__form__items__field
           = f.select :category_id, @category_parent_array, include_blank: '指定なし'
-    .product-search-contents__search-form__items
-      .product-search-contents__search-form__items__label
+    .product-search__form__items
+      .product-search__form__items__label
         = f.label :brand_id, 'ブランド'
-      .product-search-contents__search-form__items__field
+      .product-search__form__items__field
         = f.collection_select :brand_id_eq, @brands, :id, :name, include_blank: '指定なし'
-    .product-search-contents__search-form__items
-      .product-search-contents__search-form__items__label
+    .product-search__form__items
+      .product-search__form__items__label
         = f.label :condition_id, '商品の状態'
-      .product-search-contents__search-form__items__field
-        = f.collection_select :condition_id_eq, Condition.all, :id, :name, include_blank: '指定なし'
-    .product-search-contents__search-form__items
-      .product-search-contents__search-form__items__label
+      .product-search__form__items__field
+        = f.collection_check_boxes :condition_id_in, Condition.all, :id, :name
+    .product-search__form__items
+      .product-search__form__items__label
         = f.label :costburden_id, '配送料の負担'
-      .product-search-contents__search-form__items__field
-        = f.collection_select :costburden_id_eq, Costburden.all, :id, :name, include_blank: '指定なし'
-    .product-search-contents__search-form__items
-      .product-search-contents__search-form__items__label
+      .product-search__form__items__field
+        = f.collection_check_boxes :costburden_id_in, Costburden.all, :id, :name
+    .product-search__form__items
+      .product-search__form__items__label
         = f.label :shippingorigin_id, '発送元の地域'
-      .product-search-contents__search-form__items__field
+      .product-search__form__items__field
         = f.collection_select :shippingorigin_id_eq, Shippingorigin.all, :id, :name, include_blank: '指定なし'
-    .product-search-contents__search-form__items
-      .product-search-contents__search-form__items__label
+    .product-search__form__items
+      .product-search__form__items__label
         = f.label :shippingperiod_id, '発送までの日数'
-      .product-search-contents__search-form__items__field
-        = f.collection_select :shippingperiod_id_eq, Shippingperiod.all, :id, :name, include_blank: '指定なし'
-    .product-search-contents__search-form__items
-      .product-search-contents__search-form__items__label
+      .product-search__form__items__field
+        = f.collection_check_boxes :shippingperiod_id_in, Shippingperiod.all, :id, :name
+    .product-search__form__items
+      .product-search__form__items__label
         = f.label :price, '販売価格'
-      .product-search-contents__search-form__items__field
-        = f.number_field :price_gteq
+      .product-search__form__items__field
+        = f.number_field :price_gteq, placeholder: "Min"
         円
         〜
-        = f.number_field :price_lteq
+        = f.number_field :price_lteq, placeholder: "Max"
         円
-    .product-search-contents__search-form__submit-btn
+    .product-search__form__submit-btn
       = f.submit
