@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   before_action :ensure_currect_user, only: [:edit, :update, :destroy]
 
   # 変数に親カテゴリを格納する
-  before_action :set_parents, only: [:index, :new, :create, :edit, :update, :show]
+  before_action :set_parents, only: [:index, :new, :create, :edit, :update, :show, :fuzzy_search]
 
   # 親カテゴリの配列を用意する
   before_action :set_categories, only: [:index, :new, :create, :edit, :update]
@@ -22,7 +22,13 @@ class ProductsController < ApplicationController
 
   def index
     @q = Product.ransack(params[:q])
-    @results = @q.result.includes([:images, :brand, :category]).order("created_at DESC").page(params[:page]).per(5)
+    @products = @q.result
+
+    if @products.length <= 24
+      @results = @products.includes(:images).order("created_at DESC")
+    else
+      @results = @products.includes(:images).order("created_at DESC").page(params[:page]).per(24)
+    end
   end
 
   def new
@@ -88,7 +94,13 @@ class ProductsController < ApplicationController
   end
 
   def fuzzy_search
-    @results = Product.includes([:images, :brand, :category]).search(params[:keyword]).order("created_at DESC").page(params[:page]).per(5)
+    @products = Product.search(params[:keyword])
+
+    if @products.length <= 24
+      @results = @products.includes(:images).order("created_at DESC")
+    else
+      @results = @products.includes(:images).order("created_at DESC").page(params[:page]).per(24)
+    end
   end
 
   private
