@@ -121,7 +121,7 @@ $(document).on('turbolinks:load', ()=> {
 
   // 詳細検索用
 
-  // カテゴリーセレクトボックスのオプション設定
+  // 子カテゴリーセレクトボックスのオプション設定
   const buildOption2 = (category)=> {
     let html =
     `
@@ -151,6 +151,16 @@ $(document).on('turbolinks:load', ()=> {
     $('#cat').append(html);
   }
 
+  // 孫カテゴリーチェックボックスの作成
+  const buildCheckBox = (category)=> {
+    let html =
+    `
+    <input type="checkbox" value="${category.id}" name="q[category_id_in][]" id="q_condition_id_in_${category.id}">
+    <label for="q_category_id_in_${category.id}">${category.name}</label>
+    `;
+    return html;
+  }
+
   // 孫カテゴリーの表示を生成、追加
   const appendGrandchildrenBox2 = (insertHTML)=> {
     let html =
@@ -160,10 +170,8 @@ $(document).on('turbolinks:load', ()=> {
         <label for="q_category_id">孫カテゴリー</label>
       </div>
       <div class="product-search__form__items__field">
-        <select name="q[category_id_eq]" id="q_category_id_eq">
-          <option value>指定なし</option>
-          ${insertHTML}
-        </select>
+        <input type="hidden" name="q[category_id_in][]" value>
+        ${insertHTML}
       </div>
     </div>
     `;
@@ -220,7 +228,7 @@ $(document).on('turbolinks:load', ()=> {
           let insertHTML='';
 
           grandchildren.forEach(function(grandchild) {
-            insertHTML += buildOption2(grandchild);
+            insertHTML += buildCheckBox(grandchild);
           });
 
           appendGrandchildrenBox2(insertHTML);
