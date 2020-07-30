@@ -1,6 +1,6 @@
 .content-main__related
   = link_to "#", class: "content-main__related__category" do
-    = @product.category.root.name
+    = "#{@product.category.name}をもっと見る"
   .content-main__related__products
     - @products.first(3).each do |product|
       .content-main__related__products__product
