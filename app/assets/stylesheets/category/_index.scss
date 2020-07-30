@@ -96,7 +96,7 @@
   }
 }
 
-.clearfix::after {
+.clearfix {
   @include clearfix();
 }
 
