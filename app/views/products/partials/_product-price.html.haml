@@ -1,12 +1,11 @@
+.product-contents__label
+  = f.label '販売価格'
+  %span.product-contents__label__require 必須
 - if @product.errors.include?(:price)
   .alert__sign-up
     = @product.errors.full_messages_for(:price)
 - else
   -# nop
-
-.product-contents__label
-  = f.label '販売価格'
-  %span.product-contents__label__require 必須
 .product-contents__price__selling-price
   = f.number_field :price
   円

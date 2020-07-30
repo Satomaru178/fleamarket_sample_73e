@@ -1,0 +1,12 @@
+.wrapper
+  = render "top/others/header"
+  -@parents.each do |parent|
+    -parent.children.each do |child|
+      -child.children.each do |grandchild|
+        -if(grandchild.id == @product.category_id)
+          = render "products/show/bread_crambs", grandchild: grandchild
+  .container 
+    = render "products/show/show_main", product: @product
+  = render "top/introduction/introduction-lower"
+  = render "top/others/footer"
+  = render "top/others/exhibition-btn"

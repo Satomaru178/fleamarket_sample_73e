@@ -98,9 +98,12 @@
   color: #fff;
 }
 
-// float以下要素の回り込み防止
+
 @mixin clearfix {
-  content: "";
-  display: block;
-  clear: both;
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+
 }
