@@ -24,7 +24,7 @@
         - else
           -# nop
 
-  - if @products.length > 24
+  - if @products.length > @maximum_per_page
     .product-search-paginate
       = paginate(@results)
   - else
