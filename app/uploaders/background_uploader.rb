@@ -49,5 +49,5 @@ class BackgroundUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
-  process resize_to_fill: [100, 100, "Center"]
+  process resize_to_fill: [700, 200, "Center"]
 end
