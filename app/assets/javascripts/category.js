@@ -137,10 +137,10 @@ $(document).on('turbolinks:load', ()=> {
     let html =
     `
     <div id="child-cat">
-      <div class="product-search__form__items__label">
+      <div class="detailed-search__contents__forms__form__label">
         <label for="q_category_child_id">子カテゴリー</label>
       </div>
-      <div class="product-search__form__items__field">
+      <div class="detailed-search__contents__forms__form__field">
         <select name="q[category_id]" id="q_category_child_id">
           <option value>指定なし</option>
           ${insertHTML}
@@ -155,7 +155,7 @@ $(document).on('turbolinks:load', ()=> {
   const buildCheckBox = (category)=> {
     let html =
     `
-    <input type="checkbox" value="${category.id}" name="q[category_id_in][]" id="q_condition_id_in_${category.id}">
+    <input type="checkbox" value="${category.id}" name="q[category_id_in][]" id="q_category_id_in_${category.id}">
     <label for="q_category_id_in_${category.id}">${category.name}</label>
     `;
     return html;
@@ -166,10 +166,10 @@ $(document).on('turbolinks:load', ()=> {
     let html =
     `
     <div id="grandchild-cat">
-      <div class="product-search__form__items__label">
+      <div class="detailed-search__contents__forms__form__label">
         <label for="q_category_id">孫カテゴリー</label>
       </div>
-      <div class="product-search__form__items__field">
+      <div class="detailed-search__contents__forms__form__field">
         <input type="hidden" name="q[category_id_in][]" value>
         ${insertHTML}
       </div>
