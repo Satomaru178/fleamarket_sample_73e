@@ -33,6 +33,7 @@ class AddressesController < ApplicationController
 
   def user_login
     @account = current_user[:id]
+    @profile = current_user.account
   end
 
 end
