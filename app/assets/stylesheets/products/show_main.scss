@@ -136,7 +136,7 @@
           // 金額等の設定
           &__price {
             // 金額表示欄の上下の空間
-            margin: 24px 0 24px;
+            margin: 24px 0px 24px;
             // 金額表示を中央に
             text-align: center;
             // 金額の下の表示を横並びに
@@ -151,7 +151,7 @@
               // 文字を太字に
               font-weight: bold;
               // 右側に空間を指定
-              margin-right: 10px;
+              margin: 0px 10px 10px 0;
             }
 
             &__detail {
