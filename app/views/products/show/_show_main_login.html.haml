@@ -37,13 +37,13 @@
                 %th
                   カテゴリー
                 %td
-                  =link_to '#' do
+                  =link_to category_path(@product.category.root) do
                     = @product.category.root.name
                   %br/
-                  =link_to '#' do
+                  =link_to category_path(@product.category.parent) do
                     = @product.category.parent.name
                   %br/
-                  =link_to '#' do
+                  =link_to category_path(@product.category) do
                     = @product.category.name
               %tr
                 %th
