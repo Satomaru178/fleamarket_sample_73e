@@ -1,15 +1,12 @@
 class AccountsController < ApplicationController
-  before_action :move_to_index,  only: [:index, :edit , :logout, :show]
-  before_action :set_categories, only: [:index, :edit , :logout, :show]
-  before_action :user_login, only: [:index, :edit , :logout, :show]
-
+  before_action :move_to_index,  only: [:index, :edit ,:update, :logout, :show]
+  before_action :set_categories, only: [:index, :edit ,:update, :logout, :show]
+  before_action :user_login, only: [:index, :edit ,:update, :logout, :show]
 
   def index
-    @profile = current_user.account
   end
 
   def edit
-    @profile = current_user.account
     if @profile.blank?
       redirect_to action: :new
     else
@@ -17,7 +14,6 @@ class AccountsController < ApplicationController
   end
 
   def update
-    @profile = current_user.account
     if @profile.update(account_params)
       redirect_to controller: :accounts, action: :index
     else
@@ -50,5 +46,6 @@ class AccountsController < ApplicationController
 
   def user_login
     @account = current_user[:id]
+    @profile = current_user.account
   end
 end
