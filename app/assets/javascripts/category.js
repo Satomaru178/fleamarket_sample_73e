@@ -14,32 +14,32 @@ $(document).on('turbolinks:load', ()=> {
   const appendChildrenBox = (insertHTML)=> {
     let html =
     `
-    <div class='contents__product__details__categories__category__wrapper__added' id='children_wrapper'>
-      <div class='contents__product__details__categories__category__wrapper__box'>
-        <select class='contents__product__details__categories__category__wrapper__box--select' id='child_category' name="">
+    <div class='product-contents__details__categories__category__wrapper__added' id='children_wrapper'>
+      <div class='product-contents__details__categories__category__wrapper__box'>
+        <select class='product-contents__details__categories__category__wrapper__box--select' id='child_category' name="">
           <option value='---' data-category='---'>子カテゴリーを選択してください</option>
           ${insertHTML}
         </select>
       </div>
     </div>
     `;
-    $('.contents__product__details__categories__category').append(html);
+    $('.product-contents__details__categories__category').append(html);
   }
 
   // 孫カテゴリーの表示を生成、追加
   const appendGrandchildrenBox = (insertHTML)=> {
     let html =
     `
-    <div class='contents__product__details__categories__category__wrapper__added' id='grandchildren_wrapper'>
-      <div class='contents__product__details__categories__category__wrapper__box'>
-        <select class='contents__product__details__categories__category__wrapper__box--select' id='grandchild_category' name="product[category_id]">
+    <div class='product-contents__details__categories__category__wrapper__added' id='grandchildren_wrapper'>
+      <div class='product-contents__details__categories__category__wrapper__box'>
+        <select class='product-contents__details__categories__category__wrapper__box--select' id='grandchild_category' name="product[category_id]">
           <option value='---' data-category='---'>孫カテゴリーを選択してください</option>
           ${insertHTML}
         </select>
       </div>
     </div>
     `;
-    $('.contents__product__details__categories__category').append(html);
+    $('.product-contents__details__categories__category').append(html);
   }
 
   $('#product_category_id').attr('name', "");
@@ -78,7 +78,7 @@ $(document).on('turbolinks:load', ()=> {
   });
 
   // 子カテゴリーのセレクトボックスが変化した
-  $('.contents__product__details__categories__category').on('change', '#child_category', function() {
+  $('.product-contents__details__categories__category').on('change', '#child_category', function() {
     // 選択された親カテゴリーを抽出
     let childId = $('#child_category option:selected').data('category');
     if (childId != "---") {  // 初期値以外が選択されている

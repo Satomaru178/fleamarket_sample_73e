@@ -1,0 +1,20 @@
+%nav.bread-crumbs
+  %ul
+    %li
+      = link_to "/" do
+        FURIMA
+    %li
+      = icon("fas", "angle-right")
+    %li
+      = link_to "#" do
+        = grandchild.parent.parent.name
+    %li
+      = icon("fas", "angle-right")
+    %li
+      = link_to "#" do
+        = grandchild.parent.name
+    %li
+      = icon("fas", "angle-right")
+    %li
+      = link_to "#" do
+        = grandchild.name

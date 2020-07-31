@@ -1,0 +1,24 @@
+.product-contents__label
+  = f.label "ブランド"
+  %span.product-contents__label__optional 任意
+- if @product.errors.include?(:brand)
+  .alert__sign-up
+    = @product.errors.full_messages_for(:brand)
+- else
+  -# nop
+.product-contents__details__brand
+  = f.collection_select :brand_id, @brands, :id, :name, { prompt: "未選択" }
+= link_to new_brand_path do
+  .product-contents__details__brand__add-btn
+    他のブランドを登録する
+
+.product-contents__label
+  = f.label '商品の状態'
+  %span.product-contents__label__require 必須
+- if @product.errors.include?(:condition_id)
+  .alert__sign-up
+    = @product.errors.full_messages_for(:condition_id)
+- else
+  -# nop
+.product-contents__details__condition
+  = f.collection_select :condition_id, Condition.all, :id, :name

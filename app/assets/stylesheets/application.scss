@@ -29,7 +29,7 @@
 @import "top/others/footer";
 @import "top/others/exhibition-btn";
 
-//ユーザーページ&ログアウトページ
+// ユーザーページ&ログアウトページ
 @import "account/sidebar";
 @import "account/main";
 @import "account/accounts_config";
@@ -41,3 +41,19 @@
 
 //クレジットカード登録画面
 @import "creditcard/creditcard_main";
+
+// showページ
+@import "products/show_main";
+@import "products/bread_crambs";
+@import "products/comment";
+@import "products/related_item";
+
+// 商品出品編集ページ
+@import "product/products";
+
+// ブランド追加ページ
+@import "brand/brands";
+
+// カテゴリ別商品一覧ページ
+@import "category/index";
+@import "category/show";

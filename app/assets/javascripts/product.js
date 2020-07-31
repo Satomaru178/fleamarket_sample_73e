@@ -6,10 +6,10 @@ $(document).on('turbolinks:load', ()=> {
   const buildImg = (index, url)=> {
     const html =
     `
-    <label>
-      画像${index}
+    <div>
+      <div>画像${index}</div>
       <img data-index="${index}" src="${url}" width="100px" height="100px">
-    </label>
+    </div>
     `;
 
     return html;
@@ -19,11 +19,14 @@ $(document).on('turbolinks:load', ()=> {
   const buildFileField = (index)=> {
     const html =
     `
-    <div data-index="${index}" class="js-file_group">
+    <div class="input-box-group" data-index="${index}">
       <div class="image-index">画像${index}</div>
-      <input class="js-file" type="file"
-        name="product[images_attributes][${index}][src]"
-        id="product_images_attributes_${index}_src">
+      <div class="input-box">
+        <label>
+          追加・変更
+          <input class="input-box__file" type="file" name="product[images_attributes][${index}][src]" id="product_images_attributes_${index}_src">
+        </label>
+      </div>
       <div class="js-remove">削除</div>
     </div>
     `;
@@ -54,17 +57,17 @@ $(document).on('turbolinks:load', ()=> {
     }
   }
 
-  const lastIndex = $('.js-file_group:last').data('index');
+  const lastIndex = $('.input-box-group:last').data('index');
 
   for (let j = lastIndex + 1; j < arraySize; j++) {
-    $('#image-box').append(buildFileField(j));  // 画像用inputを増やす
+    $('.input-box-groups').append(buildFileField(j));  // 画像用inputを増やす
   }
 
   // 保存済画像フラグを非表示にする
   $('.hidden-destroy').hide();
 
   // 画像用のinputが変化した
-  $('#image-box').on('change', '.js-file', function(e) {
+  $('#image-box').on('change', '.input-box', function(e) {
 
     // 対応するindexを取得する
     const targetIndex = $(this).parent().data('index');
@@ -82,7 +85,7 @@ $(document).on('turbolinks:load', ()=> {
         img.setAttribute('src', blobUrl);
       }
       else {  // 新規の画像を追加
-        $('#previews').append(buildImg(targetIndex, blobUrl));  // previewに画像を追加
+        $('.preview-images').append(buildImg(targetIndex, blobUrl));  // previewに画像を追加
 
         // indexから追加した画像に対応するものを除去
         const pos = fileIndex.indexOf(targetIndex);
@@ -123,7 +126,7 @@ $(document).on('turbolinks:load', ()=> {
   // 商品説明文の文字数カウンタ
   $('#product_explain').on('keyup', function() {
     let count = $(this).val().length;
-    $('.contents__product__basic__explain__counter__count').text(count); 
+    $('.product-contents__basic__explain__counter__count').text(count + "/1000"); 
   });
 
 

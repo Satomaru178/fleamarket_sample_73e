@@ -1,22 +1,28 @@
-.wrapper
-  .content
-    = form_with model: @brand, local: true do |f|
-      -# エラーメッセージ
-      
-      = render 'layouts/error_messages', model: f.object
-
-      .content__brand-name
-        = f.label 'ブランド名'
-        %span.must
-          = "(必須)"
-        %br
-        = f.text_field :name, placeholder: "40文字以内"
-        %br
-
-      .content__submit-btn
-        = f.submit 'ブランドを追加する'
-        %br
-
+.brand-wrapper
+  .brand-header
     = link_to root_path do
-      .content__return-btn
-        = "トップページへ戻る"
+      .brand-header__logo
+        = image_tag "material/logo/logo.png", width: "200px", alt: "FURIMA"
+  .brand-contents
+    = form_with model: @brand, local: true do |f|
+      - if @brand.errors.include?(:name)
+        .alert__sign-up
+          = @brand.errors.full_messages_for(:name)
+      - else
+        -# nop
+      .brand-contents__label
+        = f.label 'ブランド名'
+        %span.brand-contents__label__require 必須
+      .brand-contents__input
+        = f.text_field :name, size: 45, maxlength: 40, placeholder: "40文字以内"
+      .brand-contents__submit-btn
+        = f.submit 'ブランドを追加する'
+      = link_to root_path do
+        .brand-contents__return-btn
+          トップページへ戻る
+  .brand-footer
+    = link_to root_path do
+      .brand-footer__logo
+        = image_tag "material/logo/logo.png", width: "200px", alt: "FURIMA"
+    .brand-footer__copyright
+      &copy; FURIMA
