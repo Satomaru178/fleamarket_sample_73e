@@ -5,17 +5,34 @@
   position: relative;
   padding: 0 60px;
 
-  ul {
+  &__lists {
     padding: 17px 0 16px;
     width: 100%;
     max-width: 1040px;
     font-size: 14px;
     margin: 0 auto;
     list-style: none;
-    cursor: pointer;
+    cursor: default;
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+      &:hover {
+        color: #3CCACE;
+      }    
+    }
+
+    span {
+      cursor: pointer;
+      &:hover {
+        color: #3CCACE;
+      }    
+    }
+
+    .current {
+      font-weight: bold;
+    }
+
   }
 
-  &:hover {
-    color: #3CCACE;
-  }
 }
