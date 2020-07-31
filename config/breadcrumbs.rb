@@ -1,7 +1,11 @@
 crumb :root do
-  link "Home", root_path
+  link "FURIMA", root_path
 end
 
+
+crumb :mypage do
+  link "マイページ", accounts_path
+end
 # crumb :projects do
 #   link "Projects", projects_path
 # end
