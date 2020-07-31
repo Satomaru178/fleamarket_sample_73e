@@ -2,7 +2,7 @@
   = link_to "#", class: "content-main__related__category" do
     = "#{@product.category.name}をもっと見る"
   .content-main__related__products
-    - @products.first(3).each do |product|
+    - @products.each do |product|
       .content-main__related__products__product
         = link_to product_path(product) do
           %figure.content-main__related__products__product__upper
