@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'categories/index'
   root to: 'top#index'
 
   devise_for :users, controllers: {
@@ -33,9 +34,13 @@ Rails.application.routes.draw do
     end
   end
 
+
+  resources :categories, only: [:index, :show]
+
   resources :top, only: [:index] do
     collection do
       get :search
     end
   end
+
 end

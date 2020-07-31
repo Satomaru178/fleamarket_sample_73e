@@ -1,0 +1,18 @@
+.pickup__products__lists  
+  - products.first(4).each do |product|
+    .pickup__products__lists__list
+      = link_to "#" do
+        .pickup__products__lists__list__image
+          = image_tag product.images[0].src.url, class: "pickup__products__lists__list__image__inner"
+        .pickup__products__lists__list__contents
+          %h3.pickup__products__lists__list__contents__name
+            = product.name
+          .pickup__products__lists__list__contents__details
+            %ul
+              %li
+                = converting_to_jpy(product.price)
+              %li
+                = icon('fas','star')
+                0
+            %p
+              (税込)
