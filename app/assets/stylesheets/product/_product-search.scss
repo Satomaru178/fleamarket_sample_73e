@@ -1,10 +1,20 @@
+.product-search-message {
+  padding: 10px;
+}
+
 .product-search-result {
   display: flex;
   flex-wrap: wrap;
 
+  #even {
+    background-color: #add8e6;
+  }
+
+  #odd {
+    background-color: #ffb6c1;
+  }
+
   &__item {
-    border: solid #ccc;
-    border-width: 1px;
     padding: 10px;
     overflow: hidden;
   }
@@ -18,7 +28,7 @@
 
     .product-search-result {
       &__item {
-        width: calc(100% / 8);
+        width: calc(100% / 9);
       }
     }
   }
@@ -29,12 +39,11 @@
     display: flex;
 
     &__forms {
-      width: 30%;
-      border: solid #ccc;
-      border-width: 1px;
+      background-color: #f6f6f6;
+      width: 25%;
 
       &__form {
-        padding: 10px;
+        padding: 10px 25px;
 
         &__label {
           font-weight: 600;
@@ -44,15 +53,15 @@
 
         &__field {
           input[type="search"] {
-            @include box(90%, 48px, 4px);
+            @include box(100%, 48px, 4px);
             border: 1px solid #ccc;
-            font-size: 20px;
+            font-size: 18px;
           }
 
           select {
-            @include box(90%, 48px, 4px);
+            @include box(100%, 48px, 4px);
             border: 1px solid #ccc;
-            font-size: 20px;
+            font-size: 18px;
             margin-bottom: 10px;
           }
 
@@ -61,13 +70,13 @@
           }
 
           input[type="checkbox"]:checked + label {
-            background-color: #20b2aa;
-            color: #fff;
+            @include colors(#20b2aa, #fff);
             border: none;
           }
 
           label {
-            @include box(90%, 48px, 4px);
+            @include box(100%, 48px, 4px);
+            @include colors();
             display: block;
             text-align: center;
             line-height: 48px;
@@ -79,15 +88,15 @@
           }
 
           input[type="number"] {
-            @include box(35%, 48px, 4px);
+            @include box(40%, 48px, 4px);
             border: 1px solid #ccc;
-            font-size: 20px;
+            font-size: 18px;
           }
         }
       }
 
       &__submit-btn {
-        padding: 10px;
+        padding: 10px 25px;
 
         input {
           @include box(200px, 48px, 4px);
@@ -101,14 +110,14 @@
     }
 
     &__results {
-      width: 70%;
+      width: 75%;
       border: solid #ccc;
       border-width: 1px;
       font-size: 18px;
 
       .product-search-result {
         &__item {
-          width: calc(100% / 6);
+          width: calc(100% / 7);
         }
       }
     }

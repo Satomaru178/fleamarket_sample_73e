@@ -1,28 +1,53 @@
 - if @products.present?
-  = "#{@products.length}件見つかりました"
+  .product-search-message
+    = "#{@products.length}件見つかりました"
   .product-search-result
-    - @results.each do |result|
-      .product-search-result__item
-        .product-search-result__item__name
-          = "#{result.name}"
-        .product-search-result__item__price
-          = "#{converting_to_jpy(result.price)}"
-        .product-search-result__item__images
-          - image = result.images.first
-          = image_tag image.src.url, size: '100x100'
-        = link_to product_path(result) do
-          .product-search-result__item__show-btn
-            詳細を見る
+    - @results.each_with_index do |result, i|
+      - if ((i % 2) == 0)
+        #even.product-search-result__item
+          .product-search-result__item__name
+            = "#{result.name}"
+          .product-search-result__item__price
+            = "#{converting_to_jpy(result.price)}"
+          .product-search-result__item__images
+            - image = result.images.first
+            = image_tag image.src.url, size: '100x100'
+          = link_to product_path(result) do
+            .product-search-result__item__show-btn
+              詳細を見る
 
-        - if result.seller_id == current_user.id
-          = link_to edit_product_path(result) do
-            .product-search-result__item__edit-btn
-              編集する
-          = link_to product_path(result), method: :delete do
-            .product-search-result__item__delete-btn
-              削除する
-        - else
-          -# nop
+          - if result.seller_id == current_user.id
+            = link_to edit_product_path(result) do
+              .product-search-result__item__edit-btn
+                編集する
+            = link_to product_path(result), method: :delete do
+              .product-search-result__item__delete-btn
+                削除する
+          - else
+            -# nop
+
+      - else
+        #odd.product-search-result__item
+          .product-search-result__item__name
+            = "#{result.name}"
+          .product-search-result__item__price
+            = "#{converting_to_jpy(result.price)}"
+          .product-search-result__item__images
+            - image = result.images.first
+            = image_tag image.src.url, size: '100x100'
+          = link_to product_path(result) do
+            .product-search-result__item__show-btn
+              詳細を見る
+
+          - if result.seller_id == current_user.id
+            = link_to edit_product_path(result) do
+              .product-search-result__item__edit-btn
+                編集する
+            = link_to product_path(result), method: :delete do
+              .product-search-result__item__delete-btn
+                削除する
+          - else
+            -# nop
 
   - if @products.length > @maximum_per_page
     .product-search-paginate

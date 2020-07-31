@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
   def index
     @q = Product.ransack(params[:q])
     @products = @q.result
-    @maximum_per_page = 24
+    @maximum_per_page = 63
 
     if @products.length <= @maximum_per_page
       @results = @products.includes(:images).order("created_at DESC")
@@ -83,7 +83,7 @@ class ProductsController < ApplicationController
 
   def fuzzy_search
     @products = Product.search(params[:keyword])
-    @maximum_per_page = 24
+    @maximum_per_page = 63
 
     if @products.length <= @maximum_per_page
       @results = @products.includes(:images).order("created_at DESC")
