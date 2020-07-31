@@ -6,6 +6,56 @@ end
 crumb :mypage do
   link "マイページ", accounts_path
 end
+
+crumb :profile do
+  link "プロフィール", "#"
+  parent :mypage
+end
+
+crumb :creditcard do
+  link "支払い方法", creditcards_path
+  parent :mypage
+end
+
+crumb :logout do
+  link "ログアウト", logout_accounts_path
+  parent :mypage
+end
+
+crumb :category_index do
+  link "カテゴリー一覧", categories_path
+end
+
+# 親カテゴリー
+crumb :parent_category do |category|
+  category = Category.find(params[:id]).root
+  link "#{category.name}", category_path(category)
+  parent :category_index
+end
+
+# 子カテゴリー
+crumb :child_category do |category|
+  category = Category.find(params[:id])
+  # 表示しているページが子カテゴリーの一覧ページの場合
+  if category.has_children?
+    link "#{category.name}", category_path(category)
+    parent :parent_category
+
+  # 表示しているページが孫カテゴリーの一覧ページの場合
+  else
+    link "#{category.parent.name}", category_path(category.parent)
+    parent :parent_category
+  end
+end
+
+# 孫カテゴリー
+crumb :grandchild_category do |category|
+  category = Category.find(params[:id])
+  link "#{category.name}", category_path(category)
+  parent :child_category
+end
+
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
