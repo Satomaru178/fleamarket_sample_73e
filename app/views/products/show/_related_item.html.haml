@@ -7,6 +7,10 @@
         = link_to product_path(product) do
           %figure.content-main__related__products__product__upper
             = image_tag product.images[0].src.url, class: "content-main__related__products__product__upper-image"
+          - if(product.buyer_id.present?)
+            .content-main__related__products__product__sold
+              .content-main__related__products__product__sold-inner
+                SOLD
           .content-main__related__products__product__lower
             %h3.content-main__related__products__product__lower__name
               = product.name

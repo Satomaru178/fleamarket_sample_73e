@@ -11,11 +11,39 @@
 
   &__products {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 
     &__product {
       margin-bottom: 10px;
       width: 220px;
+      position: relative;
+
+      &__sold {
+        &-inner {
+          position: absolute;
+          top: 25px;
+          left: 0;
+          font-size: 20px;
+          z-index: 2;
+          color: #fff;
+          transform: rotate(-45deg);
+          letter-spacing: 2px;
+          font-weight: 600;
+        }
+
+        &::after {
+          border-top: 100px solid #3CCACE;
+          border-right: 100px solid transparent;
+          border-bottom: 0 solid transparent;
+          border-left: 0 solid transparent;
+          display: block;
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+        }
+      }
 
       &:hover {
         opacity: 0.5;
