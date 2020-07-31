@@ -1,7 +1,7 @@
 class AddressesController < ApplicationController
   before_action :move_to_index,  only: [:edit, :update]
-  before_action :set_categories, only: [:edit, :updat]
-  before_action :user_login, only: [:edit, :updat]
+  before_action :set_categories, only: [:edit, :update]
+  before_action :user_login, only: [:edit, :update]
 
   def edit
     @address = Address.find(params[:id])
