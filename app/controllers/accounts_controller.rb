@@ -1,28 +1,11 @@
 class AccountsController < ApplicationController
-  before_action :move_to_index,  only: [:index, :new, :edit , :logout, :show, :profile]
-  before_action :set_categories, only: [:index, :new, :edit , :logout, :show, :profile]
-  before_action :user_login, only: [:index, :new, :edit , :logout, :show, :profile]
+  before_action :move_to_index,  only: [:index, :edit , :logout, :show]
+  before_action :set_categories, only: [:index, :edit , :logout, :show]
+  before_action :user_login, only: [:index, :edit , :logout, :show]
 
 
   def index
     @profile = current_user.account
-    if @profile.blank?
-    else
-      redirect_to action: :profile
-    end
-  end
-
-  def new
-    @profile = Account.new
-  end
-
-  def create
-    @profile = Account.create(account_params)
-    if @profile.save
-      redirect_to action: :index
-    else
-      redirect_to action: :new
-    end
   end
 
   def edit
@@ -49,10 +32,6 @@ class AccountsController < ApplicationController
 
   def show
     @profile = Account.find(params[:id])
-  end
-
-  def profile
-    @profile = current_user.account
   end
 
   private

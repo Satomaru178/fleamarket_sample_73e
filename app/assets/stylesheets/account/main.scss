@@ -7,6 +7,7 @@
   &__main{
     width: 700px;
     height: auto;
+    background-color: #ffffff;
     &__icon{
       width: 700px;
       height: 200px;
@@ -21,7 +22,9 @@
         object-fit: cover;
         }
         &__name{
+          padding: 5px;
           text-align: center;
+          color: black;
         }
       }
       &__backgraund__image{
@@ -29,7 +32,6 @@
       }
     }
     &__buy{
-      background-color: white;
       width: 700px;
       &__product{
         padding:0 16px;
@@ -43,7 +45,6 @@
         height: 72px;
         width: 350px;
         border-top: 2px solid #20b2aa;
-        background-color: #ffffff;
         line-height: 72px;
         text-align: center;
 
@@ -59,7 +60,6 @@
       &__image{
         width: 700px;
         height: auto;
-        background-color:#ffffff;
       }
     }
   }
@@ -67,4 +67,8 @@
 
 .picture{
   border-radius: 50%;
+}
+
+#user__mypage{
+  text-decoration: none;
 }

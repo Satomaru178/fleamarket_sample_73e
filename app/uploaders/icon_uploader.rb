@@ -49,6 +49,6 @@ class IconUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
-  process resize_to_fill: [60, 60, "Center"]
+  process resize_to_fill: [200, 200, "Center"]
 
 end

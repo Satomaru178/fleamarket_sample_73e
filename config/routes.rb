@@ -25,7 +25,6 @@ Rails.application.routes.draw do
   resources :accounts, only: [:index, :new, :create, :edit, :update, :show] do
     collection do
       get 'logout', to: 'accounts#logout'
-      get 'profile', to: 'accounts#profile'
     end
   end
 
