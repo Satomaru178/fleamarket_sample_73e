@@ -96,3 +96,5 @@ gem 'ancestry'
 gem 'faker'
 
 gem 'kaminari'
+
+gem 'gretel'
