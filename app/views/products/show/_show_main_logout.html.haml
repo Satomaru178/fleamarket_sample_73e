@@ -76,9 +76,13 @@
                   発送日の目安
                 %td
                   = @product.shippingperiod.name
-        .content-main__top__product__buy-btn
-          = link_to new_user_session_path do
-            購入画面に進む 
+        - if(@product.buyer_id.present?)
+          .content-main__top__product__sold-btn
+            売り切れました
+        - else
+          .content-main__top__product__buy-btn
+            = link_to new_user_session_path do
+              購入画面に進む 
         .content-main__top__product__bottom
           %ul
             %li

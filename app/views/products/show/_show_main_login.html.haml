@@ -86,9 +86,13 @@
             = link_to product_path(@product), method: :delete do
               この商品を削除する
         - else
-          .content-main__top__product__buy-btn
-            = link_to "#" do
-              購入画面に進む
+          - if(@product.buyer_id.present?)
+            .content-main__top__product__sold-btn
+              売り切れました
+          - else
+            .content-main__top__product__buy-btn
+              = link_to "#" do
+                購入画面に進む
           .content-main__top__product__bottom
             %ul.content-main__top__product__bottom__left
               %li.content-main__top__product__bottom__left-btn
