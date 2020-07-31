@@ -12,6 +12,7 @@
       .item-images
         .item-imag
           = image_tag src="/assets/material/icon/icon-01.png", size: "80x80"
+        = form_with model: @product, local: true do |f|
         .item-name
           %p.item-names Tシャツ
           %p.item-price
@@ -52,12 +53,10 @@
       .item-purchase
         %p.explanation 郵便局/コンビニ受取をご希望の方は、購入後に取引画面から受取場所を変更をすることが可能です。出品者が発送作業を開始した後は受取場所の変更ができませんので、早めに変更を行ってください。
         %p.input-confirmation 支払い方法の入力を完了してください。
-      -# link_toでエラになる為代わりに一時的ににaタグ
-      -# %a.item-btn(href="#") 購入する
       = form_with model: @product, local: true do |f|
         = f.hidden_field :buyer_id, value: current_user.id
         .item-btn
-          = f.submit '購入する'
+          = f.submit '購入する',class: 'input-item'
 
     .footer-contents
       %ul.footer-contents__items

@@ -19,7 +19,7 @@
 // メイン 購入内容
 .confimation__main {
   width: 700px;
-  height: 912px;
+  height: 942px;
   margin: auto;
   background-color: #fff;
   justify-content: center;
@@ -188,13 +188,16 @@
     }
     .item-btn {
       display: inline-block;
-      margin-left: 100px;
       padding: 0.5em 1em;
       text-decoration: none;
-      background: #888888;/*ボタン色*/
-      color: #FFF;
-      border-bottom: solid 4px #888888;
-      border-radius: 3px;
+      .input-item {
+        width: 293px;
+        height: 46px;
+        font-size: 17px;
+        background: #cccccc;
+        border-bottom: solid 4px #cccccc;
+        color: #FFF;
+      }
     }
   }
   // フッター
@@ -220,7 +223,7 @@
   margin-left: 250px;
 }
 .footer-contents__copyright {
-  margin-left: 280px;
+  margin-left: 290px;
 }
 
 
