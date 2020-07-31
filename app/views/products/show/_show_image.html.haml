@@ -2,6 +2,10 @@
   .content-main__top__product__images__image
     = link_to "#", class: "content-main__top__product__images__image-link" do
       = image_tag @product.images[0].src.url, class: "content-main__top__product__images__image-top", id: "main"
+    - if(@product.buyer_id.present?)
+      .content-main__top__product__images__image__sold
+        .content-main__top__product__images__image__sold-inner
+          SOLD
     %ul.content-main__top__product__images__image__lists
       - @product.images.each do |image|
         %li.content-main__top__product__images__image__lists__list
