@@ -32,7 +32,7 @@
     color: #333333;
     text-align: center;
   }
-  // 画像の蘭
+  // 画像
   .confimation__main--image {
     width: 375px;
     height: 145px;
@@ -195,8 +195,8 @@
         height: 46px;
         font-size: 17px;
         background: #cccccc;
-        border-bottom: solid 4px #cccccc;
         color: #FFF;
+        border : solid 1px #cccccc;
       }
     }
   }
