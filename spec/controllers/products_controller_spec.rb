@@ -137,6 +137,19 @@ describe ProductsController do
     end
   end
 
+  describe 'GET #show' do
+    it "@productに正しい値が入っていること" do
+      product = create(:product)
+      get :show, params: { id: product }
+      expect(assigns(:product)).to eq product
+    end
+    it "show.html.hamlに遷移すること" do
+      product = create(:product)
+      get :show, params: {id: product}
+      expect(response).to render_template :show  
+    end
+  end
+
   describe 'DELETE #destroy' do
     let!(:redshirt) { create(:redshirt) }
 
