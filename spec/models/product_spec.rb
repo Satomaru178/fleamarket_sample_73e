@@ -321,4 +321,28 @@ RSpec.describe Product, type: :model do
       end
     end
   end
+
+  describe 'self.serachメソッド' do
+    context '引数が入力されている時' do
+      it "検索文字列に一致する商品を返す" do
+        product1 = create(:product, name: "hogeb")
+        product2 = create(:product, name: "ahogeb")
+        product3 = create(:product, name: "ahoge")
+        product4 = create(:product, name: "fuga")
+        expect(Product.search("hoge")).to include(product1, product2, product3)
+        expect(Product.search("hoge")).not_to include(product4)
+      end
+      it "検索結果が1件も見つからなければ空のコレクションを返す" do
+        product1 = create(:product, name: "hogeb")
+        product2 = create(:product, name: "ahogeb")
+        product3 = create(:product, name: "ahoge")
+        expect(Product.search("huga")).to be_empty
+      end
+    end
+    context '引数が入力されていない時' do
+      it "空のコレクションを返す" do
+        expect(Product.search("")).to be_empty
+      end
+    end
+  end
 end

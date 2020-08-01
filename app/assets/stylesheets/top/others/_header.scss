@@ -1,6 +1,6 @@
 .header {
   // 外枠サイズ指定
-  @include box(100vw, 110px);
+  @include box($width: 100vw, $height: 110px);
   // 文字色指定
   color: #fff;
 
@@ -20,40 +20,45 @@
 
       &__logo {
         // ロゴの外枠指定
-        @include box(140px, 41px);
+        @include box($width: 140px, $height: 41px);
         // 外枠にロゴを埋め込む
         @include backimg('material/logo/logo.png', contain);
       }
 
       &__form {
         // 入力フォームの外枠サイズ指定
-        @include box(870px, 41px);
-        background-color: #00f;
+        @include box($width: 829px, $height: 41px);
         // 入力フォームの中に検索ボタンを埋め込むための設定
         position: relative;
 
         #keyword {
           // 入力フォームを外枠に埋め込む
-          @include box(100%, 41px);
+          @include box($width: 100%, $height: 41px);
           // 文字サイズ指定
           font-size: 16px;
+          border: 1px solid;
         }
 
         &__submit-btn {
           // 検索ボタンの外枠サイズ指定
-          @include box(41px, 41px);
+          @include box($width: 41px, $height: 41px);
           // 検索ボタンの位置を調整
-          @include absolute(0px, 0px, auto, auto);
+          @include absolute(0px, -41px, auto, auto);
           // 検索ボタンの背景色指定
           background-color: #20b2aa;
+
+          .search-btn {
+            display: none;
+          }
           
           &__icon {
             // 虫眼鏡マークの外枠作成
-            @include box(20px, 20px);
+            @include box($width: 41px, $height: 41px);
             // 外枠に虫眼鏡マークを埋め込む
-            @include backimg('material/icon/icon-search01.png', contain);
-            // 中央に配置
-            margin: 10px;
+            @include backimg('material/icon/icon-search01.png', 50%);
+            // カーソル設定
+            cursor: pointer;
+            transition: 0.5s;
           }
         }
       }

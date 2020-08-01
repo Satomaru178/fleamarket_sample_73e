@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'categories/index'
   root to: 'top#index'
 
   devise_for :users, controllers: {
@@ -38,6 +39,18 @@ Rails.application.routes.draw do
       post   "date",   to: 'creditcards#show'
     end
   end
-  
+
+
+
+
+
+  resources :categories, only: [:index, :show]
+
+  resources :top, only: [:index] do
+    collection do
+      get :search
+    end
+  end
+
 
 end
