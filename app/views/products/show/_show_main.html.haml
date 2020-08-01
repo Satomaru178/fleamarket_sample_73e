@@ -83,7 +83,8 @@
                 %td
                   1~2日で発送
         .content-main__top__product__buy-btn
-          = link_to "#" do
+          -# 商品確認ページのリンク
+          = link_to purchase_product_path(id:1) do
             購入画面に進む
         .content-main__top__product__bottom
           %ul.content-main__top__product__bottom__left

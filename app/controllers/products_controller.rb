@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   # ログイン中のユーザしかできない
-  before_action :authenticate_user!, only: [:new, :create, :edit, :upload, :destroy, :purchase]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :purchase]
 
   # 商品を変数にセットする
   before_action :set_product, only: [:edit, :update, :destroy, :purchase]
