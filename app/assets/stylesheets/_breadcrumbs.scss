@@ -17,9 +17,15 @@
     a {
       text-decoration: none;
       cursor: pointer;
+
+      &:visited {
+        color: #000;
+      }
+
       &:hover {
         color: #3CCACE;
-      }    
+      }
+
     }
 
     span {
