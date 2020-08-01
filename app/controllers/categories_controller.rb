@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: :show
   before_action :set_category_header, only: [:index, :show]
+  before_action :user_login, only: [:index, :show]
 
   def index
   end
@@ -27,5 +28,9 @@ class CategoriesController < ApplicationController
     @parents = Category.where(ancestry: nil)
   end
 
+  def user_login
+    @account = current_user[:id]
+    @profile = current_user.account
+  end
 end
 
