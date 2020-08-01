@@ -1,5 +1,5 @@
 .content-main__related
-  = link_to "#", class: "content-main__related__category" do
+  = link_to category_path(@product.category), class: "content-main__related__category" do
     = "#{@product.category.name}をもっと見る"
   .content-main__related__products
     - @products.each do |product|
