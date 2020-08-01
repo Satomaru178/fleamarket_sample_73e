@@ -2,10 +2,12 @@
   // 全体の背景色を指定
   background-color: #f8f8f8;
 
+  // リストスタイルを無しに指定
   ul {
     list-style: none;
   }
 
+  // 画像全体の設定
   img {
     // 画像の幅を設定
     width: 100%;
@@ -13,71 +15,118 @@
     vertical-align: bottom;
   }
 
+  // リンクの見た目をなしに指定
   a {
     text-decoration: none;
   }
 
+  // メイン部分の外枠
   .content {
-    // メイン部分の外枠
     padding: 40px;
     margin: 0 auto;
 
+    // 外枠サイズ指定
     &-main {
-      // 外枠サイズ指定
       width: 700px;
       margin: 0 auto;
 
       &__top {
+        // 商品詳細部分の箱設定
         &__product {
-          // 商品詳細部分の箱設定
           background-color: #fff;
           padding: 24px 40px 40px;
 
+          // 商品名の設定
           &__name {
-            // 商品名の設定
             text-align: center;
             font-weight: bold;
             font-size: 24px;
           }
 
+          // 画像用の箱全体の設定
           &__images {
-            // 画像用の箱設定
             margin: 16px 0 0;
-
-            ul {
-              // 画像を横並び
-              display: flex;
-              position: relative;
-            }
-
+            width: 100%;
+            display: flex;
+            position: relative;
+            
+            // 画像用の箱の設定
             &__image {
               display: flex;
               flex-direction: column;
-              width: 560px;
               align-items: center;
+              width: 100%;
               margin: 0 auto;
-            
-              &-top {
-                // 大きい画像の設定
-                object-fit: cover;
-                height: 346px;
+              position: relative;
+
+              // 大きい画像のリンク設定
+              &-link {
+              width: 100%;
+              cursor: zoom-in;
               }
 
+              // 大きい画像の設定
+              &-top {
+                object-fit: cover;
+                height: 346px;
+                background-color: #f8f8f8;
+              }
+
+              &__sold {
+                &-inner {
+                  position: absolute;
+                  top: 35px;
+                  left: 0;
+                  font-size: 28px;
+                  z-index: 2;
+                  color: #fff;
+                  transform: rotate(-45deg);
+                  letter-spacing: 2px;
+                  font-weight: 600;
+                }
+
+                &::after {
+                  border-top: 160px solid #3CCACE;
+                  border-right: 160px solid transparent;
+                  border-bottom: 0 solid transparent;
+                  border-left: 0 solid transparent;
+                  display: block;
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  z-index: 1;
+                }
+              }
+
+              // 小さい画像の横並び設定
               &__lists {
-                // 小さい画像の横並び設定
+                width: 100%;
                 display: flex;
                 justify-content: center;
                 margin-top: 10px;
 
+                // 小さい画像のサイズ設定
                 &__list {
-                  // 小さい画像のサイズ設定
-                  width: 25%;
+                  width: 20%;
+                  height: 87px;
                   margin-right: 10px;
-
+                  @include centering();
+                  display: flex;
+                  justify-content: center;
+                  background-color: #f8f8f8;
+                  cursor: pointer;
+      
+                  // 小さい画像全体の設定
                   &-sub {
-                    // 小さい画像の設定
-                    object-fit: cover;
-                    height: 87px;
+                    object-fit: contain;
+                    height: 100%;
+                    width: auto;
+                  }
+                  
+                  // アクティブじゃない小さい画像の設定
+                  &:not(.active) {
+                    opacity: 0.4;
                   }
                 }
               }
@@ -87,7 +136,7 @@
           // 金額等の設定
           &__price {
             // 金額表示欄の上下の空間
-            margin: 24px 0 24px;
+            margin: 24px 0;
             // 金額表示を中央に
             text-align: center;
             // 金額の下の表示を横並びに
@@ -102,7 +151,7 @@
               // 文字を太字に
               font-weight: bold;
               // 右側に空間を指定
-              margin-right: 10px;
+              margin: 0 10px 10px 0;
             }
 
             &__detail {
@@ -124,25 +173,24 @@
             // 表の下部の空間を指定
             margin-bottom: 20px;
 
-            // 表本体の設定
+            // 表全体の設定
             table {
               width: 100%;
               height: 375px;
               // 隣接するボーダーを重ねて表示する設定
               border-collapse: collapse;
-              // ボーダーの設定
-              border: 1px solid #f8f8f8;
 
+              // 表本体の設定
               tbody {
                 display: table-row-group;
                 vertical-align: middle;
-                border-color: inherit;
 
+                // 表の段差毎の設定
                 tr {
                   display: table-row;
                   vertical-align: inherit;
-                  border-color: inherit;
 
+                  // 表の名前部分の設定
                   th {
                     vertical-align: inherit;
                     width: 20%;
@@ -154,14 +202,15 @@
                     text-align: center;
                   }
 
+                  // 表の中身部分の設定
                   td {
                     vertical-align: inherit;
-                    border-color: inherit;
                     width: 61%;
                     padding: 15px 15px;
                     border: 1px solid #dedede;
                     font-size: 14px;
 
+                    // 表の中のリンクの色指定
                     a {
                       color: #3CCACE;
                     }
@@ -171,46 +220,107 @@
             }
           }
 
-          &__buy-btn {
+          // 商品編集ボタン
+          &__edit-btn {
             width: 100%;
-            line-height: 60px;
-            font-size: 24px;
-            margin: 30px 0;
+            line-height: 48px;
+            font-size: 14px;
+            margin: 16px 0;
             background-color: #3CCACE;
             text-align: center;
-            font-weight: bold;
             border-radius: 5px;
 
+            // リンク設定
             a {
               color: #fff;
               display: block;
             }
           }
 
+          &__text-center {
+            text-align: center;
+            font-size: 16px;
+          }
+
+          // 商品削除ボタン
+          &__delete-btn {
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+            margin: 16px 0;
+            background-color: #aaa;
+            text-align: center;
+            border-radius: 5px;
+
+            // リンク設定
+            a {
+              color: #fff;
+              display: block;
+            }
+          }
+
+          &__sold-btn {
+            width: 100%;
+            line-height: 60px;
+            font-size: 24px;
+            color: #fff;
+            margin: 20px 0;
+            background-color: #aaa;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: not-allowed;
+          }
+
+          // 購入画面に進むボタン
+          &__buy-btn {
+            width: 100%;
+            line-height: 60px;
+            font-size: 24px;
+            margin: 20px 0;
+            background-color: #3CCACE;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 5px;
+
+            // リンク設定
+            a {
+              color: #fff;
+              display: block;
+            }
+          }
+
+          // 表の下の2つのボタンエリア
           &__bottom {
             display: flex;
             justify-content: space-between;
 
+            // リスト設定
             ul {
               margin: 10px 0 0;
               display: flex;
 
+              // マウスを重ねた時の設定
               :hover {
                 opacity: 0.5;
               }
             }
 
+            // お気に入りに追加ボタン
             &__left-btn {
               margin-right: auto;
               padding: 6px 10px;
               border-radius: 40px;
               color: #3CCACE;
               border: 1px solid #ffb340;  
+              cursor: pointer;
             }
 
+            // 通報ボタン
             &__right-btn {
               font-size: 14px;
 
+              // リンク設定
               a {
                 padding: 6px 10px;
                 display: inline-block;
@@ -223,17 +333,22 @@
         }
       }
 
+      // 前の商品、後ろの商品のリンクボタン
       &__links {
         @include clearfix;
-    
+        margin-top: 10px;
+        
+        // 前の商品
         &__left {
           float: left;
         }
     
+        // 後ろの商品
         &__right {
           float: right;
         }
     
+        // リンク設定
         a {
           text-decoration: none;
           color: #3CCACE;
