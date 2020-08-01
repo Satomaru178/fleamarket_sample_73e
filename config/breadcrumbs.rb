@@ -55,6 +55,27 @@ crumb :grandchild_category do |category|
   parent :child_category
 end
 
+# 商品詳細ページ親カテゴリー
+crumb :product_show_category do |product|
+  product = Product.find(params[:id])
+  link "#{product.category.root.name}", category_path(product.category.root)
+  parent :category_index
+end
+
+# 商品詳細ページ子カテゴリー
+crumb :product_show_category_child do |product|
+  product = Product.find(params[:id])
+  link "#{product.category.parent.name}", category_path(product.category.parent)
+  parent :product_show_category
+end
+
+# 商品詳細ページ孫カテゴリー
+crumb :product_show_category_grandchild do |product|
+  product = Product.find(params[:id])
+  link "#{product.category.name}", category_path(product.category)
+  parent :product_show_category_child
+end
+
 
 # crumb :projects do
 #   link "Projects", projects_path
