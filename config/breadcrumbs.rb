@@ -76,6 +76,11 @@ crumb :product_show_category_grandchild do |product|
   parent :product_show_category_child
 end
 
+crumb :product_show do |product|
+  product = Product.find(params[:id])
+  link "#{product.name}", product_path(product)
+  parent :product_show_category_grandchild
+end
 
 # crumb :projects do
 #   link "Projects", projects_path
