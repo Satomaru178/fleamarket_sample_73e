@@ -24,16 +24,6 @@
             .product-search-result__item__show-btn
               詳細を見る
 
-          - if result.seller_id == current_user.id
-            = link_to edit_product_path(result) do
-              .product-search-result__item__edit-btn
-                編集する
-            = link_to product_path(result), method: :delete do
-              .product-search-result__item__delete-btn
-                削除する
-          - else
-            -# nop
-
       - else
         #odd.product-search-result__item
           .product-search-result__item__name
@@ -54,16 +44,6 @@
           = link_to product_path(result) do
             .product-search-result__item__show-btn
               詳細を見る
-
-          - if result.seller_id == current_user.id
-            = link_to edit_product_path(result) do
-              .product-search-result__item__edit-btn
-                編集する
-            = link_to product_path(result), method: :delete do
-              .product-search-result__item__delete-btn
-                削除する
-          - else
-            -# nop
 
   - if @products.length > @maximum_per_page
     .product-search-paginate
