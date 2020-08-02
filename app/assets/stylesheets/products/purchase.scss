@@ -1,14 +1,14 @@
-.confimation-page {
+.PurchasePage {
   background-color: rgb(245, 245, 245);
   height: 1270px;
   font-family: "Arial", "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", "sans-serif";
 }
 
-.confimation__header {
+.Purchase__header {
   background-color: rgb(245, 245, 245);
   height: 128px;
   padding-top: 35px;
-  .confimation__header--icon {
+  &__icon {
     @include backimg("material/logo/logo.png", cover);
     height: 49px;
     width: 185px;
@@ -17,13 +17,13 @@
 }
 
 // メイン 購入内容
-.confimation__main {
+.Purchase__main {
   width: 700px;
   height: 942px;
   margin: auto;
   background-color: #fff;
   justify-content: center;
-  .confimation__main--topmost {
+  &__topmost {
     width: 375px;
     height: 98px;
     margin: 0px auto;
@@ -33,7 +33,7 @@
     text-align: center;
   }
   // 画像
-  .confimation__main--image {
+  &__image {
     width: 375px;
     height: 145px;
     padding: 32px 16px;
@@ -45,24 +45,24 @@
       width: 343px;
       height: 80px;
       display: flex;
-      .item-image {
+      &__tag {
         width:80px;
         height: 80px;
       }
-      .item-name {
+      .item-names {
         width: 247px;
         height: 80px;
         margin-left: 16px;
-        .item-names {
+        &__tag {
           font-size: 14px;
           margin-bottom: 8px;
         }
-        .item-price {
+        &__price {
           text-align: right;
-          .postage {
+          &--postage {
             font-size: 12px;
           }
-          .price {
+          &--cost {
             font-size: 12px;
             font-weight: bold;
             margin-left: 8px;
@@ -72,7 +72,7 @@
     }
   }
   // 支払い金額
-  .confimation__main--payment {
+  .purchase__main__payment {
     width: 375px;
     height: 133px;
     padding: 32px 16px;
@@ -84,11 +84,11 @@
       width: 343px;
       height: 24px;
       margin-bottom: 24px;
-      .item-payment-amount {
+      &__amount {
         font-size:18px;
         margin-right: 175px;
       }
-      .item-payments {
+      &__price {
         font-size:24px
       }
     }
@@ -97,14 +97,14 @@
       height: 20px;
       font-size:14px;
       display: flex;
-      .possession-point {
+      &__possession {
         font-size:12px;
         margin-left: 150px;
       }
     }
   }
   // 支払い方法
-  .confimation__main--method {
+  .purchase__main__method {
     width: 375px;
     height: 111px;
     padding: 32px 16px;
@@ -113,10 +113,10 @@
     border-top-style: solid;
     border-top-color: rgb(245, 245, 245);
     text-decoration: none;
-    .item-method {
+    .item-methods {
       width: 343px;
       height: 46px;
-      .item-methods {
+      .item-method {
         font-size: 14px;
         margin-bottom: 16px;
       }
@@ -130,7 +130,7 @@
     }
   }
   // 配送先
-  .confimation__main--delivery {
+  .purchase__main--delivery {
     width: 375px;
     height: 144px;
     padding: 32px 16px;
@@ -160,7 +160,7 @@
     }
   }
   // 購入ボタン
-  .confimation__main--purchase {
+  .purchase__main--purchase {
     width: 375px;
     height: 290px;
     padding-top: 32px;
