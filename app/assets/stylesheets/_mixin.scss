@@ -84,10 +84,12 @@
   color: #fff;
 }
 
+
 @mixin clearfix {
   &::after {
     display: block;
     content: "";
     clear: both;
   }
+
 }
