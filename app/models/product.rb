@@ -17,6 +17,14 @@ class Product < ApplicationRecord
   
   belongs_to :brand, optional: true
 
+  # likes
+
+  has_many :likes, dependent: :destroy
+  
+  def like_user(user_id)
+    likes.find_by(user_id: user_id)
+  end
+
   # activehash
 
   extend ActiveHash::Associations::ActiveRecordExtensions
