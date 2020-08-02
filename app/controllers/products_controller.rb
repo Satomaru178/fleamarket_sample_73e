@@ -152,7 +152,7 @@ class ProductsController < ApplicationController
 
   def reject_seller
     if @product.seller_id == current_user.id
-      flash[:alert] = "権限がないよ"
+      flash[:alert] = "出品者は購入できません"
       redirect_to root_path
     else
       # nop
