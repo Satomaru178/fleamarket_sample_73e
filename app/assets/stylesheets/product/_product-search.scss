@@ -17,6 +17,32 @@
   &__item {
     padding: 10px;
     overflow: hidden;
+
+    &__image {
+      position: relative;
+
+      &__sold {
+        &__inner {
+          @include absolute($top: 12px, $left: 0);
+          z-index: 2;
+          color: #fff;
+          transform: rotate(-45deg);
+          font-weight: 600;
+          font-size: 12px;
+        }
+
+        &::after {
+          @include absolute($top: 0, $left: 0);
+          z-index: 1;
+          border-top: 50px solid #20b2aa;
+          border-right: 50px solid transparent;
+          border-bottom: 0 solid transparent;
+          border-left: 0 solid transparent;
+          display: block;
+          content: '';
+        }
+      }
+    }
   }
 }
 

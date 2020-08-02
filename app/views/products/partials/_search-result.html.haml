@@ -9,9 +9,17 @@
             = "#{result.name}"
           .product-search-result__item__price
             = "#{converting_to_jpy(result.price)}"
-          .product-search-result__item__images
+          .product-search-result__item__image
             - image = result.images.first
             = image_tag image.src.url, size: '100x100'
+
+            - if(result.buyer_id.present?)
+              .product-search-result__item__image__sold
+                .product-search-result__item__image__sold__inner
+                  SOLD
+            - else
+              -# nop
+
           = link_to product_path(result) do
             .product-search-result__item__show-btn
               詳細を見る
@@ -32,9 +40,17 @@
             = "#{result.name}"
           .product-search-result__item__price
             = "#{converting_to_jpy(result.price)}"
-          .product-search-result__item__images
+          .product-search-result__item__image
             - image = result.images.first
             = image_tag image.src.url, size: '100x100'
+
+            - if(result.buyer_id.present?)
+              .product-search-result__item__image__sold
+                .product-search-result__item__image__sold__inner
+                  SOLD
+            - else
+              -# nop
+
           = link_to product_path(result) do
             .product-search-result__item__show-btn
               詳細を見る
