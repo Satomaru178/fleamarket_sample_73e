@@ -294,7 +294,6 @@ RSpec.describe Product, type: :model do
       end
 
       it "検索結果が1件も見つからなければ空のコレクションを返す" do
-        product = create(:blueshirt)
         expect(Product.search("red")).to be_empty
       end
     end
