@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'likes/create'
+  get 'likes/destroy'
   get 'categories/index'
   root to: 'top#index'
 
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
       get 'get_category_children',      defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
     end
+    resources :likes, only: [:create, :destroy]
   end
 
   resources :brands, only: [:new, :create]
