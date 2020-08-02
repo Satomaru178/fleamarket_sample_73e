@@ -276,12 +276,6 @@ RSpec.describe Product, type: :model do
       expect(product).to be_valid
       expect(product.errors[:price]).not_to be_present
     end
-
-    context '出品したユーザでない' do
-      it "出品したユーザ以外は更新できないこと" do
-        # コントローラーのテストで行う(発展課題)
-      end
-    end
   end
 
   describe '#destroy' do
@@ -289,12 +283,6 @@ RSpec.describe Product, type: :model do
 
     it "productを削除するとproductのimageも削除されること" do
       expect{ product.destroy }.to change{ Image.count }.by(-1)
-    end
-
-    context '出品したユーザでない' do
-      it "出品したユーザ以外は削除できないこと" do
-        # コントローラーのテストで行う(発展課題)
-      end
     end
   end
 
