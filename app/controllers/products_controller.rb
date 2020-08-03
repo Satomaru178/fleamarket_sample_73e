@@ -58,6 +58,8 @@ class ProductsController < ApplicationController
     @parents = Category.where(ancestry: nil)
     @product = Product.find(params[:id])
     @products = Product.includes(:images).where(category_id: @product.category_id).where.not(id: @product.id).order('created_at DESC').first(3)
+    @comment = Comment.new
+    @comments = @product.comments
   end
 
   def destroy
