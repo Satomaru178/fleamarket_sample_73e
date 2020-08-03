@@ -13,20 +13,6 @@
   background-position: center;
 }
 
-// 文字のデコレーション
-@mixin font($size, $family, $shadow) {
-  font-size: $size;
-  font-family: $family;
-  text-shadow: 0 0 $shadow #000;
-}
-
-// 文字のデコレーション
-@mixin font2($weight: normal, $size: 12px, $clr: #000) {
-  font-weight: $weight;
-  font-size: $size;
-  color: $clr;
-}
-
 // 背景画像、文字色指定
 @mixin colors($bgclr: #fff, $clr: #000) {
   background-color: $bgclr;

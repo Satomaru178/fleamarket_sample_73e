@@ -4,7 +4,7 @@
       = link_to '/' do
         .header__contents__upper__logo
       .header__contents__upper__form
-        = form_with url: search_top_index_path, local: true, method: :get do |form|
+        = form_with url: fuzzy_search_products_path, local: true, method: :get do |form|
           = form.text_field :keyword, placeholder: "商品を検索する", class: "search-input"
           .header__contents__upper__form__submit-btn
             %label

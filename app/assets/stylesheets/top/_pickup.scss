@@ -68,7 +68,7 @@
 
       &__list {
         // 商品の外枠作成
-        @include box($width: 220px);
+        width: 220px;
         background-color: white;
 
         &__image {

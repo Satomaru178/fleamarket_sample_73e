@@ -3,8 +3,8 @@
 }
 
 .product-header {
-  @include box($height: 120px);
   @include centering();
+  height: 120px;
 
   &__logo {
     $header-logo-padding-size: calc((120px - 60px) / 2);
@@ -14,7 +14,7 @@
 }
 
 .product-contents {
-  @include box($width: 700px);
+  width: 700px;
   background-color: #fff;
   margin: 0 auto;
   padding: 10px 40px 40px;
@@ -25,14 +25,17 @@
   }
 
   &__label {
-    @include box($height: 24px);
-    @include font2(600, 14px, #000);
+    height: 24px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
     margin: 40px auto 5px;
 
     &__require {
       @include box($width: 42px, $radius: 2px);
-      @include font2(300, 12px, #fff);
       @include colors(#ea352d, #fff);
+      font-weight: 300;
+      font-size: 12px;
       margin-left: 5px;
       padding: 5px 0;
       text-align: center;
@@ -41,8 +44,9 @@
 
     &__optional {
       @include box($width: 42px, $radius: 2px);
-      @include font2(300, 12px, #fff);
       @include colors(#c0c0c0, #fff);
+      font-weight: 300;
+      font-size: 12px;
       margin-left: 5px;
       padding: 5px 0;
       text-align: center;
@@ -51,10 +55,13 @@
   }
 
   &__images {
-    @include font2(600, 14px, #999);
+    font-weight: 600;
+    font-size: 14px;
+    color: #999;
 
     #image-box {
-      @include font2($weight: normal, $clr: #000);
+      font-weight: normal;
+      color: #000;
       padding: 5px 0 10px;
 
       #previews {
@@ -116,7 +123,9 @@
   }
 
   &__basic {
-    @include font2(600, 14px, #999);
+    font-weight: 600;
+    font-size: 14px;
+    color: #999;
     padding-bottom: 40px;
     border: solid #ccc;
     border-width: 1px 0;
@@ -132,7 +141,7 @@
     }
 
     &__explain {
-      @include box($height: 420px);
+      height: 420px;
       margin: 5px auto 10px;
 
       textarea {
@@ -142,18 +151,23 @@
       }
 
       &__counter {
-        @include box($height: 20px);
+        height: 20px;
         padding-left: 540px;
 
         &__count {
-          @include font2(normal, 12px, #000);
+          font-weight: normal;
+          font-size: 12px;
+          color: #000;
         }
       }
     }
   }
 
   &__details {
-    @include font2(600, 14px, #999);
+    font-weight: 600;
+    font-size: 14px;
+    color: #999;
+
     padding: 40px 0;
 
     select {
@@ -164,7 +178,9 @@
 
     &__brand {
       &__add-btn {
-        @include font2(normal, 16px, #00f);
+        font-weight: normal;
+        font-size: 16px;
+        color: #00f;
         margin-top: 20px;
       }
 
@@ -175,7 +191,9 @@
   }
 
   &__delivery {
-    @include font2(600, 14px, #999);
+    font-weight: 600;
+    font-size: 14px;
+    color: #999;
     padding: 40px 0;
     border: solid #ccc;
     border-width: 1px 0;
@@ -188,7 +206,9 @@
   }
 
   &__price {
-    @include font2(600, 14px, #999);
+    font-weight: 600;
+    font-size: 14px;
+    color: #999;
     padding: 40px 0;
 
     input {
@@ -198,11 +218,15 @@
     }
 
     &__selling-price {
-      @include font2(normal, 16px, #000);
+      font-weight: normal;
+      font-size: 16px;
+      color: #000;
     }
 
     &__sells-commission {
-      @include font2(normal, 16px, #000);
+      font-weight: normal;
+      font-size: 16px;
+      color: #000;
       padding: 30px 0;
 
       span {
@@ -211,7 +235,9 @@
     }
 
     &__profit {
-      @include font2(normal, 16px, #000);
+      font-weight: normal;
+      font-size: 16px;
+      color: #000;
       padding: 30px 0;
       border: solid #ccc;
       border-width: 1px 0 0;
@@ -263,7 +289,7 @@
 
 .product-footer {
   $footer-padding-size: calc((200px - (60px + 60px + 12px) - 20px) / 2);
-  @include box($height: 200px);
+  height: 200px;
   padding: $footer-padding-size 0;
 
   &__terms {
@@ -292,7 +318,7 @@
   }
 
   &__copyright {
-    @include box($height: 12px);
+    height: 12px;
     text-align: center;
     font-size: 12px;
   }
