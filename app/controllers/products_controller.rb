@@ -1,27 +1,32 @@
 class ProductsController < ApplicationController
   # ログイン中のユーザしかできない
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :purchase]
-
-  # 商品を変数にセットする
-  before_action :set_product, only: [:edit, :update, :destroy, :purchase]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   # 出品したユーザしかできない
-  before_action :ensure_currect_user, only: [:edit, :destroy]
+  before_action :ensure_currect_user, only: [:edit, :update, :destroy]
 
-  # 出品者は購入できない
-  before_action :reject_seller, only: [:purchase]
+  # 変数に親カテゴリを格納する
+  before_action :set_parents, only: [:show, :fuzzy_search]
 
   # 親カテゴリの配列を用意する
-  before_action :set_categories, only: [:new, :create, :edit, :update]
+  before_action :set_categories, only: [:index, :new, :create]
 
   # 子カテゴリと孫カテゴリの配列を用意する
   before_action :set_categories_edit, only: [:edit, :update]
 
   # ブランド一覧を用意する
-  before_action :set_brands, only: [:new, :create, :edit, :update]
+  before_action :set_brands, only: [:index, :new, :create, :edit, :update]
 
   def index
-    @products = Product.includes(:images).order('created_at DESC')
+    @q = Product.ransack(params[:q])
+    @products = @q.result
+    @maximum_per_page = 63
+
+    if @products.length <= @maximum_per_page
+      @results = @products.includes(:images).order("created_at DESC")
+    else
+      @results = @products.includes(:images).order("created_at DESC").page(params[:page]).per(@maximum_per_page)
+    end
   end
 
   def new
@@ -39,6 +44,7 @@ class ProductsController < ApplicationController
     else
       # renderで戻された時画像入力フォームがなくなってしまう事象への対策
       @product.images.new
+
       flash[:alert] = "商品を出品できませんでした"
       render :new
       return
@@ -50,22 +56,17 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      if @product.buyer_id
-        flash[:notice] = "商品を購入しました"
-      else
-        flash[:notice] = "商品を編集しました"
-      end
+      flash[:notice] = "商品を編集しました"
       redirect_to root_path
       return
     else
-      flash[:alert] = "商品を購入または編集できませんでした"
+      flash[:alert] = "商品を編集できませんでした"
       render :edit
       return
     end
   end
 
   def show
-    @parents = Category.where(ancestry: nil)
     @product = Product.find(params[:id])
     @products = Product.includes(:images).where(category_id: @product.category_id).where.not(id: @product.id).order('created_at DESC').first(3)
   end
@@ -81,6 +82,17 @@ class ProductsController < ApplicationController
     return
   end
 
+  def fuzzy_search
+    @products = Product.search(params[:keyword])
+    @maximum_per_page = 63
+
+    if @products.length <= @maximum_per_page
+      @results = @products.includes(:images).order("created_at DESC")
+    else
+      @results = @products.includes(:images).order("created_at DESC").page(params[:page]).per(@maximum_per_page)
+    end
+  end
+
   # 親カテゴリーが選択された時に動くアクション
   def get_category_children
     # 選択された親カテゴリーに対応する子カテゴリーの配列を取得
@@ -93,15 +105,11 @@ class ProductsController < ApplicationController
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
-  def purchase
-  end
-
   private
 
   def product_params
     params.require(:product).permit(
       :seller_id,
-      :buyer_id,
       :name,
       :explain,
       :category_id,
@@ -116,20 +124,36 @@ class ProductsController < ApplicationController
     )
   end
 
-  def set_product
+  def ensure_currect_user
     @product = Product.find(params[:id])
+
+    if @product.seller_id != current_user.id
+      flash[:alert] = "権限がありません"
+      redirect_to root_path
+    else
+      # nop
+    end
+  end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
   end
 
   def set_categories
+    set_parents
+
     # セレクトボックスの初期値設定
     @category_parent_array = []
+
     # 親カテゴリー名を抽出し配列化
-    Category.where(ancestry: nil).each do |parent|
+    @parents.each do |parent|
       @category_parent_array << parent.name
     end
   end
 
   def set_categories_edit
+    set_categories
+
     # productが所属する子カテゴリーの一覧を配列で取得
     @category_child_array = @product.category.parent.parent.children
 
@@ -139,23 +163,5 @@ class ProductsController < ApplicationController
 
   def set_brands
     @brands = Brand.all
-  end
-
-  def ensure_currect_user
-    if @product.seller_id != current_user.id
-      flash[:alert] = "権限がありません"
-      redirect_to root_path
-    else
-      # nop
-    end
-  end
-
-  def reject_seller
-    if @product.seller_id == current_user.id
-      flash[:alert] = "出品者は購入できません"
-      redirect_to root_path
-    else
-      # nop
-    end
   end
 end
