@@ -31,17 +31,18 @@
 
     %section.purchase__main__method
       .item-methods
-        .item-method
+        .item-methods__payment
           %h3 支払い方法
-      -# link_toでエラになる為代わりに一時的にaタグ
-      %a.item-register(href="#")
-        %span.item-registers 登録して下さい
+      
+      = link_to '#', class: "item-link" do
+        %span.item-link__registers 登録して下さい
 
-    %section.purchase__main--delivery
-      .item-delivery
-        %h3.delibers 配送先
-        -# link_toでエラになる為代わりに一時的にaタグ
-        %a.item-change(href="#") 変更する
+    %section.purchase__main__delivery
+      .delivery
+        %h3.delivery__address 配送先
+        = link_to '#', class: "delivery__change" do
+          変更する
+
       .item-address
         %p 〒xxx-xxx
         %p 神奈川県 川崎市
