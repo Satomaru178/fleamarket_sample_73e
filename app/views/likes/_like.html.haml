@@ -1,30 +1,18 @@
-- if user_signed_in?
+- if Like.find_by(user_id: current_user.id, product_id: product.id)
+  = link_to product_like_path(product_id: product.id, id: product.likes[0].id), method: :delete, remote: true do
+    .like-btn__wrapper
+      %i.fas.fa-star
+      %p
+        お気に入り
+      %p
+        = product.likes_count
 
-  - unless product.like_user(current_user.id).blank?
-    = link_to product_like_path(product_id: product.id ,id: product.likes[0].id), method: :delete, remote: true do
-      .vertical_like
-        %i.material-icons.red-text
-          favorite
-        %span.red-text
-          = product.likes_count
-  - else
-    = link_to product_likes_path(product.id), method: :post, remote: true do
-      .vertical_like
-        %i.material-icons.grey-text.text-darken-2
-          favorite_border
-        %span.grey-text.text-darken-2
-          = product.likes_count
 
 - else
-
-  - if product.likes_count > 0
-    .vertical_like
-    %imaterial-icons.red-text
-      favorite
-    %span.red-text
-      = product.likes_count
-  - else
-    .vertical_like
-      %i.material-icons.grey-text.text-darken-2
-      %span.grey-text.text-darken-2
+  = link_to product_likes_path(product), method: :post, remote: true do
+    .like-btn__wrapper
+      %i.far.fa-star
+      %p
+        お気に入り
+      %p
         = product.likes_count
