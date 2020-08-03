@@ -4,7 +4,7 @@
   font-family: "Arial", "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", "sans-serif";
 }
 
-.Purchase__header {
+.purchase__header {
   background-color: rgb(245, 245, 245);
   height: 128px;
   padding-top: 35px;
@@ -22,7 +22,7 @@ a {
 }
 
 // メイン 購入内容
-.Purchase__main {
+.purchase__main {
   width: 700px;
   height: 942px;
   margin: auto;
@@ -161,7 +161,7 @@ a {
     }
   }
   // 購入ボタン
-  .purchase__main--purchase {
+  .purchase__main__purchase {
     width: 375px;
     height: 290px;
     padding-top: 32px;
@@ -176,22 +176,22 @@ a {
     .item-purchase {
       width: 343px;
       height: 180px;
-      .explanation {
+      &__explanation {
         font-size: 14px;
         color: #888888;
         margin-bottom: 24px;
         line-height:1.5;
       }
-      .input-confirmation {
+      &__confirmation {
         color: #FF0211;
         margin-bottom: 24px;
       }
     }
-    .item-btn {
+    .item-purchase__btn {
       display: inline-block;
       padding: 0.5em 1em;
       text-decoration: none;
-      .input-item {
+      &__cart {
         width: 293px;
         height: 46px;
         font-size: 17px;

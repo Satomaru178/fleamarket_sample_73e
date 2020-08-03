@@ -1,17 +1,18 @@
 .PurchasePage
 
-  .Purchase__header
+  .purchase__header
     = link_to '/' do
       .Purchase__header__icon
 
-  .Purchase__main
-    %section.Purchase__main__topmost
+  .purchase__main
+    %section.purchase__main__topmost
       %h2 購入内容の確認
 
-    %section.Purchase__main__image
+    %section.purchase__main__image
       .item-images
-        .item-imag__tag
+        .item-imags__tag
           = image_tag src="/assets/material/icon/icon-01.png", size: "80x80"
+        
         .item-names
           %p.item-names__tag Tシャツ
           %p.item-names__price
@@ -49,14 +50,14 @@
         %p 川崎 太郎
 
 
-    %section.purchase__main--purchase
+    %section.purchase__main__purchase
       .item-purchase
-        %p.explanation 郵便局/コンビニ受取をご希望の方は、購入後に取引画面から受取場所を変更をすることが可能です。出品者が発送作業を開始した後は受取場所の変更ができませんので、早めに変更を行ってください。
-        %p.input-confirmation 支払い方法の入力を完了してください。
+        %p.item-purchase__explanation 郵便局/コンビニ受取をご希望の方は、購入後に取引画面から受取場所を変更をすることが可能です。出品者が発送作業を開始した後は受取場所の変更ができませんので、早めに変更を行ってください。
+        %p.item-purchase__confirmation 支払い方法の入力を完了してください。
       = form_with model: @product, local: true do |f|
         = f.hidden_field :buyer_id, value: current_user.id
-        .item-btn
-          = f.submit '購入する',class: 'input-item'
+        .item-purchase__btn
+          = f.submit '購入する',class: 'item-purchase__btn__cart'
 
     .footer-contents
       %ul.footer-contents__items
