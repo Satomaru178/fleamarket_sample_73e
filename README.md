@@ -235,14 +235,17 @@
 
 <!--
   商品詳細ページでユーザがコメントを残すことができる。
+  全てのユーザーが自由にコメントできる。
+  出品者は「仮削除」、「完全削除」ができる。
 -->
 
 ## commentsテーブル
-| Column | Type     | Option                       |
-|--------|----------|------------------------------|
-|user    |references|null: false, foreign_key: true|
-|product |references|null: false, foreign_key: true|
-|comment |text      |null: false                   |
+| Column     | Type     | Option                       |
+|------------|----------|------------------------------|
+|user        |references|null: false, foreign_key: true|
+|product     |references|null: false, foreign_key: true|
+|comment     |text      |null: false                   |
+|delete_check|integer   |default: 0                    |
 
 ### Association
 - belongs_to :user
