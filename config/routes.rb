@@ -39,19 +39,6 @@ Rails.application.routes.draw do
   end
 
 
-
-
-
-
-  resources :categories, only: [:index, :show]
-
-  resources :top, only: [:index] do
-    collection do
-      get :search
-    end
-  end
-
-
   resources :categories, only: [:index, :show]
 
 end

@@ -1,4 +1,4 @@
-.PurchasePage {
+.purchase_page {
   background-color: rgb(245, 245, 245);
   height: 1270px;
   font-family: "Arial", "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", "sans-serif";
@@ -43,9 +43,7 @@ a {
     height: 145px;
     padding: 32px 16px;
     margin: auto;
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-top-color: rgb(245, 245, 245);
+    border-top: 1px solid rgb(245, 245, 245);
     .item-images {
       width: 343px;
       height: 80px;
@@ -82,9 +80,7 @@ a {
     height: 133px;
     padding: 32px 16px;
     margin: auto;
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-top-color: rgb(245, 245, 245);
+    border-top: 1px solid rgb(245, 245, 245);
     .item-payment {
       width: 343px;
       height: 24px;
@@ -114,9 +110,7 @@ a {
     height: 111px;
     padding: 32px 16px;
     margin: auto;
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-top-color: rgb(245, 245, 245);
+    border-top: 1px solid rgb(245, 245, 245);
     text-decoration: none;
     .item-methods {
       width: 343px;
@@ -136,9 +130,7 @@ a {
     height: 144px;
     padding: 32px 16px;
     margin: auto;
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-top-color: rgb(245, 245, 245);
+    border-top: 1px solid rgb(245, 245, 245);
     text-decoration: none;
     .delivery {
       width: 343px;
@@ -164,14 +156,9 @@ a {
   .purchase__main__purchase {
     width: 375px;
     height: 290px;
-    padding-top: 32px;
-    padding-bottom: 56px;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 32px 16px 56px 16px;
     margin: auto;
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-top-color: rgb(245, 245, 245);
+    border-top: 1px solid rgb(245, 245, 245);
     text-decoration: none;
     .item-purchase {
       width: 343px;
