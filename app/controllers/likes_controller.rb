@@ -17,7 +17,7 @@ class LikesController < ApplicationController
   private
 
   def set_product
-    @product = product.find(params[:product_id])
+    @product = Product.find(params[:product_id])
   end
 
 end
