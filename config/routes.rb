@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     collection do
       get 'get_category_children',      defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'fuzzy_search', to: 'products#fuzzy_search'
     end
   end
 
@@ -37,11 +38,4 @@ Rails.application.routes.draw do
   resources :addresses, only: [:edit, :update]
 
   resources :categories, only: [:index, :show]
-
-  resources :top, only: [:index] do
-    collection do
-      get :search
-    end
-  end
-
 end

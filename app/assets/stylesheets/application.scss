@@ -4,6 +4,9 @@
 // mixin用
 @import "mixin";
 
+// パンクズ
+@import "breadcrumbs";
+
 // sign-upページ
 @import "account/sign-up";
 
@@ -44,12 +47,14 @@
 
 // showページ
 @import "products/show_main";
-@import "products/bread_crambs";
 @import "products/comment";
 @import "products/related_item";
 
 // 商品出品編集ページ
 @import "product/products";
+
+// 商品検索ページ
+@import "product/product-search";
 
 // ブランド追加ページ
 @import "brand/brands";

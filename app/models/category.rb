@@ -5,6 +5,7 @@ class Category < ApplicationRecord
   validates :name, presence: true, length: { maximum: 40 }
 
   def set_items
+
     # 親カテゴリーの場合
     if self.root?
       start_id = self.indirects.first.id

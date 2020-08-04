@@ -57,7 +57,7 @@
 
   &__copyright {
     // 文字の外枠指定
-    @include box($height: 16px);
+    height: 16px;
     // 文字サイズ指定
     font-size: 12px;
     // 文字は中央揃え
