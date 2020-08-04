@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :accounts, only: [:index, :show] do
     collection do
       get 'logout', to: 'accounts#logout'
+      get :likes
     end
   end
 
