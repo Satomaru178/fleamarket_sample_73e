@@ -32,4 +32,5 @@ class User < ApplicationRecord
 
   # likes
   has_many :likes, dependent: :destroy
+  has_many :liked_products, through: :likes, source: :product
 end
