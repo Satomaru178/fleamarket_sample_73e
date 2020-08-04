@@ -1,11 +1,14 @@
 .user__mypage__main
   .user__mypage__main__icon
     .user__mypage__main__icon__image
-      .user__mypage__main__icon__image__photo
-      .user__mypage__main__icon__image__name
-        = current_user.nickname
+      = link_to account_path(current_user[:id]), id: "user__mypage" do
+        .user__mypage__main__icon__image__photo
+          = image_tag @profile.icon_image.url,:size =>'60x60', class: "picture" if @profile.icon_image? do
+            = image_tag 'material/icon/member_photo_noimage_thumb.png'
+        .user__mypage__main__icon__image__name
+          = current_user.nickname
     .user__mypage__main__icon__background__image
-      = image_tag ('material/pict/user_mypage_test.JPG')
+      = image_tag @profile.background_image.url if @profile.background_image?
   .user__mypage__main__buy
     %h2.user__mypage__main__buy__product
       購入した商品

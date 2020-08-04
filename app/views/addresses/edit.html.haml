@@ -1,0 +1,89 @@
+.wrapper
+  = render "top/others/header"
+  .user__mypage
+    = render "accounts/sidebar"
+    .user__mypage__main
+      .user__mypage__main__header
+        発送元・お届け先住所変更
+      .user__mypage__main__form
+        = form_for @address do |f|
+          .user__mypage__main__form__field
+            .user__mypage__main__form__field__label
+              = f.label :お名前（全角）
+              %span.user__mypage__main__form__field__label__require 必須
+            .user__mypage__main__form__field__name
+              = f.text_field :first_name, autofocus: true, placeholder: "例）降間", class: "user__mypage__main__form__field__address"
+              - if @address.errors.include?(:first_name)
+                .alert__sign-up
+                  = @address.errors.full_messages_for(:first_name).first
+              - if @address.errors.include?(:last_name)
+                .alert__sign-up
+                  = @address.errors.full_messages_for(:last_name).first
+              = f.text_field :last_name, autofocus: true, placeholder: "例）太郎", class: "user__mypage__main__form__field__address"
+          .user__mypage__main__form__field
+            .user__mypage__main__form__field__label
+              = f.label :お名前かな（全角）
+              %span.user__mypage__main__form__field__label__require 必須
+            .user__mypage__main__form__field__name
+              = f.text_field :first_name_kana, autofocus: true, placeholder: "例）ふりま", class: "user__mypage__main__form__field__address"
+              - if @address.errors.include?(:first_name_kana)
+                .alert__sign-up
+                  = @address.errors.full_messages_for(:first_name_kana).first
+              - if @address.errors.include?(:last_name_kana)
+                .alert__sign-up
+                  = @address.errors.full_messages_for(:last_name_kana).first
+              = f.text_field :last_name_kana, autofocus: true, placeholder: "例）たろう", class: "user__mypage__main__form__field__address"
+          .user__mypage__main__form__field
+            .user__mypage__main__form__field__label
+              = f.label :郵便番号
+              %span.user__mypage__main__form__field__label__require 必須
+              = f.text_field :zipcode, autofocus: true, placeholder: "例）1234567", class: "user__mypage__main__form__field__address"
+              - if @address.errors.include?(:zipcode)
+                .alert__sign-up
+                  = @address.errors.full_messages_for(:zipcode).first
+          .user__mypage__main__form__field
+            .user__mypage__main__form__field__label
+              = f.label :都道府県
+              %span.user__mypage__main__form__field__label__require 必須
+            .user__mypage__main__form__field__input
+              = f.select :prefecture, Address.prefectures.keys, {}, class: "user__mypage__main__form__field__address", id: "prefecture" 
+              - if @address.errors.include?(:prefecture)
+                .alert__sign-up
+                  = @address.errors.full_messages_for(:prefecture).first
+          .user__mypage__main__form__field
+            .user__mypage__main__form__field__label
+              = f.label :市区町村
+              %span.user__mypage__main__form__field__label__require 必須
+              = f.text_field :city, autofocus: true, placeholder: "例）横浜市緑区", class: "user__mypage__main__form__field__address"
+              - if @address.errors.include?(:city)
+                .alert__sign-up
+                  = @address.errors.full_messages_for(:city).first
+          .user__mypage__main__form__field
+            .user__mypage__main__form__field__label
+              = f.label :番地
+              %span.user__mypage__main__form__field__label__require 必須
+              = f.text_field :address, autofocus: true, placeholder: "例）青山1-1-1", class: "user__mypage__main__form__field__address"
+              - if @address.errors.include?(:address)
+                .alert__sign-up
+                  = @address.errors.full_messages_for(:address).first
+          .user__mypage__main__form__field
+            .user__mypage__main__form__field__label
+              = f.label :建物名
+              %span.user__mypage__main__form__field__label__optional 任意
+              = f.text_field :address_other, autofocus: true, placeholder: "例）柳ビル103", class: "user__mypage__main__form__field__address"
+              - if @address.errors.include?(:address_other)
+                .alert__sign-up
+                  = @address.errors.full_messages_for(:address_other).first
+          .user__mypage__main__form__field
+            .user__mypage__main__form__field__label
+              = f.label :電話
+              %span.user__mypage__main__form__field__label__optional 任意
+            .user__mypage__main__form__field__input
+              = f.text_field :tell, autofocus: true, placeholder: "例）09012345678", class: "user__mypage__main__form__field__address"
+              - if @address.errors.include?(:tell)
+                .alert__sign-up
+                  = @address.errors.full_messages_for(:tell).first
+            .user__mypage__main__form__submit
+              = f.submit "登録", class: 'user__mypage__main__form__submit__btn'  
+  = render "top/others/footer"
+  = render "top/others/exhibition-btn"

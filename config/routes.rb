@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   resources :brands, only: [:new, :create]
 
-  resources :accounts, only: [:index, :show] do
+  resources :accounts, only: [:index, :new, :create, :edit, :update, :show] do
     collection do
       get 'logout', to: 'accounts#logout'
     end
@@ -34,6 +34,8 @@ Rails.application.routes.draw do
       post   "date",   to: 'creditcards#show'
     end
   end
+
+  resources :addresses, only: [:edit, :update]
 
   resources :categories, only: [:index, :show]
 end

@@ -37,6 +37,11 @@
 @import "account/main";
 @import "account/accounts_config";
 
+//ユーザー編集ページ
+@import "address/edit";
+@import "account/new";
+@import "account/contents";
+
 //クレジットカード登録画面
 @import "creditcard/creditcard_main";
 
