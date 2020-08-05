@@ -6,7 +6,7 @@
         .user__mypage__contents__icon__image
           = link_to "/accounts/#{current_user.id}", id: "user__mypage" do
             .user__mypage__contents__icon__image__photo
-            = image_tag 'material/icon/member_photo_noimage_thumb.png', :size => '120x120' class: "pictrue"
+              = image_tag 'material/icon/member_photo_noimage_thumb.png', :size => '120x120', class: "pictrue"
             .user__mypage__contents__icon__image__name
               = current_user.nickname
         .user__mypage__contents__icon__background__image
