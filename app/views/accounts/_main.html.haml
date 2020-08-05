@@ -1,12 +1,14 @@
 .user__mypage__main
   .user__mypage__main__icon
     .user__mypage__main__icon__image
-      .user__mypage__main__icon__image__photo
-      .user__mypage__main__icon__image__name
-        = current_user.nickname
+      = link_to "#", id: "user__mypage" do
+        .user__mypage__main__icon__image__photo
+          = image_tag 'material/icon/member_photo_noimage_thumb.png', :size => '60x60', class: "pictrue"
+        .user__mypage__main__icon__image__name
+          = current_user.nickname
     .user__mypage__main__icon__background__image
-      = image_tag ('material/pict/user_mypage_test.JPG')
-  .user__mypage__main__buy
+      = image_tag ('material/pict/user_mypage_test.JPG')  
+    .user__mypage__main__buy
     %h2.user__mypage__main__buy__product
       購入した商品
     .user__mypage__main__buy__list

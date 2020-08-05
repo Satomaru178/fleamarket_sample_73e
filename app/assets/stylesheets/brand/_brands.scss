@@ -3,8 +3,8 @@
 }
 
 .brand-header {
-  @include box($height: 120px);
   @include centering();
+  height: 120px;
 
   &__logo {
     $header-logo-padding-size: calc((120px - 60px) / 2);
@@ -27,14 +27,16 @@
   }
 
   &__label {
-    @include box($height: 24px);
-    @include font2($weight: 600, $size: 14px);
+    height: 24px;
+    font-weight: 600;
+    font-size: 14px;
     margin: $contents-margin-size auto 5px;
 
     &__require {
       @include box($width: 42px, $radius: 2px);
-      @include font2(300, 12px, #fff);
       @include colors(#ea352d, #fff);
+      font-weight: 300;
+      font-size: 12px;
       margin-left: 5px;
       padding: 5px 0;
       text-align: center;
@@ -79,7 +81,7 @@
 
 .brand-footer {
   $footer-padding-size: calc((120px - (60px + 12px)) / 2);
-  @include box($height: 120px);
+  height: 120px;
   padding: $footer-padding-size 0;
 
   &__logo {
@@ -88,7 +90,7 @@
   }
 
   &__copyright {
-    @include box($height: 12px);
+    height: 12px;
     text-align: center;
     font-size: 12px;
   }

@@ -38,6 +38,11 @@
 @import "account/accounts_config";
 @import "account/liked-index";
 
+//ユーザー編集ページ
+@import "address/edit";
+@import "account/new";
+@import "account/contents";
+
 //クレジットカード登録画面
 @import "creditcard/creditcard_main";
 
@@ -48,6 +53,9 @@
 
 // 商品出品編集ページ
 @import "product/products";
+
+// 商品検索ページ
+@import "product/product-search";
 
 // ブランド追加ページ
 @import "brand/brands";

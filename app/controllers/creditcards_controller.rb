@@ -1,7 +1,7 @@
 class CreditcardsController < ApplicationController
   before_action :move_to_index, only: [:index, :new, :create, :show, :delete]
   before_action :set_categories, only: [:index, :new, :create, :show, :delete]
-
+  before_action :user_login, only: [:index, :new, :create, :show, :delete]
 
   require "payjp"
 
@@ -87,5 +87,10 @@ class CreditcardsController < ApplicationController
 
   def set_categories
     @parents = Category.where(ancestry: nil)
+  end
+
+  def user_login
+    @account = current_user[:id]
+    @profile = current_user.account
   end
 end
