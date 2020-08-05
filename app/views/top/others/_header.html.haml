@@ -16,7 +16,6 @@
         -if user_signed_in?
           %li.header__contents__lower__right-items__signup
             = link_to accounts_path, class: "header__contents__lower__right-items__signup__mypage" do
-              = image_tag @profile.icon_image.url,:size =>'32x32', class: "picture" if @profile.icon_image? 
               %p マイページ
         - else
           %li.header__contents__lower__right-items__login
