@@ -3,11 +3,11 @@
     .user__mypage__main__icon__image
       = link_to account_path(current_user[:id]), id: "user__mypage" do
         .user__mypage__main__icon__image__photo
-          = image_tag @profile.icon_image.url,:size =>'60x60', class: "picture" if @profile.icon_image?
+          = image_tag @profile.icon_image.url, :size =>'60x60', class: "picture" if @profile.icon_image?
         .user__mypage__main__icon__image__name
           = current_user.nickname
     .user__mypage__main__icon__background__image
-      = image_tag @profile.background_image.thumb.url if @profile.background_image?
+      = image_tag @profile.background_image.thumb.url, :size => '700x200' if @profile.background_image?
   .user__mypage__main__buy
     %h2.user__mypage__main__buy__product
       購入した商品
