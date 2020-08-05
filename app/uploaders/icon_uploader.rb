@@ -1,5 +1,5 @@
-class ImageUploader < CarrierWave::Uploader::Base
-  # Include RMagick or MiniMagick support:
+class IconUploader < CarrierWave::Uploader::Base
+   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
@@ -49,9 +49,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
-  process resize_to_fit: [800, 800]
+  process resize_to_fill: [200, 200, "Center"]
 
-  version :thumb do
-    process resize_to_fill: [700, 200, "Center"]
-  end
 end

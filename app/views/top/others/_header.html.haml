@@ -15,8 +15,8 @@
       %ul.header__contents__lower__right-items
         -if user_signed_in?
           %li.header__contents__lower__right-items__signup
-            = link_to accounts_path do
-              マイページ       
+            = link_to accounts_path, class: "header__contents__lower__right-items__signup__mypage" do
+              %p マイページ
         - else
           %li.header__contents__lower__right-items__login
             = link_to new_user_session_path do
