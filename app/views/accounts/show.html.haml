@@ -10,7 +10,8 @@
             .user__mypage__contents__icon__image__name
               = current_user.nickname
         .user__mypage__contents__icon__background__image
-          = image_tag ('material/pict/user_mypage_test.JPG')      .user__mypage__profile
+          = image_tag ('material/pict/user_mypage_test.JPG')
+        .user__mypage__profile
         = simple_format @profile.profile
     
   = render "top/introduction/introduction-lower"
