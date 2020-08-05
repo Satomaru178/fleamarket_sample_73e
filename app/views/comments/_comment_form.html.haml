@@ -1,0 +1,11 @@
+= form_with model:@comment, class:"content-main__comments__new", local: true do |f|
+  = f.text_area :comment, class: "content-main__comments__form", wrap: "soft"
+  = f.hidden_field :product_id, value: @product.id
+  %p.content-main__comments__notice
+    相手のことを考え丁寧なコメントを心がけましょう。
+    %br/
+    不快な言葉遣いなどは利用制限や退会処分となることがあります。
+  %br/
+  = button_tag type: "submit", class: "content-main__comments__btn" do 
+    = icon("fas", "comment")
+    コメントする
