@@ -4,7 +4,25 @@
   = render "layouts/breadcrumbs"
   .user__mypage
     = render "sidebar"
-    = render "main"
+    .user__mypage__main
+      .user__mypage__main__icon
+        .user__mypage__main__icon__image
+          = link_to account_path(current_user[:id]), id: "user__mypage" do
+            .user__mypage__main__icon__image__photo
+              = image_tag 'material/icon/member_photo_noimage_thumb.png', :size =>'60x60', class: "picture"
+            .user__mypage__main__icon__image__name
+              = current_user.nickname
+        .user__mypage__main__icon__background__image
+      .user__mypage__main__buy
+        %h2.user__mypage__main__buy__product
+          購入した商品
+        .user__mypage__main__buy__list
+          %a.user__mypage__main__buy__list__now
+            取引中
+          %a.user__mypage__main__buy__list__past
+            過去の取引
+        .user__mypage__main__buy__image
+
   = render "top/introduction/introduction-lower"
   = render "top/others/footer"
   = render "top/others/exhibition-btn"
