@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
-  before_action :move_to_index,  only: [:index, :edit ,:update, :logout, :show]
+  before_action :move_to_index,  only: [:index, :edit ,:update, :logout]
   before_action :set_categories, only: [:index, :edit ,:update, :logout, :show]
-  before_action :user_login, only: [:index, :edit ,:update, :logout, :show]
+  before_action :user_login, only: [:index, :edit ,:update, :logout]
 
   def index
   end
