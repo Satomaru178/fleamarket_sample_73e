@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
-  before_action :move_to_index,  only: [:index, :new, :create, :edit, :update, :logout, :show, :mypage]
+  before_action :move_to_index,  only: [:index, :new, :create, :edit, :update, :logout, :mypage]
   before_action :set_categories, only: [:index, :new, :create, :edit, :update, :logout, :show, :mypage]
-  before_action :user_login, only: [:index, :new, :create, :edit, :update, :logout, :show, :mypage]
+  before_action :user_login, only: [:index, :new, :create, :edit, :update, :logout, :mypage]
 
   def index
     if @profile.blank?
@@ -12,18 +12,18 @@ class AccountsController < ApplicationController
 
   def new
     if @profile.blank?
+      @profile = Account.new
     else
       redirect_to action: :edit
     end
   end
 
   def create
-    if @profile.create(account_params)
-      redirect_to controller: :accounts, action: :mypage
+    @profile = Account.create(account_params)
+    if @profile.save
+      redirect_to action: :mypage
     else
-      @profile.valid?
-      flash.now[:alert] = "入力された情報は正しくありません"
-      render action: :new and return
+      redirect_to action: :new
     end
   end
 
@@ -48,13 +48,13 @@ class AccountsController < ApplicationController
   end
 
   def show
-    @profile = Account.find(params[:id])
   end
+
 
   def mypage
     if @profile.blank?
-    else
       redirect_to action: :index
+    else
     end
   end
 
