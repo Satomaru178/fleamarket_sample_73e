@@ -10,7 +10,7 @@
             .user__mypage__contents__icon__image__name
               = current_user.nickname
         .user__mypage__contents__icon__background__image
-          = image_tag @profile.background_image.url if @profile.background_image?
+          = image_tag @profile.background_image.thumb.url if @profile.background_image?
       .user__mypage__profile
         = simple_format @profile.profile
     

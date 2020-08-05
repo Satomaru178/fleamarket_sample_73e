@@ -7,7 +7,7 @@
         .user__mypage__main__icon__image__name
           = current_user.nickname
     .user__mypage__main__icon__background__image
-      = image_tag @profile.background_image.url if @profile.background_image?
+      = image_tag @profile.background_image.thumb.url if @profile.background_image?
   .user__mypage__main__buy
     %h2.user__mypage__main__buy__product
       購入した商品
