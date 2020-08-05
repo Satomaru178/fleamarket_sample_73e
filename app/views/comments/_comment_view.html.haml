@@ -1,0 +1,34 @@
+.content-main__comments__list
+  - @comments.each do |comment|
+    - if comment.user_id == current_user.id
+      -# コメントユーザーとログインユーザーが同一の場合 
+      #self.content-main__comments__list__block{data:{index: comment.id}}
+        - if comment.delete_check == 1   # 仮削除済の場合
+          .content-main__comments__list__block__content
+            出品者によりこのコメントは削除されました。
+            = render 'comments/comment_btns', comment: comment 
+        - else   # 削除されていない場合
+          .comment-main__comments__list__block__content
+            = comment.comment
+              .content-main__comments__list__block__content__created-at
+                = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
+              - if comment.product.seller == current_user
+              .content-main__comments__list__block__content__delete.self_pre_delete{data:{index: comment.id}}
+                = link_to '削除する', comment_path(comment.id), method: :patch
+            = render 'comments/comment_name', comment: comment
+    - else 
+      -# コメントユーザーとログインユーザーが異なる場合の場合
+      .Other.content-main__comments__list__block{data:{index: comment.id}}
+        = render 'comments/comment_name', comment: comment
+        - if comment.delete_check == 1   # 削除済の場合
+          .content-main__comments__list__block__content-other
+            出品者によりこのコメントは削除されました。
+            = render 'comments/comment_btns',comment: comment
+        - else    # 削除されていない場合
+          .content-main__comments__list__block__content-other
+            = comment.comment
+              .content-main__comments__list__block__content-other__created-at
+                = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
+              - if comment.product.seller == current_user   # 出品者とログインユーザーが等しい場合
+              .content-main__comments__list__block__content-other__delete.other_pre_delete{data:{index: comment.id}}
+                = link_to '削除する', comment_path(comment.id), method: :patch
