@@ -12,7 +12,7 @@
               %li
                 = converting_to_jpy(product.price)
               
-              - if product.likes_count > 0
+              - if product.likes_count.present?
                 %li
                   = icon('fas','star')
                   = product.likes_count
