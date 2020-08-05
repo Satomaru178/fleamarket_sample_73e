@@ -26,7 +26,7 @@
         .product-contents__details__categories__category__wrapper
           .product-contents__details__categories__category__wapper__box
             #parent_category.product-contents__details__categories__category__wapper__box--select
-              = f.select :category_id, @category_parent_array, { prompt: "親カテゴリーを選択してください" }
+              = f.select :category_id, @category_parent_array, { include_blank: "親カテゴリーを選択してください" }
     = render partial: "products/partials/product-details", locals: { f: f }
 
   -# 配送

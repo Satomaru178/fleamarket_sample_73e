@@ -1,21 +1,32 @@
 class ProductsController < ApplicationController
   # ログイン中のユーザしかできない
-  before_action :authenticate_user!, only: [:new, :create, :edit, :upload, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   # 出品したユーザしかできない
   before_action :ensure_currect_user, only: [:edit, :update, :destroy]
 
+  # 変数に親カテゴリを格納する
+  before_action :set_parents, only: [:show, :fuzzy_search]
+
   # 親カテゴリの配列を用意する
-  before_action :set_categories, only: [:new, :create, :edit, :update]
+  before_action :set_categories, only: [:index, :new, :create]
 
   # 子カテゴリと孫カテゴリの配列を用意する
   before_action :set_categories_edit, only: [:edit, :update]
 
   # ブランド一覧を用意する
-  before_action :set_brands, only: [:new, :create, :edit, :update]
+  before_action :set_brands, only: [:index, :new, :create, :edit, :update]
 
   def index
-    @products = Product.includes(:images).order('created_at DESC')
+    @q = Product.ransack(params[:q])
+    @products = @q.result
+    @maximum_per_page = 63
+
+    if @products.length <= @maximum_per_page
+      @results = @products.includes(:images).order("created_at DESC")
+    else
+      @results = @products.includes(:images).order("created_at DESC").page(params[:page]).per(@maximum_per_page)
+    end
   end
 
   def new
@@ -33,6 +44,7 @@ class ProductsController < ApplicationController
     else
       # renderで戻された時画像入力フォームがなくなってしまう事象への対策
       @product.images.new
+
       flash[:alert] = "商品を出品できませんでした"
       render :new
       return
@@ -55,7 +67,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @parents = Category.where(ancestry: nil)
     @product = Product.find(params[:id])
     @products = Product.includes(:images).where(category_id: @product.category_id).where.not(id: @product.id).order('created_at DESC').first(3)
   end
@@ -69,6 +80,17 @@ class ProductsController < ApplicationController
 
     redirect_to root_path
     return
+  end
+
+  def fuzzy_search
+    @products = Product.search(params[:keyword])
+    @maximum_per_page = 63
+
+    if @products.length <= @maximum_per_page
+      @results = @products.includes(:images).order("created_at DESC")
+    else
+      @results = @products.includes(:images).order("created_at DESC").page(params[:page]).per(@maximum_per_page)
+    end
   end
 
   # 親カテゴリーが選択された時に動くアクション
@@ -102,27 +124,6 @@ class ProductsController < ApplicationController
     )
   end
 
-  def set_categories
-    # セレクトボックスの初期値設定
-    @category_parent_array = []
-    # 親カテゴリー名を抽出し配列化
-    Category.where(ancestry: nil).each do |parent|
-      @category_parent_array << parent.name
-    end
-  end
-
-  def set_categories_edit
-    # productが所属する子カテゴリーの一覧を配列で取得
-    @category_child_array = @product.category.parent.parent.children
-
-    # productが所属する孫カテゴリーの一覧を配列で取得
-    @category_grandchild_array = @product.category.parent.children
-  end
-
-  def set_brands
-    @brands = Brand.all
-  end
-
   def ensure_currect_user
     @product = Product.find(params[:id])
 
@@ -132,5 +133,35 @@ class ProductsController < ApplicationController
     else
       # nop
     end
+  end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
+  end
+
+  def set_categories
+    set_parents
+
+    # セレクトボックスの初期値設定
+    @category_parent_array = []
+
+    # 親カテゴリー名を抽出し配列化
+    @parents.each do |parent|
+      @category_parent_array << parent.name
+    end
+  end
+
+  def set_categories_edit
+    set_categories
+
+    # productが所属する子カテゴリーの一覧を配列で取得
+    @category_child_array = @product.category.parent.parent.children
+
+    # productが所属する孫カテゴリーの一覧を配列で取得
+    @category_grandchild_array = @product.category.parent.children
+  end
+
+  def set_brands
+    @brands = Brand.all
   end
 end

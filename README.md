@@ -114,7 +114,6 @@
 
   condition_idカラム
   商品の状態(activehashによるプルダウン)
-  0 : 未選択
   1 : 新品、未使用
   2 : 未使用に近い
   3 : 目立った傷や汚れなし
@@ -124,19 +123,16 @@
 
   costburden_idカラム
   送料負担(activehashによるプルダウン)
-  0 : 未選択
   1 : 送料込み(出品者負担)
   2 : 着払い(購入者負担)
 
   shippingorigin_idカラム
   発送元住所(activehashによるプルダウン)
-  0    : 未選択
   1-47 : 各都道府県
   48   : 未定
 
   shippingperiod_idカラム
   発送までの期間(activehashによるプルダウン)
-  0 : 未選択
   1 : 1〜2日で発送
   2 : 2〜3日で発送
   3 : 4〜7日で発送
@@ -167,11 +163,11 @@
 |brand            |references|             foreign_key: true                |
 |name             |string    |null: false, index: true                      |
 |explain          |text      |null: false                                   |
-|condition_id     |integer   |null: false, default: 0                       |
-|costburden_id    |integer   |null: false, default: 0                       |
-|shippingorigin_id|integer   |null: false, default: 0                       |
-|shippingperiod_id|integer   |null: false, default: 0                       |
-|price            |integer   |null: false, default: 0                       |
+|condition_id     |integer   |null: false                                   |
+|costburden_id    |integer   |null: false                                   |
+|shippingorigin_id|integer   |null: false                                   |
+|shippingperiod_id|integer   |null: false                                   |
+|price            |integer   |null: false                                   |
 |seller_evaluation|integer   |             default: 0                       |
 |buyer_evaluation |integer   |             default: 0                       |
 

@@ -1,0 +1,39 @@
+.user__mypage{
+  background-color:#f5f5f5;
+  margin:auto;
+  padding: 40px 0; 
+  display: flex;
+  justify-content: center;
+  &__contents{
+    width: 700px;
+    height: auto;
+    background-color: #ffffff;
+    &__icon{
+      width: 700px;
+      height: 200px;
+      position: relative;
+      &__image{
+        position: absolute;
+        right: 290px;
+        top:30px;
+        &__photo{
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        }
+        &__name{
+          padding-top: 10px;
+          text-align: center;
+          color: black;
+        }
+      }
+      &__backgraund__image{
+        position: absolute;
+      }
+    }
+  }
+  &__profile{
+    border-top:solid 2px #f5f5f5 ;
+    padding:30px 50px 60px 50px;
+  }
+}
