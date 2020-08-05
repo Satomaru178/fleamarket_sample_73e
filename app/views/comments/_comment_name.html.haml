@@ -1,0 +1,5 @@
+.content-main__comments__list__block__user__name
+  = comment.user.nickname
+  - if comment.user ==  comment.product.seller  # コメントユーザーと出品者が同じ場合
+    .content-main__comments__list__block__user__name-seller
+      出品者
