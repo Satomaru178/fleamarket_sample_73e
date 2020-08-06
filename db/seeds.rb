@@ -1,10 +1,12 @@
 # ブランド初期データ生成
 
+
 def createBrand(array)
   array.each do |name|
     Brand.create(name: name)
   end
 end
+
 
 brand_list = [
   "TOMORROWLAND",
