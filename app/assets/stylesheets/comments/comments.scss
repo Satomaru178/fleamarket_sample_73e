@@ -1,31 +1,113 @@
 .content-main__comments {
-  padding: 24px;
   background-color: #fff;
   margin-top: 10px;
   text-align: center;
 
-  &__form {
-    width: 100%;
-    min-height: 104px;
-    padding: 10px;
-  }
-
-  &__notice {
-    padding: 8px;
+  &__list {
+    padding: 24px;
     font-size: 14px;
-    background-color: #f8f8f8;
-    margin: 10px 0;
-    text-align: left;
+
+    &__block {
+      margin-top: 60px;
+      @include clearfix;
+
+      &:first-child {
+        margin-top: 1.5em;
+      }
+
+      &__user {
+        float: left;
+        position: relative;
+        top: -20px;
+        display: inline-block;
+        color: #333;
+
+        figure {
+          width: 40px;
+          height: 40px;
+          overflow: hidden;
+          border-radius: 50%;
+        }
+
+        &__image {
+          width: 100%;
+          vertical-align: middle;
+        }
+
+        &__name {
+          width: 600px;
+          min-width: 600px;
+          max-width: 100%;
+          overflow: hidden;
+          position: absolute;
+          top: 0;
+          left: 56px;
+          height: 1.2em;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          text-align: left;
+          font-weight: 600;
+
+          #seller {
+            color: #3CCACE;
+          }
+        }
+      }
+
+      &__content {
+        width: 600px;
+        float: right;
+        position: relative;
+        padding: 16px;
+        background-color: #eef0f4;
+        border-radius: 15px;
+        word-break: break-all;
+        text-align: left;
+
+        &__icons {
+          margin-top: 10px;
+          @include clearfix;
+  
+          time {
+            display: block;
+            color: #aaa;
+          }
+  
+          &__left {
+            float: left;
+          }
+        }
+      }
+
+    }
   }
 
-  &__btn {
-    font-size: 18px;
-    line-height: 48px;
-    background-color: #3CCACE;
-    border: 1px solid #3CCACE;
-    color: #fff;
-    width: 60%;
-    border-radius: 100px;
-    cursor: pointer;
+  &__form {
+    padding: 24px;
+
+    &__text {
+      width: 100%;
+      min-height: 104px;
+      padding: 10px;
+    }
+  
+    &__notice {
+      padding: 8px;
+      font-size: 14px;
+      background-color: #f8f8f8;
+      margin: 10px 0;
+      text-align: left;
+    }
+  
+    &__btn {
+      font-size: 18px;
+      line-height: 48px;
+      background-color: #3CCACE;
+      border: 1px solid #3CCACE;
+      color: #fff;
+      width: 60%;
+      border-radius: 100px;
+      cursor: pointer;
+    }
   }
 }
