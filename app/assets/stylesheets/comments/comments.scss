@@ -19,13 +19,13 @@
         width: 600px;
         float: right;
         position: relative;
-        padding: 16px;
+        padding: 0 16px 16px 16px;
         background-color: #eef0f4;
         border-radius: 15px;
-        word-break: break-all;
-        text-align: left;
 
         &__text {
+          word-break: break-all;
+          text-align: left;
           white-space: pre-wrap;
         }
 
@@ -46,14 +46,14 @@
           background-color: #fbf0e6;
           width: 600px;
           position: relative;
-          padding: 16px;
+          padding: 0 16px 16px 16px;
           border-radius: 15px;
-          word-break: break-all;
-          text-align: left;
 
           &__text {
+            word-break: break-all;
+            text-align: left;
             white-space: pre-wrap;
-          }  
+          }
 
           &:after {
             content: "";
