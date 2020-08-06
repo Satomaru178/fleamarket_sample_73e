@@ -15,45 +15,6 @@
         margin-top: 1.5em;
       }
 
-      &__user {
-        float: left;
-        position: relative;
-        top: -20px;
-        display: inline-block;
-        color: #333;
-
-        figure {
-          width: 40px;
-          height: 40px;
-          overflow: hidden;
-          border-radius: 50%;
-        }
-
-        &__image {
-          width: 100%;
-          vertical-align: middle;
-        }
-
-        &__name {
-          width: 600px;
-          min-width: 600px;
-          max-width: 100%;
-          overflow: hidden;
-          position: absolute;
-          top: 0;
-          left: 56px;
-          height: 1.2em;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          text-align: left;
-          font-weight: 600;
-
-          #seller {
-            color: #3CCACE;
-          }
-        }
-      }
-
       &__content {
         width: 600px;
         float: right;
@@ -63,6 +24,17 @@
         border-radius: 15px;
         word-break: break-all;
         text-align: left;
+
+        &-self {
+          float: left;
+          background-color: #fbf0e6;
+          width: 600px;
+          position: relative;
+          padding: 16px;
+          border-radius: 15px;
+          word-break: break-all;
+          text-align: left;  
+        }
 
         &__icons {
           margin-top: 10px;
@@ -78,7 +50,6 @@
           }
         }
       }
-
     }
   }
 
