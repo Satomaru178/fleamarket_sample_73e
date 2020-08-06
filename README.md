@@ -170,6 +170,7 @@
 |price            |integer   |null: false                                   |
 |seller_evaluation|integer   |             default: 0                       |
 |buyer_evaluation |integer   |             default: 0                       |
+|likes_count      |integer   |                                              |
 
 ### Association
 - accepts_nested_attributes_for :images, allow_destroy: true
@@ -255,9 +256,8 @@
 ## likesテーブル
 | Column | Type     | Option                       |
 |--------|----------|------------------------------|
-|user    |references|null: false, foreign_key: true|
-|product |references|null: false, foreign_key: true|
-|like    |boolean   |null: false, default: false   |
+|user    |references|foreign_key: true|
+|product |references|foreign_key: true|
 
 ### Association
 - belongs_to :user
