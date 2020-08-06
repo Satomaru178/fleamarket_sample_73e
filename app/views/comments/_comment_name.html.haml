@@ -1,5 +1,14 @@
-.content-main__comments__list__block__user__name
-  = comment.user.nickname
-  - if comment.user ==  comment.product.seller  # コメントユーザーと出品者が同じ場合
-    .content-main__comments__list__block__user__name-seller
-      出品者
+- if comment.user == comment.product.seller
+  = link_to accounts_path, class: "content-main__comments__list__block__user", id: "seller" do
+    %figure
+      .content-main__comments__list__block__user__image
+        = image_tag "material/icon/member_photo_noimage_thumb.png"
+      %figcaption.content-main__comments__list__block__user__name
+        = "#{comment.user.nickname}<出品者>"
+- else
+  = link_to "#" , class: "content-main__comments__list__block__user" do
+    %figure
+      .content-main__comments__list__block__user__image
+        = image_tag "material/icon/member_photo_noimage_thumb.png"
+      %figcaption.content-main__comments__list__block__user__name
+        = comment.user.nickname
