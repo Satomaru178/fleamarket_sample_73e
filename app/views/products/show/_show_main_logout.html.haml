@@ -32,7 +32,8 @@
                 %th
                   出品者
                 %td
-                  = @product.seller.nickname
+                  = link_to account_path(@profile[:id]) do
+                    = @product.seller.nickname
               %tr
                 %th
                   カテゴリー
