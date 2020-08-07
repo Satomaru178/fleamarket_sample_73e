@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'likes/create'
-  get 'likes/destroy'
+
   get 'categories/index'
   root to: 'top#index'
 
