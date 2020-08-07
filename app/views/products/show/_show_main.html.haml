@@ -1,0 +1,116 @@
+-# 全体
+.content
+  -# 商品詳細・コメント欄・リンク・商品一覧
+  .content-main
+    -# 商品詳細・コメント欄
+    .content-main__top
+      -# 商品詳細
+      .content-main__top__product
+        -# 商品名
+        %h2.content-main__top__product__name
+          あぶラーメンマン
+        -# 商品写真の大枠
+        .content-main__top__product__images
+          %ul
+            %li.content-main__top__product__images__image
+              = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG', class: "content-main__top__product__images__image-top"
+              %ul.content-main__top__product__images__image__lists
+                %li.content-main__top__product__images__image__lists__list
+                  = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG', class: "content-main__top__product__images__image__lists__list-sub"
+                %li.content-main__top__product__images__image__lists__list
+                  = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/17/IMG_9069.JPG', class: "content-main__top__product__images__image__lists__list-sub"
+        .content-main__top__product__price
+          %span.content-main__top__product__price__number
+            ¥1000
+          .content-main__top__product__price__detail
+            %span
+              (税込)
+            %span
+              送料込み
+        .content-main__top__product__detail
+          あぶラーメンマン
+        .content-main__top__product__table
+          %table
+            %tbody
+              %tr
+                %th
+                  出品者
+                %td
+                  Santos
+              %tr
+                %th
+                  カテゴリー
+                %td
+                  -@parents.each do |parent|
+                    -parent.children.each do |child|
+                      -child.children.each do |grandchild|
+                        -if(grandchild.id == @product.category_id)
+                          =link_to '#' do
+                            =grandchild.parent.parent.name
+                          %br/
+                          =link_to '#' do
+                            =grandchild.parent.name
+                          %br/
+                          =link_to '#' do
+                            =grandchild.name
+              %tr
+                %th
+                  ブランド
+                %td
+              %tr
+                %th
+                  商品のサイズ
+                %td
+              %tr
+                %th
+                  商品の状態
+                %td
+                  新品に近い
+              %tr
+                %th
+                  配送料の負担
+                %td
+                  送料込み（出品者負担）
+              %tr
+                %th
+                  発送元の地域
+                %td
+                  = link_to "#" do
+                    神奈川県
+              %tr
+                %th
+                  発送日の目安
+                %td
+                  1~2日で発送
+        .content-main__top__product__buy-btn
+          -# 商品確認ページのリンク
+          = link_to purchase_product_path(id:1) do
+            購入画面に進む
+        .content-main__top__product__bottom
+          %ul.content-main__top__product__bottom__left
+            %li.content-main__top__product__bottom__left-btn
+              = icon("fas", "star")
+              お気に入り 0
+          %ul.content-main__top__product__bottom__right
+            %li.content-main__top__product__bottom__right-btn
+              = link_to "#" do
+                = icon("fas", "flag")
+                不適切な商品の通報
+    = render "products/show/comment"
+    -# 前の商品・後ろの商品のリンク
+    %ul.content-main__links
+      %li.content-main__links__left
+        = link_to "#" do
+          = icon("fas", "angle-left")
+          %span
+            前の商品
+      %li.content-main__links__right
+        = link_to "#" do
+          %span
+            後ろの商品
+          = icon("fas", "angle-right")
+    -@parents.each do |parent|
+      -parent.children.each do |child|
+        -child.children.each do |grandchild|
+          -if(grandchild.id == @product.category_id)
+            = render "products/show/related_item", grandchild: grandchild
