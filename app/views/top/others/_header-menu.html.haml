@@ -1,19 +1,21 @@
 %ul.header__contents__lower__left-items
   %li.header__contents__lower__left-items__categories
-    = link_to '#' do
-      カテゴリー
+    = link_to "カテゴリー", categories_path
     %ul.category1
       - @parents.each do |parent|
         %li.parent__list
-          = link_to parent.name
+          = link_to link_to "#{parent.name}", category_path(parent)
           %ul.category2
             - parent.children.each do |child|
               %li.child__list
-                = link_to child.name
+                = link_to "#{child.name}", category_path(child)
                 %ul.category3
                   - child.children.each do |grandchild|
                     %li.grandchild__list
-                      = link_to grandchild.name
+                      = link_to "#{grandchild.name}", category_path(grandchild)
   %li.header__contents__lower__left-items__brands
     = link_to '#' do
       ブランド
+  %li.header__contents__lower__left-items__detailed-search
+    = link_to products_path do
+      詳細検索

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'categories/index'
   root to: 'top#index'
 
   devise_for :users, controllers: {
@@ -13,18 +14,20 @@ Rails.application.routes.draw do
     post 'addresses', to: 'users/registrations#create_address'
   end
 
-  resources :products, except: [:show]
-
-  resources :products, only: [:index, :new, :edit, :destroy] do
+  resources :products do
     collection do
       get 'get_category_children',      defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'fuzzy_search', to: 'products#fuzzy_search'
+    end
+    member do
+      get 'purchase', to: 'products#purchase'
     end
   end
 
   resources :brands, only: [:new, :create]
 
-  resources :accounts, only: [:index, :show] do
+  resources :accounts, only: [:index, :new, :create, :edit, :update, :show] do
     collection do
       get 'logout', to: 'accounts#logout'
     end
@@ -38,4 +41,11 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: :index
+
+
+  resources :addresses, only: [:edit, :update]
+
+
+  resources :categories, only: [:index, :show]
+
 end

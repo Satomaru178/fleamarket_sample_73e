@@ -1,6 +1,6 @@
 .introduction-upper {
   // 外枠の大きさ指定
-  @include box(100vw, 560px);
+  @include box($width: 100vw, $height: 560px);
   // 箱の背景を画像にする
   @include backimg('material/pict/bg-mainVisual-pict_pc.jpg', cover);
   // 文字色指定
@@ -10,18 +10,22 @@
 
   &__slogan {
     // 文字の外枠作成
-    @include box(1079px, 144px);
+    @include box($width: 1079px, $height: 144px);
     // 文字をデコレーション
-    @include font(56px, "YuGothic", 1.5px);
+    font-size: 56px;
+    font-family: "YuGothic";
+    text-shadow: 0 0 1.5px #000;
     // 左の空間作成
     margin-left: 80px;
   }
 
   &__explain {
     // 文字の外枠作成
-    @include box(1079px, 64px);
+    @include box($width: 1079px, $height: 64px);
     // 文字をデコレーション
-    @include font(20px, "YuGothic", 1.5px);
+    font-size: 20px;
+    font-family: "YuGothic";
+    text-shadow: 0 0 1.5px #000;
     // 上と左の空間作成
     margin: 0 0 20px 80px;
     // 行間指定
@@ -30,7 +34,7 @@
 
   &__download-btns {
     // 2つのボタンを囲む見えない箱の外枠サイズ指定
-    @include box(370px, 53.33px);
+    @include box($width: 370px, $height: 53.33px);
     // ボタンを横並べ
     display: flex;
     // 左の空間作成
@@ -38,7 +42,7 @@
 
     &__apple-btn {
       // ボタンの外枠サイズ指定
-      @include box(180px, 53.33px);
+      @include box($width: 180px, $height: 53.33px);
       // 外枠にボタンを埋め込む
       @include backimg('download/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg', cover);
       // ボタンとボタンの間の空間作成
@@ -47,7 +51,7 @@
 
     &__google-btn {
       // ボタンの外枠サイズ指定
-      @include box(180px, 53.33px);
+      @include box($width: 180px, $height: 53.33px);
       // 外枠にボタンを埋め込む
       @include backimg('download/google-play-badge.png', 115%);
     }

@@ -4,18 +4,19 @@
       = link_to '/' do
         .header__contents__upper__logo
       .header__contents__upper__form
-        = form_with url: '#' do |f|
-          = f.text_field :text, id: 'keyword', placeholder: 'キーワードから探す'
-          = link_to '#' do
-            .header__contents__upper__form__submit-btn
+        = form_with url: fuzzy_search_products_path, local: true, method: :get do |form|
+          = form.text_field :keyword, placeholder: "商品を検索する", class: "search-input"
+          .header__contents__upper__form__submit-btn
+            %label
+              = form.submit "検索", class: "search-btn"
               .header__contents__upper__form__submit-btn__icon
     .header__contents__lower
       = render "top/others/header-menu"
       %ul.header__contents__lower__right-items
         -if user_signed_in?
           %li.header__contents__lower__right-items__signup
-            = link_to accounts_path do
-              マイページ       
+            = link_to accounts_path, class: "header__contents__lower__right-items__signup__mypage" do
+              %p マイページ
         - else
           %li.header__contents__lower__right-items__login
             = link_to new_user_session_path do

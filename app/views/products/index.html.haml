@@ -1,2 +1,10 @@
-.contents
-  = render @products
+.detailed-search
+  = render "top/others/header"
+  .detailed-search__contents
+    .detailed-search__contents__forms
+      = render "products/partials/search-form"
+    .detailed-search__contents__results
+      = render "products/partials/search-result"
+  = render "top/introduction/introduction-lower"
+  = render "top/others/footer"
+  = render "top/others/exhibition-btn"

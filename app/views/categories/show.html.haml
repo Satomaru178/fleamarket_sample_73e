@@ -1,0 +1,29 @@
+= render "top/others/header"
+- if @category.root?
+  - breadcrumb :parent_category
+- elsif @category.has_children?
+  - breadcrumb :child_category
+- else
+  - breadcrumb :grandchild_category
+= render "layouts/breadcrumbs"
+.show-wrapper
+  .categories
+    .categories__title
+      = "#{@category.name}の商品一覧"
+
+    // リンクリスト
+    - if @category_links.present?
+      .categories__links
+        - @category_links.each do |category|
+          .categories__links__link
+            = link_to category.name, category_path(category)
+
+  -# 商品一覧表示
+  - if @items
+    %ul.items-list
+      %li
+        = render "top/others/items", products: @items
+
+= render "top/introduction/introduction-lower"
+= render "top/others/footer"
+= render "top/others/exhibition-btn"

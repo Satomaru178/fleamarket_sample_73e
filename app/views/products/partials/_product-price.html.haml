@@ -1,0 +1,19 @@
+.product-contents__label
+  = f.label '販売価格'
+  %span.product-contents__label__require 必須
+- if @product.errors.include?(:price)
+  .alert__sign-up
+    = @product.errors.full_messages_for(:price)
+- else
+  -# nop
+.product-contents__price__selling-price
+  = f.number_field :price
+  円
+.product-contents__price__sells-commission
+  販売手数料(10%)
+  %span#commission<
+    = "---円"
+.product-contents__price__profit
+  販売利益
+  %span#profit<
+    = "---円"

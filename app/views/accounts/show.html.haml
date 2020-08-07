@@ -1,0 +1,19 @@
+.wrapper
+  = render "top/others/header"
+  .user__mypage
+    .user__mypage__contents
+      .user__mypage__contents__icon
+        .user__mypage__contents__icon__image
+          = link_to account_path(current_user[:id]), id: "user__mypage" do
+            .user__mypage__contents__icon__image__photo
+              = image_tag 'material/icon/member_photo_noimage_thumb.png', :size => '120x120', class: "pictrue"
+            .user__mypage__contents__icon__image__name
+              = current_user.nickname
+        .user__mypage__contents__icon__background__image
+          = image_tag ('material/pict/user_mypage_test.JPG')
+        .user__mypage__profile
+        = simple_format @profile.profile
+    
+  = render "top/introduction/introduction-lower"
+  = render "top/others/footer"
+  = render "top/others/exhibition-btn"

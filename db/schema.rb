@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_21_012709) do
+ActiveRecord::Schema.define(version: 2020_07_23_222208) do
 
   create_table "accounts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_07_21_012709) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_brands_on_name"
   end
 
   create_table "categories", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -65,7 +66,7 @@ ActiveRecord::Schema.define(version: 2020_07_21_012709) do
 
   create_table "images", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "product_id"
-    t.string "src", null: false
+    t.string "src"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_images_on_product_id"
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 2020_07_21_012709) do
     t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["buyer_id"], name: "index_products_on_buyer_id"
     t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["name"], name: "index_products_on_name"
     t.index ["seller_id"], name: "index_products_on_seller_id"
   end
 
