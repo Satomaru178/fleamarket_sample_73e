@@ -7,7 +7,7 @@
     .user__mypage__main
       .user__mypage__main__icon
         .user__mypage__main__icon__image
-          = link_to account_path(current_user[:id]), id: "user__mypage" do
+          = link_to "#", id: "user__mypage" do
             .user__mypage__main__icon__image__photo
               = image_tag 'material/icon/member_photo_noimage_thumb.png', :size =>'60x60', class: "picture"
             .user__mypage__main__icon__image__name

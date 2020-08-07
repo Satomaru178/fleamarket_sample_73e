@@ -48,6 +48,8 @@ class AccountsController < ApplicationController
   end
 
   def show
+    @profile = Account.find(params[:id])
+    @user = @profile.user
   end
 
 
