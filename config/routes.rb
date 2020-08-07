@@ -19,7 +19,13 @@ Rails.application.routes.draw do
       get 'get_category_grandchildren', defaults: { format: 'json' }
       get 'fuzzy_search', to: 'products#fuzzy_search'
     end
+    
+    member do
+      get 'purchase', to: 'products#purchase'
+    end
+    
     resources :likes, only: [:create, :destroy]
+
   end
 
   resources :brands, only: [:new, :create]
@@ -38,7 +44,11 @@ Rails.application.routes.draw do
     end
   end
 
+
+
   resources :addresses, only: [:edit, :update]
 
+
   resources :categories, only: [:index, :show]
+
 end
