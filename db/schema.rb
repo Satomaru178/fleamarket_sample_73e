@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2020_07_23_222208) do
 
   create_table "accounts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.string "icon_image"
     t.string "background_image"
     t.text "profile"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2020_07_23_222208) do
   end
 
   create_table "creditcards", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.string "customer_id", null: false
     t.string "card_id", null: false
     t.datetime "created_at", null: false
@@ -93,12 +93,13 @@ ActiveRecord::Schema.define(version: 2020_07_23_222208) do
     t.index ["seller_id"], name: "index_products_on_seller_id"
   end
 
-  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "sns_credentials", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.string "provider"
     t.string "uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
 
   create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -127,4 +128,5 @@ ActiveRecord::Schema.define(version: 2020_07_23_222208) do
   add_foreign_key "products", "categories"
   add_foreign_key "products", "users", column: "buyer_id"
   add_foreign_key "products", "users", column: "seller_id"
+  add_foreign_key "sns_credentials", "users"
 end
