@@ -1,8 +1,8 @@
 .wrapper
   .user__index
     .user__index__header
-      .user__index__header__logo
-        %a{href: "/", class: "user__index__header__logo__icon"}
+      .user__index__header__logo 
+        =link_to root_path, class: "user__index__header__logo__icon" do
           = image_tag 'material/logo/logo.png', alt: 'FURIMA', width: "200px"
     .user__index__body
       .user__index__body__header

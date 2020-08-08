@@ -11,24 +11,28 @@
   }
 
   &__body{
-    width: 456px;
     margin: 40px auto;
     background-color: #fff;
     justify-content: center;
     font-size: 22px;
-    padding: 40px 40px 0 40px;
+    width: 700px;
     &__header{
       text-align: center;
+      width: 700px;
+      height: 100px;
+      padding: 32px;
+      border-bottom: 1px solid #eee;
       &__text{
         margin:0 40px;
         padding-bottom:40px;
-        border-bottom: 1px solid #eee;
+        font-weight: bold;
       }
     }
     &__main{
       margin: 0 40px;
-      padding:32px 0;
+      padding:32px 0 64px;
       &__form{
+        margin: 0 138.5px;
         &__logo{
           text-align: center;
           display: block;
@@ -79,7 +83,7 @@
 
 .account-page__footer {
   text-align: center;
-  padding-bottom: 20px;
+  padding-bottom: 50px;
 
   small {
     display: block;
