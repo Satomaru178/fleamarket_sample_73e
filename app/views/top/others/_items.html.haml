@@ -12,10 +12,14 @@
               %li
                 = converting_to_jpy(product.price)
               
-              - if product.likes_count.present?
+              - if product.likes_count == nil
+                -# 何もしない
+              - elsif product.likes_count > 0
                 %li
                   = icon('fas','star')
                   = product.likes_count
+              - else
+                -# 何もしない
 
             %p
               (税込)
