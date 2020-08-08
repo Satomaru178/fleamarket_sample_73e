@@ -94,10 +94,9 @@
               = link_to purchase_product_path(id:1) do
                 購入画面に進む
           .content-main__top__product__bottom
-            %ul.content-main__top__product__bottom__left
-              %li.content-main__top__product__bottom__left-btn
-                = icon("fas", "star")
-                お気に入り 0
+            .content-main__top__product__bottom__left
+              %div{id: "like-#{@product.id}", class: "like-btn"}
+                = render "likes/like", product: @product
             %ul.content-main__top__product__bottom__right
               %li.content-main__top__product__bottom__right-btn
                 = link_to "#" do

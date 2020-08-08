@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'categories/index'
   root to: 'top#index'
 
@@ -18,9 +19,13 @@ Rails.application.routes.draw do
       get 'get_category_grandchildren', defaults: { format: 'json' }
       get 'fuzzy_search', to: 'products#fuzzy_search'
     end
+    
     member do
       get 'purchase', to: 'products#purchase'
     end
+    
+    resources :likes, only: [:create, :destroy]
+
   end
 
   resources :brands, only: [:new, :create]
@@ -28,6 +33,7 @@ Rails.application.routes.draw do
   resources :accounts, only: [:index, :new, :create, :edit, :update, :show] do
     collection do
       get 'logout', to: 'accounts#logout'
+      get :likes
     end
   end
 

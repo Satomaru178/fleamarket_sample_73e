@@ -29,4 +29,8 @@ class User < ApplicationRecord
   has_one  :address
   has_one  :account
   has_one  :creditcard
+
+  # likes
+  has_many :likes, dependent: :destroy
+  has_many :liked_products, through: :likes, source: :product
 end
