@@ -1,6 +1,6 @@
 # DBテーブル設計
 
-![07_erd_fleamarket_sample_73e](https://user-images.githubusercontent.com/64793100/87167490-00df2480-c308-11ea-9b44-bb8101feedd0.png)
+![08_erd_fleamarket_sample_73e](https://user-images.githubusercontent.com/64793100/89715821-8fb48f00-d9e3-11ea-856b-30957a7132b7.png)
 
 <!--
   ユーザ登録時に入力する基本情報。
