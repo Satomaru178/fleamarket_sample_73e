@@ -34,11 +34,6 @@ $(document).on('turbolinks:load', function() {
               </span>
             </time>
             <div class="content-main__comments__list__block__content__icons__right">
-              <div class="content-main__comments__list__block__content__icons__right__flag">
-                <a href="#">
-                  <i class="far fa-flag"></i>
-                </a>
-              </div>
         `
     var HTML_deleteBtn =
               `
