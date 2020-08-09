@@ -27,6 +27,10 @@
           word-break: break-all;
           text-align: left;
           // white-space: pre-wrap;
+
+          &-deleted {
+            text-align: center;
+          }
         }
 
         &:after {

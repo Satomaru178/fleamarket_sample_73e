@@ -6,14 +6,9 @@
         = render 'comments/comment_name_self', comment: comment
         - if comment.delete_check == 1   # 仮削除済の場合
           .content-main__comments__list__block__content-self
-            .content-main__comments__list__block__content__text
+            .content-main__comments__list__block__content__text-deleted
               出品者によりこのコメントは削除されました。
             .content-main__comments__list__block__content__icons
-              -# 時計アイコンとコメントした日時の表示
-              %time.content-main__comments__list__block__content__icons__left
-                = icon('fas content-main__comments__list__block__content__icons__left__time', 'clock')
-                %span
-                = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
               .content-main__comments__list__block__content__icons__right
                 - if comment.product.seller == current_user  # 出品者とログインユーザーが等しい場合
                   -# 仮削除したコメントを復元させるボタン
@@ -46,19 +41,10 @@
         = render 'comments/comment_name', comment: comment
         - if comment.delete_check == 1   # 削除済の場合
           .content-main__comments__list__block__content
-            .content-main__comments__list__block__content__text
+            .content-main__comments__list__block__content__text-deleted
               出品者によりこのコメントは削除されました。
             .content-main__comments__list__block__content__icons
-              -# 時計アイコンとコメントした日時の表示
-              %time.content-main__comments__list__block__content__icons__left
-                = icon('fas content-main__comments__list__block__content__icons__left__time', 'clock')
-                %span
-                = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
               .content-main__comments__list__block__content__icons__right
-                -# 報告ボタン（リンク先未実装）
-                .content-main__comments__list__block__content__icons__right__flag
-                  = link_to "#" do
-                    = icon('far', 'flag')
                 - if comment.product.seller == current_user
                   -# 仮削除したコメントの復元ボタン
                   .content-main__comments__list__block__content__icons__right__restore{data:{index: comment.id}} 
