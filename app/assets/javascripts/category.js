@@ -169,7 +169,9 @@ $(document).on('turbolinks:load', ()=> {
       <div class="detailed-search__contents__forms__form__label">
         <label for="q_category_id">孫カテゴリー</label>
       </div>
-      <div class="detailed-search__contents__forms__form__field">
+      <input type="checkbox" name="grandchild_all_check" id="grandchild_all_check" value="1" class="all-check-btn">
+      <label for="grandchild_all_check">全選択/全削除</label>
+      <div class="detailed-search__contents__forms__form__field" id="grandchild_check_boxes">
         <input type="hidden" name="q[category_id_in][]" value>
         ${insertHTML}
       </div>
