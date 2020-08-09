@@ -14,6 +14,8 @@ class ProductsController < ApplicationController
   # ブランド一覧を用意する
   before_action :set_brands, only: [:new, :create, :edit, :update]
 
+  around_action :skip_bullet
+
   def index
     @products = Product.includes(:images).order('created_at DESC')
   end
@@ -134,5 +136,12 @@ class ProductsController < ApplicationController
     else
       # nop
     end
+  end
+
+  def skip_bullet
+    Bullet.enable = false
+    yield
+  ensure
+    Bullet.enable = true
   end
 end
