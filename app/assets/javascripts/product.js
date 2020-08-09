@@ -157,4 +157,65 @@ $(document).on('turbolinks:load', ()=> {
     let price = $(this).val();
     calculate(price);
   });
+
+
+
+
+
+  // 詳細検索 全選択/全解除ボタン
+  const condition_check_boxes = $('input[name="q[condition_id_in][]"]');
+  const costburden_check_boxes = $('input[name="q[costburden_id_in][]"]');
+  const shippingperiod_check_boxes = $('input[name="q[shippingperiod_id_in][]"]');
+
+  $('.all-check-btn').on('change', function() {  // 全選択/全解除ボタンが押された
+    switch ($(this).prop('id')) {
+      case 'condition_all_check':
+        condition_check_boxes.prop('checked', $(this).is(':checked'));  // 全選択の時全解除、全選択でない時全選択
+        break;
+      case 'costburden_all_check':
+        costburden_check_boxes.prop('checked', $(this).is(':checked'));  // 全選択の時全解除、全選択でない時全選択
+        break;
+      case 'shippingperiod_all_check':
+        shippingperiod_check_boxes.prop('checked', $(this).is(':checked'));  // 全選択の時全解除、全選択でない時全選択
+        break;
+      default:
+        ;
+    }
+  });
+
+  condition_check_boxes.on('change', function() {  // 手動で変更された
+    const check = $('#condition_check_boxes :checked').length;
+    const input = $('#condition_check_boxes :input[type="checkbox"]').length;
+
+    if (check == input) {  // 全選択状態?
+      $('#condition_all_check').prop('checked', true);  // チェックを入れる
+    }
+    else {  // 全選択状態でない
+      $('#condition_all_check').prop('checked', false);  // チェックを外す
+    }
+  });
+
+  costburden_check_boxes.on('change', function() {  // 手動で変更された
+    const check = $('#costburden_check_boxes :checked').length;
+    const input = $('#costburden_check_boxes :input[type="checkbox"]').length;
+
+    if (check == input) {  // 全選択状態?
+      $('#costburden_all_check').prop('checked', true);  // チェックを入れる
+    }
+    else {  // 全選択状態でない
+      $('#costburden_all_check').prop('checked', false);  // チェックを外す
+    }
+  });
+
+  shippingperiod_check_boxes.on('change', function() {  // 手動で変更された
+    const check = $('#shippingperiod_check_boxes :checked').length;
+    const input = $('#shippingperiod_check_boxes :input[type="checkbox"]').length;
+
+    if (check == input) {  // 全選択状態?
+      $('#shippingperiod_all_check').prop('checked', true);  // チェックを入れる
+    }
+    else {  // 全選択状態でない
+      $('#shippingperiod_all_check').prop('checked', false);  // チェックを外す
+    }
+  });
 });
