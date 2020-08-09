@@ -2,13 +2,20 @@ class CommentsController < ApplicationController
 
   before_action :set_comment, only: [:update, :destroy, :restore]
   before_action :check_user, only: [:update, :destroy, :restore]
+  around_action :skip_bullet
 
   # コメント投稿用のアクション
   def create
     @comment = Comment.new(comment_params)
     @seller_of_product = @comment.product.seller
-    @comment.save
-    redirect_to product_path(@comment.product.id)
+    if @comment.save
+      respond_to do |format|
+        format.json
+      end
+   else
+     flash[:alert] = "保存に失敗しました"
+     redirect_to product_path(params[:id])
+   end
   end
 
   # コメント仮削除用のアクション
@@ -44,6 +51,13 @@ class CommentsController < ApplicationController
       flash[:alert] = "その操作は無効です"
       redirect_to root_path
     end
+  end
+
+  def skip_bullet
+    Bullet.enable = false
+    yield
+  ensure
+    Bullet.enable = true
   end
 
 end
