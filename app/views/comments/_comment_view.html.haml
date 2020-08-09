@@ -85,6 +85,6 @@
                     = icon('far', 'flag')
                 - if comment.product.seller == current_user   # 出品者とログインユーザーが等しい場合
                   -# 仮削除ボタン
-                  .content-main__comments__list__block__content__icons__right__delete.self_pre_delete{data:{index: comment.id}}
+                  .content-main__comments__list__block__content__icons__right__delete.other_pre_delete{data:{index: comment.id}}
                     = link_to comment_path(comment.id), method: :patch do
                       = icon('fas', 'trash-alt')
