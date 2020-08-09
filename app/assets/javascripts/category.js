@@ -169,7 +169,7 @@ $(document).on('turbolinks:load', ()=> {
       <div class="detailed-search__contents__forms__form__label">
         <label for="q_category_id">孫カテゴリー</label>
       </div>
-      <input type="checkbox" name="grandchild_all_check" id="grandchild_all_check" value="1" class="all-check-btn">
+      <input type="checkbox" name="grandchild_all_check" id="grandchild_all_check" value="1">
       <label for="grandchild_all_check">全選択/全削除</label>
       <div class="detailed-search__contents__forms__form__field" id="grandchild_check_boxes">
         <input type="hidden" name="q[category_id_in][]" value>
@@ -245,6 +245,22 @@ $(document).on('turbolinks:load', ()=> {
     }
     else {  // 初期値になっている
       $('#grandchild-cat').remove();  // 一旦削除する
+    }
+  });
+
+  $('#cat').on('change', '#grandchild_all_check', function() {  // 全選択/全解除ボタンが押された
+    $('input[name="q[category_id_in][]"]').prop('checked', $(this).is(':checked'));  // 全選択の時全解除、全選択でない時全選択
+  });
+
+  $('#cat').on('change', $('input[name="q[category_id_in][]"]'), function() {  // 手動で変更された
+    const check = $('#grandchild_check_boxes :checked').length;
+    const input = $('#grandchild_check_boxes :input[type="checkbox"]').length;
+
+    if (check == input) {  // 全選択状態?
+      $('#grandchild_all_check').prop('checked', true);  // チェックを入れる
+    }
+    else {  // 全選択状態でない
+      $('#grandchild_all_check').prop('checked', false);  // チェックを外す
     }
   });
 });
