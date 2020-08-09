@@ -179,7 +179,7 @@ $(document).on('turbolinks:load', ()=> {
         shippingperiod_check_boxes.prop('checked', $(this).is(':checked'));  // 全選択の時全解除、全選択でない時全選択
         break;
       default:
-        ;
+        break;
     }
   });
 
