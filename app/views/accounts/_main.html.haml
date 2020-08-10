@@ -1,9 +1,12 @@
 .user__mypage__main
   .user__mypage__main__icon
     .user__mypage__main__icon__image
-      = link_to "#", id: "user__mypage" do
+      = link_to account_path(@profile[:id]), id: "user__mypage" do
         .user__mypage__main__icon__image__photo
-          = image_tag 'material/icon/member_photo_noimage_thumb.png', :size => '60x60', class: "pictrue"
+          - if @profile.icon_image?
+            = image_tag @profile.icon_image.url,:size =>'60x60', class: "picture"
+          - else
+            = image_tag 'material/icon/member_photo_noimage_thumb.png',:size =>'60x60'
         .user__mypage__main__icon__image__name
           = current_user.nickname
     .user__mypage__main__icon__background__image

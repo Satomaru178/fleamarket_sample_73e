@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   resources :accounts, only: [:index, :new, :create, :edit, :update, :show] do
     collection do
+      get 'mypage', to: 'accounts#mypage'
       get 'logout', to: 'accounts#logout'
       get :likes
     end
