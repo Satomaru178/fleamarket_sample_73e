@@ -13,6 +13,7 @@ class CreditcardsController < ApplicationController
   end
 
   def new
+    @parents = Category.where(ancestry: nil)
     @card = Creditcard.where(user_id: current_user.id)
     if @card.exists?
       redirect_to action: "show"
@@ -39,6 +40,7 @@ class CreditcardsController < ApplicationController
   end
 
   def show
+    @parents = Category.where(ancestry: nil)
     @card = Creditcard.where(user_id: current_user.id).first
     if @card.blank?
       render action: :index

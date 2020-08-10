@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   before_action :move_to_index,  only: [:index, :new, :create, :edit, :update, :logout, :mypage]
-  before_action :set_categories, only: [:index, :new, :create, :edit, :update, :logout, :show, :mypage]
+  before_action :set_categories, only: [:index, :new, :create, :edit, :update, :logout, :show, :mypage, :likes]
   before_action :user_login, only: [:index, :new, :create, :edit, :update, :logout, :mypage]
 
   def index
@@ -58,6 +58,9 @@ class AccountsController < ApplicationController
       redirect_to action: :index
     else
     end
+  end
+
+  def likes
   end
 
   private

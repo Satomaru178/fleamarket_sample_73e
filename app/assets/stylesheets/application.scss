@@ -11,6 +11,7 @@
 @import "account/sign-up";
 
 // sign-inページ
+@import "account/index";
 @import "account/sign-in";
 
 // icon用
@@ -31,11 +32,11 @@
 @import "top/introduction/introduction-lower";
 @import "top/others/footer";
 @import "top/others/exhibition-btn";
-
 // ユーザーページ&ログアウトページ
 @import "account/sidebar";
 @import "account/main";
 @import "account/accounts_config";
+@import "account/liked-index";
 
 //ユーザー編集ページ
 @import "address/edit";
@@ -44,6 +45,9 @@
 
 //クレジットカード登録画面
 @import "creditcard/creditcard_main";
+
+//商品購入確認ページ
+@import "products/purchase.scss";
 
 // showページ
 @import "products/show_main";

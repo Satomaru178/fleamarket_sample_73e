@@ -1,0 +1,84 @@
+.liked-index {
+  width: 700px;
+
+  &__head {
+    height: 48px;
+    padding: 8px 24px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 1.4;
+    font-weight: bold;
+    border-bottom: 1px solid #f5f5f5;
+    background-color: white;
+  }
+
+  &__products{
+    background-color: white;
+
+    &__product {
+      display: flex;
+      height: 70px;
+      padding: 16px;
+      border-bottom: 1px solid #f5f5f5;
+      position: relative;
+
+      .liked_product-image {
+        height: 39px;
+        width: auto;
+        max-width: 48px;
+      }
+
+      &--right {
+        padding-left: 15px;
+
+        &__detail {
+          display: flex;
+          padding-bottom: 7px;
+        }
+
+        p {
+          padding-left: 5px;
+          font-size: 14px;
+          color: black;
+        }
+      }
+
+      .go-to-show {
+        position: absolute;
+        top: 25px;
+        right: 20px;
+      }
+    }
+
+    &__product:hover {
+      background-color: #fafafa;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+  }
+
+  // いいね！がない場合
+  .liked-index-none {
+    background-color: white;
+    width: 700px;
+    height: 236px;
+    text-align: center;
+    padding: 60px 0;
+
+    .no-display-image {
+      height: 50px;
+      filter: invert(50%) sepia(0%) saturate(11%) hue-rotate(143deg) brightness(101%) contrast(93%);
+      opacity: 0.2;
+    }
+
+    p {
+      padding-top: 50px;
+      font-size: 16px;
+      color: #cccccc;
+      font-weight: bold;
+    }
+  }
+  
+}
