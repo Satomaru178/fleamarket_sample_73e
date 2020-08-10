@@ -1,0 +1,20 @@
+.wrapper
+  .user__index
+    .user__index__header
+      .user__index__header__logo 
+        =link_to root_path, class: "user__index__header__logo__icon" do
+          = image_tag 'material/logo/logo.png', alt: 'FURIMA', width: "200px"
+    .user__index__body
+      .user__index__body__header
+        .user__index__body__header__text
+          新規会員登録
+      .user__index__body__main
+        .user__index__body__main__form
+          = link_to "メールアドレスで登録する", new_user_registration_path, class: "user__index__body__main__form__logo", id: "email__btn"
+          = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "user__index__body__main__form__logo", id: "google__btn" do
+            Googleで登録
+            %i.fab.fa-google.fa-lg
+          = link_to user_facebook_omniauth_authorize_path, method: :post, class: "user__index__body__main__form__logo", id: "facebook__btn" do
+            Facebookで登録する
+            %i.fab.fa-facebook-square.fa-lg
+    = render "devise/registrations/footer"
