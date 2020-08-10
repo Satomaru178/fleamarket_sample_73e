@@ -17,6 +17,10 @@ class Product < ApplicationRecord
   
   belongs_to :brand, optional: true
 
+  # likes
+
+  has_many :likes, dependent: :destroy
+
   # activehash
 
   extend ActiveHash::Associations::ActiveRecordExtensions

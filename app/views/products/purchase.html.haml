@@ -11,7 +11,7 @@
     %section.purchase__main__image
       .item-images
         .item-imags__tag
-          = image_tag src="/assets/material/icon/icon-01.png", size: "80x80"
+          = image_tag ("material/icon/icon-01.png"), size: "80x80"
         
         .item-names
           %p.item-names__tag Tシャツ
@@ -26,7 +26,7 @@
       .item-point
         =check_box_tag :check1
         %span.image
-          = image_tag src="/assets/material/logo/logo_new.png", size: "18x18" 
+          = image_tag ("material/logo/logo_new.png"), size: "18x18" 
         =label_tag :check1, "ポイントを利用する"  
         %p.item-point__possession 所持ポイント : P0
 

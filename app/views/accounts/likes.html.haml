@@ -1,0 +1,45 @@
+.wrapper
+  = render "top/others/header"
+  - breadcrumb :mypage
+  = render "layouts/breadcrumbs"
+
+  .user__mypage
+
+    = render "sidebar"
+
+    .liked-index
+      .liked-index__head
+        いいね！一覧
+
+      - current_user.liked_products.first(10).each do |product|
+        = link_to product_path(product), class: "liked-index__link" do
+          .liked-index__products
+            .liked-index__products__product
+              .liked-index__products__product--left
+                = image_tag asset_path(product.images[0].src), class: "liked_product-image"
+              .liked-index__products__product--right
+                .liked-index__products__product--right__detail
+                  %p
+                    = product.category.root.name
+                  %p
+                    = product.category.parent.name
+                  %p
+                    = product.category.name
+                  %p
+                    = product.name
+                .liked-index__products__product--right__price
+                  %p
+                    = converting_to_jpy(product.price)
+              %i.fas.fa-chevron-right.go-to-show
+
+      - if current_user.liked_products.blank?
+        .liked-index-none
+          = image_tag src= "/assets/material/logo/logo.png", class: "no-display-image"
+          %p
+            いいね！がありません
+
+
+
+  = render "top/introduction/introduction-lower"
+  = render "top/others/footer"
+  = render "top/others/exhibition-btn"
