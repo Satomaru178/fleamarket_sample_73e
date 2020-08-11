@@ -12,28 +12,29 @@ class CommentsController < ApplicationController
       respond_to do |format|
         format.json
       end
-   else
+    else
      flash[:alert] = "保存に失敗しました"
      redirect_to product_path(params[:id])
-   end
+    end
   end
 
   # コメント仮削除用のアクション
   def update
     @comment.update(delete_check: 1)
-    redirect_to product_path(@comment.product.id)
   end
 
   # 仮削除したコメントの復元用のアクション
   def restore
     @comment.update(delete_check: 0)
-    redirect_to product_path(@comment.product.id)
+    @seller_of_product = @comment.product.seller
+    respond_to do |format|
+      format.json
+    end
   end
 
   # 仮削除したコメントの完全削除用のアクション
   def destroy
     @comment.destroy
-    redirect_to product_path(@comment.product.id)
   end
 
   private
