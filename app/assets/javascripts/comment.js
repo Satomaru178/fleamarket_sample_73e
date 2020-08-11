@@ -62,7 +62,7 @@ $(document).on('turbolinks:load', function() {
     };
 
     return html; 
-  };
+  }
 
   // ===================================
   // 他人のコメント復元用 
@@ -126,7 +126,7 @@ $(document).on('turbolinks:load', function() {
     }
 
     return html; 
-  };
+  }
 
   // ===================================
   // 仮削除表示用
@@ -154,7 +154,7 @@ $(document).on('turbolinks:load', function() {
     </div>
     `
     return html;
-  };
+  }
   // ===================================
   // コメント作成した場合
   // ===================================
