@@ -59,7 +59,7 @@ $(document).on('turbolinks:load', function() {
     } else {
       // 出品者とコメントしたユーザーが異なる場合
       var html = HTML_user + HTML_body + HTML_closeTag
-    };
+    }
 
     return html; 
   }
