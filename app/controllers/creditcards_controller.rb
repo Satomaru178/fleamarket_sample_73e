@@ -1,7 +1,7 @@
 class CreditcardsController < ApplicationController
   before_action :move_to_index, only: [:index, :new, :create, :show, :delete]
   before_action :set_categories, only: [:index, :new, :create, :show, :delete]
-
+  before_action :user_login, only: [:index, :new, :create, :show, :delete]
 
   require "payjp"
 
@@ -13,6 +13,7 @@ class CreditcardsController < ApplicationController
   end
 
   def new
+    @parents = Category.where(ancestry: nil)
     @card = Creditcard.where(user_id: current_user.id)
     if @card.exists?
       redirect_to action: "show"
@@ -39,6 +40,7 @@ class CreditcardsController < ApplicationController
   end
 
   def show
+    @parents = Category.where(ancestry: nil)
     @card = Creditcard.where(user_id: current_user.id).first
     if @card.blank?
       render action: :index
@@ -87,5 +89,10 @@ class CreditcardsController < ApplicationController
 
   def set_categories
     @parents = Category.where(ancestry: nil)
+  end
+
+  def user_login
+    @account = current_user[:id]
+    @profile = current_user.account
   end
 end

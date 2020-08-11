@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+
   get 'categories/index'
   root to: 'top#index'
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'users/registrations'
   }
 
   devise_scope :user do
@@ -16,7 +19,15 @@ Rails.application.routes.draw do
     collection do
       get 'get_category_children',      defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'fuzzy_search', to: 'products#fuzzy_search'
     end
+    
+    member do
+      get 'purchase', to: 'products#purchase'
+    end
+    
+    resources :likes, only: [:create, :destroy]
+
   end
 
   resources :comments, only: [:create, :update, :destroy] do
@@ -27,9 +38,11 @@ Rails.application.routes.draw do
 
   resources :brands, only: [:new, :create]
 
-  resources :accounts, only: [:index, :show] do
+  resources :accounts, only: [:index, :new, :create, :edit, :update, :show] do
     collection do
+      get 'mypage', to: 'accounts#mypage'
       get 'logout', to: 'accounts#logout'
+      get :likes
     end
   end
 
@@ -40,13 +53,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users, only: :index
+
+
+  resources :addresses, only: [:edit, :update]
+
 
   resources :categories, only: [:index, :show]
-
-  resources :top, only: [:index] do
-    collection do
-      get :search
-    end
-  end
 
 end

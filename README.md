@@ -1,6 +1,6 @@
 # DBテーブル設計
 
-![07_erd_fleamarket_sample_73e](https://user-images.githubusercontent.com/64793100/87167490-00df2480-c308-11ea-9b44-bb8101feedd0.png)
+![08_erd_fleamarket_sample_73e](https://user-images.githubusercontent.com/64793100/89715821-8fb48f00-d9e3-11ea-856b-30957a7132b7.png)
 
 <!--
   ユーザ登録時に入力する基本情報。
@@ -20,15 +20,18 @@
 |reset_password_token  |string  |             unique: true,              index: true|
 |reset_password_sent_at|datetime|                                                   |
 |remember_created_at   |datetime|                                                   |
+|created_at            |datetime|null: false                                        |
+|updated_at            |datetime|null: false                                        |
 
 ### Association
-- has_one  :address,     dependent: :destroy
-- has_one  :acount,      dependent: :destroy
-- has_one  :point,       dependent: :destroy
-- has_many :products,    dependent: :destroy
-- has_many :comments,    dependent: :destroy
-- has_many :likes,       dependent: :destroy
-- has_many :creditcards, dependent: :destroy
+- has_one  :address
+- has_one  :account
+- has_one  :point
+- has_one  :creditcard
+- has_many :products, dependent: :destroy
+- has_many :comments
+- has_many :likes, dependent: :destroy
+- has_many :liked_products, through: likes, source: :product
 
 <!--
   ユーザ登録時に登録する基本情報。
@@ -53,7 +56,9 @@
 |city           |string    |null: false            |
 |address        |string    |null: false            |
 |address_other  |string    |                       |
-|tell           |string    |                       |
+|tell           |string    |allow_blank: true      |
+|created_at     |datetime  |null: false            |
+|updated_at     |datetime  |null: false            |
 
 ### Association
 - belongs_to :user, optional: true
@@ -69,10 +74,14 @@
 |user            |references|null: false, foreign_key: true|
 |icon_image      |string    |                              |
 |background_image|string    |                              |
-|introduction    |text      |                              |
+|profile         |text      |                              |
+|created_at      |datetime  |null: false                   |
+|updated_at      |datetime  |null: false                   |
 
 ### Association
 - belongs_to :user
+- mount_uploader :icon_image, IconUploader
+- mount_uploader :background_image, BackgroundUploader
 
 <!--
   クレジットカード情報。
@@ -91,6 +100,8 @@
 |user       |references|null: false, foreign_key: true|
 |customer_id|string    |null: false                   |
 |card_id    |string    |null: false                   |
+|created_at |datetime  |null: false                   |
+|updated_at |datetime  |null: false                   |
 
 ### Association
 - belongs_to :user
@@ -101,10 +112,12 @@
 -->
 
 ## pointsテーブル
-| Column | Type     | Option                       |
-|--------|----------|------------------------------|
-|user    |references|null: false, foreign_key: true|
-|point   |integer   |null: false, default: 0       |
+| Column   | Type     | Option                       |
+|----------|----------|------------------------------|
+|user      |references|null: false, foreign_key: true|
+|point     |integer   |null: false, default: 0       |
+|created_at|datetime  |null: false                   |
+|updated_at|datetime  |null: false                   |
 
 ### Association
 - belongs_to :user
@@ -114,7 +127,6 @@
 
   condition_idカラム
   商品の状態(activehashによるプルダウン)
-  0 : 未選択
   1 : 新品、未使用
   2 : 未使用に近い
   3 : 目立った傷や汚れなし
@@ -124,19 +136,16 @@
 
   costburden_idカラム
   送料負担(activehashによるプルダウン)
-  0 : 未選択
   1 : 送料込み(出品者負担)
   2 : 着払い(購入者負担)
 
   shippingorigin_idカラム
   発送元住所(activehashによるプルダウン)
-  0    : 未選択
   1-47 : 各都道府県
   48   : 未定
 
   shippingperiod_idカラム
   発送までの期間(activehashによるプルダウン)
-  0 : 未選択
   1 : 1〜2日で発送
   2 : 2〜3日で発送
   3 : 4〜7日で発送
@@ -159,21 +168,24 @@
 -->
 
 ## productsテーブル
-| Column          | Type     | Option                                       |
-|-----------------|----------|----------------------------------------------|
-|seller           |references|null: false, foreign_key: { to_table: :users }|
-|buyer            |references|             foreign_key: { to_table: :users }|
-|category         |references|null: false, foreign_key: true                |
-|brand            |references|             foreign_key: true                |
-|name             |string    |null: false, index: true                      |
-|explain          |text      |null: false                                   |
-|condition_id     |integer   |null: false, default: 0                       |
-|costburden_id    |integer   |null: false, default: 0                       |
-|shippingorigin_id|integer   |null: false, default: 0                       |
-|shippingperiod_id|integer   |null: false, default: 0                       |
-|price            |integer   |null: false, default: 0                       |
-|seller_evaluation|integer   |             default: 0                       |
-|buyer_evaluation |integer   |             default: 0                       |
+| Column          | Type     | Option                                                                            |
+|-----------------|----------|-----------------------------------------------------------------------------------|
+|seller           |references|null: false, foreign_key: { to_table: :users }                                     |
+|buyer            |references|             foreign_key: { to_table: :users }                                     |
+|category         |references|null: false, foreign_key: true                                                     |
+|brand            |references|             foreign_key: true                                                     |
+|name             |string    |null: false, index: true, length: { maximum: 40 }                                  |
+|explain          |text      |null: false,              length: { maximum: 1_000 }                               |
+|condition_id     |integer   |null: false                                                                        |
+|costburden_id    |integer   |null: false                                                                        |
+|shippingorigin_id|integer   |null: false                                                                        |
+|shippingperiod_id|integer   |null: false                                                                        |
+|price            |integer   |null: false, numericality: { greater_than_or_equal_to: 300, less_than: 10_000_000 }|
+|seller_evaluation|integer   |default: 0                                                                         |
+|buyer_evaluation |integer   |default: 0                                                                         |
+|likes_count      |integer   |                                                                                   |
+|created_at       |datetime  |null: false                                                                        |
+|updated_at       |datetime  |null: false                                                                        |
 
 ### Association
 - accepts_nested_attributes_for :images, allow_destroy: true
@@ -183,7 +195,7 @@
 - belongs_to :seller, class_name: 'User'
 - belongs_to :buyer,  class_name: 'User', optional: true
 - belongs_to :category
-- belongs_to :brand
+- belongs_to :brand, optional: true
 - extend ActiveHash::Associations::ActiveRecordExtensions
 - belongs_to_active_hash :condition
 - belongs_to_active_hash :costburden
@@ -195,14 +207,16 @@
 -->
 
 ## imagesテーブル
-| Column | Type     | Option                       |
-|--------|----------|------------------------------|
-|product |references|null: false, foreign_key: true|
-|src     |string    |                              |
+| Column   | Type     | Option                       |
+|----------|----------|------------------------------|
+|product   |references|null: false, foreign_key: true|
+|src       |string    |                              |
+|created_at|datetime  |null: false                   |
+|updated_at|datetime  |null: false                   |
 
 ### Association
-- mount_uploader :src, ImageUploader
 - belongs_to :product, optional: true
+- mount_uploader :src, ImageUploader
 
 <!--
   カテゴリーはancestryを使って
@@ -211,10 +225,12 @@
 -->
 
 ## categoriesテーブル
-| Column | Type | Option                 |
-|--------|------|------------------------|
-|name    |string|null: false, index: true|
-|ancestry|string|             index: true|
+| Column   | Type   | Option                                         |
+|----------|--------|------------------------------------------------|
+|name      |string  |null: false, index: true, length: { maxmum: 40 }|
+|ancestry  |string  |             index: true                        |
+|created_at|datetime|null: false                                     |
+|updated_at|datetime|null: false                                     |
 
 ### Association
 - has_many :products
@@ -226,9 +242,11 @@
 -->
 
 ## brandsテーブル
-| Column | Type | Option                  |
-|--------|------|-------------------------|
-|name    |string|index: true, unique: true|
+| Column   | Type   | Option                                                        |
+|----------|--------|---------------------------------------------------------------|
+|name      |string  |null: false, index: true, unique: true, length: { maximum: 40 }|
+|created_at|datetime|null: false                                                    |
+|updated_at|datetime|null: false                                                    |
 
 ### Association
 - has_many :products
@@ -246,6 +264,9 @@
 |product     |references|null: false, foreign_key: true|
 |comment     |text      |null: false                   |
 |delete_check|integer   |default: 0                    |
+|created_at  |datetime  |null: false                   |
+|updated_at. |datetime  |null: false                   |
+
 
 ### Association
 - belongs_to :user
@@ -260,12 +281,13 @@
 -->
 
 ## likesテーブル
-| Column | Type     | Option                       |
-|--------|----------|------------------------------|
-|user    |references|null: false, foreign_key: true|
-|product |references|null: false, foreign_key: true|
-|like    |boolean   |null: false, default: false   |
+| Column   | Type     | Option          |
+|----------|----------|-----------------|
+|user      |references|foreign_key: true|
+|product   |references|foreign_key: true|
+|created_at|datetime  |null: false      |
+|updated_at|datetime  |null: false      |
 
 ### Association
 - belongs_to :user
-- belongs_to :product
+- belongs_to :product, counter_cache: :likes_count

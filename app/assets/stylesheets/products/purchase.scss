@@ -1,0 +1,218 @@
+.purchase_page {
+  background-color: rgb(245, 245, 245);
+  height: 1270px;
+  font-family: "Arial", "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", "sans-serif";
+}
+
+.purchase__header {
+  background-color: rgb(245, 245, 245);
+  height: 128px;
+  padding-top: 35px;
+  &__icon {
+    @include backimg("material/logo/logo.png", cover);
+    height: 49px;
+    width: 185px;
+    margin: auto;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: rgb(0, 149, 238);
+}
+
+// メイン 購入内容
+.purchase__main {
+  width: 700px;
+  height: 942px;
+  margin: auto;
+  background-color: #fff;
+  justify-content: center;
+  &__topmost {
+    width: 375px;
+    height: 98px;
+    margin: 0px auto;
+    padding: 32px 16px;
+    font-size: 24px;
+    color: #333333;
+    text-align: center;
+  }
+  // 画像
+  &__image {
+    width: 375px;
+    height: 145px;
+    padding: 32px 16px;
+    margin: auto;
+    border-top: 1px solid rgb(245, 245, 245);
+    .item-images {
+      width: 343px;
+      height: 80px;
+      display: flex;
+      &__tag {
+        width:80px;
+        height: 80px;
+      }
+      .item-names {
+        width: 247px;
+        height: 80px;
+        margin-left: 16px;
+        &__tag {
+          font-size: 14px;
+          margin-bottom: 8px;
+        }
+        &__price {
+          text-align: right;
+          &--postage {
+            font-size: 12px;
+          }
+          &--cost {
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 8px;
+          }
+        }
+      }
+    }
+  }
+  // 支払い金額
+  .purchase__main__payment {
+    width: 375px;
+    height: 133px;
+    padding: 32px 16px;
+    margin: auto;
+    border-top: 1px solid rgb(245, 245, 245);
+    .item-payment {
+      width: 343px;
+      height: 24px;
+      margin-bottom: 24px;
+      &__amount {
+        font-size:18px;
+        margin-right: 175px;
+      }
+      &__price {
+        font-size:24px
+      }
+    }
+    //ポイント
+    .item-point {
+      height: 20px;
+      font-size:14px;
+      display: flex;
+      &__possession {
+        font-size:12px;
+        margin-left: 150px;
+      }
+    }
+  }
+  // 支払い方法
+  .purchase__main__method {
+    width: 375px;
+    height: 111px;
+    padding: 32px 16px;
+    margin: auto;
+    border-top: 1px solid rgb(245, 245, 245);
+    text-decoration: none;
+    .item-methods {
+      width: 343px;
+      height: 46px;
+      &__payment {
+        font-size: 14px;
+        margin-bottom: 16px;
+        &__registers {
+          font-size:14px;
+        }
+      }
+    }
+  }
+  // 配送先
+  .purchase__main__delivery {
+    width: 375px;
+    height: 144px;
+    padding: 32px 16px;
+    margin: auto;
+    border-top: 1px solid rgb(245, 245, 245);
+    text-decoration: none;
+    .delivery {
+      width: 343px;
+      height: 22px;
+      display: flex;
+      &__address {
+        font-size: 14px;
+        margin-right: 240px;
+      }
+      &__change {
+        font-size: 14px;
+        text-decoration: none;
+        color: rgb(0, 149, 238);
+      }
+    }
+    .item-address {
+      font-size: 14px;
+      color: #333333;
+      line-height:1.5;
+    }
+  }
+  // 購入ボタン
+  .purchase__main__purchase {
+    width: 375px;
+    height: 290px;
+    padding: 32px 16px 56px 16px;
+    margin: auto;
+    border-top: 1px solid rgb(245, 245, 245);
+    text-decoration: none;
+    .item-purchase {
+      width: 343px;
+      height: 180px;
+      &__explanation {
+        font-size: 14px;
+        color: #888888;
+        margin-bottom: 24px;
+        line-height:1.5;
+      }
+      &__confirmation {
+        color: #FF0211;
+        margin-bottom: 24px;
+      }
+    }
+    .item-purchase__btn {
+      display: inline-block;
+      padding: 0.5em 1em;
+      text-decoration: none;
+      &__cart {
+        width: 293px;
+        height: 46px;
+        font-size: 17px;
+        background: #cccccc;
+        color: #FFF;
+        border : solid 1px #cccccc;
+      }
+    }
+  }
+  // フッター
+  .footer-contents{
+    font-size: 12px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: 150px;
+    &__items {
+      list-style: none;
+      display: flex;
+      &__left {
+        margin-right: 10px;
+      }
+      &__center {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.furima-logo {
+  margin-left: 250px;
+}
+.footer-contents__copyright {
+  margin-left: 290px;
+}
+
+
+

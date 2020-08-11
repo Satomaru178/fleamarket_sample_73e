@@ -20,6 +20,10 @@ class Product < ApplicationRecord
   # comments
 
   has_many :comments, dependent: :destroy
+  
+  # likes
+
+  has_many :likes, dependent: :destroy
 
   # activehash
 
@@ -35,8 +39,7 @@ class Product < ApplicationRecord
 
   validates :explain, presence: true, length: { maximum: 1_000 }
 
-  validates :condition_id, :costburden_id, :shippingorigin_id, :shippingperiod_id,
-  presence: true, numericality: { greater_than: 0, message: "を選択してください" }
+  validates :condition_id, :costburden_id, :shippingorigin_id, :shippingperiod_id, presence: true
 
   validates :price, presence: true,
   numericality: { greater_than_or_equal_to: 300, less_than: 10_000_000 }

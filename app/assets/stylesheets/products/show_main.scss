@@ -310,13 +310,33 @@
             }
 
             // お気に入りに追加ボタン
-            &__left-btn {
+            .like-btn {
+              margin-top: 10px;
               margin-right: auto;
               padding: 6px 10px;
               border-radius: 40px;
-              color: #3CCACE;
               border: 1px solid #ffb340;  
               cursor: pointer;
+
+              &__wrapper {
+                display: flex;
+
+                p {
+                  padding-left: 5px;
+                  line-height: 20px;
+                  color: #3CCACE;
+                }
+  
+                i {
+                  font-size: 14px;
+                  line-height: 20px;
+                  color: #3CCACE;
+                }
+              }
+            }
+
+            .like-btn:hover {
+              opacity: 0.5;
             }
 
             // 通報ボタン

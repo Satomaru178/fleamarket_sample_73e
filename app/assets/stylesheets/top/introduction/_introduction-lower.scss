@@ -12,12 +12,16 @@
 
   &__slogan {
     // 文字をデコレーション
-    @include font(24px, "YuGothic", 1.5px);
+    font-size: 24px;
+    font-family: "YuGothic";
+    text-shadow: 0 0 1.5px #000;
   }
 
   &__recommend {
     // 文字をデコレーション
-    @include font(34px, "YuGothic", 1.5px);
+    font-size: 34px;
+    font-family: "YuGothic";
+    text-shadow: 0 0 1.5px #000;
     // 上下に空間作成
     margin: 14px 0 30px;
   }

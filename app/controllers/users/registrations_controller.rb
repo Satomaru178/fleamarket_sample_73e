@@ -12,6 +12,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
 
   def create
+    if params[:sns_auth] == 'true'
+      pass = Devise.friendly_token
+      params[:user][:password] = pass
+      params[:user][:poassword_confirmation] = pass
+    end
     @user = User.new(sign_up_params)
     unless @user.valid?
       flash.now[:alert] = @user.errors.full_messages
@@ -26,11 +31,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create_address
     @user = User.new(session["devise.regist_data"]["user"])
     @address = Address.new(address_params)
+    @account = Account.new
     unless @address.valid?
       flash.now[:alert] = @address.errors.full_messages
       render :new_address and return
     end
     @user.build_address(@address.attributes)
+    @user.build_account(@account.attributes)
     @user.save
     session["devise.regist_data"]["user"].clear
     sign_in(:user, @user)

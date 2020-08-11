@@ -1,0 +1,54 @@
+= search_form_for @q do |f|
+  .detailed-search__contents__forms__form
+    .detailed-search__contents__forms__form__label
+      = f.label :name_or_explain, 'キーワード'
+    .detailed-search__contents__forms__form__field
+      = f.search_field :name_or_explain_cont, placeholder: "例) 値下げ"
+  #cat.detailed-search__contents__forms__form
+    #parent-cat
+      .detailed-search__contents__forms__form__label
+        = f.label :category_id, '親カテゴリー'
+      .detailed-search__contents__forms__form__field
+        = f.select :category_id, @category_parent_array, include_blank: '指定なし'
+  .detailed-search__contents__forms__form
+    .detailed-search__contents__forms__form__label
+      = f.label :brand_id, 'ブランド'
+    .detailed-search__contents__forms__form__field
+      = f.collection_select :brand_id_eq, @brands, :id, :name, include_blank: '指定なし'
+  .detailed-search__contents__forms__form
+    .detailed-search__contents__forms__form__label
+      = f.label :condition_id, '商品の状態'
+    = check_box_tag :condition_all_check, 1, false, class: 'all-check-btn'
+    = label_tag :condition_all_check, "全選択/全解除"
+    #condition_check_boxes.detailed-search__contents__forms__form__field
+      = f.collection_check_boxes :condition_id_in, Condition.all, :id, :name
+  .detailed-search__contents__forms__form
+    .detailed-search__contents__forms__form__label
+      = f.label :costburden_id, '配送料の負担'
+    = check_box_tag :costburden_all_check, 1, false, class: 'all-check-btn'
+    = label_tag :costburden_all_check, "全選択/全解除"
+    #costburden_check_boxes.detailed-search__contents__forms__form__field
+      = f.collection_check_boxes :costburden_id_in, Costburden.all, :id, :name
+  .detailed-search__contents__forms__form
+    .detailed-search__contents__forms__form__label
+      = f.label :shippingorigin_id, '発送元の地域'
+    .detailed-search__contents__forms__form__field
+      = f.collection_select :shippingorigin_id_eq, Shippingorigin.all, :id, :name, include_blank: '指定なし'
+  .detailed-search__contents__forms__form
+    .detailed-search__contents__forms__form__label
+      = f.label :shippingperiod_id, '発送までの日数'
+    = check_box_tag :shippingperiod_all_check, 1, false, class: 'all-check-btn'
+    = label_tag :shippingperiod_all_check, "全選択/全解除"
+    #shippingperiod_check_boxes.detailed-search__contents__forms__form__field
+      = f.collection_check_boxes :shippingperiod_id_in, Shippingperiod.all, :id, :name
+  .detailed-search__contents__forms__form
+    .detailed-search__contents__forms__form__label
+      = f.label :price, '販売価格'
+    .detailed-search__contents__forms__form__field
+      ¥
+      = f.number_field :price_gteq, placeholder: "Min"
+      〜
+      ¥
+      = f.number_field :price_lteq, placeholder: "Max"
+  .detailed-search__contents__forms__submit-btn
+    = f.submit '検索する'

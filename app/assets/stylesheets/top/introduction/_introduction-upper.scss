@@ -12,7 +12,9 @@
     // 文字の外枠作成
     @include box($width: 1079px, $height: 144px);
     // 文字をデコレーション
-    @include font(56px, "YuGothic", 1.5px);
+    font-size: 56px;
+    font-family: "YuGothic";
+    text-shadow: 0 0 1.5px #000;
     // 左の空間作成
     margin-left: 80px;
   }
@@ -21,7 +23,9 @@
     // 文字の外枠作成
     @include box($width: 1079px, $height: 64px);
     // 文字をデコレーション
-    @include font(20px, "YuGothic", 1.5px);
+    font-size: 20px;
+    font-family: "YuGothic";
+    text-shadow: 0 0 1.5px #000;
     // 上と左の空間作成
     margin: 0 0 20px 80px;
     // 行間指定
