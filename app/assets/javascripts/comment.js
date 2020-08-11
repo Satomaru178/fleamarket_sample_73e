@@ -135,25 +135,23 @@ $(document).on('turbolinks:load', function() {
   function preDelete(index){
     var html = 
     `
-    <div class="content-main__comments__list__block__content">
-      <div class="content-main__comments__list__block__content__text-deleted">
-      出品者によりこのコメントは削除されました
-      </div>
-      <div class="content-main__comments__list__block__content__icons">
-        <div class="content-main__comments__list__block__content__icons__right">
-          <div class="content-main__comments__list__block__content__icons__right__restore" data-index=${index}>
-            <a href="/comments/${index}/restore">
-              <i class="fas fa-trash-restore"></i>
-            </a>
-          </div>
-          <div class="content-main__comments__list__block__content__icons__right__delete complete__delete" data-index=${index}>
-            <a rel="nofollow" data-method="delete" href="/comments/${index}">
-              <i class="fas fa-trash-alt"></i>
-            </a>
-          </div>
+    <div class="content-main__comments__list__block__content__text-deleted">
+    出品者によりこのコメントは削除されました
+    </div>
+    <div class="content-main__comments__list__block__content__icons">
+      <div class="content-main__comments__list__block__content__icons__right">
+        <div class="content-main__comments__list__block__content__icons__right__restore restore_btn" data-index=${index}>
+          <a href="/comments/${index}/restore">
+            <i class="fas fa-recycle"></i>
+          </a>
+        </div>
+        <div class="content-main__comments__list__block__content__icons__right__delete complete_delete" data-index=${index}>
+          <a rel="nofollow" data-method="delete" href="/comments/${index}">
+            <i class="fas fa-dumpster-fire"></i>
+          </a>
         </div>
       </div>
-    </div> 
+    </div>
     `
     return html;
   };
@@ -187,7 +185,9 @@ $(document).on('turbolinks:load', function() {
   // ===================================
   // 復元した場合
   // ===================================
-  $(".content-main__comments__list").on('click',".comment_restore",function(e){
+  console.log("復元");
+  $(".content-main__comments__list").on('click',".restore_btn",function(e){
+    console.log("ボタンが押されました");
     e.preventDefault()
     var index = $(this).data("index")
     var url =`/comments/${index}/restore`
@@ -197,7 +197,8 @@ $(document).on('turbolinks:load', function() {
       dataType: 'json',
     })
     .done(function(comment_data){
-      if (comment_data.item_seller.id == comment_data.user_id){   // 出品者とコメントユーザーが同じ場合
+      if (comment_data.product_seller.id == comment_data.user_id){   // 出品者とコメントユーザーが同じ場合
+        console.log("ajax成功");
         var html = new_comment(comment_data);
         $(`.content-main__comments__list__block[data-index=${index}]`).replaceWith(html)
       }else{    // 出品者とコメントユーザーが異なる場合
@@ -215,11 +216,26 @@ $(document).on('turbolinks:load', function() {
   // ===================================
 
   $(".content-main__comments__list").on('click',".self_pre_delete",function(e){
+    console.log("ボタンが押されました");
     e.preventDefault()
     var index = $(this).data("index");
-    var content =  $(`.content-main__comments__list__block[data-index=${index}]`).find(".comment_content");
-    content.empty();
-    content.append(PLEdelete(index));
+    var url =`/comments/${index}`
+    $.ajax({
+      url: url,
+      type: "patch",
+      dataType: 'json',
+      processData: false,
+      contentType: false
+    })
+    .done(function(){
+      console.log("ajax成功");
+      var content =  $(`.content-main__comments__list__block[data-index=${index}]`).find(".content-main__comments__list__block__content-self");
+      content.empty();
+      content.append(preDelete(index));
+    })
+    .fail(function(){
+      alert("メッセージの仮削除に失敗しました");
+    });
   });
 
   // ===================================
@@ -227,9 +243,10 @@ $(document).on('turbolinks:load', function() {
   // ===================================
 
   $(".content-main__comments__list").on('click',".other_pre_delete",function(e){
+    console.log("ボタンが押されました");
     e.preventDefault()
     var index = $(this).data("index");
-    var content =  $(`.content-main__comments__list__block[data-index=${index}]`).find(".comment_content_other");
+    var content =  $(`.content-main__comments__list__block[data-index=${index}]`).find(".content-main__comments__list__block__content");
     content.empty();
     content.append(preDelete(index));
   });
@@ -238,9 +255,9 @@ $(document).on('turbolinks:load', function() {
   // 完全削除した場合
   // ===================================
   $(".content-main__comments__list").on('click','.complete_delete',function(e){
+    console.log("ボタンが押されました");
     e.preventDefault()
     var index = $(this).data("index");
     $(`.content-main__comments__list__block[data-index=${index}]`).remove();
   });
-
 });
