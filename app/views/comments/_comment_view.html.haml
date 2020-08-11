@@ -3,7 +3,7 @@
     - if comment.user_id == current_user.id
       -# コメントユーザーとログインユーザーが同一の場合(自分のコメント)
       %li#self.content-main__comments__list__block{data:{index: comment.id}}
-        = render 'comments/comment_name_self', comment: comment
+        = render 'comments/comment_name', comment: comment
         - if comment.delete_check == 1   # 仮削除済の場合
           .content-main__comments__list__block__content-self
             .content-main__comments__list__block__content__text-deleted
