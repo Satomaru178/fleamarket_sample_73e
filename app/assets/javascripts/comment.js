@@ -3,7 +3,7 @@ $(document).on('turbolinks:load', function() {
   // 新規コメント表示用・自分のコメント復元用 
   // ===================================
   function new_comment(comment_data){
-    let HTML_user =
+    const HTML_user =
       `
       <li class="content-main__comments__list__block" data-index=${comment_data.id} id="self">
         <a class="comments__user__self" href="/accounts">
@@ -16,13 +16,13 @@ $(document).on('turbolinks:load', function() {
             </figcaption>
           </figure>
       `
-    let HTML_seller =
+    const HTML_seller =
           `
           <div class="comments__user__self__seller">
             出品者
           </div>
           `
-    let HTML_body =
+    const HTML_body =
         `
         </a>
         <div class="content-main__comments__list__block__content-self">
@@ -37,7 +37,7 @@ $(document).on('turbolinks:load', function() {
             </time>
             <div class="content-main__comments__list__block__content__icons__right">
         `
-    let HTML_deleteBtn =
+    const HTML_deleteBtn =
               `
               <div class="content-main__comments__list__block__content__icons__right__delete self_pre_delete" data-index=${comment_data.id}>
                 <a rel="nofollow" data-method="patch" href="/comments/${comment_data.id}">
@@ -45,7 +45,7 @@ $(document).on('turbolinks:load', function() {
                 </a>
               </div>
               `
-    let HTML_closeTag =
+    const HTML_closeTag =
       `
             </div>
           </div>
@@ -69,7 +69,7 @@ $(document).on('turbolinks:load', function() {
   // 他人のコメント復元用 
   // ===================================
   function restore_other_comment(comment_data){
-    let HTML_user =
+    const HTML_user =
       `
       <li class="content-main__comments__list__block" data-index=${comment_data.id}>
         <a class="comments__user" href="#">
@@ -82,13 +82,13 @@ $(document).on('turbolinks:load', function() {
             </figcaption>
           </figure>
       `
-    let HTML_seller =
+    const HTML_seller =
           `
           <div class="comments__user__seller">
             出品者
           </div>
           `
-    let HTML_body =
+    const HTML_body =
       `
         </a>
         <div class="content-main__comments__list__block__content">
@@ -135,7 +135,7 @@ $(document).on('turbolinks:load', function() {
   // ===================================
 
   function preDelete(index){
-    let html = 
+    const html = 
     `
     <div class="content-main__comments__list__block__content__text-deleted">
     出品者によりこのコメントは削除されました
@@ -162,8 +162,8 @@ $(document).on('turbolinks:load', function() {
   // ===================================
   $('.content-main__comments__form__new').on('submit', function(e){
     e.preventDefault();
-    let formData = new FormData(this);
-    let url = $(this).attr('action')
+    const formData = new FormData(this);
+    const url = $(this).attr('action')
     $.ajax({
       url: url,
       type: "POST",
@@ -173,7 +173,7 @@ $(document).on('turbolinks:load', function() {
       contentType: false
     })
     .done(function(comment_data){
-      let html = new_comment(comment_data);
+      const html = new_comment(comment_data);
       $(".content-main__comments__list").append(html)
       $('.content-main__comments__form__text').val("");
       $('.content-main__comments__list').animate({ scrollTop: $('.content-main__comments__list')[0].scrollHeight});
@@ -189,19 +189,20 @@ $(document).on('turbolinks:load', function() {
   // ===================================
   $(".content-main__comments__list").on('click',".restore_btn",function(e){
     e.preventDefault()
-    let index = $(this).data("index")
-    let url =`/comments/${index}/restore`
+    const index = $(this).data("index")
+    const url =`/comments/${index}/restore`
     $.ajax({
       url: url,
       type: "get",
       dataType: 'json',
     })
     .done(function(comment_data){
+      let html;
       if (comment_data.product_seller.id == comment_data.user_id){   // 出品者とコメントユーザーが同じ場合
-        let html = new_comment(comment_data);
+        html = new_comment(comment_data);
         $(`.content-main__comments__list__block[data-index=${index}]`).replaceWith(html)
-      }else{    // 出品者とコメントユーザーが異なる場合
-        let html = restore_other_comment(comment_data);
+      } else {    // 出品者とコメントユーザーが異なる場合
+        html = restore_other_comment(comment_data);
         $(`.content-main__comments__list__block[data-index=${index}]`).replaceWith(html)
       }
     })
@@ -216,8 +217,8 @@ $(document).on('turbolinks:load', function() {
 
   $(".content-main__comments__list").on('click',".self_pre_delete",function(e){
     e.preventDefault()
-    let index = $(this).data("index");
-    let url =`/comments/${index}`
+    const index = $(this).data("index");
+    const url =`/comments/${index}`
     $.ajax({
       url: url,
       type: "patch",
@@ -226,7 +227,7 @@ $(document).on('turbolinks:load', function() {
       contentType: false
     })
     .done(function(){
-      let content =  $(`.content-main__comments__list__block[data-index=${index}]`).find(".content-main__comments__list__block__content-self");
+      const content =  $(`.content-main__comments__list__block[data-index=${index}]`).find(".content-main__comments__list__block__content-self");
       content.empty();
       content.append(preDelete(index));
     })
@@ -241,8 +242,8 @@ $(document).on('turbolinks:load', function() {
 
   $(".content-main__comments__list").on('click',".other_pre_delete",function(e){
     e.preventDefault()
-    let index = $(this).data("index");
-    let content =  $(`.content-main__comments__list__block[data-index=${index}]`).find(".content-main__comments__list__block__content");
+    const index = $(this).data("index");
+    const content =  $(`.content-main__comments__list__block[data-index=${index}]`).find(".content-main__comments__list__block__content");
     content.empty();
     content.append(preDelete(index));
   });
@@ -252,7 +253,7 @@ $(document).on('turbolinks:load', function() {
   // ===================================
   $(".content-main__comments__list").on('click','.complete_delete',function(e){
     e.preventDefault()
-    let index = $(this).data("index");
+    const index = $(this).data("index");
     $(`.content-main__comments__list__block[data-index=${index}]`).remove();
   });
 });
