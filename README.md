@@ -265,7 +265,7 @@
 |comment     |text      |null: false                   |
 |delete_check|integer   |default: 0                    |
 |created_at  |datetime  |null: false                   |
-|updated_at. |datetime  |null: false                   |
+|updated_at  |datetime  |null: false                   |
 
 
 ### Association
