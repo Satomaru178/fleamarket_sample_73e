@@ -12,10 +12,12 @@
           .user__mypage__contents__icon__image__name
             = @user.nickname
         .user__mypage__contents__icon__background__image
-          = image_tag ('material/pict/user_mypage_test.JPG')
-        .user__mypage__profile
+          - if @profile.background_image?
+            = image_tag @profile.background_image.url, :size =>'700x200'
+          - else
+            = image_tag ('material/pict/user_mypage_test.JPG')
+      .user__mypage__profile
         = simple_format @profile.profile
-    
   = render "top/introduction/introduction-lower"
   = render "top/others/footer"
   = render "top/others/exhibition-btn"
