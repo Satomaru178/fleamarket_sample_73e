@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     collection do
       delete 'delete', to: 'creditcards#delete'
       post   "date",   to: 'creditcards#show'
+      get    'pay',    to: 'creditcards#pay'
     end
   end
 
