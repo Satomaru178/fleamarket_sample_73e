@@ -17,6 +17,11 @@ crumb :creditcard do
   parent :mypage
 end
 
+crumb :creditcard_new do
+  link "クレジットカード登録", new_creditcard_path
+  parent :creditcard
+end
+
 crumb :logout do
   link "ログアウト", logout_accounts_path
   parent :mypage

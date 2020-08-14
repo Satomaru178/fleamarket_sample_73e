@@ -30,6 +30,12 @@ Rails.application.routes.draw do
 
   end
 
+  resources :comments, only: [:create, :update, :destroy] do
+    member do
+      get 'restore'
+    end
+  end
+
   resources :brands, only: [:new, :create]
 
   resources :accounts, only: [:index, :new, :create, :edit, :update, :show] do

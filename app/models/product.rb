@@ -17,6 +17,10 @@ class Product < ApplicationRecord
   
   belongs_to :brand, optional: true
 
+  # comments
+
+  has_many :comments, dependent: :destroy
+  
   # likes
 
   has_many :likes, dependent: :destroy
