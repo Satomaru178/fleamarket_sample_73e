@@ -11,18 +11,23 @@
     %section.purchase__main__image
       .item-images
         .item-imags__tag
-          = image_tag ("material/icon/icon-01.png"), size: "80x80"
+          = image_tag @product.images[0].src.url
         
         .item-names
-          %p.item-names__tag Tシャツ
+          %p.item-names__tag
+          = @product.name
+
           %p.item-names__price
             %span.item-names__price.item-names__price--postage  送料込み (税込)
-            %span.item-names__price.item-names__price--cost   ￥500
+            %span.item-names__price.item-names__price--cost ￥
+            = @product.price
 
     %section.purchase__main__payment
       .item-payment
         %span.item-payment__amount 支払い金額
-        %span.item-payment__price ￥500
+        %span.item-payment__price ￥
+        = @product.price
+
       .item-point
         =check_box_tag :check1
         %span.image
@@ -57,7 +62,9 @@
       = form_with model: @product, local: true do |f|
         = f.hidden_field :buyer_id, value: current_user.id
         .item-purchase__btn
-          = f.submit '購入する',class: 'item-purchase__btn__cart'
+          = f.submit '購入する', class: 'item-purchase__btn__cart'
+          -# = link_to pay_creditcard_path
+
 
     .footer-contents
       %ul.footer-contents__items

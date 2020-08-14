@@ -93,6 +93,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def purchase
+    @product = Product.find(params[:id])
+  end
+
   # 親カテゴリーが選択された時に動くアクション
   def get_category_children
     # 選択された親カテゴリーに対応する子カテゴリーの配列を取得
