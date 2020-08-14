@@ -9,7 +9,7 @@
     %h3.user__mypage__sidebar__config 
       設定
     .user__mypage__sidebar__list
-    = link_to "プロフィール", edit_account_path(@account), class: "user__mypage__sidebar__list__item"
+    = link_to "プロフィール", edit_account_path(current_user.id), class: "user__mypage__sidebar__list__item"
     = link_to "発送元・お届け先住所変更", edit_address_path(current_user.id), class: "user__mypage__sidebar__list__item"
     = link_to "支払い方法", creditcards_path, class: "user__mypage__sidebar__list__item"
     = link_to "ログアウト", logout_accounts_path, class: "user__mypage__sidebar__list__item"
