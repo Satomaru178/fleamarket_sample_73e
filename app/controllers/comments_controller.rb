@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
 
   before_action :set_comment, only: [:update, :destroy, :restore]
   before_action :check_user, only: [:update, :destroy, :restore]
-  around_action :skip_bullet
 
   # コメント投稿用のアクション
   def create
@@ -53,12 +52,4 @@ class CommentsController < ApplicationController
       redirect_to root_path
     end
   end
-
-  def skip_bullet
-    Bullet.enable = false
-    yield
-  ensure
-    Bullet.enable = true
-  end
-
 end
