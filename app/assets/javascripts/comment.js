@@ -9,7 +9,7 @@ $(document).on('turbolinks:load', function() {
         <a class="comments__user__self" href="/accounts">
           <figure>
             <div class="comments__user__self__image">
-              <img alt="test" src='/assets/material/icon/member_photo_noimage_thumb.png'>
+              <img src='material/icon/member_photo_noimage_thumb.png'>
             </div>
             <figcaption class="comments__user__self__name">
               ${comment_data.user_nickname}
@@ -75,7 +75,7 @@ $(document).on('turbolinks:load', function() {
         <a class="comments__user" href="#">
           <figure>
             <div class="comments__user__image">
-              <img alt="test" src='/assets/material/icon/member_photo_noimage_thumb.png'>
+              <img src='material/icon/member_photo_noimage_thumb.png'>
             </div>
             <figcaption class="comments__user__name">
               ${comment_data.user_nickname}
