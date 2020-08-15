@@ -95,6 +95,7 @@ class ProductsController < ApplicationController
 
   def purchase
     @product = Product.find(params[:id])
+    @creditcard = Creditcard.all
   end
 
   # 親カテゴリーが選択された時に動くアクション
@@ -168,4 +169,5 @@ class ProductsController < ApplicationController
   def set_brands
     @brands = Brand.all
   end
+
 end
