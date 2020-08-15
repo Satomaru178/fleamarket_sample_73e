@@ -25,13 +25,13 @@ class ProductsController < ApplicationController
     end
 
     @q = Product.ransack(params[:q])
-    @products = @q.result
+    @products = @q.result.includes(:images).order(sort)
     @maximum_per_page = 63
 
     if @products.length <= @maximum_per_page
-      @results = @products.includes(:images).order(sort)
+      @results = @products
     else
-      @results = @products.includes(:images).order(sort).page(params[:page]).per(@maximum_per_page)
+      @results = @products.page(params[:page]).per(@maximum_per_page)
     end
   end
 
