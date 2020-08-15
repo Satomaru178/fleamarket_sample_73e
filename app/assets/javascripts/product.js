@@ -430,7 +430,7 @@ $(document).on('turbolinks:load', ()=> {
 
 
 
-  // 詳細検索 全選択/全解除ボタン
+  // 全選択/全解除ボタン
   const condition_check_boxes = $('input[name="q[condition_id_in][]"]');
   const costburden_check_boxes = $('input[name="q[costburden_id_in][]"]');
   const shippingperiod_check_boxes = $('input[name="q[shippingperiod_id_in][]"]');
@@ -484,6 +484,80 @@ $(document).on('turbolinks:load', ()=> {
     }
     else {  // 全選択状態でない
       $('#shippingperiod_all_check').prop('checked', false);  // チェックを外す
+    }
+  });
+
+
+
+
+
+  // ソート機能
+  $('select[name=sort_order]').on('change', function() {  // 並べ替えのセレクトボックスが変化した
+    const sort_order = $(this).val();
+    let html;
+    switch (sort_order) {
+      case 'created_at DESC':
+        html = "&sort_order=created_at+DESC";
+        break;
+      case 'created_at ASC':
+        html = "&sort_order=created_at+ASC";
+        break;
+      case 'price DESC':
+        html = "&sort_order=price+DESC";
+        break;
+      case 'price ASC':
+        html = "&sort_order=price+ASC";
+        break;
+      case 'likes_count DESC':
+        html = "&sort_order=likes_count+DESC";
+        break;
+      default:
+        html = "&sort_order=created_at+DESC";
+        break;
+    }
+
+    let current_html = window.location.href;  // urlを取得
+    if (current_html.match(/&sort_order=(created_at|price|likes_count)\+(DESC|ASC)/)) {  // すでにソート済みの場合
+      const replaced_html = current_html.match(/&sort_order=(created_at|price|likes_count)\+(DESC|ASC)/)[0];  // 抽出
+      current_html = current_html.replace(replaced_html, html);  // 置き換え
+    }
+    else {  // 初回
+      current_html = current_html + "?utf8=✓" + html;  // 並べ替え
+    }
+    window.location.href = current_html;  // 更新
+  });
+
+  // ページ更新後のセレクトボックスを現在の状態に変える
+  $(function() {
+    const current_html = window.location.href;  // urlを取得
+    
+    if (current_html.match(/&sort_order=(created_at|price|likes_count)\+(DESC|ASC)/)) {
+      const current_order = current_html.match(/&sort_order=(created_at|price|likes_count)\+(DESC|ASC)/)[0];
+
+      // urlから現在の並び順を推定しセレクトボックスを変更する
+      switch (current_order) {
+        case "&sort_order=created_at+DESC":
+          $('select[name=sort_order] option[value="created_at DESC"]').prop('selected', true);
+          break;
+        case "&sort_order=created_at+ASC":
+          $('select[name=sort_order] option[value="created_at ASC"]').prop('selected', true);
+          break;
+        case "&sort_order=price+DESC":
+          $('select[name=sort_order] option[value="price DESC"]').prop('selected', true);
+          break;
+        case "&sort_order=price+ASC":
+          $('select[name=sort_order] option[value="price ASC"]').prop('selected', true);
+          break;
+        case "&sort_order=likes_count+DESC":
+          $('select[name=sort_order] option[value="likes_count DESC"]').prop('selected', true);
+          break;
+        default:
+          $('select[name=sort_order] option[value]').prop('selected', true);
+          break;
+      }
+    }
+    else {
+      // nop
     }
   });
 });
