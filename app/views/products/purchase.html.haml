@@ -43,8 +43,7 @@
             = link_to creditcard_path, class: "item-link" do
               %span.item-methods__payment__registers 登録して下さい
           - else
-            = link_to '#', class: "item-link" do
-              %span.item-methods__payment__completion 登録してあります
+            %span.item-methods__payment__completion 登録済み
 
     %section.purchase__main__delivery
       .delivery
@@ -57,17 +56,13 @@
         %p 神奈川県 川崎市
         %p 川崎 太郎
 
-
     %section.purchase__main__purchase
       .item-purchase
-        %p.item-purchase__explanation 郵便局/コンビニ受取をご希望の方は、購入後に取引画面から受取場所を変更をすることが可能です。出品者が発送作業を開始した後は受取場所の変更ができませんので、早めに変更を行ってください。
         %p.item-purchase__confirmation 支払い方法の入力を完了してください。
       = form_with model: @product, local: true do |f|
         = f.hidden_field :buyer_id, value: current_user.id
         .item-purchase__btn
           = f.submit '購入する', class: 'item-purchase__btn__cart'
-          -# = link_to pay_creditcard_path
-
 
     .footer-contents
       %ul.footer-contents__items
