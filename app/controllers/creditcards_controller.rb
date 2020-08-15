@@ -81,15 +81,23 @@ class CreditcardsController < ApplicationController
 
   def pay
     @product = product.params[:id]
-    @card = Creditcard.where(user.id: current_user.id)
+    @card = Creditcard.where(user_id: current_user.id)
+    if @product.costburden_id == 1
+      postage = 0
+    elsif @product.costburden_id == 2
+      postage = 200
+    else
+      postage = 0
+    end
     Payjp.api_key = ENV['PAYJP_PROVATE_KEY']
     Payjp: :Charge.create(
-      :amount => @product.price
+      :amount => @product.price + postage
       :customer => @card.customer_id
       :currency => 'jpy' 
     )
+    flash[:notice] = "商品を購入しました"
     @product.buyer_id = current_user.id
-    redirect_to controller: :top, action: :index
+    redirect_to root_path
   end
 
   private
