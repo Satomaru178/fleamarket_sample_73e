@@ -88,7 +88,7 @@ class CreditcardsController < ApplicationController
       :customer => @card.customer_id
       :currency => 'jpy' 
     )
-    @product.buyer_id == current_user.id
+    @product.buyer_id = current_user.id
     redirect_to controller: :top, action: :index
   end
 
