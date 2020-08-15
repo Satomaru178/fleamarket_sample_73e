@@ -1,5 +1,7 @@
 .detailed-search
   = render "top/others/header"
+  - breadcrumb :fuzzy_search
+  = render "layouts/breadcrumbs"
   .detailed-search__contents
     .detailed-search__contents__forms
       = render "products/partials/search-form"
