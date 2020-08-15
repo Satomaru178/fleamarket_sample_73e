@@ -101,6 +101,7 @@ h3 {
     }
     //ポイント
     .item-point {
+      background-color: #ff0;
       height: 20px;
       font-size:14px;
       display: flex;
@@ -127,6 +128,10 @@ h3 {
         &__registers {
           font-size:14px;
           margin-top: 20px;
+        }
+
+        &__registers:hover {
+          text-decoration: underline;
         }
       }
     }
