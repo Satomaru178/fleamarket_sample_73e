@@ -95,7 +95,7 @@ class ProductsController < ApplicationController
 
   def purchase
     @product = Product.find(params[:id])
-    @creditcard = Creditcard.all
+    @creditcard = Creditcard.find_by(user_id: current_user.id)
   end
 
   # 親カテゴリーが選択された時に動くアクション
