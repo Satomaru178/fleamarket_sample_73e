@@ -98,6 +98,20 @@ class ProductsController < ApplicationController
     @creditcard = Creditcard.find_by(user_id: current_user.id)
   end
 
+  def pay
+    @product = Product.find(params[:id])
+    @card = Creditcard.find_by(user_id: current_user.id)
+    Payjp.api_key = ENV['PAYJP_PROVATE_KEY']
+    Payjp::Charge.create(
+      amount: @product.price,
+      customer: @card.customer_id,
+      currency: 'jpy' 
+    )
+    flash[:notice] = "商品を購入しました"
+    @product.buyer_id = current_user.id
+    redirect_to root_path
+  end
+
   # 親カテゴリーが選択された時に動くアクション
   def get_category_children
     # 選択された親カテゴリーに対応する子カテゴリーの配列を取得

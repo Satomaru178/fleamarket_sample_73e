@@ -79,20 +79,6 @@ class CreditcardsController < ApplicationController
     end
   end
 
-  def pay
-    @product = product.params[:id]
-    @card = Creditcard.where(user_id: current_user.id)
-    Payjp.api_key = ENV['PAYJP_PROVATE_KEY']
-    Payjp: :Charge.create(
-      :amount => @product.price
-      :customer => @card.customer_id
-      :currency => 'jpy' 
-    )
-    flash[:notice] = "商品を購入しました"
-    @product.buyer_id = current_user.id
-    redirect_to root_path
-  end
-
   private
 
   def move_to_index
