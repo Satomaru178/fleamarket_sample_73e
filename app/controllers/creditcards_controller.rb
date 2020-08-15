@@ -82,16 +82,9 @@ class CreditcardsController < ApplicationController
   def pay
     @product = product.params[:id]
     @card = Creditcard.where(user_id: current_user.id)
-    if @product.costburden_id == 1
-      postage = 0
-    elsif @product.costburden_id == 2
-      postage = 200
-    else
-      postage = 0
-    end
     Payjp.api_key = ENV['PAYJP_PROVATE_KEY']
     Payjp: :Charge.create(
-      :amount => @product.price + postage
+      :amount => @product.price
       :customer => @card.customer_id
       :currency => 'jpy' 
     )
