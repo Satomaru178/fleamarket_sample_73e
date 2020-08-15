@@ -32,6 +32,7 @@ class Product < ApplicationRecord
   belongs_to_active_hash :costburden
   belongs_to_active_hash :shippingorigin
   belongs_to_active_hash :shippingperiod
+  belongs_to_active_hash :sortorder
 
   # validation
 
