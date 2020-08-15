@@ -3,14 +3,17 @@ crumb :root do
   link "FURIMA", root_path
 end
 
+# 商品出品ページ
 crumb :product_new do
   link "商品出品", new_product_path
 end
 
+# 詳細検索ページ
 crumb :fuzzy_search do
   link "詳細検索", fuzzy_search_products_path
 end
 
+# ブランド登録ページ
 crumb :brand_new do
   link "ブランド登録", new_brand_path
 end
@@ -111,20 +114,21 @@ crumb :product_show_category_grandchild do |product|
   parent :product_show_category_child
 end
 
-# 商品名
+# 商品詳細ページ、商品名
 crumb :product_show do |product|
   product = Product.find(params[:id])
   link "#{product.name}", product_path(product)
   parent :product_show_category_grandchild
 end
 
+# 商品詳細ページ、商品編集
 crumb :product_edit do |product|
   product = Product.find(params[:id])
   link "商品編集", edit_product_path(product)
   parent :product_show
 end
 
-# 購入確認ページ
+# 商品詳細ページ、購入確認ページ
 crumb :product_purchase do |product|
   product = Product.find(params[:id])
   link "購入確認", purchase_product_path(product)
