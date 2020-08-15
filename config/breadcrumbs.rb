@@ -7,11 +7,6 @@ crumb :product_new do
   link "商品出品", new_product_path
 end
 
-crumb :product_edit do |product|
-  product = Product.find(params[:id])
-  link "商品編集", edit_product_path(product)
-end
-
 crumb :fuzzy_search do
   link "詳細検索", fuzzy_search_products_path
 end
@@ -121,6 +116,12 @@ crumb :product_show do |product|
   product = Product.find(params[:id])
   link "#{product.name}", product_path(product)
   parent :product_show_category_grandchild
+end
+
+crumb :product_edit do |product|
+  product = Product.find(params[:id])
+  link "商品編集", edit_product_path(product)
+  parent :product_show
 end
 
 # 購入確認ページ
