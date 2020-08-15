@@ -12,6 +12,12 @@
     background-color: #ffffff;
     list-style-type:none;
     border-bottom:1px solid #f5f5f5;
+    &__arrow{
+      float: right;
+      display: block;
+      padding-right:10px;
+      color:#dcdcdc;
+    }
     }
     &__item-now{
       padding:16px;

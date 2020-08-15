@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 2020_08_03_005922) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_brands_on_name"
   end
 
   create_table "categories", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -114,17 +113,13 @@ ActiveRecord::Schema.define(version: 2020_08_03_005922) do
     t.index ["seller_id"], name: "index_products_on_seller_id"
   end
 
-  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "sns_credentials", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.string "provider"
     t.string "uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "test", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.timestamp "ts", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "dt"
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
 
   create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -157,4 +152,5 @@ ActiveRecord::Schema.define(version: 2020_08_03_005922) do
   add_foreign_key "products", "categories"
   add_foreign_key "products", "users", column: "buyer_id"
   add_foreign_key "products", "users", column: "seller_id"
+  add_foreign_key "sns_credentials", "users"
 end
