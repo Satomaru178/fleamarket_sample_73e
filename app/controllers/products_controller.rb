@@ -101,14 +101,15 @@ class ProductsController < ApplicationController
   def pay
     @product = Product.find(params[:id])
     @card = Creditcard.find_by(user_id: current_user.id)
-    Payjp.api_key = ENV['PAYJP_PROVATE_KEY']
+    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     Payjp::Charge.create(
       amount: @product.price,
       customer: @card.customer_id,
       currency: 'jpy' 
     )
     flash[:notice] = "商品を購入しました"
-    @product.buyer_id = current_user.id
+    @product.buyer_id = current_user[:id]
+    @product.save
     redirect_to root_path
   end
 
