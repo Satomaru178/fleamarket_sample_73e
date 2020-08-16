@@ -9,8 +9,8 @@ crumb :product_new do
 end
 
 # 詳細検索ページ
-crumb :fuzzy_search do
-  link "詳細検索", fuzzy_search_products_path
+crumb :detailed_search do
+  link "詳細検索", products_path
 end
 
 # ブランド登録ページ
