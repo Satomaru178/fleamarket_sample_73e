@@ -95,22 +95,34 @@ class ProductsController < ApplicationController
 
   def purchase
     @product = Product.find(params[:id])
-    @creditcard = Creditcard.find_by(user_id: current_user.id)
+    @card = Creditcard.find_by(user_id: current_user.id)
   end
 
   def pay
     @product = Product.find(params[:id])
     @card = Creditcard.find_by(user_id: current_user.id)
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
-    Payjp::Charge.create(
-      amount: @product.price,
-      customer: @card.customer_id,
-      currency: 'jpy' 
-    )
-    flash[:notice] = "商品を購入しました"
-    @product.buyer_id = current_user[:id]
-    @product.save
-    redirect_to root_path
+
+    if @product.buyer_id.present?
+      flash[:alert] = "この商品はすでに購入されています"
+      redirect_to root_path
+    elsif @card.blank?
+      flash[:alert] = "クレジットカードを登録してください"
+      redirect_to controller: 'creditcards', action: 'new'
+    else
+      Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+      Payjp::Charge.create(
+        amount: @product.price,
+        customer: @card.customer_id,
+        currency: 'jpy' 
+      )
+      if @product.update(buyer_id: current_user.id)
+        flash[:notice] = "商品を購入しました"
+        redirect_to product_path(@product.id)
+      else
+        flash[:alert] = "商品を購入できませんでした"
+        redirect_to product_path(@product.id)
+      end
+    end
   end
 
   # 親カテゴリーが選択された時に動くアクション
@@ -184,5 +196,4 @@ class ProductsController < ApplicationController
   def set_brands
     @brands = Brand.all
   end
-
 end
