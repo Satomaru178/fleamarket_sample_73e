@@ -43,7 +43,7 @@
         .item-methods__payment
           %h3 クレジットカード登録状況
           - if @card.blank?
-            = link_to new_creditcard_path, data: {"turbolinks" => false}, class: "item-link" do
+            = link_to new_creditcard_path, class: "item-link" do
               %span.item-methods__payment__registers クレジットカードを登録して下さい
           - else
             %span.item-methods__payment__completion クレジットカード登録済み
