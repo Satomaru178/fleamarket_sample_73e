@@ -42,7 +42,7 @@
       .item-methods
         .item-methods__payment
           %h3 クレジットカード登録状況
-          - if @creditcard.blank?
+          - if @card.blank?
             = link_to new_creditcard_path, data: {"turbolinks" => false}, class: "item-link" do
               %span.item-methods__payment__registers クレジットカードを登録して下さい
           - else
@@ -60,7 +60,7 @@
         %p 川崎 太郎
 
     %section.purchase__main__purchase
-      - if @creditcard.blank?
+      - if @card.blank?
         %p.purchase__main__purchase__confirmation クレジットカードの入力を完了してください。
       - else
         = link_to pay_product_path, method: :post do
