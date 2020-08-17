@@ -17,6 +17,8 @@ class ProductsController < ApplicationController
   # ブランド一覧を用意する
   before_action :set_brands, only: [:index, :new, :create, :edit, :update]
 
+  require "payjp"
+
   def index
     @q = Product.ransack(params[:q])
     @products = @q.result
