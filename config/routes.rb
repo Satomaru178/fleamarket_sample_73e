@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     
     member do
       get 'purchase', to: 'products#purchase'
+      post 'pay',     to: 'products#pay'
     end
     
     resources :likes, only: [:create, :destroy]
@@ -41,7 +42,6 @@ Rails.application.routes.draw do
     collection do
       delete 'delete', to: 'creditcards#delete'
       post   "date",   to: 'creditcards#show'
-      get    'pay',    to: 'creditcards#pay'
     end
   end
 
