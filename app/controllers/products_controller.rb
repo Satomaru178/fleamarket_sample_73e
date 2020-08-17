@@ -140,6 +140,15 @@ class ProductsController < ApplicationController
       flash[:alert] = "権限がありません"
       redirect_to root_path
     else
+      prohibit_purchased_product
+    end
+  end
+
+  def prohibit_purchased_product
+    if @product.buyer_id
+      flash[:alert] = "購入済の商品は編集または削除できません"
+      redirect_to root_path
+    else
       # nop
     end
   end
