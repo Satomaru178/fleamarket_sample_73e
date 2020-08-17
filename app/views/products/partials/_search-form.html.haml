@@ -1,6 +1,11 @@
 = search_form_for @q do |f|
   .detailed-search__contents__forms__form
     .detailed-search__contents__forms__form__label
+      並べ替え
+    .detailed-search__contents__forms__form__field
+      = collection_select('', :sort_order, Sortorder.all, :value, :name, include_blank: '指定なし(出品日時の新しい順)')
+  .detailed-search__contents__forms__form
+    .detailed-search__contents__forms__form__label
       = f.label :name_or_explain, 'キーワード'
     .detailed-search__contents__forms__form__field
       = f.search_field :name_or_explain_cont, placeholder: "例) 値下げ"

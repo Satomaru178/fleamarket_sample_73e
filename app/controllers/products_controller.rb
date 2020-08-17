@@ -18,14 +18,20 @@ class ProductsController < ApplicationController
   before_action :set_brands, only: [:index, :new, :create, :edit, :update]
 
   def index
+    if params[:sort_order]
+      sort = params[:sort_order]
+    else
+      sort = "created_at DESC"
+    end
+
     @q = Product.ransack(params[:q])
-    @products = @q.result
+    @products = @q.result.includes(:images).order(sort)
     @maximum_per_page = 63
 
     if @products.length <= @maximum_per_page
-      @results = @products.includes(:images).order("created_at DESC")
+      @results = @products
     else
-      @results = @products.includes(:images).order("created_at DESC").page(params[:page]).per(@maximum_per_page)
+      @results = @products.page(params[:page]).per(@maximum_per_page)
     end
   end
 
@@ -85,13 +91,14 @@ class ProductsController < ApplicationController
   end
 
   def fuzzy_search
+    sort = "created_at DESC"
     @products = Product.search(params[:keyword])
     @maximum_per_page = 63
 
     if @products.length <= @maximum_per_page
-      @results = @products.includes(:images).order("created_at DESC")
+      @results = @products.includes(:images).order(sort)
     else
-      @results = @products.includes(:images).order("created_at DESC").page(params[:page]).per(@maximum_per_page)
+      @results = @products.includes(:images).order(sort).page(params[:page]).per(@maximum_per_page)
     end
   end
 

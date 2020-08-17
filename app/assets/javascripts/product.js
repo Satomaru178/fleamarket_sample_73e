@@ -1,5 +1,7 @@
 $(document).on('turbolinks:load', ()=> {
 
+  // 商品出品編集ページ用
+
   const arraySize = 5;  // 画像の最大保存枚数
 
   // preview用のimgタグを生成する関数
@@ -162,7 +164,273 @@ $(document).on('turbolinks:load', ()=> {
 
 
 
-  // 詳細検索 全選択/全解除ボタン
+  // カテゴリーセレクトボックスのオプション設定
+  const buildOption = (category)=> {
+    let html =
+    `
+    <option value="${category.id}" data-category="${category.id}">
+      ${category.name}
+    </option>
+    `;
+    return html;
+  }
+
+  // 子カテゴリーの表示を生成、追加
+  const appendChildrenBox = (insertHTML)=> {
+    let html =
+    `
+    <div class='product-contents__details__categories__category__wrapper__added' id='children_wrapper'>
+      <div class='product-contents__details__categories__category__wrapper__box'>
+        <select class='product-contents__details__categories__category__wrapper__box--select' id='child_category' name="">
+          <option value='---' data-category='---'>子カテゴリーを選択してください</option>
+          ${insertHTML}
+        </select>
+      </div>
+    </div>
+    `;
+    $('.product-contents__details__categories__category').append(html);
+  }
+
+  // 孫カテゴリーの表示を生成、追加
+  const appendGrandchildrenBox = (insertHTML)=> {
+    let html =
+    `
+    <div class='product-contents__details__categories__category__wrapper__added' id='grandchildren_wrapper'>
+      <div class='product-contents__details__categories__category__wrapper__box'>
+        <select class='product-contents__details__categories__category__wrapper__box--select' id='grandchild_category' name="product[category_id]">
+          <option value='---' data-category='---'>孫カテゴリーを選択してください</option>
+          ${insertHTML}
+        </select>
+      </div>
+    </div>
+    `;
+    $('.product-contents__details__categories__category').append(html);
+  }
+
+  $('#product_category_id').attr('name', "");
+
+  // 親カテゴリーのセレクトボックスが変化した
+  $('#parent_category').on('change', function() {
+    // 選択された親カテゴリーを抽出
+    let parentCategory = $('#parent_category option:selected').val();
+    if (parentCategory) {  // 初期値以外が選択されている
+      $.ajax({
+        url: '/products/get_category_children',
+        type: 'GET',
+        data: { parent_name: parentCategory },
+        dataType: 'json'
+      })
+      .done(function(children){
+        $('#children_wrapper').remove();  // 一旦削除する
+        $('#grandchildren_wrapper').remove();
+
+        let insertHTML='';
+
+        children.forEach(function(child) {
+          insertHTML += buildOption(child);
+        });
+
+        appendChildrenBox(insertHTML);
+      })
+      .fail(function(){
+        alert('カテゴリーの取得に失敗しました');
+      });
+    }
+    else {  // 初期値になっている
+      $('#children_wrapper').remove();  // 一旦削除する
+      $('#grandchildren_wrapper').remove();
+    }
+  });
+
+  // 子カテゴリーのセレクトボックスが変化した
+  $('.product-contents__details__categories__category').on('change', '#child_category', function() {
+    // 選択された親カテゴリーを抽出
+    let childId = $('#child_category option:selected').data('category');
+    if (childId != "---") {  // 初期値以外が選択されている
+      $.ajax({
+        url: '/products/get_category_grandchildren',
+        type: 'GET',
+        data: { child_id: childId },
+        dataType: 'json'
+      })
+      .done(function(grandchildren){
+        if (grandchildren) {
+          $('#grandchildren_wrapper').remove();  // 一旦削除する
+          let insertHTML='';
+
+          grandchildren.forEach(function(grandchild) {
+            insertHTML += buildOption(grandchild);
+          });
+
+          appendGrandchildrenBox(insertHTML);
+        }
+        else {
+          // nop
+        }
+      })
+      .fail(function(){
+        alert('カテゴリーの取得に失敗しました');
+      });
+    }
+    else {  // 初期値になっている
+      $('#grandchildren_wrapper').remove();  // 一旦削除する
+    }
+  });
+
+
+
+
+
+  // 詳細検索用
+
+  // 子カテゴリーセレクトボックスのオプション設定
+  const buildOption2 = (category)=> {
+    let html =
+    `
+    <option value="${category.id}">
+      ${category.name}
+    </option>
+    `;
+    return html;
+  }
+
+  // 子カテゴリーの表示を生成、追加
+  const appendChildrenBox2 = (insertHTML)=> {
+    let html =
+    `
+    <div id="child-cat">
+      <div class="detailed-search__contents__forms__form__label">
+        <label for="q_category_child_id">子カテゴリー</label>
+      </div>
+      <div class="detailed-search__contents__forms__form__field">
+        <select name="q[category_id]" id="q_category_child_id">
+          <option value>指定なし</option>
+          ${insertHTML}
+        </select>
+      </div>
+    </div>
+    `;
+    $('#cat').append(html);
+  }
+
+  // 孫カテゴリーチェックボックスの作成
+  const buildCheckBox = (category)=> {
+    let html =
+    `
+    <input type="checkbox" value="${category.id}" name="q[category_id_in][]" id="q_category_id_in_${category.id}">
+    <label for="q_category_id_in_${category.id}">${category.name}</label>
+    `;
+    return html;
+  }
+
+  // 孫カテゴリーの表示を生成、追加
+  const appendGrandchildrenBox2 = (insertHTML)=> {
+    let html =
+    `
+    <div id="grandchild-cat">
+      <div class="detailed-search__contents__forms__form__label">
+        <label for="q_category_id">孫カテゴリー</label>
+      </div>
+      <input type="checkbox" name="grandchild_all_check" id="grandchild_all_check" value="1">
+      <label for="grandchild_all_check">全選択/全削除</label>
+      <div class="detailed-search__contents__forms__form__field" id="grandchild_check_boxes">
+        <input type="hidden" name="q[category_id_in][]" value>
+        ${insertHTML}
+      </div>
+    </div>
+    `;
+    $('#cat').append(html);
+  }
+
+  // 親カテゴリーのセレクトボックスが変化した
+  $('#parent-cat').on('change', function() {
+    // 選択された親カテゴリーを抽出
+    let parentCategory = $('#q_category_id option:selected').val();
+    if (parentCategory) {  // 初期値以外が選択されている
+      $.ajax({
+        url: '/products/get_category_children',
+        type: 'GET',
+        data: { parent_name: parentCategory },
+        dataType: 'json'
+      })
+      .done(function(children){
+        $('#child-cat').remove();  // 一旦削除する
+        $('#grandchild-cat').remove();
+
+        let insertHTML='';
+
+        children.forEach(function(child) {
+          insertHTML += buildOption2(child);
+        });
+
+        appendChildrenBox2(insertHTML);
+      })
+      .fail(function(){
+        alert('カテゴリーの取得に失敗しました');
+      });
+    }
+    else {  // 初期値になっている
+      $('#child-cat').remove();  // 一旦削除する
+      $('#grandchild-cat').remove();
+    }
+  });
+
+  // 子カテゴリーのセレクトボックスが変化した
+  $('#cat').on('change', '#q_category_child_id', function() {
+    // 選択された親カテゴリーを抽出
+    let childCategory = $('#q_category_child_id option:selected').val();
+    if (childCategory) {  // 初期値以外が選択されている
+      $.ajax({
+        url: '/products/get_category_grandchildren',
+        type: 'GET',
+        data: { child_id: childCategory },
+        dataType: 'json'
+      })
+      .done(function(grandchildren){
+        if (grandchildren) {
+          $('#grandchild-cat').remove();  // 一旦削除する
+          let insertHTML='';
+
+          grandchildren.forEach(function(grandchild) {
+            insertHTML += buildCheckBox(grandchild);
+          });
+
+          appendGrandchildrenBox2(insertHTML);
+        }
+        else {
+          // nop
+        }
+      })
+      .fail(function(){
+        alert('カテゴリーの取得に失敗しました');
+      });
+    }
+    else {  // 初期値になっている
+      $('#grandchild-cat').remove();  // 一旦削除する
+    }
+  });
+
+  $('#cat').on('change', '#grandchild_all_check', function() {  // 全選択/全解除ボタンが押された
+    $('input[name="q[category_id_in][]"]').prop('checked', $(this).is(':checked'));  // 全選択の時全解除、全選択でない時全選択
+  });
+
+  $('#cat').on('change', $('input[name="q[category_id_in][]"]'), function() {  // 手動で変更された
+    const check = $('#grandchild_check_boxes :checked').length;
+    const input = $('#grandchild_check_boxes :input[type="checkbox"]').length;
+
+    if (check == input) {  // 全選択状態?
+      $('#grandchild_all_check').prop('checked', true);  // チェックを入れる
+    }
+    else {  // 全選択状態でない
+      $('#grandchild_all_check').prop('checked', false);  // チェックを外す
+    }
+  });
+
+
+
+
+
+  // 全選択/全解除ボタン
   const condition_check_boxes = $('input[name="q[condition_id_in][]"]');
   const costburden_check_boxes = $('input[name="q[costburden_id_in][]"]');
   const shippingperiod_check_boxes = $('input[name="q[shippingperiod_id_in][]"]');
@@ -216,6 +484,80 @@ $(document).on('turbolinks:load', ()=> {
     }
     else {  // 全選択状態でない
       $('#shippingperiod_all_check').prop('checked', false);  // チェックを外す
+    }
+  });
+
+
+
+
+
+  // ソート機能
+  $('select[name=sort_order]').on('change', function() {  // 並べ替えのセレクトボックスが変化した
+    const sort_order = $(this).val();
+    let html;
+    switch (sort_order) {
+      case 'created_at DESC':
+        html = "&sort_order=created_at+DESC";
+        break;
+      case 'created_at ASC':
+        html = "&sort_order=created_at+ASC";
+        break;
+      case 'price DESC':
+        html = "&sort_order=price+DESC";
+        break;
+      case 'price ASC':
+        html = "&sort_order=price+ASC";
+        break;
+      case 'likes_count DESC':
+        html = "&sort_order=likes_count+DESC";
+        break;
+      default:
+        html = "&sort_order=created_at+DESC";
+        break;
+    }
+
+    let current_html = window.location.href;  // urlを取得
+    if (current_html.match(/&sort_order=(created_at|price|likes_count)\+(DESC|ASC)/)) {  // すでにソート済みの場合
+      const replaced_html = current_html.match(/&sort_order=(created_at|price|likes_count)\+(DESC|ASC)/)[0];  // 抽出
+      current_html = current_html.replace(replaced_html, html);  // 置き換え
+    }
+    else {  // 初回
+      current_html = current_html + "?utf8=✓" + html;  // 並べ替え
+    }
+    window.location.href = current_html;  // 更新
+  });
+
+  // ページ更新後のセレクトボックスを現在の状態に変える
+  $(function() {
+    const current_html = window.location.href;  // urlを取得
+    
+    if (current_html.match(/&sort_order=(created_at|price|likes_count)\+(DESC|ASC)/)) {
+      const current_order = current_html.match(/&sort_order=(created_at|price|likes_count)\+(DESC|ASC)/)[0];
+
+      // urlから現在の並び順を推定しセレクトボックスを変更する
+      switch (current_order) {
+        case "&sort_order=created_at+DESC":
+          $('select[name=sort_order] option[value="created_at DESC"]').prop('selected', true);
+          break;
+        case "&sort_order=created_at+ASC":
+          $('select[name=sort_order] option[value="created_at ASC"]').prop('selected', true);
+          break;
+        case "&sort_order=price+DESC":
+          $('select[name=sort_order] option[value="price DESC"]').prop('selected', true);
+          break;
+        case "&sort_order=price+ASC":
+          $('select[name=sort_order] option[value="price ASC"]').prop('selected', true);
+          break;
+        case "&sort_order=likes_count+DESC":
+          $('select[name=sort_order] option[value="likes_count DESC"]').prop('selected', true);
+          break;
+        default:
+          $('select[name=sort_order] option[value]').prop('selected', true);
+          break;
+      }
+    }
+    else {
+      // nop
     }
   });
 });
