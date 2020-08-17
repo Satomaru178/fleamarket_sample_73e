@@ -119,10 +119,10 @@ class ProductsController < ApplicationController
       )
       if @product.update(buyer_id: current_user.id)
         flash[:notice] = "商品を購入しました"
-        redirect_to product_path(@product.id)
+        redirect_to root_path
       else
         flash[:alert] = "商品を購入できませんでした"
-        redirect_to product_path(@product.id)
+        redirect_to root_path
       end
     end
   end
