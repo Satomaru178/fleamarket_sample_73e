@@ -55,5 +55,15 @@
       〜
       ¥
       = f.number_field :price_lteq, placeholder: "Max"
+  .detailed-search__contents__forms__form
+    .detailed-search__contents__forms__form__label
+      = f.label :buyer_id, '販売状況'
+    .detailed-search__contents__forms__form__field
+      = f.radio_button :buyer_id_eq, '', checked: true
+      指定なし
+      = f.radio_button :buyer_id_null, 'true', checked: false
+      販売中
+      = f.radio_button :buyer_id_gt, 0, checked: false
+      売り切れ
   .detailed-search__contents__forms__submit-btn
     = f.submit '検索する'
