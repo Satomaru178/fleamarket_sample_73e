@@ -13,6 +13,10 @@ crumb :detailed_search do
   link "詳細検索", products_path
 end
 
+crumb :fuzzy_search do
+  link "検索結果", fuzzy_search_products_path
+end
+
 # ブランド登録ページ
 crumb :brand_new do
   link "ブランド登録", new_brand_path
