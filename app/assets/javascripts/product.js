@@ -527,10 +527,79 @@ $(document).on('turbolinks:load', ()=> {
     window.location.href = current_html;  // 更新
   });
 
-  // ページ更新後のセレクトボックスを現在の状態に変える
+
+
+
+
+  // 販売状況ラジオボタン
+  $('input[type="radio"]').on('change', function() {  // ラジオボタンが変更された
+    const selected = $(this).attr('id');
+
+    switch (selected) {
+      case 'q_buyer_id_eq_':
+        $('#q_buyer_id_eq_').prop('checked', true);         // チェックを入れる
+        $('#q_buyer_id_null_true').prop('checked', false);  // チェックを外す
+        $('#q_buyer_id_gt_0').prop('checked', false);       // チェックを外す
+        break;
+      case 'q_buyer_id_null_true':
+        $('#q_buyer_id_eq_').prop('checked', false);       // チェックを外す
+        $('#q_buyer_id_null_true').prop('checked', true);  // チェックを入れる
+        $('#q_buyer_id_gt_0').prop('checked', false);      // チェックを外す
+        break;
+      case 'q_buyer_id_gt_0':
+        $('#q_buyer_id_eq_').prop('checked', false);        // チェックを外す
+        $('#q_buyer_id_null_true').prop('checked', false);  // チェックを外す
+        $('#q_buyer_id_gt_0').prop('checked', true);        // チェックを入れる
+        break;
+      default:
+        $('#q_buyer_id_eq_').prop('checked', true);         // チェックを入れる
+        $('#q_buyer_id_null_true').prop('checked', false);  // チェックを外す
+        $('#q_buyer_id_gt_0').prop('checked', false);       // チェックを外す
+        break;
+    }
+  });
+
+
+
+
+
+  // ページ更新後のフォームを現在の状態に変える
   $(function() {
     const current_html = window.location.href;  // urlを取得
+
+    // 販売状況ラジオボタン
+    if (current_html.match(/buyer_id_(eq|null|gt)/)) {
+      const selected = current_html.match(/buyer_id_(eq|null|gt)/)[0];
+
+      // urlから現在の並び順を推定しラジオボタンを変更する
+      switch (selected) {
+        case "buyer_id_eq":
+          $('#q_buyer_id_eq_').prop('checked', true);         // チェックを入れる
+          $('#q_buyer_id_null_true').prop('checked', false);  // チェックを外す
+          $('#q_buyer_id_gt_0').prop('checked', false);       // チェックを外す
+          break;
+        case "buyer_id_null":
+          $('#q_buyer_id_eq_').prop('checked', false);       // チェックを外す
+          $('#q_buyer_id_null_true').prop('checked', true);  // チェックを入れる
+          $('#q_buyer_id_gt_0').prop('checked', false);      // チェックを外す
+          break;
+        case "buyer_id_gt":
+          $('#q_buyer_id_eq_').prop('checked', false);        // チェックを外す
+          $('#q_buyer_id_null_true').prop('checked', false);  // チェックを外す
+          $('#q_buyer_id_gt_0').prop('checked', true);        // チェックを入れる
+          break;
+        default:
+          $('#q_buyer_id_eq_').prop('checked', true);         // チェックを入れる
+          $('#q_buyer_id_null_true').prop('checked', false);  // チェックを外す
+          $('#q_buyer_id_gt_0').prop('checked', false);       // チェックを外す
+          break;
+      }
+    }
+    else {
+      // nop
+    }
     
+    // 並べ替えセレクトボックス
     if (current_html.match(/&sort_order=(created_at|price|likes_count)\+(DESC|ASC)/)) {
       const current_order = current_html.match(/&sort_order=(created_at|price|likes_count)\+(DESC|ASC)/)[0];
 
