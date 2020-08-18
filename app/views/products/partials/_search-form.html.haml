@@ -3,7 +3,7 @@
     .detailed-search__contents__forms__form__label
       並べ替え
     .detailed-search__contents__forms__form__field
-      = collection_select('', :sort_order, Sortorder.all, :value, :name, include_blank: '指定なし(出品日時の新しい順)')
+      = collection_select('', :sort_order, Sortorder.all, :value, :name)
   .detailed-search__contents__forms__form
     .detailed-search__contents__forms__form__label
       = f.label :name_or_explain, 'キーワード'
