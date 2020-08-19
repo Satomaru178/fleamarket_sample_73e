@@ -1,5 +1,7 @@
 .fuzzy-search
   = render "top/others/header"
+  - breadcrumb :fuzzy_search
+  = render "layouts/breadcrumbs"
   .fuzzy-search__results
     = render partial: "products/partials/search-result", locals: { result: @results }  
   = render "top/introduction/introduction-lower"

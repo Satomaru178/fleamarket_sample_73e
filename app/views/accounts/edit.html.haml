@@ -1,5 +1,7 @@
 .wrapper
   = render "top/others/header"
+  - breadcrumb :profile
+  = render "layouts/breadcrumbs"
   .user__mypage
     = render "sidebar"
     .user__mypage__main
