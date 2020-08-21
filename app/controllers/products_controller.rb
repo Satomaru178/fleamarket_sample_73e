@@ -98,6 +98,7 @@ class ProductsController < ApplicationController
   def purchase
     @product = Product.find(params[:id])
     @card = Creditcard.find_by(user_id: current_user.id)
+    @address = current_user.address
   end
 
   def pay
@@ -111,7 +112,7 @@ class ProductsController < ApplicationController
       flash[:alert] = "クレジットカードを登録してください"
       redirect_to controller: 'creditcards', action: 'new'
     else
-      Payjp.api_key = 'sk_test_95c651697229f954c54c3a8f'
+      Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
       Payjp::Charge.create(
         amount: @product.price,
         customer: @card.customer_id,

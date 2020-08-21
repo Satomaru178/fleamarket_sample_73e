@@ -51,13 +51,18 @@
     %section.purchase__main__delivery
       .delivery
         %h3.delivery__address 配送先
-        = link_to '#', class: "delivery__change" do
+        = link_to edit_address_path(current_user.id), class: "delivery__change" do
           変更する
 
       .item-address
-        %p 〒xxx-xxx
-        %p 神奈川県 川崎市
-        %p 川崎 太郎
+        = @address.zipcode 
+        = @address.prefecture 
+        %br
+        = @address.city
+        = @address.address
+        %br
+        = @address.first_name
+        = @address.last_name
 
     %section.purchase__main__purchase
       - if @card.blank?
