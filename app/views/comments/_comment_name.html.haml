@@ -1,0 +1,34 @@
+- if comment.user_id == current_user.id  
+  - if comment.user == comment.product.seller
+    = link_to accounts_path, class: "comments__user__self", id: "seller" do
+      %figure
+        .comments__user__self__image
+          = image_tag 'material/icon/member_photo_noimage_thumb.png'
+        %figcaption.comments__user__self__name
+          = comment.user.nickname
+      .comments__user__self__seller
+        出品者
+  - else
+    = link_to accounts_path , class: "comments__user__self" do
+      %figure
+        .comments__user__self__image
+          = image_tag 'material/icon/member_photo_noimage_thumb.png'
+        %figcaption.comments__user__self__name
+          = comment.user.nickname
+- else
+  - if comment.user == comment.product.seller
+    = link_to "#", class: "comments__user", id: "seller" do
+      %figure
+        .comments__user__image
+          = image_tag 'material/icon/member_photo_noimage_thumb.png'
+        %figcaption.comments__user__name
+          = comment.user.nickname
+      .comments__user__seller
+        出品者
+  - else
+    = link_to "#" , class: "comments__user" do
+      %figure
+        .comments__user__image
+          = image_tag 'material/icon/member_photo_noimage_thumb.png'
+        %figcaption.comments__user__name
+          = comment.user.nickname

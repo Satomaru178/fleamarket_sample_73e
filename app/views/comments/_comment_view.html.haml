@@ -1,0 +1,76 @@
+%ul.content-main__comments__list
+  - @comments.each do |comment|
+    - if comment.user_id == current_user.id
+      -# コメントユーザーとログインユーザーが同一の場合(自分のコメント)
+      %li#self.content-main__comments__list__block{data:{index: comment.id}}
+        = render 'comments/comment_name', comment: comment
+        - if comment.delete_check == 1   # 仮削除済の場合
+          .content-main__comments__list__block__content-self
+            .content-main__comments__list__block__content__text-deleted
+              出品者によりこのコメントは削除されました。
+            .content-main__comments__list__block__content__icons
+              .content-main__comments__list__block__content__icons__right
+                - if comment.product.seller == current_user  # 出品者とログインユーザーが等しい場合
+                  -# 仮削除したコメントを復元させるボタン
+                  .content-main__comments__list__block__content__icons__right__restore.restore_btn{data:{index: comment.id}} 
+                    = link_to restore_comment_path(comment.id) do
+                      = icon('fas', 'recycle')
+                  -# 仮削除したコメントを完全に削除するボタン
+                  .content-main__comments__list__block__content__icons__right__delete.complete_delete{data:{index: comment.id}}     
+                    = link_to comment_path(comment.id), method: :delete do
+                      = icon('fas', 'dumpster-fire')
+        - else   # 削除されていない場合
+          .content-main__comments__list__block__content-self
+            .content-main__comments__list__block__content__text
+              = comment.comment
+            .content-main__comments__list__block__content__icons
+              -# 時計アイコンとコメントした日時の表示
+              %time.content-main__comments__list__block__content__icons__left
+                = icon('fas content-main__comments__list__block__content__icons__left__time', 'clock')
+                %span
+                = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
+              .content-main__comments__list__block__content__icons__right
+                - if comment.product.seller == current_user  # 出品者とログインユーザーが等しい場合
+                  -# 仮削除ボタン
+                  .content-main__comments__list__block__content__icons__rght__delete.self_pre_delete{data:{index: comment.id}}
+                    = link_to comment_path(comment.id), method: :patch do
+                      = icon('fas', 'trash-alt')
+    - else 
+      -# コメントユーザーとログインユーザーが異なる場合の場合(他の人のコメント)
+      %li.Other.content-main__comments__list__block{data:{index: comment.id}}
+        = render 'comments/comment_name', comment: comment
+        - if comment.delete_check == 1   # 削除済の場合
+          .content-main__comments__list__block__content
+            .content-main__comments__list__block__content__text-deleted
+              出品者によりこのコメントは削除されました。
+            .content-main__comments__list__block__content__icons
+              .content-main__comments__list__block__content__icons__right
+                - if comment.product.seller == current_user
+                  -# 仮削除したコメントの復元ボタン
+                  .content-main__comments__list__block__content__icons__right__restore.restore_btn{data:{index: comment.id}} 
+                    = link_to restore_comment_path(comment.id) do
+                      = icon('fas', 'recycle')
+                  -# 削除したコメントの完全削除ボタン
+                  .content-main__comments__list__block__content__icons__right__delete.complete_delete{data:{index: comment.id}}     
+                    = link_to comment_path(comment.id), method: :delete do
+                      = icon('fas', 'dumpster-fire')
+        - else    # 削除されていない場合
+          .content-main__comments__list__block__content
+            .content-main__comments__list__block__content__text
+              = comment.comment
+            .content-main__comments__list__block__content__icons
+              -# 時計アイコンとコメントした日時の表示
+              %time.content-main__comments__list__block__content__icons__left
+                = icon('fas content-main__comments__list__block__content__icons__left__time', 'clock')
+                %span
+                = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
+              .content-main__comments__list__block__content__icons__right
+                -# 報告ボタン
+                .content-main__comments__list__block__content__icons__right__flag
+                  = link_to "#" do
+                    = icon('far', 'flag')
+                - if comment.product.seller == current_user   # 出品者とログインユーザーが等しい場合
+                  -# 仮削除ボタン
+                  .content-main__comments__list__block__content__icons__right__delete.other_pre_delete{data:{index: comment.id}}
+                    = link_to comment_path(comment.id), method: :patch do
+                      = icon('fas', 'trash-alt')

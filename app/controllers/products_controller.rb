@@ -20,14 +20,20 @@ class ProductsController < ApplicationController
   require "payjp"
 
   def index
+    if params[:sort_order]
+      sort = params[:sort_order]
+    else
+      sort = "created_at DESC"
+    end
+
     @q = Product.ransack(params[:q])
-    @products = @q.result
+    @products = @q.result.includes(:images).order(sort)
     @maximum_per_page = 63
 
     if @products.length <= @maximum_per_page
-      @results = @products.includes(:images).order("created_at DESC")
+      @results = @products
     else
-      @results = @products.includes(:images).order("created_at DESC").page(params[:page]).per(@maximum_per_page)
+      @results = @products.page(params[:page]).per(@maximum_per_page)
     end
   end
 
@@ -70,7 +76,9 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @products = Product.includes(:images).where(category_id: @product.category_id).where.not(id: @product.id).order('created_at DESC').first(3)
+    @products = Product.where(category_id: @product.category_id).where.not(id: @product.id).order('created_at DESC').first(3)
+    @comment = Comment.new
+    @comments = @product.comments
   end
 
   def destroy
@@ -85,13 +93,14 @@ class ProductsController < ApplicationController
   end
 
   def fuzzy_search
+    sort = "created_at DESC"
     @products = Product.search(params[:keyword])
     @maximum_per_page = 63
 
     if @products.length <= @maximum_per_page
-      @results = @products.includes(:images).order("created_at DESC")
+      @results = @products.includes(:images).order(sort)
     else
-      @results = @products.includes(:images).order("created_at DESC").page(params[:page]).per(@maximum_per_page)
+      @results = @products.includes(:images).order(sort).page(params[:page]).per(@maximum_per_page)
     end
   end
 
@@ -164,6 +173,15 @@ class ProductsController < ApplicationController
 
     if @product.seller_id != current_user.id
       flash[:alert] = "権限がありません"
+      redirect_to root_path
+    else
+      prohibit_purchased_product
+    end
+  end
+
+  def prohibit_purchased_product
+    if @product.buyer_id
+      flash[:alert] = "購入済の商品は編集または削除できません"
       redirect_to root_path
     else
       # nop

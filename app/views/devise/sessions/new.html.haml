@@ -7,10 +7,10 @@
         %a{ href: '/users/sign_up', id: 'sign-up-btn' }
           新規会員登録
       .sns-log-in-form
-        %a.sns-log-in-form__sns-btn{ href: '', id: 'google-login' }
+        = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "sns-log-in-form__sns-btn", id: 'google-login' do
           Googleでログイン
           %i.fab.fa-google.fa-lg
-        %a.sns-log-in-form__sns-btn{ href: '', id: 'facebook-login' }
+        = link_to user_facebook_omniauth_authorize_path, method: :post, class: "sns-log-in-form__sns-btn", id: 'facebook-login' do
           Facebookでログイン
           %i.fab.fa-facebook-square.fa-lg
       .sign-in-form
