@@ -9,13 +9,23 @@ $(document).on('turbolinks:load', function() {
         <a class="comments__user__self" href="/accounts">
           <figure>
             <div class="comments__user__self__image">
+      `
+      const HTML_user_icon =
+              `
+              <img src="${comment_data.user_image}">
+              `
+      const HTML_user_noimage =
+              `
               <img src="/images/member_photo_noimage_thumb.png">
+              `
+      const HTML_user_name =
+          `
             </div>
             <figcaption class="comments__user__self__name">
               ${comment_data.user_nickname}
             </figcaption>
           </figure>
-      `
+          `
     const HTML_seller =
           `
           <div class="comments__user__self__seller">
@@ -54,12 +64,18 @@ $(document).on('turbolinks:load', function() {
       `
     
     let html;
-    if (comment_data.product_seller.id == comment_data.user_id){
-      // 出品者とコメントしたユーザーが等しい場合
-      html = HTML_user + HTML_seller + HTML_body + HTML_deleteBtn + HTML_closeTag
+    if (comment_data.product_seller.id == comment_data.user_id && comment_data.user_image ){
+      // 出品者とコメントしたユーザーが等しく、かつ、ユーザーアイコン画像がある場合
+      html = HTML_user + HTML_user_icon + HTML_user_name + HTML_seller + HTML_body + HTML_deleteBtn + HTML_closeTag
+    } else if (comment_data.product_seller.id == comment_data.user_id && comment_data.user_image == null ) {
+      // 出品者とコメントしたユーザーが等しく、かつ、ユーザーアイコン画像が無い場合
+      html = HTML_user + HTML_user_noimage + HTML_user_name + HTML_seller + HTML_body + HTML_deleteBtn + HTML_closeTag
+    } else if (comment_data.product_seller.id != comment_data.user_id && comment_data.user_image ) {
+      // 出品者とコメントしたユーザーが異なり、かつ、ユーザーアイコン画像がある場合
+      html = HTML_user + HTML_user_icon + HTML_user_name + HTML_body + HTML_closeTag
     } else {
-      // 出品者とコメントしたユーザーが異なる場合
-      html = HTML_user + HTML_body + HTML_closeTag
+      // 出品者とコメントしたユーザーが異なり、かつ、ユーザーアイコン画像が無い場合
+      html = HTML_user + HTML_user_noimage + HTML_user_name + HTML_body + HTML_closeTag
     }
 
     return html; 
@@ -75,13 +91,23 @@ $(document).on('turbolinks:load', function() {
         <a class="comments__user" href="#">
           <figure>
             <div class="comments__user__image">
+      `
+    const HTML_user_icon =
+              `
+              <img src="/uploads/account/icon_image/${comment_data.user_id}/images.jpeg">
+              `
+    const HTML_user_noimage =
+              `
               <img src="/images/member_photo_noimage_thumb.png">
+              `
+    const HTML_user_name =
+          `
             </div>
             <figcaption class="comments__user__name">
               ${comment_data.user_nickname}
             </figcaption>
           </figure>
-      `
+          `
     const HTML_seller =
           `
           <div class="comments__user__seller">
@@ -119,12 +145,18 @@ $(document).on('turbolinks:load', function() {
       `
 
     let html;
-    if (comment_data.product_seller.id == comment_data.user_id){
-      // 出品者とコメントしたユーザーが等しい場合
-      html = HTML_user + HTML_seller + HTML_body
+    if (comment_data.product_seller.id == comment_data.user_id && comment_data.user_image ){
+      // 出品者とコメントしたユーザーが等しく、かつ、ユーザーアイコン画像がある場合
+      html = HTML_user + HTML_user_icon + HTML_user_name + HTML_seller + HTML_body
+    } else if (comment_data.product_seller.id == comment_data.user_id && comment_data.user_image == null ) {
+      // 出品者とコメントしたユーザーが等しく、かつ、ユーザーアイコン画像が無い場合
+      html = HTML_user + HTML_user_noimage + HTML_user_name + HTML_seller + HTML_body
+    } else if (comment_data.product_seller.id != comment_data.user_id && comment_data.user_image ) {
+      // 出品者とコメントしたユーザーが異なり、かつ、ユーザーアイコン画像がある場合
+      html = HTML_user + HTML_user_icon + HTML_user_name + HTML_body
     } else {
-      // 出品者とコメントしたユーザーが異なる場合
-      html = HTML_user + HTML_body
+      // 出品者とコメントしたユーザーが異なり、かつ、ユーザーアイコン画像が無い場合
+      html = HTML_user + HTML_user_noimage + HTML_user_name + HTML_body
     }
 
     return html; 
