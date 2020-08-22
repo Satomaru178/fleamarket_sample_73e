@@ -95,7 +95,7 @@ kaminari<a href=""><img src="" height="50px"></a>
 
 ## :orange_book: ERD
 
-![08_erd_fleamarket_sample_73e](https://user-images.githubusercontent.com/64793100/89715821-8fb48f00-d9e3-11ea-856b-30957a7132b7.png)
+![09_erd_fleamarket_sample_73e](https://user-images.githubusercontent.com/64793100/90949078-21aaa600-e480-11ea-80b9-cad65f5d12d2.png)
 
 <!--
   ユーザ登録時に入力する基本情報。
@@ -122,8 +122,8 @@ kaminari<a href=""><img src="" height="50px"></a>
 ### Association
 - has_one  :address
 - has_one  :account
-- has_one  :point
 - has_one  :creditcard
+- has_one  :sns_credential
 - has_many :products, dependent: :destroy
 - has_many :comments
 - has_many :likes, dependent: :destroy
@@ -203,22 +203,6 @@ kaminari<a href=""><img src="" height="50px"></a>
 - belongs_to :user
 
 <!--
-  ユーザが買い物したりするとポイントがたまる。
-  ポイントは支払いの割引に使える。
--->
-<br>
-
-### pointsテーブル
-| Column   | Type     | Option                       |
-|----------|----------|------------------------------|
-|user      |references|null: false, foreign_key: true|
-|point     |integer   |null: false, default: 0       |
-|created_at|datetime  |null: false                   |
-|updated_at|datetime  |null: false                   |
-### Association
-- belongs_to :user
-
-<!--
   商品を出品する時に登録する情報。
 
   condition_idカラム
@@ -251,16 +235,6 @@ kaminari<a href=""><img src="" height="50px"></a>
   299以下        : エラー
   300-9,999,999 : 値段
   10,000,000以上 : エラー
-
-  seller_evaluationカラム
-  取引後に売り手と買い手でそれぞれ評価を行う。(ラジオボタン)
-  0   : 未評価
-  1-5 : 評価
-
-  buyer_evaluationカラム
-  取引後に売り手と買い手でそれぞれ評価を行う。(ラジオボタン)
-  0   : 未評価
-  1-5 : 評価
 -->
 <br>
 
@@ -278,8 +252,6 @@ kaminari<a href=""><img src="" height="50px"></a>
 |shippingorigin_id|integer   |null: false                                                                        |
 |shippingperiod_id|integer   |null: false                                                                        |
 |price            |integer   |null: false, numericality: { greater_than_or_equal_to: 300, less_than: 10_000_000 }|
-|seller_evaluation|integer   |default: 0                                                                         |
-|buyer_evaluation |integer   |default: 0                                                                         |
 |likes_count      |integer   |                                                                                   |
 |created_at       |datetime  |null: false                                                                        |
 |updated_at       |datetime  |null: false                                                                        |
@@ -386,3 +358,19 @@ kaminari<a href=""><img src="" height="50px"></a>
 ### Association
 - belongs_to :user
 - belongs_to :product, counter_cache: :likes_count
+
+<!--
+  SNSを用いてユーザ登録して出品や購入などのサービスを利用することができる。
+-->
+<br>
+
+### snscredentialsテーブル
+| Column   | Type     | Option          |
+|----------|----------|-----------------|
+|user      |references|foreign_key: true|
+|provider  |string    |null: false      |
+|uid       |string    |null: false      |
+|created_at|datetime  |null: false      |
+|updated_at|datetime  |null: false      |
+### Association
+- belongs_to :user
