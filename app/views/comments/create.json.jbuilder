@@ -4,3 +4,4 @@ json.user_nickname @comment.user.nickname
 json.user_id @comment.user.id
 json.created_at @comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
 json.product_seller @seller_of_product
+json.user_image @comment.user.account.icon_image.url
