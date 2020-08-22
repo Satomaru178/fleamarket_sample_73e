@@ -32,7 +32,8 @@
                 %th
                   出品者
                 %td
-                  = @product.seller.nickname
+                  = link_to account_path(@product.seller.account.id) do
+                    = @product.seller.nickname
               %tr
                 %th
                   カテゴリー
@@ -51,10 +52,6 @@
                 %td
                   -if @product.brand
                     = @product.brand.name
-              %tr
-                %th
-                  商品のサイズ
-                %td
               %tr
                 %th
                   商品の状態
