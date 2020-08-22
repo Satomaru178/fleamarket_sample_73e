@@ -29,8 +29,8 @@ end
 
 # マイページ、詳細画面
 crumb :user_show do
-  user = User.find(params[:id])
-  link "#{user.nickname}", accounts_path(user.id)
+  account = Account.find(params[:id])
+  link "#{account.user.nickname}", accounts_path(account.id)
 end
 
 # マイページ、プロフィール
