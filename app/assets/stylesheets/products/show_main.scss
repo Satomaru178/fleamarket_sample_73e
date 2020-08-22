@@ -163,12 +163,24 @@
             }
           }
 
+          // 商品の説明
+          &__explain {
+            padding: 5px 0 10px;
+            margin-bottom: 30px;
+
+            &__inner {
+              font-size: 20px;
+              white-space: pre-wrap;
+            }
+          }
+
           // 中間にある商品名の設定
           &__detail {
             line-height: 1.5;
-            font-size: 18px;
+            font-size: 25px;
+            font-weight: 400;
             // 下の空間の指定
-            margin-bottom: 30px;
+            margin-bottom: 10px;
           }
 
           // 表の箱の設定
