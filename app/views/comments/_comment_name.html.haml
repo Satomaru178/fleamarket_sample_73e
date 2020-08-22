@@ -3,7 +3,10 @@
     = link_to accounts_path, class: "comments__user__self", id: "seller" do
       %figure
         .comments__user__self__image
-          = image_tag 'material/icon/member_photo_noimage_thumb.png'
+          - if comment.user.account.icon_image?
+            = image_tag comment.user.account.icon_image.url
+          - else
+            = image_tag 'material/icon/member_photo_noimage_thumb.png'
         %figcaption.comments__user__self__name
           = comment.user.nickname
       .comments__user__self__seller
@@ -12,7 +15,10 @@
     = link_to accounts_path , class: "comments__user__self" do
       %figure
         .comments__user__self__image
-          = image_tag 'material/icon/member_photo_noimage_thumb.png'
+          - if comment.user.account.icon_image?
+            = image_tag comment.user.account.icon_image.url
+          - else
+            = image_tag 'material/icon/member_photo_noimage_thumb.png'
         %figcaption.comments__user__self__name
           = comment.user.nickname
 - else
@@ -20,7 +26,10 @@
     = link_to "#", class: "comments__user", id: "seller" do
       %figure
         .comments__user__image
-          = image_tag 'material/icon/member_photo_noimage_thumb.png'
+          - if comment.user.account.icon_image?
+            = image_tag comment.user.account.icon_image.url
+          - else
+            = image_tag 'material/icon/member_photo_noimage_thumb.png'
         %figcaption.comments__user__name
           = comment.user.nickname
       .comments__user__seller
@@ -29,6 +38,9 @@
     = link_to "#" , class: "comments__user" do
       %figure
         .comments__user__image
-          = image_tag 'material/icon/member_photo_noimage_thumb.png'
+          - if comment.user.account.icon_image?
+            = image_tag comment.user.account.icon_image.url
+          - else
+            = image_tag 'material/icon/member_photo_noimage_thumb.png'
         %figcaption.comments__user__name
           = comment.user.nickname
