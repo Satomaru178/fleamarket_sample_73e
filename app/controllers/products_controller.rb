@@ -74,7 +74,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @products = Product.where(category_id: @product.category_id).where.not(id: @product.id).order('created_at DESC').first(3)
+    @products = Product.includes(:images).where(category_id: @product.category_id).where.not(id: @product.id).order('created_at DESC').first(3)
     @comment = Comment.new
     @comments = @product.comments
   end
