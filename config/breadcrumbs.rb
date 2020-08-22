@@ -27,6 +27,12 @@ crumb :mypage do
   link "マイページ", accounts_path
 end
 
+# マイページ、詳細画面
+crumb :user_show do
+  user = User.find(params[:id])
+  link "#{user.nickname}", accounts_path(user.id)
+end
+
 # マイページ、プロフィール
 crumb :profile do
   link "プロフィール", edit_account_path(current_user.id)

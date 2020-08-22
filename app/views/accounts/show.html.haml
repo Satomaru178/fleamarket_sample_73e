@@ -1,5 +1,7 @@
 .wrapper
   = render "top/others/header"
+  - breadcrumb :user_show
+  = render "layouts/breadcrumbs"
   .user__mypage
     .user__mypage__contents
       .user__mypage__contents__icon
