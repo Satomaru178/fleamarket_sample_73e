@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     
     member do
       get 'purchase', to: 'products#purchase'
+      post 'pay',     to: 'products#pay'
     end
     
     resources :likes, only: [:create, :destroy]

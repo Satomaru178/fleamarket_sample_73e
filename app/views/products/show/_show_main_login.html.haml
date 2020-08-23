@@ -91,7 +91,7 @@
           - else
             .content-main__top__product__buy-btn
               -# 商品確認ページのリンク
-              = link_to purchase_product_path(id:1) do
+              = link_to purchase_product_path(@product.id) do
                 購入画面に進む
           .content-main__top__product__bottom
             .content-main__top__product__bottom__left

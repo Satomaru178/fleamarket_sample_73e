@@ -17,6 +17,8 @@ class ProductsController < ApplicationController
   # ブランド一覧を用意する
   before_action :set_brands, only: [:index, :new, :create, :edit, :update]
 
+  require "payjp"
+
   def index
     if params[:sort_order]
       sort = params[:sort_order]
@@ -99,6 +101,39 @@ class ProductsController < ApplicationController
       @results = @products.includes(:images).order(sort)
     else
       @results = @products.includes(:images).order(sort).page(params[:page]).per(@maximum_per_page)
+    end
+  end
+
+  def purchase
+    @product = Product.find(params[:id])
+    @card = Creditcard.find_by(user_id: current_user.id)
+    @address = current_user.address
+  end
+
+  def pay
+    @product = Product.find(params[:id])
+    @card = Creditcard.find_by(user_id: current_user.id)
+
+    if @product.buyer_id.present?
+      flash[:alert] = "この商品はすでに購入されています"
+      redirect_to root_path
+    elsif @card.blank?
+      flash[:alert] = "クレジットカードを登録してください"
+      redirect_to controller: 'creditcards', action: 'new'
+    else
+      Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+      Payjp::Charge.create(
+        amount: @product.price,
+        customer: @card.customer_id,
+        currency: 'jpy' 
+      )
+      if @product.update(buyer_id: current_user.id)
+        flash[:notice] = "商品を購入しました"
+        redirect_to root_path
+      else
+        flash[:alert] = "商品を購入できませんでした"
+        redirect_to root_path
+      end
     end
   end
 

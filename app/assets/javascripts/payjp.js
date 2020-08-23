@@ -1,13 +1,12 @@
-window.addEventListener('DOMContentLoaded', function(){
-  var submit = document.getElementById("payment_card_submit-button");
+$(document).on('turbolinks:load', ()=> {
 
   Payjp.setPublicKey('pk_test_2b2efb535dc7f0a1d38745d2');
   
-    submit.addEventListener('click', function(e){
+  $('#payment_card_submit-button').on('click', function(e) {
 
     e.preventDefault(); 
 
-    var card = {
+    const card = {
         number: document.getElementById("payment_card_no").value,
         cvc: document.getElementById("payment_card_cvc").value,
         exp_month: document.getElementById("payment_card_month").value,
@@ -25,7 +24,8 @@ window.addEventListener('DOMContentLoaded', function(){
         );
         document.inputForm.submit();
         alert("登録が完了しました");
-      } else {
+      }
+      else {
         alert("カード情報が正しくありません。");
         location.reload();
       }
