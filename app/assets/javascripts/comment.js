@@ -64,13 +64,13 @@ $(document).on('turbolinks:load', function() {
       `
     
     let html;
-    if (comment_data.product_seller.id == comment_data.user_id && comment_data.user_image ){
+    if ((comment_data.product_seller.id == comment_data.user_id) && comment_data.user_image ){
       // 出品者とコメントしたユーザーが等しく、かつ、ユーザーアイコン画像がある場合
       html = HTML_user + HTML_user_icon + HTML_user_name + HTML_seller + HTML_body + HTML_deleteBtn + HTML_closeTag
-    } else if (comment_data.product_seller.id == comment_data.user_id && comment_data.user_image == null ) {
+    } else if ((comment_data.product_seller.id == comment_data.user_id) && comment_data.user_image == null ) {
       // 出品者とコメントしたユーザーが等しく、かつ、ユーザーアイコン画像が無い場合
       html = HTML_user + HTML_user_noimage + HTML_user_name + HTML_seller + HTML_body + HTML_deleteBtn + HTML_closeTag
-    } else if (comment_data.product_seller.id != comment_data.user_id && comment_data.user_image ) {
+    } else if ((comment_data.product_seller.id != comment_data.user_id) && comment_data.user_image ) {
       // 出品者とコメントしたユーザーが異なり、かつ、ユーザーアイコン画像がある場合
       html = HTML_user + HTML_user_icon + HTML_user_name + HTML_body + HTML_closeTag
     } else {
@@ -145,13 +145,13 @@ $(document).on('turbolinks:load', function() {
       `
 
     let html;
-    if (comment_data.product_seller.id == comment_data.user_id && comment_data.user_image ){
+    if ((comment_data.product_seller.id == comment_data.user_id) && comment_data.user_image ){
       // 出品者とコメントしたユーザーが等しく、かつ、ユーザーアイコン画像がある場合
       html = HTML_user + HTML_user_icon + HTML_user_name + HTML_seller + HTML_body
-    } else if (comment_data.product_seller.id == comment_data.user_id && comment_data.user_image == null ) {
+    } else if ((comment_data.product_seller.id == comment_data.user_id) && comment_data.user_image == null ) {
       // 出品者とコメントしたユーザーが等しく、かつ、ユーザーアイコン画像が無い場合
       html = HTML_user + HTML_user_noimage + HTML_user_name + HTML_seller + HTML_body
-    } else if (comment_data.product_seller.id != comment_data.user_id && comment_data.user_image ) {
+    } else if ((comment_data.product_seller.id != comment_data.user_id) && comment_data.user_image ) {
       // 出品者とコメントしたユーザーが異なり、かつ、ユーザーアイコン画像がある場合
       html = HTML_user + HTML_user_icon + HTML_user_name + HTML_body
     } else {
