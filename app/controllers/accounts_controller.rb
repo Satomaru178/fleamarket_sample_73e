@@ -8,6 +8,8 @@ class AccountsController < ApplicationController
     else
       redirect_to action: :mypage
     end
+    @products = Product.where(seller_id: current_user.id)
+    @products_buy = Product.where(buyer_id: current_user.id)
   end
 
   def new
@@ -50,6 +52,7 @@ class AccountsController < ApplicationController
   def show
     @profile = Account.find(params[:id])
     @user = @profile.user
+    @products = Product.where(seller_id: current_user.id)
   end
 
 
@@ -58,6 +61,9 @@ class AccountsController < ApplicationController
       redirect_to action: :index
     else
     end
+    @products = Product.where(seller_id: current_user.id)
+    @products_buy = Product.where(buyer_id: current_user.id)
+
   end
 
   def likes

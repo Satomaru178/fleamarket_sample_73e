@@ -18,6 +18,22 @@
             = image_tag ('material/pict/user_mypage_test.JPG')
       .user__mypage__profile
         = simple_format @profile.profile
+      .user__mypage__exhibition
+        この出品者の商品
+      .user__mypage__products
+        - @products.each do |product|
+          = link_to product_path(product[:id]), class: "user__mypage__product" do
+            .user__mypage__product__image
+              = image_tag product.images[0].src.url, :size =>'220x150'
+              .user__mypage__product__name
+                = product.name
+              .user__mypage__product__price
+                = converting_to_jpy(product.price)
+              - if product.buyer_id.present?
+                .user__mypage__product__image__sold
+                  .user__mypage__product__image__sold-inner
+                    SOLD
+
   = render "top/introduction/introduction-lower"
   = render "top/others/footer"
   = render "top/others/exhibition-btn"

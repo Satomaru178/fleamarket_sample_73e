@@ -13,4 +13,27 @@ $(document).on('turbolinks:load', function() {
     $(this).children(".user__mypage__sidebar__list__item__arrow").css("color", "#dcdcdc");
     $(this).children(".user__mypage__sidebar__list__item__arrow").css("transform", "translateX(0px)");
   });
+
+  let tabs = $(".user__mypage__main__buy__list__item")
+  function tabSwitch() {
+    $('.active').removeClass("active");
+
+    $(this).addClass("active");
+
+    const index = tabs.index(this);
+
+    $(".user__mypage__main__buy__items").removeClass("show").eq(index).addClass("show");
+  }
+  tabs.click(tabSwitch);
+
+  $(".user__mypage__main__buy__item").on("mouseover", function() {
+    $(this).css("transition", "0.5s");
+    $(this).css("background-color", "#dcdcdc");
+  });
+
+  $(".user__mypage__main__buy__item").on("mouseout", function(){
+    $(this).css("transition", "0.5s");
+    $(this).css("background-color", "#ffffff");
+  });
+
 });
