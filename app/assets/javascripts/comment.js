@@ -94,7 +94,7 @@ $(document).on('turbolinks:load', function() {
       `
     const HTML_user_icon =
               `
-              <img src="/uploads/account/icon_image/${comment_data.user_id}/images.jpeg">
+              <img src="${comment_data.user_image}">
               `
     const HTML_user_noimage =
               `
