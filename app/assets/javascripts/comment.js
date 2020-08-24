@@ -205,7 +205,6 @@ $(document).on('turbolinks:load', function() {
       contentType: false
     })
     .done(function(comment_data){
-      console.log(comment_data);
       const html = new_comment(comment_data);
       $(".content-main__comments__list").append(html)
       $('.content-main__comments__form__text').val("");
