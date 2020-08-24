@@ -6,7 +6,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    @user = User.new
+    @user = User.includes(:account).new
+    @user.build_account
+    @user.account.profile = ""
+    @user.save
   end
 
   # POST /resource
@@ -38,6 +41,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
     @user.build_address(@address.attributes)
     @user.build_account(@account.attributes)
+    @user.account.profile = ""
     @user.save
     session["devise.regist_data"]["user"].clear
     sign_in(:user, @user)

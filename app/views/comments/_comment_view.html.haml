@@ -1,5 +1,5 @@
 %ul.content-main__comments__list
-  - @comments.each do |comment|
+  - @comments.includes(:user).each do |comment|
     - if comment.user_id == current_user.id
       -# コメントユーザーとログインユーザーが同一の場合(自分のコメント)
       %li#self.content-main__comments__list__block{data:{index: comment.id}}
