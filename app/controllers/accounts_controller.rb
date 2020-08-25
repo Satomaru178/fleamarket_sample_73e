@@ -5,11 +5,11 @@ class AccountsController < ApplicationController
 
   def index
     if @profile.blank?
+      @products = Product.where(seller_id: current_user.id)
+      @products_buy = Product.where(buyer_id: current_user.id)
     else
       redirect_to action: :mypage
     end
-    @products = Product.where(seller_id: current_user.id)
-    @products_buy = Product.where(buyer_id: current_user.id)
   end
 
   def new
@@ -60,9 +60,9 @@ class AccountsController < ApplicationController
     if @profile.blank?
       redirect_to action: :index
     else
+      @products = Product.where(seller_id: current_user.id)
+      @products_buy = Product.where(buyer_id: current_user.id)
     end
-    @products = Product.where(seller_id: current_user.id)
-    @products_buy = Product.where(buyer_id: current_user.id)
   end
 
   def likes
