@@ -14,7 +14,7 @@ $(document).on('turbolinks:load', function() {
     $(this).children(".user__mypage__sidebar__list__item__arrow").css("transform", "translateX(0px)");
   });
 
-  let tabs = $(".user__mypage__main__buy__list__item")
+  const tabs = $(".user__mypage__main__buy__list__item")
   function tabSwitch() {
     $('.active').removeClass("active");
 
