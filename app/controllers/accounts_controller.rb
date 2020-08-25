@@ -63,7 +63,6 @@ class AccountsController < ApplicationController
     end
     @products = Product.where(seller_id: current_user.id)
     @products_buy = Product.where(buyer_id: current_user.id)
-
   end
 
   def likes
