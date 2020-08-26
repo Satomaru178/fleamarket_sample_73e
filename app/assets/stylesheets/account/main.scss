@@ -6,8 +6,6 @@
   justify-content: center;
   &__main{
     width: 700px;
-    height: auto;
-    background-color: #ffffff;
     &__icon{
       width: 700px;
       height: 200px;
@@ -42,25 +40,58 @@
       }
       &__list{
         display: flex;
-        &__now{
+        cursor: pointer;
+        background-color:#f5f5f5;
+        border-top: 2px solid #f5f5f5;
+        &__item{
         height: 72px;
         width: 350px;
-        border-top: 2px solid #20b2aa;
         line-height: 72px;
         text-align: center;
-
-        }
-        &__past{
-          height: 72px;
-          width: 350px;
-          background-color:#f5f5f5;
-          line-height: 72px;
-          text-align: center;
         }
       }
-      &__image{
-        width: 700px;
-        height: auto;
+      &__items{
+        display: none;
+      }
+
+      &__item{
+        display: block;
+        padding:30px 5px 10px 5px;
+        text-decoration: none;
+        color: black;
+        &__image{
+          position: relative;
+        }
+        &__name{
+          padding: 10px 0 0 10px;
+        }
+        &__price{
+          padding: 30px 0 0 10px
+        }
+        &__image__sold{
+          border-top: 55px solid #3CCACE;
+          border-right: 55px solid transparent;
+          border-bottom: 0 solid transparent;
+          border-left: 0 solid transparent;
+          display: block;
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          &-inner{
+            position: absolute;
+            top: -45px;
+            left: -5px;
+            font-size: 12px;
+            z-index: 2;
+            color: #fff;
+            transform: rotate(-45deg);
+            letter-spacing: 2px;
+            font-weight: 600;
+          
+          }
+        }
       }
     }
   }
@@ -72,4 +103,22 @@
 
 #user__mypage{
   text-decoration: none;
+}
+
+.active{
+  border-top: 2px solid #20b2aa;
+  background-color:#ffffff;
+  display: block;
+}
+
+.show{
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color:#ffffff ;
+  display: flex;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
 }

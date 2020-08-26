@@ -1,15 +1,55 @@
 .user__mypage__sidebar
   .user__mypage__sidebar__list
-    = link_to "マイページ", accounts_path, class: "user__mypage__sidebar__list__item"
-    = link_to "いいね！一覧", likes_accounts_path, class: "user__mypage__sidebar__list__item"
-    = link_to "出品する", new_product_path, class: "user__mypage__sidebar__list__item"
-    = link_to "ニュース一覧", "#", class: "user__mypage__sidebar__list__item"
-    = link_to "評価一覧", "#", class: "user__mypage__sidebar__list__item"
-    = link_to "お問い合わせ", "#", class: "user__mypage__sidebar__list__item"
+    = link_to accounts_path, class: "user__mypage__sidebar__list__item", id: "mypage" do
+      マイページ
+      .user__mypage__sidebar__list__item__arrow
+        #mypage__arrow
+          %i.fas.fa-chevron-right 
+    = link_to likes_accounts_path, class: "user__mypage__sidebar__list__item", id: "like" do
+      いいね！一覧
+      .user__mypage__sidebar__list__item__arrow
+        #like__arrow
+          %i.fas.fa-chevron-right
+    = link_to new_product_path, class: "user__mypage__sidebar__list__item", id: "exhibition" do
+      出品する
+      .user__mypage__sidebar__list__item__arrow
+        #exhibition__arrow
+          %i.fas.fa-chevron-right
+    = link_to "#", class: "user__mypage__sidebar__list__item", id: "news" do
+      ニュース一覧
+      .user__mypage__sidebar__list__item__arrow
+        #news__arrow
+          %i.fas.fa-chevron-right
+    = link_to "#", class: "user__mypage__sidebar__list__item", id: "evaluation" do
+      評価一覧
+      .user__mypage__sidebar__list__item__arrow
+        #evaluation__arrow
+          %i.fas.fa-chevron-right
+    = link_to "#", class: "user__mypage__sidebar__list__item", id: "inquiry" do
+      お問い合わせ
+      .user__mypage__sidebar__list__item__arrow
+        #inquiry__arrow
+          %i.fas.fa-chevron-right
     %h3.user__mypage__sidebar__config 
       設定
     .user__mypage__sidebar__list
-    = link_to "プロフィール", edit_account_path(current_user.id), class: "user__mypage__sidebar__list__item"
-    = link_to "発送元・お届け先住所変更", edit_address_path(current_user.id), class: "user__mypage__sidebar__list__item"
-    = link_to "支払い方法", creditcards_path, class: "user__mypage__sidebar__list__item"
-    = link_to "ログアウト", logout_accounts_path, class: "user__mypage__sidebar__list__item"
+    = link_to edit_account_path(current_user.id), class: "user__mypage__sidebar__list__item", id: "profile" do
+      プロフィール
+      .user__mypage__sidebar__list__item__arrow
+        #profile__arrow
+          %i.fas.fa-chevron-right
+    = link_to edit_address_path(current_user.id), class: "user__mypage__sidebar__list__item", id: "change__address" do
+      発送元・お届け先住所変更
+      .user__mypage__sidebar__list__item__arrow
+        #change__address__arrow
+          %i.fas.fa-chevron-right
+    = link_to creditcards_path, class: "user__mypage__sidebar__list__item", id: "pay" do
+      支払い方法
+      .user__mypage__sidebar__list__item__arrow
+        #pay__arrow
+          %i.fas.fa-chevron-right
+    = link_to logout_accounts_path, class: "user__mypage__sidebar__list__item", id:"logout" do
+      ログアウト
+      .user__mypage__sidebar__list__item__arrow
+        #logout__arrow
+          %i.fas.fa-chevron-right

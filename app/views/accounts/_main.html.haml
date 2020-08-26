@@ -14,12 +14,37 @@
         = image_tag @profile.background_image.url, :size =>'700x200'
       - else
         = image_tag ('material/pict/user_mypage_test.JPG')
-    .user__mypage__main__buy
-    %h2.user__mypage__main__buy__product
+  .user__mypage__main__buy
+  %h2.user__mypage__main__buy__product
+    購入した商品
+  .user__mypage__main__buy__list 
+    .user__mypage__main__buy__list__item.active
+      出品した商品
+    .user__mypage__main__buy__list__item
       購入した商品
-    .user__mypage__main__buy__list
-      %a.user__mypage__main__buy__list__now
-        取引中
-      %a.user__mypage__main__buy__list__past
-        過去の取引
-    .user__mypage__main__buy__image
+  .user__mypage__main__buy__items.show
+    - @products.each do |product|
+      = link_to product_path(product[:id]), class: "user__mypage__main__buy__item" do
+        .user__mypage__main__buy__item__image
+          = image_tag product.images[0].src.url, :size =>'220x150'
+          .user__mypage__main__buy__item__name
+            = product.name
+          .user__mypage__main__buy__item__price
+            = converting_to_jpy(product.price)
+          - if product.buyer_id.present?
+            .user__mypage__main__buy__item__image__sold
+              .user__mypage__main__buy__item__image__sold-inner
+                SOLD
+  .user__mypage__main__buy__items
+    - @products_buy.each do |product|
+      = link_to product_path(product[:id]), class: "user__mypage__main__buy__item" do
+        .user__mypage__main__buy__item__image
+          = image_tag product.images[0].src.url, :size =>'220x150'
+          .user__mypage__main__buy__item__name
+            = product.name
+          .user__mypage__main__buy__item__price
+            = converting_to_jpy(product.price)
+          - if product.buyer_id.present?
+            .user__mypage__main__buy__item__image__sold
+              .user__mypage__main__buy__item__image__sold-inner
+                SOLD
