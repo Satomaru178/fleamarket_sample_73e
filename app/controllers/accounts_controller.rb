@@ -52,7 +52,7 @@ class AccountsController < ApplicationController
   def show
     @profile = Account.find(params[:id])
     @user = @profile.user
-    @products = Product.where(seller_id: current_user.id)
+    @products = Product.where(seller_id: @user)
   end
 
 
