@@ -54,6 +54,7 @@
   }
   
   &__product{
+    width:230px;
     padding:30px 5px 10px 5px;
     text-decoration: none;
     color: black;
@@ -62,6 +63,7 @@
     }
     &__name{
       padding: 10px 0 0 10px;
+      overflow: hidden;
     }
     &__price{
       padding: 30px 0 0 10px
