@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function() {
     const HTML_user =
       `
       <li class="content-main__comments__list__block" data-index=${comment_data.id} id="self">
-        <a class="comments__user__self" href="/accounts">
+        <a class="comments__user__self" href="/accounts/${comment_data.account_id}">
           <figure>
             <div class="comments__user__self__image">
       `
@@ -88,13 +88,13 @@ $(document).on('turbolinks:load', function() {
     const HTML_user =
       `
       <li class="content-main__comments__list__block" data-index=${comment_data.id}>
-        <a class="comments__user" href="#">
+        <a class="comments__user" href="/accounts/${comment_data.account_id}">
           <figure>
             <div class="comments__user__image">
       `
     const HTML_user_icon =
               `
-              <img src="/uploads/account/icon_image/${comment_data.user_id}/images.jpeg">
+              <img src="${comment_data.user_image}">
               `
     const HTML_user_noimage =
               `
