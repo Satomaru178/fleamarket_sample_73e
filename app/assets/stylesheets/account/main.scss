@@ -61,9 +61,11 @@
         color: black;
         &__image{
           position: relative;
+          width: 220px;
         }
         &__name{
           padding: 10px 0 0 10px;
+          overflow: hidden;
         }
         &__price{
           padding: 30px 0 0 10px
