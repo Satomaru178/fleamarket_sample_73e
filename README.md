@@ -2,104 +2,165 @@
 メルカリを参考に作成したWEBアプリケーションです。<br>
 誰でも簡単に売り買いが楽しめるアプリの機能を実装しました。<br>
 ユーザー登録、商品出品、商品購入などの機能が再現されていますが、実際の取引はできません。<br>
-<br>
-<img width="1089" alt="スクリーンショット 2020-08-27 0 09 50" src="https://user-images.githubusercontent.com/62911575/91321525-ac313380-e7f9-11ea-936a-ebce2c4f9d24.png"><br>
+<img width="1089" alt="スクリーンショット 2020-08-27 0 09 50" src="https://user-images.githubusercontent.com/62911575/91321525-ac313380-e7f9-11ea-936a-ebce2c4f9d24.png">
 <br>
 
 ## :orange_book: 実装した機能
-- ユーザー登録・編集機能<br>
-- SNS認証による登録、ログイン機能(ローカル環境のみ)<br>
-- 商品出品・編集・削除機能<br>
-- 商品購入機能（pay.jp）<br>
-- カテゴリ機能<br>
-- コメント機能<br>
-- いいね機能<br>
-- 商品検索機能（あいまい検索・詳細検索）<br>
-- capistranoによるAWS EC2への自動デプロイ<br>
-- ActiveStorageを使用しAWS S3への画像アップロード<br>
+- ユーザー登録・編集機能
+- SNS認証による登録、ログイン機能(ローカル環境のみ)
+- 商品出品・編集・削除機能
+- 商品購入機能（pay.jp）
+- カテゴリ機能
+- コメント機能
+- いいね機能
+- 商品検索機能（あいまい検索・詳細検索）
+- capistranoによるAWS EC2への自動デプロイ
+- ActiveStorageを使用しAWS S3への画像アップロード
 <br>
 
 ## :orange_book: 本番環境
-- URL:    http://54.248.69.170/<br>
-- ID:     gundam<br>
-- PASS:   0079<br>
+- URL:    http://54.248.69.170/
+<br>
+
+### :orange_book: Basic認証
+- ID:     gundam
+- PASS:   0079
+<br>
+
+### :orange_book: 出品者用テストアカウント
+- MAIL:   seller@gmail.com
+- PASS:   seller1234
+<br>
+
+### :orange_book: 購入者用テストアカウント
+- MAIL:   buyer@gmail.com
+- PASS:   buyer1234
 <br>
 
 ## :orange_book: 使用技術(開発環境)
 <a href="https://www.ruby-lang.org/ja/"><img src="https://i1.wp.com/qs.nndo.jp/wp-content/uploads/2017/06/ruby.png?fit=393%2C346" height="50px"></a>
-　<a href="https://railsguides.jp/"><img src="https://job.fellow-s.co.jp/limg/public/wsystem/wp-content/uploads/rails_lo.jpg" height="50px"></a>
-　<a href="https://www.mysql.com/jp/"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/o/oasist/20200614/20200614000533.png" height="50px"></a>
-　<a href="https://unicorn.bogomips.org/"><img src="https://livedoor.sp.blogimg.jp/sasata299/imgs/b/d/bdc11dd3.png" height="50px"></a>
-　<a href="https://www.nginx.co.jp/"><img src="https://i2.wp.com/tadtadya.com/wp-content/uploads/2017/08/nginx-min-edit.png?fit=626%2C329&ssl=1" height="50px"></a>
-　<a href="https://github.com/capistrano/capistrano"><img src="https://capistranorb.com/assets/images/CapistranoLogo.png" height="50px"></a><br>
- <br>
-　<a href="https://haml.info/"><img src="https://haml.info/images/haml.png" height="50px"></a>
-　<a href="https://sass-lang.com/"><img src="https://cdn.worldvectorlogo.com/logos/sass-1.svg" height="50px"></a>
-　<a href="https://jquery.com/"><img src="https://cdn.worldvectorlogo.com/logos/jquery-1.svg" height="30px"></a>
-　<a href="https://github.co.jp/"><img src="https://i.pinimg.com/originals/3c/d5/67/3cd5679f54dc60811383649f9f6ea37d.png" height="50px"></a>
-　<a href="https://aws.amazon.com/jp/"><img src="https://www.skyarch.net/blog/wp-content/uploads/2014/11/Non-Service_Specific_copy_AWS_Cloud.png" height="50px"></a><br>
+<a href="https://railsguides.jp/"><img src="https://job.fellow-s.co.jp/limg/public/wsystem/wp-content/uploads/rails_lo.jpg" height="50px"></a>
+<a href="https://www.mysql.com/jp/"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/o/oasist/20200614/20200614000533.png" height="50px"></a>
+<a href="https://unicorn.bogomips.org/"><img src="https://livedoor.sp.blogimg.jp/sasata299/imgs/b/d/bdc11dd3.png" height="50px"></a>
+<a href="https://www.nginx.co.jp/"><img src="https://i2.wp.com/tadtadya.com/wp-content/uploads/2017/08/nginx-min-edit.png?fit=626%2C329&ssl=1" height="50px"></a>
+<a href="https://github.com/capistrano/capistrano"><img src="https://capistranorb.com/assets/images/CapistranoLogo.png" height="50px"></a>
+<br>
+<a href="https://haml.info/"><img src="https://haml.info/images/haml.png" height="50px"></a>
+<a href="https://sass-lang.com/"><img src="https://cdn.worldvectorlogo.com/logos/sass-1.svg" height="50px"></a>
+<a href="https://jquery.com/"><img src="https://cdn.worldvectorlogo.com/logos/jquery-1.svg" height="30px"></a>
+<a href="https://github.co.jp/"><img src="https://i.pinimg.com/originals/3c/d5/67/3cd5679f54dc60811383649f9f6ea37d.png" height="50px"></a>
+<a href="https://aws.amazon.com/jp/"><img src="https://www.skyarch.net/blog/wp-content/uploads/2014/11/Non-Service_Specific_copy_AWS_Cloud.png" height="50px"></a>
 <br>
 
-## :orange_book: 開発体制＆使用ツール<br>
+## :orange_book: 開発体制＆使用ツール
 アジャイル開発。2週間ごとにスプリントを設定しました。
-- Slack（進捗報告やメンバー間の連絡）<br>
-- Trello（タスク管理）<br>
-- ZOOM（週2回のMTG）<br>
-- スプレッドシート （開発スケジュール、各メンバーの作業時間を把握）<br>
+- Slack（進捗報告やメンバー間の連絡）
+- Trello（タスク管理）
+- ZOOM（週2回のMTG）
+- スプレッドシート （開発スケジュール、各メンバーの作業時間を把握）
 <br>
 
 ## :orange_book: Member（Github-link）&担当
-### <a href="https://github.com/Satomaru178">吉村</a><br>
+### <a href="https://github.com/Satomaru178">吉村</a>
 <a href="https://github.com/Satomaru178"><img src="https://avatars2.githubusercontent.com/u/63147677?s=400&u=892b244eb8922295babc96f11011f06b9c4eccb7&v=4" width="50px"></a><br>
 
-### <a href="https://github.com/osawa4017">大澤</a><br>
+**フロントエンド**
+- xxxxx
+
+**バックエンド**
+- xxxxx
+
+**工夫したポイント**
+- xxxxx
+
+<br>
+
+### <a href="https://github.com/osawa4017">大澤</a>
 <a href="https://github.com/osawa4017"><img src="https://avatars0.githubusercontent.com/u/64793100?s=400&v=4" width="50px"></a><br>
+
+**フロントエンド**
+- TOPページ
+- 商品出品・編集・削除機能
+- 商品検索機能（あいまい検索・詳細検索）
+
+**バックエンド**
+- 商品出品・編集・削除機能
+- 商品検索機能（あいまい検索・詳細検索）
+
+**工夫したポイント**
+- 商品出品・編集ページにおいてユーザが画像を登録するとプレビューが動的に表示されるようにした。
+- 商品出品・編集ページにおいてユーザがカテゴリのプルダウンを選択すると対応する子カテゴリや孫カテゴリのプルダウンが動的に出現するようにした。
+- 商品詳細検索ページにおいてプルダウンを選択することによって商品の並べ替えを行えるようにした。
+- 商品詳細検索ページにおいて検索条件を選択する際に、複数のチェックボックスを一括で選択・解除できるようにした。
+
 <br>
 
-### <a href="https://github.com/Yuta1634">高橋</a><br>
+### <a href="https://github.com/Yuta1634">高橋</a>
 <a href="https://github.com/Yuta1634"><img src="https://avatars0.githubusercontent.com/u/63214741?s=400&v=4" width="50px"></a><br>
+
+**フロントエンド**
+- xxxxx
+
+**バックエンド**
+- xxxxx
+
+**工夫したポイント**
+- xxxxx
+
 <br>
 
-### <a href="https://github.com/Fyamada1229">山田</a><br>
+### <a href="https://github.com/Fyamada1229">山田</a>
 <a href="https://github.com/Fyamada1229"><img src="https://avatars3.githubusercontent.com/u/54790413?s=400&u=ff241ff28650e2f56fb3c27ec21ddd959ae323c2&v=4" width="50px"></a><br>
+
+**フロントエンド**
+- xxxxx
+
+**バックエンド**
+- xxxxx
+
+**工夫したポイント**
+- xxxxx
+
 <br>
 
-### <a href="https://github.com/kobegoro0930">寺本</a><br>
+### <a href="https://github.com/kobegoro0930">寺本</a>
 <a href="https://github.com/kobegoro0930"><img src="https://avatars3.githubusercontent.com/u/62911575?s=460&v=4" width="50px"></a><br>
-**フロントエンド**<br>
-・ユーザー登録＆ログイン画面<br>
-・カテゴリページ（一覧ページ、カテゴリ別ページ）<br>
-・TOPページ商品表示<br>
-・お気に入りの追加（TOPページ、商品詳細ページ、マイページ）<br>
-・README<br>
 
-**バックエンド**<br>
-・カテゴリ機能<br>
-・お気に入り機能<br>
+**フロントエンド**
+- ユーザー登録＆ログイン画面
+- カテゴリページ（一覧ページ、カテゴリ別ページ）
+- TOPページ商品表示
+- お気に入りの追加（TOPページ、商品詳細ページ、マイページ）
+- README
 
-**工夫したポイント**<br>
-ユーザビリティーを意識し、細部にこだわって実装を行いました。<br>
-・ユーザー登録ページのプログレスバーの設置<br>
-・マイページのいいね一覧ページで条件分岐によるビューの表示変更<br>
-・カテゴリ一覧ページでアンカーリンクを設置する<br>
-<br>
+**バックエンド**
+- カテゴリ機能
+- お気に入り機能
+
+**工夫したポイント**
+ユーザビリティーを意識し、細部にこだわって実装を行いました。
+- ユーザー登録ページのプログレスバーの設置
+- マイページのいいね一覧ページで条件分岐によるビューの表示変更
+- カテゴリ一覧ページでアンカーリンクを設置する
 
 ## :orange_book: 課題や今後実装したい機能
-- ポイント機能<br>
-- ユーザ評価機能<br>
-- レスポンシブ対応<br>
+- ポイント機能
+- ユーザ評価機能
+- レスポンシブ対応
+
 <br>
 
 ## :orange_book: ERD
-
 ![09_erd_fleamarket_sample_73e](https://user-images.githubusercontent.com/64793100/90949078-21aaa600-e480-11ea-80b9-cad65f5d12d2.png)
+
+<br>
+
+## :orange_book: DBテーブル設計
 
 <!--
   ユーザ登録時に入力する基本情報。
 -->
-<br>
 
-## :orange_book: DBテーブル設計
 ### usersテーブル
 | Column               | Type   | Option                                            |
 |----------------------|--------|---------------------------------------------------|
@@ -116,6 +177,7 @@
 |remember_created_at   |datetime|                                                   |
 |created_at            |datetime|null: false                                        |
 |updated_at            |datetime|null: false                                        |
+
 ### Association
 - has_one  :address
 - has_one  :account
@@ -126,6 +188,8 @@
 - has_many :likes, dependent: :destroy
 - has_many :liked_products, through: likes, source: :product
 
+<br>
+
 <!--
   ユーザ登録時に登録する基本情報。
 
@@ -135,7 +199,6 @@
   1-47       : 各都道府県
   48         : 未定
 -->
-<br>
 
 ### addressesテーブル
 | Column        | Type     | Option                |
@@ -153,14 +216,16 @@
 |tell           |string    |allow_blank: true      |
 |created_at     |datetime  |null: false            |
 |updated_at     |datetime  |null: false            |
+
 ### Association
 - belongs_to :user, optional: true
+
+<br>
 
 <!--
   マイページでアイコン画像や背景画像を設定できる。
   設定なしだとデフォルトのものにする。
 -->
-<br>
 
 ### accountsテーブル
 | Column         | Type     | Option                       |
@@ -171,10 +236,13 @@
 |profile         |text      |                              |
 |created_at      |datetime  |null: false                   |
 |updated_at      |datetime  |null: false                   |
+
 ### Association
 - belongs_to :user
 - mount_uploader :icon_image, IconUploader
 - mount_uploader :background_image, BackgroundUploader
+
+<br>
 
 <!--
   クレジットカード情報。
@@ -186,7 +254,6 @@
   card_idカラム
   pay.jpでのcard_id
 -->
-<br>
 
 ### creditcardsテーブル
 | Column    | Type     | Option                       |
@@ -196,8 +263,11 @@
 |card_id    |string    |null: false                   |
 |created_at |datetime  |null: false                   |
 |updated_at |datetime  |null: false                   |
+
 ### Association
 - belongs_to :user
+
+<br>
 
 <!--
   商品を出品する時に登録する情報。
@@ -233,7 +303,6 @@
   300-9,999,999 : 値段
   10,000,000以上 : エラー
 -->
-<br>
 
 ### productsテーブル
 | Column          | Type     | Option                                                                            |
@@ -252,6 +321,7 @@
 |likes_count      |integer   |                                                                                   |
 |created_at       |datetime  |null: false                                                                        |
 |updated_at       |datetime  |null: false                                                                        |
+
 ### Association
 - accepts_nested_attributes_for :images, allow_destroy: true
 - has_many :images,   dependent: :destroy
@@ -267,10 +337,11 @@
 - belongs_to_active_hash :shippingorigin
 - belongs_to_active_hash :shippingperiod
 
+<br>
+
 <!--
   商品の画像。１枚必須。
 -->
-<br>
 
 ### imagesテーブル
 | Column   | Type     | Option                       |
@@ -279,16 +350,18 @@
 |src       |string    |                              |
 |created_at|datetime  |null: false                   |
 |updated_at|datetime  |null: false                   |
+
 ### Association
 - belongs_to :product, optional: true
 - mount_uploader :src, ImageUploader
+
+<br>
 
 <!--
   カテゴリーはancestryを使って
   カテゴリー、サブカテゴリー、サブサブカテゴリー、商品、
   という階層構造にする。
 -->
-<br>
 
 ### categoriesテーブル
 | Column   | Type   | Option                                         |
@@ -297,15 +370,17 @@
 |ancestry  |string  |             index: true                        |
 |created_at|datetime|null: false                                     |
 |updated_at|datetime|null: false                                     |
+
 ### Association
 - has_many :products
 - has_ancestry
+
+<br>
 
 <!--
   ブランド名は任意でユーザに入力させる。
   存在しないブランドでも登録できる。
 -->
-<br>
 
 ### brandsテーブル
 | Column   | Type   | Option                                                        |
@@ -313,15 +388,17 @@
 |name      |string  |null: false, index: true, unique: true, length: { maximum: 40 }|
 |created_at|datetime|null: false                                                    |
 |updated_at|datetime|null: false                                                    |
+
 ### Association
 - has_many :products
+
+<br>
 
 <!--
   商品詳細ページでユーザがコメントを残すことができる。
   全てのユーザーが自由にコメントできる。
   出品者は「仮削除」、「完全削除」ができる。
 -->
-<br>
 
 ### commentsテーブル
 | Column     | Type     | Option                       |
@@ -332,9 +409,12 @@
 |delete_check|integer   |default: 0                    |
 |created_at  |datetime  |null: false                   |
 |updated_at  |datetime  |null: false                   |
+
 ### Association
 - belongs_to :user
 - belongs_to :product
+
+<br>
 
 <!--
   商品詳細ページでユーザがいいね！することができる。
@@ -343,7 +423,6 @@
   false : いいね！していない状態
   true  : いいね！している状態
 -->
-<br>
 
 ### likesテーブル
 | Column   | Type     | Option          |
@@ -352,14 +431,16 @@
 |product   |references|foreign_key: true|
 |created_at|datetime  |null: false      |
 |updated_at|datetime  |null: false      |
+
 ### Association
 - belongs_to :user
 - belongs_to :product, counter_cache: :likes_count
 
+<br>
+
 <!--
   SNSを用いてユーザ登録して出品や購入などのサービスを利用することができる。
 -->
-<br>
 
 ### snscredentialsテーブル
 | Column   | Type     | Option          |
@@ -369,5 +450,6 @@
 |uid       |string    |null: false      |
 |created_at|datetime  |null: false      |
 |updated_at|datetime  |null: false      |
+
 ### Association
 - belongs_to :user
