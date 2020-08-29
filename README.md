@@ -134,6 +134,8 @@
 ### <a href="https://github.com/Fyamada1229">山田</a>
 <a href="https://github.com/Fyamada1229"><img src="https://avatars3.githubusercontent.com/u/54790413?s=400&u=ff241ff28650e2f56fb3c27ec21ddd959ae323c2&v=4" width="50px"></a><br>
 
+- DB設計
+
 **フロントエンド**
 - 商品購入確認ページ
 
