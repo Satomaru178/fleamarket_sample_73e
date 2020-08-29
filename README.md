@@ -125,13 +125,15 @@
 <a href="https://github.com/Fyamada1229"><img src="https://avatars3.githubusercontent.com/u/54790413?s=400&u=ff241ff28650e2f56fb3c27ec21ddd959ae323c2&v=4" width="50px"></a><br>
 
 **フロントエンド**
-- xxxxx
+- 商品購入確認ページ
 
 **バックエンド**
-- xxxxx
+- 商品購入確認ページ
 
 **工夫したポイント**
-- xxxxx
+- 商品購入確認ページでは、メルカリを参考しながらユーザ目線ではどんな風に
+  感じになるのかと考えながら、微妙なフォントの調整や文字の大きさ
+  など工夫をしました。
 
 <br>
 
