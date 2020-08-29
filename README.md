@@ -3,6 +3,7 @@
 誰でも簡単に売り買いが楽しめるアプリの機能を実装しました。<br>
 ユーザー登録、商品出品、商品購入などの機能が再現されていますが、実際の取引はできません。<br>
 <img width="1089" alt="スクリーンショット 2020-08-27 0 09 50" src="https://user-images.githubusercontent.com/62911575/91321525-ac313380-e7f9-11ea-936a-ebce2c4f9d24.png">
+<br>
 
 ## :orange_book: 実装した機能
 - ユーザー登録・編集機能
@@ -15,21 +16,26 @@
 - 商品検索機能（あいまい検索・詳細検索）
 - capistranoによるAWS EC2への自動デプロイ
 - ActiveStorageを使用しAWS S3への画像アップロード
+<br>
 
 ## :orange_book: 本番環境
 - URL:    http://54.248.69.170/
+<br>
 
 ### :orange_book: Basic認証
 - ID:     gundam
 - PASS:   0079
+<br>
 
 ### :orange_book: 出品者用テストアカウント
 - MAIL:   seller@gmail.com
 - PASS:   seller1234
+<br>
 
 ### :orange_book: 購入者用テストアカウント
 - MAIL:   buyer@gmail.com
 - PASS:   buyer1234
+<br>
 
 ## :orange_book: 使用技術(開発環境)
 <a href="https://www.ruby-lang.org/ja/"><img src="https://i1.wp.com/qs.nndo.jp/wp-content/uploads/2017/06/ruby.png?fit=393%2C346" height="50px"></a>
@@ -44,6 +50,7 @@
 <a href="https://jquery.com/"><img src="https://cdn.worldvectorlogo.com/logos/jquery-1.svg" height="30px"></a>
 <a href="https://github.co.jp/"><img src="https://i.pinimg.com/originals/3c/d5/67/3cd5679f54dc60811383649f9f6ea37d.png" height="50px"></a>
 <a href="https://aws.amazon.com/jp/"><img src="https://www.skyarch.net/blog/wp-content/uploads/2014/11/Non-Service_Specific_copy_AWS_Cloud.png" height="50px"></a>
+<br>
 
 ## :orange_book: 開発体制＆使用ツール
 アジャイル開発。2週間ごとにスプリントを設定しました。
@@ -51,6 +58,7 @@
 - Trello（タスク管理）
 - ZOOM（週2回のMTG）
 - スプレッドシート （開発スケジュール、各メンバーの作業時間を把握）
+<br>
 
 ## :orange_book: Member（Github-link）&担当
 ### <a href="https://github.com/Satomaru178">吉村</a>
@@ -64,6 +72,8 @@
 
 **工夫したポイント**
 - xxxxx
+
+<br>
 
 ### <a href="https://github.com/osawa4017">大澤</a>
 <a href="https://github.com/osawa4017"><img src="https://avatars0.githubusercontent.com/u/64793100?s=400&v=4" width="50px"></a><br>
@@ -83,6 +93,8 @@
 - 商品詳細検索ページにおいてプルダウンを選択することによって商品の並べ替えを行えるようにした。
 - 商品詳細検索ページにおいて検索条件を選択する際に、複数のチェックボックスを一括で選択・解除できるようにした。
 
+<br>
+
 ### <a href="https://github.com/Yuta1634">高橋</a>
 <a href="https://github.com/Yuta1634"><img src="https://avatars0.githubusercontent.com/u/63214741?s=400&v=4" width="50px"></a><br>
 
@@ -95,6 +107,8 @@
 **工夫したポイント**
 - xxxxx
 
+<br>
+
 ### <a href="https://github.com/Fyamada1229">山田</a>
 <a href="https://github.com/Fyamada1229"><img src="https://avatars3.githubusercontent.com/u/54790413?s=400&u=ff241ff28650e2f56fb3c27ec21ddd959ae323c2&v=4" width="50px"></a><br>
 
@@ -106,6 +120,8 @@
 
 **工夫したポイント**
 - xxxxx
+
+<br>
 
 ### <a href="https://github.com/kobegoro0930">寺本</a>
 <a href="https://github.com/kobegoro0930"><img src="https://avatars3.githubusercontent.com/u/62911575?s=460&v=4" width="50px"></a><br>
@@ -132,14 +148,18 @@
 - ユーザ評価機能
 - レスポンシブ対応
 
+<br>
+
 ## :orange_book: ERD
 ![09_erd_fleamarket_sample_73e](https://user-images.githubusercontent.com/64793100/90949078-21aaa600-e480-11ea-80b9-cad65f5d12d2.png)
+
+<br>
+
+## :orange_book: DBテーブル設計
 
 <!--
   ユーザ登録時に入力する基本情報。
 -->
-
-## :orange_book: DBテーブル設計
 
 ### usersテーブル
 | Column               | Type   | Option                                            |
@@ -167,6 +187,8 @@
 - has_many :comments
 - has_many :likes, dependent: :destroy
 - has_many :liked_products, through: likes, source: :product
+
+<br>
 
 <!--
   ユーザ登録時に登録する基本情報。
@@ -198,6 +220,8 @@
 ### Association
 - belongs_to :user, optional: true
 
+<br>
+
 <!--
   マイページでアイコン画像や背景画像を設定できる。
   設定なしだとデフォルトのものにする。
@@ -217,6 +241,8 @@
 - belongs_to :user
 - mount_uploader :icon_image, IconUploader
 - mount_uploader :background_image, BackgroundUploader
+
+<br>
 
 <!--
   クレジットカード情報。
@@ -240,6 +266,8 @@
 
 ### Association
 - belongs_to :user
+
+<br>
 
 <!--
   商品を出品する時に登録する情報。
@@ -309,6 +337,8 @@
 - belongs_to_active_hash :shippingorigin
 - belongs_to_active_hash :shippingperiod
 
+<br>
+
 <!--
   商品の画像。１枚必須。
 -->
@@ -324,6 +354,8 @@
 ### Association
 - belongs_to :product, optional: true
 - mount_uploader :src, ImageUploader
+
+<br>
 
 <!--
   カテゴリーはancestryを使って
@@ -343,6 +375,8 @@
 - has_many :products
 - has_ancestry
 
+<br>
+
 <!--
   ブランド名は任意でユーザに入力させる。
   存在しないブランドでも登録できる。
@@ -357,6 +391,8 @@
 
 ### Association
 - has_many :products
+
+<br>
 
 <!--
   商品詳細ページでユーザがコメントを残すことができる。
@@ -378,6 +414,8 @@
 - belongs_to :user
 - belongs_to :product
 
+<br>
+
 <!--
   商品詳細ページでユーザがいいね！することができる。
   likeカラム
@@ -397,6 +435,8 @@
 ### Association
 - belongs_to :user
 - belongs_to :product, counter_cache: :likes_count
+
+<br>
 
 <!--
   SNSを用いてユーザ登録して出品や購入などのサービスを利用することができる。
