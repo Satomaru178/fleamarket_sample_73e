@@ -52,6 +52,24 @@
 ### <a href="https://github.com/Satomaru178">吉村</a><br>
 <a href="https://github.com/Satomaru178"><img src="https://avatars2.githubusercontent.com/u/63147677?s=400&u=892b244eb8922295babc96f11011f06b9c4eccb7&v=4" width="50px"></a><br>
 
+#### フロントエンド
+・<br>
+・カテゴリページ（一覧ページ、カテゴリ別ページ）<br>
+・TOPページ商品表示<br>
+・お気に入りの追加（TOPページ、商品詳細ページ、マイページ）<br>
+・README<br>
+
+**バックエンド**<br>
+・カテゴリ機能<br>
+・お気に入り機能<br>
+
+**工夫したポイント**<br>
+ユーザビリティーを意識し、細部にこだわって実装を行いました。<br>
+・ユーザー登録ページのプログレスバーの設置<br>
+・マイページのいいね一覧ページで条件分岐によるビューの表示変更<br>
+・カテゴリ一覧ページでアンカーリンクを設置する<br>
+<br>
+
 ### <a href="https://github.com/osawa4017">大澤</a><br>
 <a href="https://github.com/osawa4017"><img src="https://avatars0.githubusercontent.com/u/64793100?s=400&v=4" width="50px"></a><br>
 <br>
