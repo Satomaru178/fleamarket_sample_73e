@@ -2,7 +2,7 @@
 メルカリを参考に作成したWEBアプリケーションです。<br>
 誰でも簡単に売り買いが楽しめるアプリの機能を実装しました。<br>
 ユーザー登録、商品出品、商品購入などの機能が再現されていますが、実際の取引はできません。<br>
-<img width="1089" alt="スクリーンショット 2020-08-27 0 09 50" src="https://user-images.githubusercontent.com/62911575/91321525-ac313380-e7f9-11ea-936a-ebce2c4f9d24.png">
+<img width="1089" alt="スクリーンショット 2020-08-27 0 09 50" src="https://user-images.githubusercontent.com/62911575/91321525-ac313380-e7f9-11ea-936a-ebce2c4f9d24.png"><br>
 <br>
 
 ## :orange_book: 実装した機能
@@ -15,26 +15,26 @@
 - いいね機能
 - 商品検索機能（あいまい検索・詳細検索）
 - capistranoによるAWS EC2への自動デプロイ
-- ActiveStorageを使用しAWS S3への画像アップロード
+- ActiveStorageを使用しAWS S3への画像アップロード<br>
 <br>
 
 ## :orange_book: 本番環境
 - URL:    http://54.248.69.170/
 <br>
 
-### :orange_book: Basic認証
+### :paperclip: Basic認証
 - ID:     gundam
 - PASS:   0079
 <br>
 
-### :orange_book: 出品者用テストアカウント
+### :paperclip: 出品者用テストアカウント
 - MAIL:   seller@gmail.com
 - PASS:   seller1234
 <br>
 
-### :orange_book: 購入者用テストアカウント
+### :paperclip: 購入者用テストアカウント
 - MAIL:   buyer@gmail.com
-- PASS:   buyer1234
+- PASS:   buyer1234<br>
 <br>
 
 ## :orange_book: 使用技術(開発環境)
@@ -49,7 +49,7 @@
 <a href="https://sass-lang.com/"><img src="https://cdn.worldvectorlogo.com/logos/sass-1.svg" height="50px"></a>
 <a href="https://jquery.com/"><img src="https://cdn.worldvectorlogo.com/logos/jquery-1.svg" height="30px"></a>
 <a href="https://github.co.jp/"><img src="https://i.pinimg.com/originals/3c/d5/67/3cd5679f54dc60811383649f9f6ea37d.png" height="50px"></a>
-<a href="https://aws.amazon.com/jp/"><img src="https://www.skyarch.net/blog/wp-content/uploads/2014/11/Non-Service_Specific_copy_AWS_Cloud.png" height="50px"></a>
+<a href="https://aws.amazon.com/jp/"><img src="https://www.skyarch.net/blog/wp-content/uploads/2014/11/Non-Service_Specific_copy_AWS_Cloud.png" height="50px"></a><br>
 <br>
 
 ## :orange_book: 開発体制＆使用ツール
@@ -57,7 +57,7 @@
 - Slack（進捗報告やメンバー間の連絡）
 - Trello（タスク管理）
 - ZOOM（週2回のMTG）
-- スプレッドシート （開発スケジュール、各メンバーの作業時間を把握）
+- スプレッドシート （開発スケジュール、各メンバーの作業時間を把握）<br>
 <br>
 
 ## :orange_book: Member（Github-link）&担当
@@ -82,7 +82,6 @@
   - 見た目はシンプルかつスタイリッシュなメルカリを参考にし、同じ見た目になるよう調べながら工夫した。<br>
   - 機能に関しては、同じくメルカリを参考にしたが、学びのために「仮削除」および「復元」機能を独自に実装した。<br>
   - ユーザーが快適に使えるよう、ajaxの非同期通信を使い、コメント時、仮削除時、復元時、完全削除時にロードを介さないような仕様にした。<br>
-
 <br>
 
 ### <a href="https://github.com/osawa4017">大澤</a>
@@ -103,8 +102,7 @@
   - ユーザがカテゴリのプルダウンを選択すると対応する子カテゴリや孫カテゴリのプルダウンが動的に出現するようにした。
 - 商品詳細検索ページ
   - プルダウンを選択することによって商品の並べ替えを行えるようにした。
-  - 検索条件を選択する際に、複数のチェックボックスを一括で選択・解除できるようにした。
-
+  - 検索条件を選択する際に、複数のチェックボックスを一括で選択・解除できるようにした。<br>
 <br>
 
 ### <a href="https://github.com/Yuta1634">高橋</a>
@@ -127,8 +125,7 @@
   - 左のサイドバーから必要なページに飛べるように工夫をした。
 
 - クレジットカード支払・登録機能
-  - どのクレジットカードブランドを登録したかわかるようにするため、登録したクレジットカードにはブランドのロゴを表示させた。
-
+  - どのクレジットカードブランドを登録したかわかるようにするため、登録したクレジットカードにはブランドのロゴを表示させた。<br>
 <br>
 
 ### <a href="https://github.com/Fyamada1229">山田</a>
@@ -144,8 +141,7 @@
 
 **工夫したポイント**
 - 商品購入確認ページではメルカリを参考しながらユーザ目線では、どこを<br>
-  見るのかと考えながら、微妙なフォントの調整や文字の大きさなど工夫をしました。
-
+  見るのかと考えながら、微妙なフォントの調整や文字の大きさなど工夫をしました。<br>
 <br>
 
 ### <a href="https://github.com/kobegoro0930">寺本</a>
@@ -163,25 +159,22 @@
 - お気に入り機能
 
 **工夫したポイント**
-
-<br>
-
 ユーザビリティーを意識し、細部にこだわって実装を行いました。
 - ユーザー登録ページのプログレスバーの設置
 - マイページのいいね一覧ページで条件分岐によるビューの表示変更
-- カテゴリ一覧ページでアンカーリンクを設置する
+- カテゴリ一覧ページでアンカーリンクを設置する<br>
+<br>
 
 ## :orange_book: 課題や今後実装したい機能
 - ポイント機能
 - ユーザ評価機能
 - レスポンシブ対応
 - slick等を使った画像のスライド機能
-- modalを使用した確認画面等、UIのブラッシュアップ
+- modalを使用した確認画面等、UIのブラッシュアップ<br>
 <br>
 
 ## :orange_book: ERD
-![09_erd_fleamarket_sample_73e](https://user-images.githubusercontent.com/64793100/90949078-21aaa600-e480-11ea-80b9-cad65f5d12d2.png)
-
+![09_erd_fleamarket_sample_73e](https://user-images.githubusercontent.com/64793100/90949078-21aaa600-e480-11ea-80b9-cad65f5d12d2.png)<br>
 <br>
 
 ## :orange_book: DBテーブル設計
