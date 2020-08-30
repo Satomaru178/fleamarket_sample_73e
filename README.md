@@ -2,6 +2,7 @@
 メルカリを参考に作成したWEBアプリケーションです。<br>
 誰でも簡単に売り買いが楽しめるアプリの機能を実装しました。<br>
 ユーザー登録、商品出品、商品購入などの機能が再現されていますが、実際の取引はできません。<br>
+
 <img width="1089" alt="スクリーンショット 2020-08-27 0 09 50" src="https://user-images.githubusercontent.com/62911575/91321525-ac313380-e7f9-11ea-936a-ebce2c4f9d24.png"><br>
 <br>
 
@@ -20,17 +21,14 @@
 
 ## :orange_book: 本番環境
 - URL:    http://54.248.69.170/
-<br>
 
 ### :paperclip: Basic認証
 - ID:     gundam
 - PASS:   0079
-<br>
 
 ### :paperclip: 出品者用テストアカウント
 - MAIL:   seller@gmail.com
 - PASS:   seller1234
-<br>
 
 ### :paperclip: 購入者用テストアカウント
 - MAIL:   buyer@gmail.com
@@ -38,17 +36,17 @@
 <br>
 
 ## :orange_book: 使用技術(開発環境)
-<a href="https://www.ruby-lang.org/ja/"><img src="https://i1.wp.com/qs.nndo.jp/wp-content/uploads/2017/06/ruby.png?fit=393%2C346" height="50px"></a>
-<a href="https://railsguides.jp/"><img src="https://job.fellow-s.co.jp/limg/public/wsystem/wp-content/uploads/rails_lo.jpg" height="50px"></a>
-<a href="https://www.mysql.com/jp/"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/o/oasist/20200614/20200614000533.png" height="50px"></a>
-<a href="https://unicorn.bogomips.org/"><img src="https://livedoor.sp.blogimg.jp/sasata299/imgs/b/d/bdc11dd3.png" height="50px"></a>
-<a href="https://www.nginx.co.jp/"><img src="https://i2.wp.com/tadtadya.com/wp-content/uploads/2017/08/nginx-min-edit.png?fit=626%2C329&ssl=1" height="50px"></a>
+<a href="https://www.ruby-lang.org/ja/"><img src="https://i1.wp.com/qs.nndo.jp/wp-content/uploads/2017/06/ruby.png?fit=393%2C346" height="50px"></a>　
+<a href="https://railsguides.jp/"><img src="https://job.fellow-s.co.jp/limg/public/wsystem/wp-content/uploads/rails_lo.jpg" height="50px"></a>　
+<a href="https://www.mysql.com/jp/"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/o/oasist/20200614/20200614000533.png" height="50px"></a>　
+<a href="https://unicorn.bogomips.org/"><img src="https://livedoor.sp.blogimg.jp/sasata299/imgs/b/d/bdc11dd3.png" height="50px"></a>　
+<a href="https://www.nginx.co.jp/"><img src="https://i2.wp.com/tadtadya.com/wp-content/uploads/2017/08/nginx-min-edit.png?fit=626%2C329&ssl=1" height="50px"></a>　
 <a href="https://github.com/capistrano/capistrano"><img src="https://capistranorb.com/assets/images/CapistranoLogo.png" height="50px"></a>
 <br>
-<a href="https://haml.info/"><img src="https://haml.info/images/haml.png" height="50px"></a>
-<a href="https://sass-lang.com/"><img src="https://cdn.worldvectorlogo.com/logos/sass-1.svg" height="50px"></a>
-<a href="https://jquery.com/"><img src="https://cdn.worldvectorlogo.com/logos/jquery-1.svg" height="30px"></a>
-<a href="https://github.co.jp/"><img src="https://i.pinimg.com/originals/3c/d5/67/3cd5679f54dc60811383649f9f6ea37d.png" height="50px"></a>
+<a href="https://haml.info/"><img src="https://haml.info/images/haml.png" height="50px"></a>　
+<a href="https://sass-lang.com/"><img src="https://cdn.worldvectorlogo.com/logos/sass-1.svg" height="50px"></a>　
+<a href="https://jquery.com/"><img src="https://cdn.worldvectorlogo.com/logos/jquery-1.svg" height="30px"></a>　
+<a href="https://github.co.jp/"><img src="https://i.pinimg.com/originals/3c/d5/67/3cd5679f54dc60811383649f9f6ea37d.png" height="50px"></a>　
 <a href="https://aws.amazon.com/jp/"><img src="https://www.skyarch.net/blog/wp-content/uploads/2014/11/Non-Service_Specific_copy_AWS_Cloud.png" height="50px"></a><br>
 <br>
 
@@ -81,7 +79,7 @@
 - コメント機能について、
   - 見た目はシンプルかつスタイリッシュなメルカリを参考にし、同じ見た目になるよう調べながら工夫した。<br>
   - 機能に関しては、同じくメルカリを参考にしたが、学びのために「仮削除」および「復元」機能を独自に実装した。<br>
-  - ユーザーが快適に使えるよう、ajaxの非同期通信を使い、コメント時、仮削除時、復元時、完全削除時にロードを介さないような仕様にした。<br>
+  - ユーザーが快適に使えるよう、ajaxの非同期通信を使い、コメント時、仮削除時、復元時、完全削除時にロードを介さないような仕様にした。
 <br>
 
 ### <a href="https://github.com/osawa4017">大澤</a>
@@ -102,7 +100,7 @@
   - ユーザがカテゴリのプルダウンを選択すると対応する子カテゴリや孫カテゴリのプルダウンが動的に出現するようにした。
 - 商品詳細検索ページ
   - プルダウンを選択することによって商品の並べ替えを行えるようにした。
-  - 検索条件を選択する際に、複数のチェックボックスを一括で選択・解除できるようにした。<br>
+  - 検索条件を選択する際に、複数のチェックボックスを一括で選択・解除できるようにした。
 <br>
 
 ### <a href="https://github.com/Yuta1634">高橋</a>
@@ -125,7 +123,7 @@
   - 左のサイドバーから必要なページに飛べるように工夫をした。
 
 - クレジットカード支払・登録機能
-  - どのクレジットカードブランドを登録したかわかるようにするため、登録したクレジットカードにはブランドのロゴを表示させた。<br>
+  - どのクレジットカードブランドを登録したかわかるようにするため、登録したクレジットカードにはブランドのロゴを表示させた。
 <br>
 
 ### <a href="https://github.com/Fyamada1229">山田</a>
@@ -141,7 +139,7 @@
 
 **工夫したポイント**
 - 商品購入確認ページではメルカリを参考しながらユーザ目線では、どこを<br>
-  見るのかと考えながら、微妙なフォントの調整や文字の大きさなど工夫をしました。<br>
+  見るのかと考えながら、微妙なフォントの調整や文字の大きさなど工夫をしました。
 <br>
 
 ### <a href="https://github.com/kobegoro0930">寺本</a>
@@ -162,7 +160,7 @@
 ユーザビリティーを意識し、細部にこだわって実装を行いました。
 - ユーザー登録ページのプログレスバーの設置
 - マイページのいいね一覧ページで条件分岐によるビューの表示変更
-- カテゴリ一覧ページでアンカーリンクを設置する<br>
+- カテゴリ一覧ページでアンカーリンクを設置する
 <br>
 
 ## :orange_book: 課題や今後実装したい機能
