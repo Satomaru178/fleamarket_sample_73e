@@ -41,7 +41,7 @@
 <a href="https://www.mysql.com/jp/"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/o/oasist/20200614/20200614000533.png" height="50px"></a>　
 <a href="https://unicorn.bogomips.org/"><img src="https://livedoor.sp.blogimg.jp/sasata299/imgs/b/d/bdc11dd3.png" height="50px"></a>　
 <a href="https://www.nginx.co.jp/"><img src="https://i2.wp.com/tadtadya.com/wp-content/uploads/2017/08/nginx-min-edit.png?fit=626%2C329&ssl=1" height="50px"></a>　
-<a href="https://github.com/capistrano/capistrano"><img src="https://capistranorb.com/assets/images/CapistranoLogo.png" height="50px"></a>
+<a href="https://github.com/capistrano/capistrano"><img src="https://capistranorb.com/assets/images/CapistranoLogo.png" height="50px"></a><br>
 <br>
 <a href="https://haml.info/"><img src="https://haml.info/images/haml.png" height="50px"></a>　
 <a href="https://sass-lang.com/"><img src="https://cdn.worldvectorlogo.com/logos/sass-1.svg" height="50px"></a>　
@@ -156,7 +156,7 @@
 - カテゴリ機能
 - お気に入り機能
 
-**工夫したポイント**
+**工夫したポイント**<br>
 ユーザビリティーを意識し、細部にこだわって実装を行いました。
 - ユーザー登録ページのプログレスバーの設置
 - マイページのいいね一覧ページで条件分岐によるビューの表示変更
